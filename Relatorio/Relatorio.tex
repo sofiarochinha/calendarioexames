@@ -1,0 +1,167 @@
+\documentclass[11pt, twoside]{report}
+\usepackage[utf8]{inputenc}
+
+\usepackage[hmargin=2.5cm,vmargin=2.5cm,bmargin=2.5cm]{geometry}
+\usepackage{rotating}
+\usepackage{natbib}
+\usepackage{tikz} 
+\usepackage[portuguese]{babel}
+\usepackage{indentfirst}
+\usepackage{float}%colocar as imegens e tabelas dentro do texto
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{setspace}%espçamento entre linhas
+\renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
+\usepackage{appendix}
+%\noindent sem indentação
+\newcommand{\annexname}{Anexo}
+\makeatletter % treat @ as a letter instead of a control word.
+
+\newcommand\annex{\par
+	\setcounter{chapter}{0}
+	\setcounter{section}{0}
+	\renewcommand\appendixname{Anexo}
+	\renewcommand\appendixpagename{Anexos}
+	\renewcommand{\appendixtocname}{Anexos}
+	\gdef\@chapapp{\annexname}
+	\gdef\thechapter{\@Roman\c@chapter}
+	\renewcommand{\theHchapter}{\annexname.\thechapter}
+	\addappheadtotoc
+}\makeatother
+
+
+\begin{document}
+	
+\onehalfspacing%espaçamento de 1,5 entre linhas
+
+	
+	\lhead{Escola Superior de Tecnologia e Gestão de Águeda\\
+		Licenciatura em Tecnologias da Informação
+	}
+	\lfoot{Calendário de exames}
+	\rhead{Capítulo \thechapter}
+	\pagenumbering{roman}
+	
+	\begin{titlepage}
+		\centering
+		\scshape\Huge Calendário Exames\par
+		\vspace{0.9cm}
+		
+		\scshape\large Projeto Temático em Desenvolvimento Web \\
+		\vspace{0.3cm}
+		\scshape\large 1º semestre de 2021/2022\par
+		\vspace{0.4cm}
+		\centering
+		%\includegraphics[width=10cm]{}\par
+		
+		\vspace{1cm}
+		
+		\large
+		Autores\\
+		Gonçalo Tavares, Nº   \\
+		Bruno Lopes, Nº 86217 \\
+		Leonardo Silva, Nº 95381 \\
+		Ricardo Luiz, Nº  \\
+		Sofia Rocha, Nº 99991 \\
+		
+		\vspace{1cm}
+		
+		\centering
+		\includegraphics[width=6cm]{logoestga}
+		
+		\newpage
+		\thispagestyle{plain}%retira cabeçalho e rodape
+		\thispagestyle{empty}%retira a numeração da pagina
+		\centering
+		\scshape\Huge Calendário Exames \par
+		\vspace{1cm}
+		
+		\scshape\large Projeto Temático em Desenvolvimento Web\par
+		\vspace{1cm}
+		\scshape\large 1º semestre de 2021/2022\par
+		\vspace{4cm}
+		
+		
+		
+		\large
+		Autores\\
+		Gonçalo Tavares, Nº   \\
+		Bruno Lopes, Nº 86217 \\
+		Leonardo Silva, Nº 95381 \\
+		Ricardo Luiz, Nº  \\
+		Sofia Rocha, Nº 99991 \\
+		
+		\vspace{1cm}
+		Orientadores\\
+		Rita Santos \\
+		Fábio Marques\\
+		\vspace{4cm}
+		
+		\centering
+		\includegraphics[width=6cm]{logoestga}
+		
+	\end{titlepage}
+
+	\newpage
+	\setcounter{page}{1}%começa a contar a paginas no numero 1
+	\tableofcontents %Índice de conteúdos
+	\thispagestyle{plain}%retira cabeçalho e rodape
+	\thispagestyle{empty}%retira a numeração da pagina
+	\newpage
+	\listoftables %Lista de tabelas
+	\newpage
+	\listoffigures %Lista de figuras
+	
+	
+	
+	
+	\newpage
+	\pagenumbering{arabic}
+	
+	\chapter{Introdução}
+	\section{Objetivos da aplicação}
+	
+	
+	\chapter{Estado de arte}
+	\chapter{Planificação do projeto}
+
+ 	
+
+	\chapter{Análises dos utilizadores}
+	
+	\chapter{Modelo de requisitos}
+	\section{Requisitos funcionais}
+	\section{Requisitos não funcionais}
+	\subsection{Requisitos de interface e facilidade de uso}
+	\subsection{Requisitos de segurança e integridade dos dados}
+	\subsection{Requisitos de interface com sistemas externos e ambientes de execução}
+	
+	\chapter{Modelo de casos de utilização}
+	\section{Diagrama de casos de utilização}
+	\section{Seleção dos casos de utilização}
+	\section{Descrição dos casos de utilização}
+	
+	\chapter{Prototipagem}
+	
+	\chapter{Aplicação}
+	\section{Guia de estilos}
+	\section{Implementação da camada de apresentação}
+	\section{Estrutura da base de dados}
+	\subsection{Base de dados - factories}
+	\section{Arquitetura do sistema - Modelo MVC}
+	\subsection{Models e Controllers}
+	\section{Implementação de funcionalidades}
+	\chapter{Análise dos resultados}
+	\chapter{Reflexão crítica e conclusão}
+	
+	
+
+	\bibliographystyle{plain}
+	\bibliography{}
+	
+	
+\end{document}	
+	
+	
+	
+	
