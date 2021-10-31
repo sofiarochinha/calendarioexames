@@ -1,33 +1,44 @@
 \documentclass[11pt, twoside]{report}
 \usepackage[utf8]{inputenc}
-
 \usepackage[hmargin=2.5cm,vmargin=2.5cm,bmargin=2.5cm]{geometry}
+\usepackage{graphicx}  		% display images
 \usepackage{rotating}
 \usepackage{natbib}
 \usepackage{tikz} 
 \usepackage[portuguese]{babel}
 \usepackage{indentfirst}
-\usepackage{float}%colocar as imegens e tabelas dentro do texto
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,bookmarksopen=true]{hyperref} % Make hyperlinks in index
+\usepackage{bookmark} 		% Bookmarks for pdf file
+\usepackage{float} 			% colocar as imegens e tabelas dentro do texto
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\usepackage{setspace}%espçamento entre linhas
-\renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
-\usepackage{appendix}
-\noindent %sem indentação
-\newcommand{\annexname}{Anexo}
-\makeatletter % treat @ as a letter instead of a control word.
+\usepackage{tabularx} 		% x column in table can jump a line
+\usepackage{setspace} 		% espçamento entre linhas
+\usepackage{fancyhdr} 		% creates fancy footers and headers
+\raggedbottom				% makes bottom of page more empy to make sure previous text doesnt have vertical gaps
+\pagestyle{fancy}
+\lfoot{{\footnotesize Tecnologias de Informação}}
+\rfoot{{\footnotesize ESTGA}}
+\rhead{Projeto Temático em Desenvolvimento Web}
+\lfoot{Calendário de exames}
 
-\newcommand\annex{\par
-	\setcounter{chapter}{0}
-	\setcounter{section}{0}
-	\renewcommand\appendixname{Anexo}
-	\renewcommand\appendixpagename{Anexos}
-	\renewcommand{\appendixtocname}{Anexos}
-	\gdef\@chapapp{\annexname}
-	\gdef\thechapter{\@Roman\c@chapter}
-	\renewcommand{\theHchapter}{\annexname.\thechapter}
-	\addappheadtotoc
-}\makeatother
+\renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
+%\usepackage{appendix}
+%\noindent %sem indentação
+%\newcommand{\annexname}{Anexo}
+%\makeatletter % treat @ as a letter instead of a control word.
+%
+%\newcommand\annex{\par
+%	\setcounter{chapter}{0}
+%	\setcounter{section}{0}
+%	\renewcommand\appendixname{Anexo}
+%	\renewcommand\appendixpagename{Anexos}
+%	\renewcommand{\appendixtocname}{Anexos}
+%	\gdef\@chapapp{\annexname}
+%	\gdef\thechapter{\@Roman\c@chapter}
+%	\renewcommand{\theHchapter}{\annexname.\thechapter}
+%	\addappheadtotoc
+%}\makeatother
 
 
 \begin{document}
@@ -35,11 +46,11 @@
 \onehalfspacing%espaçamento de 1,5 entre linhas
 
 	
-	\lhead{Escola Superior de Tecnologia e Gestão de Águeda\\
-		Licenciatura em Tecnologias da Informação
-	}
-	\lfoot{Calendário de exames}
-	\rhead{Capítulo \thechapter}
+%	\lhead{Escola Superior de Tecnologia e Gestão de Águeda\\
+%		Licenciatura em Tecnologias da Informação
+%	}
+	
+	%\rhead{Capítulo \thechapter}
 	\pagenumbering{roman}
 	
 	\begin{titlepage}
@@ -67,7 +78,7 @@
 		\vspace{1cm}
 		
 		\centering
-		\includegraphics[width=6cm]{logoestga}
+		\includegraphics[width=10cm]{image/AssB_vertical_cor.png}
 		
 		\newpage
 		\thispagestyle{plain}%retira cabeçalho e rodape
@@ -88,7 +99,7 @@
 		Gonçalo Tavares, Nº   \\
 		Bruno Lopes, Nº 86217 \\
 		Leonardo Silva, Nº 95381 \\
-		Ricardo Luiz, Nº  \\
+		Ricardo Fernandes, Nº 49880  \\
 		Sofia Rocha, Nº 99991 \\
 		
 		\vspace{1cm}
@@ -98,22 +109,19 @@
 		\vspace{4cm}
 		
 		\centering
-		\includegraphics[width=6cm]{logoestga}
+		\includegraphics[width=10cm]{image/AssB_vertical_cor}
 		
 	\end{titlepage}
 
 	\newpage
-	\setcounter{page}{1}%começa a contar a paginas no numero 1
-	\tableofcontents %Índice de conteúdos
-	\thispagestyle{plain}%retira cabeçalho e rodape
-	\thispagestyle{empty}%retira a numeração da pagina
+	\setcounter{page}{1} % começa a contar a paginas no numero 1
+	\tableofcontents % Índice de conteúdos
+	\thispagestyle{plain} % retira cabeçalho e rodape
+	\thispagestyle{empty} % retira a numeração da pagina
 	\newpage
-	\listoftables %Lista de tabelas
+	\listoftables % Lista de tabelas
 	\newpage
-	\listoffigures %Lista de figuras
-	
-	
-	
+	\listoffigures % Lista de figuras
 	
 	\newpage
 	\pagenumbering{arabic}
@@ -152,13 +160,25 @@
 	\subsection{Models e Controllers}
 	\section{Implementação de funcionalidades}
 	\chapter{Análise dos resultados}
+	\pagebreak
+	wasd
+	wasd
+	
+	
+	wasd
+	
+	
+	\pagebreak
+	
+	asd
+	
+	wasd
 	\chapter{Reflexão crítica e conclusão}
 	
 	
 
-	\bibliographystyle{plain}
+	\bibliographystyle{ieeetr}
 	\bibliography{}
-	
 	
 \end{document}	
 	
