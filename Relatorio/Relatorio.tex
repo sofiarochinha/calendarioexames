@@ -19,7 +19,7 @@
 \pagestyle{fancy}
 \lfoot{{\footnotesize Tecnologias de Informação}}
 \rfoot{{\footnotesize ESTGA}}
-\rhead{Projeto Temático em Desenvolvimento Web}
+\rhead{PTDW}
 \lfoot{Calendário de exames}
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
@@ -43,7 +43,7 @@
 
 \begin{document}
 	
-\onehalfspacing%espaçamento de 1,5 entre linhas
+\onehalfspacing % espaçamento de 1,5 entre linhas
 
 	
 %	\lhead{Escola Superior de Tecnologia e Gestão de Águeda\\
@@ -139,6 +139,50 @@
 	
 	\chapter{Modelo de requisitos}
 	\section{Requisitos funcionais}
+	
+	\begin{center}
+			\begin{tabularx}{\textwidth}{|c|X|c|}
+			\hline
+			\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
+			\hline
+			RF. & Criação de calendários com slots para colocação de exames. & Alta \\
+			\hline
+			RF. & Importar ficheiros que permitam configuração de cadeiras para um curso com formato em .csv. & Alta \\
+			\hline
+			RF. &  Restrição de marcação de exames com aviso a cor para várias condições. & Alta \\
+			\hline
+			RF. & Implementar tipos de avaliação e verificar regras de marcação consoante o tipo. & Alta \\
+			\hline
+			RF. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas.  & Média \\
+			\hline
+			RF.  & Funcionalidade de pesquisar por cadeiras com filtro para cursos, ano, semestre e época avaliação.  & Alta \\
+			\hline
+			RF. & Permitir criar épocas de exames num calendário que omita domingos e feriados. & Alta \\
+			\hline
+			RF. & Configurar tipo de sala com equipamento, lotação total e máxima. & Alta \\
+			\hline
+			RF. & Associar manualmente vigilantes por sala evitando conflitos presenciais. & Alta \\
+			\hline
+			RF. & Atribuir docentes lista de dias com disponibilidade para participar nas avaliações. & Alta\\
+			\hline
+			RF. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador. & Baixa \\
+			\hline
+			RF.  & Funcionalidade de arrastar ficheiros para calendário com preenchimento automático. & Média \\
+			\hline
+			RF. & Criação de utilizadores e sistema de contas de acesso. & Baixa \\
+			\hline
+			RF. & Utilização de base de dados para guardar informação de utilizadores e configuração de calendários. & Baixa \\
+			\hline
+			RF. & Exportação de calendários para .ics e .pdf. & Alta \\
+			\hline
+			RF. & Permitir opção de exportar para língua Inglesa. & Baixa \\
+			\hline
+			
+			
+		\end{tabularx}
+	\end{center}
+
+	
 	\section{Requisitos não funcionais}
 	\subsection{Requisitos de interface e facilidade de uso}
 	\subsection{Requisitos de segurança e integridade dos dados}
