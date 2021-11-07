@@ -16,11 +16,14 @@
 \usepackage{setspace} 		% espçamento entre linhas
 \usepackage{fancyhdr} 		% creates fancy footers and headers
 \raggedbottom				% makes bottom of page more empy to make sure previous text doesnt have vertical gaps
+\usepackage{makecell} %forçar linhas dentro de tabelas
 \pagestyle{fancy}
 \lfoot{{\footnotesize Tecnologias de Informação}}
 \rfoot{{\footnotesize ESTGA}}
 \rhead{Projeto Temático em Desenvolvimento Web}
 \lfoot{Calendário de exames}
+
+%\newcommand{\version}{\input{"git latexdiff ~HEAD"}} tentei
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
 %\usepackage{appendix}
@@ -42,7 +45,6 @@
 
 
 \begin{document}
-	
 \onehalfspacing%espaçamento de 1,5 entre linhas
 
 	
@@ -138,11 +140,132 @@
 	\chapter{Análises dos utilizadores}
 	
 	\chapter{Modelo de requisitos}
+	
+	
 	\section{Requisitos funcionais}
+	
+	\begin{table}[H]
+		\centering
+		\caption{Requisitos funcionais}	
+		\vspace{0.5cm}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Rfª & Nome & Prioridade\\
+			\hline
+			RF1 & As disciplinas e cursos podem ser inseridas manualmente& alta\\
+			\hline
+			RF2 & Deve ter a possibilidade de exportar toda a informação em pdf&alta\\
+			\hline
+			RF3 &\makecell[l]{O utilizador pode importar as informações sobre as salas, docentes, disciplinas e\\ cursos apartir de um ficheiro csv}&alta\\
+			\hline
+			RF4 &Mostrar avisos em caso de incongruência da informação&\\
+			\hline
+			RF5 &\makecell[l]{Mostrar um aviso se houver sobreposição de exames (que sejam na mesma hora e \\na mesma sala)}&alta\\
+			\hline
+			RF6& \makecell[l]{Mostrar um aviso se o professor associado ao exame não tiver disponível \\(caso já esteje ocupado com outro exame ou trabalhar nesse dia e nessa hora)}&alta\\
+			\hline
+			RF7& \makecell[l]{Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e \\noite (às 18h30) por padrão}& alta\\
+			\hline
+			RF8& \makecell[l]{O utilizador pode criar épocas de avaliação adicionando um nome e uma data de \\início e fim}& alta\\
+			\hline
+			RF9& O utilizador pode alterar qualquer informação sobre os exames, docentes ou os cursos&alta\\
+			\hline
+			RF10&\makecell[l]{Ao exportar para pdf se o curso for diurno não irá aparecer o turno noturno \\e vice-versa.}&baixa\\
+			\hline
+			RF11&\makecell[l]{A criação de um novo calendário deverá sempre partir do início sem \\nenhuma configuração associada}&alta\\
+			\hline
+			RF12&Deve permitir a visualização de calendários de avaliações criados anteriormente &alta\\
+			\hline
+			RF13&O utilizador pode pesquisar por disciplinas, curso, ano, semestre e época de avaliação&média\\
+			\hline
+			RF14&As salas devem ser identificadas como de informática, redes ou salas normais &alta\\
+			\hline
+			RF15&O utilizador pode escolher quais são os docentes que serão vigilantes nos exames&alta\\
+			\hline
+			RF16&Permitir retrodecer nas alterações feitas&baixa\\
+			\hline
+			RF17&O utilizador pode associar qualquer disciplina do curso escolhido ao calendário&alta\\
+			\hline
+		\end{tabular}
+		\label{requisitosfuncionais}
+	\end{table}
+	
+	
 	\section{Requisitos não funcionais}
+	
+	
+	
 	\subsection{Requisitos de interface e facilidade de uso}
+	\begin{table}[H]
+		\centering
+		\caption{Requisitos de interface e facilidade de uso}	
+		\vspace{0.5cm}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Rfª & Nome & Prioridade\\
+			\hline
+			RIF1 & As disciplinas e cursos podem ser inseridas através de \textit{drag e drop} &alta\\
+			\hline
+			RIF2 & &\\
+			\hline
+			RIF3 &&\\
+			\hline
+			RIF4 &&\\
+			\hline
+			RIF5 &&\\
+			\hline
+			RIF6&&\\
+			\hline
+			RIF7& & \\
+			\hline
+			RIF8& & \\
+			\hline
+			RIF9& &\\
+			\hline
+			RIF10&&\\
+			\hline
+			RIF11&&\\
+			\hline
+			RIF12& &\\
+			\hline
+			RIF13&&\\
+			\hline
+			RIF14&&\\
+			\hline
+			RIF15&&\\
+			\hline
+			RIF16&&\\
+			\hline
+			RIF17&&\\
+			\hline
+		\end{tabular}
+		\label{requisitosdeinterface}
+	\end{table}
 	\subsection{Requisitos de segurança e integridade dos dados}
 	\subsection{Requisitos de interface com sistemas externos e ambientes de execução}
+	
+
+	\begin{table}[H]
+		\centering
+		\caption{Requisitos de interface com sistemas externos e ambientes de execução}	
+		\vspace{0.5cm}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Rfª & Nome & Prioridade\\
+			\hline
+			RSA1 & Suportar no Chrome (versão 90 ou superior) &alta\\
+			\hline
+			RSA2 &Suportar no Firefox (versão 87 ou superior) &\\
+			\hline
+			RSA3 &Suportar no Microsoft Edge (versão 89 ou superior)&\\
+			\hline
+			RSA4 &Suportar no Safari (versão 14 ou superior)&\\
+			\hline
+			RSA5 &Ter acesso à internet&\\
+			\hline
+		\end{tabular}
+		\label{requisitosdesistemas}
+	\end{table}
 	
 	\chapter{Modelo de casos de utilização}
 	\section{Diagrama de casos de utilização}
@@ -192,6 +315,7 @@
 	asd
 	
 	wasd
+
 	\chapter{Reflexão crítica e conclusão}
 	
 	
