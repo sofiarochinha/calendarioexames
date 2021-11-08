@@ -132,6 +132,8 @@
 	
 	
 	\chapter{Estado de arte}
+	dizer que foi dificil encontrar
+	
 	\chapter{Planificação do projeto}
 
  	
@@ -140,20 +142,32 @@
 	
 	\chapter{Modelo de requisitos}
 	\section{Requisitos funcionais}
+	
+	
 
 	\pagebreak % table is too long, this will stay here temorarily until solution is foundj
+	
+	%organizar por categoria
+	%rf1- nao é uma funcionalidade
+	
+	colocar os avisos nos requisitos funcionais
+	
+	quer o utilizador pode fazer quer o sistema pode fazer
+\begin{table}
+	
 	\begin{center}
+		
 				\begin{tabularx}{\textwidth}{|c|X|c|}
 				\hline
 				\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
 				\hline
-				RF1. & Criação de calendários com slots para colocação de exames & Alta \\
+				RF1. & Criação de calendários com slots(alterar) para colocação de exames & Alta \\
 				\hline
 				RF2. & As disciplinas e cursos podem ser inseridos manualmente & Alta\\
 				\hline
 				RF3. & Importar ficheiros com a configuração de salas, cadeiras e docentes em formato .csv & Alta \\
 				\hline
-				RF4. &  Restrição de marcação de exames com aviso a cor no caso de incongruência da informação & Alta \\
+				RF4. &  Restrição de marcação de exames com um aviso no caso de incongruência da informação & Alta \\
 				\hline
 				RF5. & Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
 				\hline
@@ -161,19 +175,19 @@
 				\hline
 				RF7. & A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
 				\hline
-				RF8. & Permitir retroceder nas alterações feitas & Baixa \\
+				RF8. & Permitir (anular) retroceder nas alterações feitas (clarificar) (especificar) & Baixa \\
 				\hline
-				RF9. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas  & Média \\
+				RF9. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas (perguntar ao paulo) & Média \\
 				\hline
-				RF10.  & Funcionalidade de pesquisar por cadeiras com filtro por cursos, ano, semestre e época de avaliação  & Alta \\
+				RF10.  & Funcionalidade de pesquisar por cadeiras com filtro por cursos, ano, semestre de época de avaliação  & Alta \\
 				\hline
-				RF11. & O calendário deverá omitir (????)os domingos e feriados & Alta \\
+				RF11. & O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
 				\hline
-				RF12. & Configurar tipo de sala com equipamento, lotação total e máxima & Alta \\
+				RF12. & Configurar tipo de sala com equipamento e lotação total & Alta \\
 				\hline
-				RF13. & Associar manualmente vigilantes por sala evitando conflitos presenciais & Alta \\
+				RF13. & O utilizador pode associar vigilantes a cada exame & Alta \\
 				\hline
-				RF14. & Permitir associar na ficha do docente dias em que os mesmos não estão disponíveis & Alta\\
+				RF14. & Permitir associar na área do docente dias em que os mesmos não estão disponíveis & Alta\\
 				\hline
 				RF15. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
 				\hline
@@ -183,7 +197,7 @@
 				\hline
 				RF18. & Permitir inserir docentes &Alta\\
 				\hline
-				RF19. & Permitir editar manualmente docentes & Alta\\
+				RF19. & Permitir editar docentes (clarificar) & Alta\\
 				\hline
 				RF.20 &O utilizador pode associar a cada exame vários vigilantes&Média\\
 				\hline
@@ -191,13 +205,20 @@
 				\hline
 			\end{tabularx}
 	\end{center}
+\end{table}
 
 	
 	\section{Requisitos não funcionais}
 	\subsection{Requisitos de interface e facilidade de uso}
 	PERGUNTAR SOBRE CURSOS COM O MESMO EXAME
 	
+	o exame é sempre no mesmo dia
+	
+	
 	Colocar informação sobre os avisos
+	Distinguir os tipos de avisos
+	
+	
 	
 		\begin{center}
 		\begin{tabularx}{\textwidth}{|c|X|c|}
@@ -212,13 +233,13 @@
 			\hline
 			RIF4 &Mostrar um aviso de alta prioridade se houver sobreposições de exames &Alta\\
 			\hline
-			RIF5 &Mostrar um aviso de alta prioridade o docente não estiver disponível&Alta\\
+			RIF5 &Mostrar um aviso de alta prioridade se o docente não estiver disponível&Alta\\
 			\hline
 			RIF6&Mostrar um aviso de alta prioridade se a sala não estiver disponível&Alta\\
 			\hline
 			RIF7&Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Alta\\
 			\hline
-			RIF8&Mostrar um aviso de alta prioridade se os docentes associados ao exame forem duplicados& Alta\\
+			RIF8&Mostrar um aviso de alta prioridade se os docentes associados ao exame forem duplicados (calrificar)& Alta\\
 			\hline
 			RIF9&Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo&Alta\\
 			\hline
@@ -243,13 +264,19 @@
 	\end{center}
 	\subsection{Requisitos de segurança e integridade dos dados}
 	
+	perfil secretaria 
+	perfil admin
 	
+	possibilidade de criar novos utilizadores
+	rede da ua
+	
+	perguntar ao cliente
 	\begin{center}	
 	\begin{tabularx}{\textwidth}{|c|X|c|}
 		\hline
 		\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
 		\hline
-		RSI1 &Não pode haver múltiplas associações dos docentes no mesmo turno &Alta\\
+		RSI1 &Não pode haver múltiplas associações dos docentes no mesmo turno (clarificar ou retirar)&Alta\\
 		\hline
 		RSI2 &O histórico não pode ter associações a outras tabelas da base de dados  &Alta\\
 		\hline
@@ -262,7 +289,11 @@
 \end{center}
 	
 	\subsection{Requisitos de interface com sistemas externos e ambientes de execução}
-		\begin{center}[
+	
+	colocar browser mobile
+	funcionalidade em android (especificar)
+	
+		\begin{center}
 		\begin{tabularx}{\textwidth}{|c|X|c|}
 			\hline
 			Rfª & Nome & Prioridade\\
