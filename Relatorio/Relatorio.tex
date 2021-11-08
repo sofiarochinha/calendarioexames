@@ -141,7 +141,7 @@
 	\chapter{Modelo de requisitos}
 	\section{Requisitos funcionais}
 
-	\pagebreak % table is too long, this will stay here temorarily until solution is found
+	\pagebreak % table is too long, this will stay here temorarily until solution is foundj
 	\begin{center}
 				\begin{tabularx}{\textwidth}{|c|X|c|}
 				\hline
@@ -159,55 +159,50 @@
 				\hline
 				RF6. & O utilizador pode criar épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
 				\hline
-				RF. & Ao exportar o calendário os cursos diurnos e noturnos devem aparecer separados sem sobreposição de informação *** (Os cursos noturnos são diferentes dos diurnos, como será um calendário exportado por curso, acho que nunca acontece) *** & Média \\
+				RF7. & A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
 				\hline
-				RF. & A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
+				RF8. & Permitir retroceder nas alterações feitas & Baixa \\
 				\hline
-				RF. & Permitir retroceder nas alterações feitas & Baixa \\
+				RF9. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas  & Média \\
 				\hline
-				RF. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas  & Média \\
+				RF10.  & Funcionalidade de pesquisar por cadeiras com filtro por cursos, ano, semestre e época de avaliação  & Alta \\
 				\hline
-				RF.  & Funcionalidade de pesquisar por cadeiras com filtro por cursos, ano, semestre e época de avaliação  & Alta \\
+				RF11. & O calendário deverá omitir (????)os domingos e feriados & Alta \\
 				\hline
-				RF. & O calendário deverá omitir ou colocar a cinza os domingos e feriados & Alta \\
+				RF12. & Configurar tipo de sala com equipamento, lotação total e máxima & Alta \\
 				\hline
-				RF. & Configurar tipo de sala com equipamento, lotação total e máxima & Alta \\
+				RF13. & Associar manualmente vigilantes por sala evitando conflitos presenciais & Alta \\
 				\hline
-				RF. & Associar manualmente vigilantes por sala evitando conflitos presenciais & Alta \\
+				RF14. & Permitir associar na ficha do docente dias em que os mesmos não estão disponíveis & Alta\\
 				\hline
-				RF. & Permitir associar na ficha do docente dias em que os mesmos não estão disponíveis & Alta\\
+				RF15. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
 				\hline
-				RF. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
+				RF16. & Exportação de calendários em formato .pdf & Alta \\
 				\hline
-				RF.  & Funcionalidade de arrastar ficheiros para calendário com preenchimento automático & Média \\
+				RF17. & Permitir a opção de exportar o calendário em língua Inglesa & Baixa \\
 				\hline
-				RF. & Utilização de base de dados para guardar informação de utilizadores e configuração de calendários. & Baixa \\
+				RF18. & Permitir inserir docentes &Alta\\
 				\hline
-				RF. & Exportação de calendários em formato .pdf & Alta \\
+				RF19. & Permitir editar manualmente docentes & Alta\\
 				\hline
-				RF. & Permitir a opção de exportar o calendário em língua Inglesa & Baixa \\
+				RF.20 &O utilizador pode associar a cada exame vários vigilantes&Média\\
 				\hline
-				RF. & Permitir inserir docentes &Alta\\
-				\hline
-				RF. & Permitir editar manualmente docentes & Alta\\
+				RF.22 &	O utilizador pode associar mais do que uma sala a um exame&Alta\\
 				\hline
 			\end{tabularx}
-
 	\end{center}
 
 	
 	\section{Requisitos não funcionais}
 	\subsection{Requisitos de interface e facilidade de uso}
+	PERGUNTAR SOBRE CURSOS COM O MESMO EXAME
 	
 	Colocar informação sobre os avisos
 	
-		\begin{table}[H]
-		\centering
-		\caption{Requisitos de interface e facilidade de uso}	
-		\vspace{0.5cm}
-		\begin{tabular}{|l|l|l|}
+		\begin{center}
+		\begin{tabularx}{\textwidth}{|c|X|c|}
 			\hline
-			Rfª & Nome & Prioridade\\
+			\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
 			\hline
 			RIF1 & As disciplinas e cursos podem ser inseridas através de \textit{drag e drop} &Alta\\
 			\hline
@@ -215,23 +210,23 @@
 			\hline
 			RIF3 & Linguagem padrão em Português de Portugal &Alta\\
 			\hline
-			RIF4 &&\\
+			RIF4 &Mostrar um aviso de alta prioridade se houver sobreposições de exames &Alta\\
 			\hline
-			RIF5 &&\\
+			RIF5 &Mostrar um aviso de alta prioridade o docente não estiver disponível&Alta\\
 			\hline
-			RIF6&&\\
+			RIF6&Mostrar um aviso de alta prioridade se a sala não estiver disponível&Alta\\
 			\hline
-			RIF7& & \\
+			RIF7&Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Alta\\
 			\hline
-			RIF8& & \\
+			RIF8&Mostrar um aviso de alta prioridade se os docentes associados ao exame forem duplicados& Alta\\
 			\hline
-			RIF9& &\\
+			RIF9&Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo&Alta\\
 			\hline
-			RIF10&&\\
+			RIF10&Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala&Alta\\
 			\hline
-			RIF11&&\\
+			RIF11&Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes&Média\\
 			\hline
-			RIF12& &\\
+			RIF12&&\\
 			\hline
 			RIF13&&\\
 			\hline
@@ -243,38 +238,48 @@
 			\hline
 			RIF17&&\\
 			\hline
-		\end{tabular}
+		\end{tabularx}
 		\label{requisitosdeinterface}
-	\end{table}
+	\end{center}
 	\subsection{Requisitos de segurança e integridade dos dados}
 	
 	
-	
-	
+	\begin{center}	
+	\begin{tabularx}{\textwidth}{|c|X|c|}
+		\hline
+		\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
+		\hline
+		RSI1 &Não pode haver múltiplas associações dos docentes no mesmo turno &Alta\\
+		\hline
+		RSI2 &O histórico não pode ter associações a outras tabelas da base de dados  &Alta\\
+		\hline
+		RSI3 & Uma conta de utilizador (????????????????????)&\\
+		\hline
+		RSI4 & &\\
+		\hline
+	\end{tabularx}
+	\label{requisitosdeseguranca}
+\end{center}
 	
 	\subsection{Requisitos de interface com sistemas externos e ambientes de execução}
-	
-		\begin{table}[H]
-		\centering
-		\caption{Requisitos de interface com sistemas externos e ambientes de execução}	
-		\vspace{0.5cm}
-		\begin{tabular}{|l|l|l|}
+		\begin{center}[
+		\begin{tabularx}{\textwidth}{|c|X|c|}
 			\hline
 			Rfª & Nome & Prioridade\\
 			\hline
-			RSA1 & Suportar no Chrome (versão 90 ou superior) &alta\\
+			RSA1 & Suportar no Chrome (versão 90 ou superior) &Alta\\
 			\hline
-			RSA2 &Suportar no Firefox (versão 87 ou superior) &\\
+			RSA2 &Suportar no Firefox (versão 87 ou superior) &Alta\\
 			\hline
-			RSA3 &Suportar no Microsoft Edge (versão 89 ou superior)&\\
+			RSA3 &Suportar no Microsoft Edge (versão 89 ou superior)&Alta\\
 			\hline
-			RSA4 &Suportar no Safari (versão 14 ou superior)&\\
+			RSA4 &Suportar no Safari (versão 14 ou superior)&Alta\\
 			\hline
-			RSA5 &Ter acesso à internet&\\
+			RSA5 &Ter acesso à internet&Alta\\
 			\hline
-		\end{tabular}
+		\end{tabularx}
 		\label{requisitosdesistemas}
-	\end{table}
+	\end{center}
 	
 	\chapter{Modelo de casos de utilização}
 	\section{Diagrama de casos de utilização}
