@@ -146,91 +146,97 @@
 	\chapter{Modelo de requisitos}
 	\section{Requisitos funcionais}
 	
+	
+
+	\pagebreak % table is too long, this will stay here temorarily until solution is foundj
 	Os requisitos funcionais representam todas as funcionalidades que o sistema pode fazer ou que o utilizador pode realizar no sistema. 
-	
-	Todos os requisitos estam dividos por categorias: avisos, 
-	
 	%organizar por categoria
 	%rf1- nao é uma funcionalidade
+	
+	colocar os avisos nos requisitos funcionais
+	
+	quer o utilizador pode fazer quer o sistema pode fazer
 	
 \begin{table}[H]
 	\caption{Requisitos funcionais}
 	\begin{center}	
-				\begin{tabularx}{\textwidth}{|c|X|c|}
-				\hline
-				\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
-				\hline
-				RF1. & O utilizador pode inserir cursos e disciplinas & Alta\\
-				\hline
-				RF2. & Importar ficheiros com a configuração de salas, cadeiras e docentes em formato .csv & Alta \\
-				\hline
-				RF3. &  Restrição de marcação de exames com um aviso no caso de incongruência da informação & Alta \\
-				\hline
-				RF4. & Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
-				\hline
-				RF5. & O utilizador pode criar épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
-				\hline
-				RF6. & A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
-				\hline
-				RF7. & Permitir (anular) retroceder nas alterações feitas (clarificar) (especificar) & Baixa \\
-				\hline
-				RF8. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas (perguntar ao paulo) & Média \\
-				\hline
-				RF9.  & Funcionalidade de pesquisar por cadeiras com filtro por cursos, ano, semestre de época de avaliação  & Alta \\
-				\hline
-				RF10. & O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
-				\hline
-				RF11. & Configurar tipo de sala com equipamento e lotação total & Alta \\
-				\hline
-				RF12. & O utilizador pode associar vigilantes a cada exame & Alta \\
-				\hline
-				RF13. & Permitir associar na área do docente dias em que os mesmos não estão disponíveis & Alta\\
-				\hline
-				RF14. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
-				\hline
-				RF15. & Exportação de calendários em formato .pdf & Alta \\
-				\hline
-				RF16. & Permitir a opção de exportar o calendário em língua Inglesa & Baixa \\
-				\hline
-				RF17. & Permitir inserir docentes &Alta\\
-				\hline
-				RF18. & Permitir editar docentes (clarificar) & Alta\\
-				\hline
-				RF.19 &O utilizador pode associar a cada exame vários vigilantes&Média\\
-				\hline
-				RF.20 &	O utilizador pode associar mais do que uma sala a um exame&Alta\\
-				\hline
-				RF.21 &Mostrar um aviso de alta prioridade se houver sobreposições de exames &Alta\\
-				\hline
-				RF.22&Mostrar um aviso de alta prioridade se o docente não estiver disponível&Alta\\
-				\hline
-				RF23&Mostrar um aviso de alta prioridade se a sala não estiver disponível&Alta\\
-				\hline
-				RF24&Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Alta\\
-				\hline
-				RF25&Mostrar um aviso de alta prioridade se os docentes associados ao exame forem duplicados (calrificar)& Alta\\
-				\hline
-				RF26&Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo&Alta\\
-				\hline
-				RF27&Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala&Alta\\
-				\hline
-				RF28&Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes&Média\\
-				\hline
-				RF.29&Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. &Alta\\
-				\hline
-			\end{tabularx}
+		\begin{tabularx}{\textwidth}{|c|X|c|}
+			\hline
+			\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
+			\hline
+			RF1. & O utilizador pode inserir cursos e disciplinas & Alta\\
+			\hline
+			RF2. & Importar ficheiros com a configuração de salas, cadeiras e docentes em formato .csv & Alta \\
+			\hline
+			RF3. &  Restrição de marcação de exames com um aviso no caso de incongruência da informação & Alta \\
+			\hline
+			RF4. & Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
+			\hline
+			RF5. & O utilizador pode criar épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
+			\hline
+			RF6. & A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
+			\hline
+			RF7. & Permitir (anular) retroceder nas alterações feitas (clarificar) (especificar) & Baixa \\
+			\hline
+			RF8. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas (perguntar ao Paulo) & Média \\
+			\hline
+			RF9.  & Funcionalidade de pesquisar por cadeiras com filtro por cursos, ano, semestre de época de avaliação  & Alta \\
+			\hline
+			RF10. & O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
+			\hline
+			RF11. & Configurar tipo de sala com equipamento e lotação total & Alta \\
+			\hline
+			RF12. & O utilizador pode associar vigilantes a cada exame & Alta \\
+			\hline
+			RF13. & Permitir associar na área do docente dias em que os mesmos não estão disponíveis & Alta\\
+			\hline
+			RF14. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
+			\hline
+			RF15. & Exportação de calendários em formato .pdf & Alta \\
+			\hline
+			RF16. & Permitir a opção de exportar o calendário em língua Inglesa & Baixa \\
+			\hline
+			RF17. & Permitir inserir novos docentes & Alta\\
+			\hline
+			RF18. & Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta\\
+			\hline
+			RF.19 &O utilizador pode associar a cada exame vários vigilantes & Média\\
+			\hline
+			RF.20 &	O utilizador pode associar mais do que uma sala a um exame & Alta\\
+			\hline
+			RF.21 &Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
+			\hline
+			RF.22 & Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta \\
+			\hline
+			RF23 & Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta\\
+			\hline
+			RF24 & Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Alta\\
+			\hline
+			RF25&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
+			\hline
+			RF26 & Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Alta\\
+			\hline
+			RF27 & Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
+			\hline
+			RF28 & Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
+			\hline
+			RF.29 & Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Alta\\
+			\hline
+		\end{tabularx}
 	\end{center}
 \end{table}
+
+
 
 	
 	\section{Requisitos não funcionais}
 	\subsection{Requisitos de interface e facilidade de uso}
-		
+
 	
 	\begin{table}[H]
-		\caption{Requisitos de interface e facilidade de uso}
+	\caption{Requisitos de interface e facilidade de uso}
 	
-		\begin{center}
+	\begin{center}
 		\begin{tabularx}{\textwidth}{|c|X|c|}
 			\hline
 			\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
@@ -246,68 +252,79 @@
 		\end{tabularx}
 		\label{requisitosdeinterface}
 	\end{center}
-\end{table}
+	\end{table}
+
 	\subsection{Requisitos de segurança e integridade dos dados}
 	
 	perfil secretaria 
-	perfil admin
+perfil admin
+
+possibilidade de criar novos utilizadores
+rede da ua
+
+perguntar ao cliente
+\begin{table}[H]	
+	\caption{Requisitos de segurança e integridade dos dados}
 	
-	possibilidade de criar novos utilizadores
-	rede da ua
-	
-	perguntar ao cliente
-	\begin{table}[H]	
-		\caption{Requisitos de segurança e integridade dos dados}
-		
 	
 	\begin{center}
-	\begin{tabularx}{\textwidth}{|c|X|c|}
-		\hline
-		\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
-		\hline
-		RSI1 &O histórico não pode ter associações a outras tabelas da base de dados  &Alta\\
-		\hline
-		RSI2 & Uma conta de utilizador (????????????????????)&\\
-		\hline
-		RSI3 & &\\
-		\hline
-	\end{tabularx}
-	\label{requisitosdeseguranca}
-\end{center}
-\end{table}
-	
-	\subsection{Requisitos de interface com sistemas externos e ambientes de execução}
-	
-	colocar browser mobile
-	funcionalidade em android (especificar)
-	
-	\begin{table}[H]
-		\caption{Requisitos de interface com sistemas externos e ambientes de execução}	
-		\begin{center}
 		\begin{tabularx}{\textwidth}{|c|X|c|}
 			\hline
 			\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
 			\hline
-			RSA1 & Suportar no Chrome na versão desktop (versão 90 ou superior) &Alta\\
+			RSI1 &O histórico não pode ter associações a outras tabelas da base de dados  &Alta\\
 			\hline
-			RSA2 &Suportar no Firefox na versão desktop (versão 87 ou superior) &Alta\\
-			\hline 
-			RSA3 &Suportar no Microsoft Edge na versão desktop (versão 89 ou superior)&Alta\\
-			\hline
-			RSA4 &Suportar no Safari na versão desktop (versão 14 ou superior)&Alta\\
-			\hline
-			RSA5 &Ter acesso à internet&Alta\\
-			\hline
-			RSA6 &Suportar no Chrome na versão mobile (versão 90 ou superior)&Alta\\
+			RSI2 & Uma única conta de utilizador&\\
 			\hline
 		\end{tabularx}
-		\label{requisitosdesistemas}
+		\label{requisitosdeseguranca}
 	\end{center}
 \end{table}
+
+
+	\subsection{Requisitos de interface com sistemas externos e ambientes de execução}
+	
+	
+	
+	
+	\begin{table}[H]
+		\caption{Requisitos de interface com sistemas externos e ambientes de execução}
+		\begin{center}
+			\begin{tabularx}{\textwidth}{|c|X|c|}
+				\hline
+				\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade}\\
+				\hline
+				RSA1 & Suportar Browsers com motor renderização webkit/blink (Chrome, Edge, Safari, Brave, etc.)  & Alta \\
+				\hline
+				RSA2 & Suportar Firefox ESR e outros derivados de gecko/quantum & Alta \\
+				\hline
+				RSA5 & Ter acesso à Internet (precisa mesmo? rede interna UA não é suficiente?) & Alta\\
+				\hline
+			\end{tabularx}
+			\label{requisitosdesistemas}
+		\end{center}
+	\end{table}
+		
 	
 	\chapter{Modelo de casos de utilização}
 	\section{Diagrama de casos de utilização}
 	\section{Seleção dos casos de utilização}
+	
+	\begin{table}[H]
+		\begin{center}
+			\begin{tabularx}{\textwidth}{|c|}
+		
+		Autenticação\\
+		Importação de ficheiros .csv com a configuração de salas, disciplinas e docente. \\
+	 	Criação de épocas com data de início e fim \\
+	 	Configuração os tipos de salas e a lotação máxima\\
+	 	Exportação do calendário em pdf\\
+	 	\end{tabularx}
+	 	\end{center}
+		
+	\end{table}
+	
+	
 	\section{Descrição dos casos de utilização}
 	
 	\chapter{Prototipagem}
@@ -323,7 +340,7 @@
 	\subsection{Testes}
 	\subsubsection{Análise de resultados}
 	
-	\chapter{Implementação do modelo de dados presistentes}
+	\chapter{Implementação do modelo de dados persistentes}
 	\section{Estrutura da base de dados}
 	\subsection{Base de dados - factories}
 	\section{Arquitetura do sistema - Modelo MVC}
