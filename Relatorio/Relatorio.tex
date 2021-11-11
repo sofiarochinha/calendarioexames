@@ -166,9 +166,9 @@
 			\hline
 			RF1. & O utilizador pode inserir cursos e disciplinas & Alta\\
 			\hline
-			RF2. & Importar ficheiros com a configuração de salas, cadeiras e docentes em formato .csv & Alta \\
+			RF2. & Importar ficheiros com a configuração de salas, disciplinas e docentes em formato .csv & Alta \\
 			\hline
-			RF3. &  Restrição de marcação de exames com um aviso no caso de incongruência da informação & Alta \\
+			RF3. & Aparecimento de um aviso no caso de incongruência da informação durante a marcação de exames & Alta \\
 			\hline
 			RF4. & Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
 			\hline
@@ -176,51 +176,49 @@
 			\hline
 			RF6. & A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
 			\hline
-			RF7. & Permitir (anular) retroceder nas alterações feitas (clarificar) (especificar) & Baixa \\
+			RF7. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas (perguntar ao Paulo) & Média \\
 			\hline
-			RF8. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas (perguntar ao Paulo) & Média \\
+			RF8.  & Pesquisar por calendários com filtro por cursos, ano, semestre e época de avaliação  & Alta \\
 			\hline
-			RF9.  & Funcionalidade de pesquisar por cadeiras com filtro por cursos, ano, semestre de época de avaliação  & Alta \\
+			RF9. & O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
 			\hline
-			RF10. & O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
+			RF10. & Configurar tipo de sala com equipamento e lotação total & Alta \\
 			\hline
-			RF11. & Configurar tipo de sala com equipamento e lotação total & Alta \\
+			RF11. & O utilizador pode associar vigilantes a cada exame & Alta \\
 			\hline
-			RF12. & O utilizador pode associar vigilantes a cada exame & Alta \\
+			RF12. & Permitir associar na área do docente dias em que os mesmos não estão disponíveis & Alta\\
 			\hline
-			RF13. & Permitir associar na área do docente dias em que os mesmos não estão disponíveis & Alta\\
+			RF13. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
 			\hline
-			RF14. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
+			RF14. & Exportação de calendários em formato .pdf & Alta \\
 			\hline
-			RF15. & Exportação de calendários em formato .pdf & Alta \\
+			RF15. & Permitir a opção de exportar o calendário em língua Inglesa & Baixa \\
 			\hline
-			RF16. & Permitir a opção de exportar o calendário em língua Inglesa & Baixa \\
+			RF16. & Permitir inserir novos docentes & Alta\\
 			\hline
-			RF17. & Permitir inserir novos docentes & Alta\\
+			RF17. & Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta\\
 			\hline
-			RF18. & Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta\\
+			RF.18 &O utilizador pode associar a cada exame vários vigilantes & Alta\\
 			\hline
-			RF.19 &O utilizador pode associar a cada exame vários vigilantes & Média\\
+			RF.19 &	O utilizador pode associar mais do que uma sala a um exame & Alta\\
 			\hline
-			RF.20 &	O utilizador pode associar mais do que uma sala a um exame & Alta\\
+			RF.20 &Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
 			\hline
-			RF.21 &Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
+			RF.21 & Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta \\
 			\hline
-			RF.22 & Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta \\
+			RF22 & Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta\\
 			\hline
-			RF23 & Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta\\
+			RF23 & Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Média\\
 			\hline
-			RF24 & Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Alta\\
+			RF24&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
 			\hline
-			RF25&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
+			RF25 & Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Média\\
 			\hline
-			RF26 & Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Alta\\
+			RF26 & Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
 			\hline
-			RF27 & Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
+			RF27 & Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
 			\hline
-			RF28 & Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
-			\hline
-			RF.29 & Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Alta\\
+			RF.28 & Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Média\\
 			\hline
 		\end{tabularx}
 	\end{center}
@@ -310,20 +308,47 @@ perguntar ao cliente
 	\section{Diagrama de casos de utilização}
 	\section{Seleção dos casos de utilização}
 	
-	\begin{table}[H]
-		\begin{center}
-			\begin{tabularx}{\textwidth}{|c|}
-		
-		Autenticação\\
-		Importação de ficheiros .csv com a configuração de salas, disciplinas e docente. \\
-	 	Criação de épocas com data de início e fim \\
-	 	Configuração os tipos de salas e a lotação máxima\\
-	 	Exportação do calendário em pdf\\
-	 	\end{tabularx}
-	 	\end{center}
-		
-	\end{table}
+	Os casos de utilização da primeira fase:
 	
+	\begin{itemize}
+		\item Autenticação;
+		\item Importação de ficheiros .csv com a configuração de salas, disciplinas e docentes;
+	 	\item Criação de épocas com data de início e fim;
+	 	\item Configuração dos tipos de salas e a lotação máxima;
+	 	\item Inserção de exames no calendário.
+	 	\item Pesquisa de calendários por curso, ano, semestre e época de avaliação;
+	\end{itemize}
+	
+	Segunda fase:
+	\begin{itemize}
+		\item Inserção de cursos e disciplinas;
+		\item Restringir a marcação de exames ao domingos e feriados;
+		\item Associar um ou mais docentes aos exames para serem vigilantes;
+		\item Inserção de novos docentes;
+		\item Associar uma ou mais salas a um exame;
+		\item Exportação do calendário em formato pdf;
+	\end{itemize}
+
+
+	Terceira fase:
+	\begin{itemize}
+		\item Associar na área de docentes dias em que os mesmos não estão disponíveis;
+		\item Editar informações sobre os docentes;
+		\item Avisar se houver sobreposição de exames;
+		\item Avisar se o docente não estiver disponível;
+		\item Avisar se houver mais alunos inscritos do que a lotação máxima da sala;
+		\item Avisar se a sala não estiver disponível;
+		\item Avisar caso o docente associado ao exame for repetido;
+	\end{itemize}
+	
+	Quarta fase:
+	\begin{itemize}
+		\item Avisar se o curso for diurno e houver uma marcação para o turno da noite e vice-versa.
+		\item Associar o mesmo exame a todos os cursos que têm a mesma disiplina.
+		\item Avisar caso o tipo de sala associada ao exame não for apropriada (informática ou normal)
+		\item Exportação do calendário em inglês
+	\end{itemize}
+
 	
 	\section{Descrição dos casos de utilização}
 	
