@@ -1,6 +1,6 @@
 \documentclass[11pt, twoside]{report}
 \usepackage[utf8]{inputenc}
-\usepackage[hmargin=2.5cm,vmargin=2.5cm,bmargin=2.5cm]{geometry}
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}  		% display images
 \usepackage{rotating}
 \usepackage{natbib}
@@ -16,7 +16,7 @@
 \usepackage{setspace} 		% espçamento entre linhas
 \usepackage{fancyhdr} 		% creates fancy footers and headers
 \raggedbottom				% makes bottom of page more empy to make sure previous text doesnt have vertical gaps
-\usepackage{ltxtable}
+\usepackage{ltablex}
 \pagestyle{fancy}
 \lfoot{{\footnotesize Tecnologias de Informação}}
 \rfoot{{\footnotesize ESTGA}}
@@ -40,8 +40,6 @@
 %	\renewcommand{\theHchapter}{\annexname.\thechapter}
 %	\addappheadtotoc
 %}\makeatother
-
-
 \begin{document}
 	
 \onehalfspacing % espaçamento de 1,5 entre linhas
@@ -135,6 +133,8 @@
 	\section{Objetivos da aplicação}
 	metodologia de trabalho
 	
+	Criação de calendários de exames
+	
 	\chapter{Estado de arte}
 	
 	
@@ -148,7 +148,12 @@
 	
 	Após a primeira renuião com o cliente chegou-se à conclusão que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
 	
-	O cliente no momento recorre ao excel para a criação de calendários,  colocando todas as salas, cursos e etc com alto risco de erro e com baixa efieciência. Para além disso a formatação final (em .pdf) também é feita pelo excel.
+	O cliente no momento recorre ao excel para a criação de calendários,  colocando todas as salas, cursos e etc com alto risco de erro e com baixa eficiência. Para além disso a formatação final (em .pdf) também é feita pelo excel.
+
+	
+	
+
+
 
 	processo atual da criação dos calendários de exames
 	reunião com o cliente
@@ -167,11 +172,15 @@
 	
 	quer o utilizador pode fazer quer o sistema pode fazer
 	
-\begin{table}[H]
-	\caption{Requisitos funcionais}
-	\begin{center}	
-		\begin{tabularx}{\textwidth}{|c|X|c|}
-			\hline
+	
+	
+\def\arraystretch{1.5}%
+	\begin{center}
+		
+		\begin{longtable}{|m{1cm}|m{12cm}|m{2cm}|}
+			
+			
+			\hline			
 			\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
 			\hline
 			RF1. & O utilizador pode inserir cursos e disciplinas & Alta\\
@@ -210,6 +219,7 @@
 			\hline
 			RF.18 &O utilizador pode associar a cada exame vários vigilantes & Alta\\
 			\hline
+			 \endfirsthead
 			RF.19 &	O utilizador pode associar mais do que uma sala a um exame & Alta\\
 			\hline
 			RF.20 &Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
@@ -230,9 +240,12 @@
 			\hline
 			RF.28 & Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Média\\
 			\hline
-		\end{tabularx}
+			RF.29 & O utilizador só pode aceder à aplicação após a autenticação & Alta\\
+			\hline
+			RF.30 & O utilizador pode utilizar um ou mais filtros na pesquisa de calendários & Alta\\
+			\hline
+		\end{longtable}
 	\end{center}
-\end{table}
 
 
 
@@ -325,7 +338,7 @@ perguntar ao cliente
 		\item Importação de ficheiros .csv com a configuração de salas, disciplinas e docentes;
 	 	\item Criação de épocas com data de início e fim;
 	 	\item Configuração dos tipos de salas e a lotação máxima;
-	 	\item Inserção de exames no calendário.
+	 	\item Marcação de exames através de \textit{drag \& drop}  no calendário.
 	 	\item Pesquisa de calendários por curso, ano, semestre e época de avaliação;
 	\end{itemize}
 	
@@ -361,6 +374,156 @@ perguntar ao cliente
 
 	
 	\section{Descrição dos casos de utilização}
+	
+	
+		
+	\begin{table}[H]
+		\caption{Caso de utilização - autenticação}
+		\begin{center}	
+			\begin{tabularx}{\textwidth}{|l|X|}
+				\hline
+				\textbf{Nome }	& \textbf{Autenticação} \\
+				\hline
+				Atores: & Utilizador \\
+				\hline
+				Prioridade: & Alta \\
+				\hline
+				Requisitos funcionais:&  \\
+				\hline
+				Finalidade: & Aceder às funcionalidades da aplicação\\
+				\hline
+				Sumário: &  \\
+				\hline
+				Pré-condições: & Ter uma conta registada na aplicação e estar dentro da rede da UA\\
+				\hline
+				Descrição da interação: &  O utilizador assim que abre a aplicação tem de iniciar a sessão com o seu email e palavra-passe correspondentes\\
+				\hline
+				Cenário alternativo:&\\
+				\hline
+			\end{tabularx}
+		\end{center}
+	\end{table}
+
+	
+\begin{table}[H]
+	\caption{Caso de utilização - importação de ficheiros}
+	\begin{center}	
+		\begin{tabularx}{\textwidth}{|X|X|}
+			\hline
+			\textbf{Nome }	& \textbf{Importação de ficheiros}\\
+			\hline
+			Atores: & Utilizador\\
+			\hline
+			Prioridade: &  Alta\\
+			\hline
+			Requisitos funcionais:&  \\
+			\hline
+			Finalidade: &  Importação de dados para atualizar a base de dados.\\
+			\hline
+			Sumário: &O utilizador pode importar dados sobre os docentes, disciplinas e cursos, atualizando a base de dados, através de um ficheiros .csv. \\
+			\hline
+			Pré-condições: & Ter iniciado sessão na aplicação e ter o ficheiro .csv com os dados correspondentes\\
+			\hline
+			Descrição da interação: &  \\
+			\hline
+			Cenário alternativo 1 - não é possível ler o ficheiro &Irá mostrar uma mensagem de erro.\\
+			\hline
+			Cenário alternativo 2 - o ficheiro adicionado não é do formato .csv &Irá mostrar uma mensagem de erro que não é possível importar ficheiros que não sejam do tipo .csv\\
+			\hline
+		\end{tabularx}
+	\end{center}
+\end{table}
+
+
+
+
+\begin{table}[H]
+	\caption{Caso de utilização - criação de épocas de avaliação}
+	\begin{center}	
+		\begin{tabularx}{\textwidth}{|l|X|}
+			\hline
+			\textbf{Nome }	& \textbf{Criação de épocas de avaliação} \\
+			\hline
+			Atores: & Utilizador\\
+			\hline
+			Prioridade: &  Alta\\
+			\hline
+			Requisitos funcionais:&  \\
+			\hline
+			Finalidade: & Criação de épocas (com data de início e fim) para a realização de exames. \\
+			\hline
+			Sumário: & O utilizador pode criar épocas de exames para os vários cursos. Cada época estará associada a um ano, semestre e um nome dado pelo utilizador.\\
+			\hline
+			Pré-condições: & Ter iniciado sessão na aplicação.\\
+			\hline
+			Descrição da interação: &  \\
+			\hline
+			Cenário alternativo: &\\
+			\hline
+		\end{tabularx}
+	\end{center}
+\end{table}
+
+
+\begin{table}[H]
+	\caption{Caso de utilização - marcação de exames}
+	\begin{center}	
+		\begin{tabularx}{\textwidth}{|l|X|}
+			\hline
+			\textbf{Nome }	& \textbf{Marcação de exames} \\
+			\hline
+			Atores: & Utilizador\\
+			\hline
+			Prioridade: &  Alta\\
+			\hline
+			Requisitos funcionais:&  \\
+			\hline
+			Finalidade: & Marcação de exames na época de avaliações\\
+			\hline
+			Sumário: & O utilizador pode marcar os exames na época de avaliações escolhida. Pode marcar num dos três turnos: manhã, tarde e noite.\\
+			\hline
+			Pré-condições: & Ter iniciado sessão na aplicação, ter importado ou adicionado informações sobre os cursos, disciplinas, docentes e salas e ter escolhido o curso e a época de avaliações.\\
+			\hline
+			Descrição da interação: &  \\
+			\hline
+			Cenário alternativo: &\\
+			\hline
+		\end{tabularx}
+	\end{center}
+\end{table}
+
+
+	
+	
+
+\begin{table}[H]
+	\caption{Caso de utilização - pesquisa de calendários}
+	\begin{center}	
+		\begin{tabularx}{\textwidth}{|l|X|}
+			\hline
+			\textbf{Nome }	& \textbf{Pesquisa de calendários} \\
+			\hline
+			Atores: & Utilizador\\
+			\hline
+			Prioridade: &  Alta\\
+			\hline
+			Requisitos funcionais:&  \\
+			\hline
+			Finalidade: & Pesquisa de calendários através de filtros.\\
+			\hline
+			Sumário: & O utilizador pode pesquisar entre todos os calendários criados através de filtros como o curso, ano, semestre ou ano.\\
+			\hline
+			Pré-condições: & Ter iniciado sessão na aplicação e ter criado calendários de avaliação\\
+			\hline
+			Descrição da interação: &  \\
+			\hline
+			Cenário alternativo: &\\
+			\hline
+		\end{tabularx}
+	\end{center}
+\end{table}
+
+
 	
 	\chapter{Prototipagem}
 	\section{Protótipo de baixa fidelidade}
