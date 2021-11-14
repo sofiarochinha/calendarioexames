@@ -147,7 +147,19 @@
 	\chapter{Planificação do projeto}
 
  	
-
+		
+	\clearpage
+	\begin{landscape}
+		\pagestyle{empty}
+		
+		\begin{figure}[H] 
+			\centering 			\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/planeamento_1fase}
+			\caption{Planeamento da primeira e segunda fase}
+			
+		\end{figure}
+	\end{landscape}
+	
+	
 	\chapter{Análises dos utilizadores e tarefas}
 	
 	Após a primeira renuião com o cliente chegou-se à conclusão que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
@@ -191,7 +203,7 @@
 			RF.3 && Exportação o calendário em língua Inglesa & Baixa \\
 			\hline
 			
-			RF.4 &\multirow{7}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
+			RF.4 &\multirow{3}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
 			
 			RF.5 && O utilizador pode associar vigilantes a cada exame & Alta \\
 			
@@ -356,7 +368,6 @@ perguntar ao cliente
 	
 	\begin{itemize}
 		\item Autenticação;
-		\item Importação de ficheiros .csv com a configuração de salas, disciplinas e docentes;
 	 	\item Criação de épocas com data de início e fim;
 	 	\item Configuração dos tipos de salas e a lotação máxima;
 	 	\item Marcação de exames através de \textit{drag \& drop}  no calendário.
@@ -365,6 +376,7 @@ perguntar ao cliente
 	
 	Segunda fase:
 	\begin{itemize}
+		\item Importação de ficheiros .csv com a configuração de salas, disciplinas e docentes;
 		\item Inserção de cursos e disciplinas;
 		\item Restringir a marcação de exames ao domingos e feriados;
 		\item Associar um ou mais docentes aos exames para serem vigilantes;
