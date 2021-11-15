@@ -3,7 +3,6 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}  		% display images
 \usepackage{rotating}
-\usepackage{natbib}
 \usepackage{tikz} 
 \usepackage[portuguese]{babel}
 \usepackage{indentfirst}
@@ -17,11 +16,14 @@
 \usepackage{fancyhdr} 		% creates fancy footers and headers
 \raggedbottom				% makes bottom of page more empy to make sure previous text doesnt have vertical gaps
 \usepackage{ltablex}
+\usepackage{pdflscape}
+\usepackage{multirow}
 \pagestyle{fancy}
 \lfoot{{\footnotesize Tecnologias de Informação}}
 \rfoot{{\footnotesize ESTGA}}
 \rhead{PTDW}
 \lfoot{Calendário de exames}
+
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
 %\usepackage{appendix}
@@ -40,6 +42,9 @@
 %	\renewcommand{\theHchapter}{\annexname.\thechapter}
 %	\addappheadtotoc
 %}\makeatother
+
+
+
 \begin{document}
 	
 \onehalfspacing % espaçamento de 1,5 entre linhas
@@ -127,15 +132,42 @@
 	
 	\chapter{Introdução}
 	
-	No âmbito do Projeto Temático em Desenvolvimento Web com as disciplinas Web Design e Desenvolvimento Web Multiplataforma foi-nos proposto o desenvolvimento de uma das seguintes aplicações: gestão de cacifos ou criação dos calendários de avaliações. Por votação a maioria escolheu a criação de calendários de avaliações.
+	No âmbito do Projeto Temático em Desenvolvimento Web associado às disciplinas Web Design e Desenvolvimento Web Multiplataforma foi proposto o desenvolvimento de uma Aplicação web para solucionar a necessidade de um cliente. 
+	O grupo constituinte deste projecto acordou abordar o tema de gestão de calendários de avaliações que consiste no desenvolvimento de uma página web desenvolvida com as tecnologias web lecionadas no módulo temático que engloba este projecto. 
 	
-	Este projeto consiste em criar calendários de exames a partir de uma plataforma web.
+	Um calendário é um sistema para organizar o tempo expresso forma de dias. 
+	Isto pode ser conseguido dando nomes a vários períodos de tempo. 
+	Tipicamente quando se pensa num calendário imagina-se um sistema que organize o tempo na forma de anos, subdivididos em meses e por sua vez divididos em dias. 
+	Este sistema tipicamente usado advém de costumes milenares praticados por várias religiões e civilizações antigas onde a forma mais básica de medir ciclos de tempo vem da observação da rotação do Sol por parte do observador que define um dia, as mudanças da fase da lua que traduz de uma forma bruta o passar de um mês e ainda a observação de estações do ano caracterizadas por eventos climáticos distintos que no seu conjunto formam um ano\cite{stray_mayan_2007}. 
+	
+	Contudo a necessidade de organizar eventos numa escala mais curta de tempo conduz à reorganização de tempo de modo a catalogar acontecimentos associados a pequenos períodos de tempo. 
+	Desta forma um calendário organizado por um pequeno conjunto de dias onde cada está subdividido em horas ou até grupos de horas para que se possam alocar atividades funciona como uma agenda prática para períodos contidos de tempo. 
+	A forma sócio-económica mais comum de organizar dias está no uso unitário de horas, ou períodos do dia caso seja essa a necessidade, e estes aparecem representados graficamente numa tabela\cite{10.1145/2702613.2732512} que divide o dia em blocos iguais por forma ao resultado da sua soma ser proporcional \cite{Russell1910-RUSPMV}. 
+	Esta forma visual de divisão ajuda a que identificação da duração de um bloco seja facilmente interpretável quando vista de relance. 
+	
+	Com o avanço da tecnologia no século XX e a popularização do uso da Internet, os calendários tradicionais de papel foram gradualmente caindo em desuso dando lugar a calendário digitais que proporcionam numeras vantagens nomeadamente a portabilidade para todos os tipos de dispositivos modernos, maior complexidade de informação que é permitida armazenar nestes, possibilidade de partilhar calendários e agendas, etc.. 
+	
+	A organização de calendários digitais contempla várias implementações diferentes cada uma com as suas especificações, formas de implementar e leitura, mas com o evoluir da tecnologia e da criação de standards internacionais, alguns formatos em particular ficara destacados pelo seu uso comum e estandardizado. 
+	Destes destaca-se o \textit{Internet Calendaring and Scheduling Core Object Specification} (\textbf{iCal})\cite{rfc2445}, talvez mais conhecido pela extensão de ficheiro comummente partilhado pelos seus utilizadores, "\textbf{.ics}". 
+	
+	Hoje em dia o simples ato da criação de um calendário ou agenda digital tem em sî concentrado uma vasta panóplia de ferramentas para o fazer, quer seja no uso do calendário de um sistema operativo ou gestor de email que agenda tarefas e notifica antecipadamente, ou numa aplicação para telemóvel que junta a facilidade de uso de \textit{apps} com o design minimalista para a criação de uma agenda rápida ou ainda o uso de páginas \textit{web}, ou \textit{webapps} que pode ser acedido de qualquer dispositivo com capacidade para aceder à Internet. 
+	
+	De facto existem muitas formas de criar um calendário nos dias modernos, mas do ponto de vista de quem constrói a ferramenta em sî, o princípio é o mesmo, o programador tem sempre de associar uma entidade representativa de um evento a uma hora/data de inicio sendo a duração desta decidida pelo utilizador final. 
+	A forma final de apresentação dos resultados ficará no entanto à descrição do cliente/utilizador final que é para este que todo o desenvolvimento de apresentação e funcionalidades é desenvolvido por forma a satisfazer as necessidades. 
 	\section{Objetivos da aplicação}
-	metodologia de trabalho
 	
-	Criação de calendários de exames
+	Este projecto tem como objectivo geral a criação de uma aplicação web para solucionar a necessidade de um cliente que pretende um sistema de criação de calendários digitais para agendamento de um período de avaliações académicas num estabelecimento de ensino superior. 
+	Visto o produto final ser projetado para ser distribuído pela comunidade académica, existe também o objectivo principal de exportação num formato facilmente transmissível entre dispositivos.  
 	
-	\chapter{Estado de arte}
+	Este projecto irá então dedicar-se a satisfazer os seguintes objectivos para a \textit{webapp}: 
+	\begin{itemize} 
+		\item \textit{Webapp} de fácil navegação e intuitiva para a criação de um calendário. 
+		\item Possibilidade de agendamento de exames a unidades curriculares separados por curso, ano letivo e semestre.   
+		\item Possibilidade de edição de curso, do corpo docente, unidades curriculares, salas e tipo de sala. 
+		\item Exportação de calendários para formato de distribuição digital comum, \textbf{PDF}. 
+		\item Exportação para formato standard internacional para gestores de calendários, \textbf{ics}.  
+	\end{itemize} 
+	\section{Estado de arte}
 	
 	
 	dizer que foi dificil encontrar
@@ -143,7 +175,19 @@
 	\chapter{Planificação do projeto}
 
  	
-
+		
+	\clearpage
+	\begin{landscape}
+		\pagestyle{empty}
+		
+		\begin{figure}[H] 
+			\centering 			\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/planeamento_1fase}
+			\caption{Planeamento da primeira e segunda fase}
+			
+		\end{figure}
+	\end{landscape}
+	
+	
 	\chapter{Análises dos utilizadores e tarefas}
 	
 	Após a primeira renuião com o cliente chegou-se à conclusão que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
@@ -162,87 +206,88 @@
 	\section{Requisitos funcionais}
 	
 	
-
-	\pagebreak % table is too long, this will stay here temorarily until solution is foundj
-	Os requisitos funcionais representam todas as funcionalidades que o sistema pode fazer ou que o utilizador pode realizar no sistema. 
-	%organizar por categoria
-	%rf1- nao é uma funcionalidade
+	Os requisitos funcionais representam todas as funcionalidades que o sistema pode fazer ou que o utilizador pode realizar no sistema. Com isso na tabela \ref{requisitiosfuncionais} estam todos os requisitos funcionais dividos por várias categorias: importação, exportação, marcação de exames, configurações, avisos, pesquisa e outros (requisitos que não se encaixam em nenhuma das categorias descritas). Dentro da categoria "avisos" tem as funcionalidades que o sistema irá realizar após uma ação do utilizador, ao contrário de todas as outras categorias em que o utilizador tem a possibilidade realizar determinada tarefa.
 	
-	colocar os avisos nos requisitos funcionais
-	
-	quer o utilizador pode fazer quer o sistema pode fazer
+	Para além disso os requisitos funcionais estam classificados por prioridade sendo os de alta prioridade realizados nas primeiras fases e os de baixa prioridade implementados nas últimas fases (ver secção \ref{selecaocasosdeuso}).  
 	
 	
 	
 \def\arraystretch{1.5}%
 	\begin{center}
-		
-		\begin{longtable}{|m{1cm}|m{12cm}|m{2cm}|}
-			
+		\label{requisitiosfuncionais}
+		\begin{longtable}{|m{1cm}|m{2.2cm}|m{10cm}|m{2cm}|}
+			\caption{Requisitos funcionais}\\
 			
 			\hline			
-			\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
+			\textbf{Refª }	& \textbf{Categoria}&\textbf{Descrição do requisito} & \textbf{Prioridade} \\
 			\hline
-			RF1. & O utilizador pode inserir cursos e disciplinas & Alta\\
+			
+			
+			RF.1 &Importação& Importação de ficheiros com a configuração de salas, disciplinas e docentes em formato .csv & Alta \\
 			\hline
-			RF2. & Importar ficheiros com a configuração de salas, disciplinas e docentes em formato .csv & Alta \\
+			
+			RF.2 &\multirow{2}{2cm}{Exportação}& Exportação de calendários em formato .pdf & Alta \\
+			
+			RF.3 && Exportação o calendário em língua Inglesa & Baixa \\
 			\hline
-			RF3. & Aparecimento de um aviso no caso de incongruência da informação durante a marcação de exames & Alta \\
+			
+			RF.4 &\multirow{3}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
+			
+			RF.5 && O utilizador pode associar vigilantes a cada exame & Alta \\
+			
+			RF.6 && Criação épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
+			
+			RF.7 && O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
+			RF.8 &&O utilizador pode associar a cada exame vários vigilantes & Alta\\
+			
+			RF.9 &&	O utilizador pode associar mais do que uma sala a um exame & Alta\\
+			
+			RF.10 && Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Média\\
 			\hline
-			RF4. & Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
+		
+			RF.11. &\multirow{6}{2cm}{Configurações}& Configurar tipo de sala com equipamento e lotação total & Alta \\
+			
+			RF.12. & 	& Inserção de cursos e disciplinas & Alta\\
+			
+			RF.13. && Permitir inserir novos docentes & Alta\\
+			
+			RF.14. && Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta\\
+			
+			RF.15. && Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
+			
+			RF.16. && Permitir associar na área do docente dias em que os mesmos não estão disponíveis & Alta\\
+			
 			\hline
-			RF5. & O utilizador pode criar épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
+			
+			RF.17 &\multirow{9}{2cm}{Avisos}& Aparecimento de um aviso no caso de incongruência da informação durante a marcação de exames & Alta \\
+			
+			RF.18 &&Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
+			
+			RF.19 && Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta \\
+			
+			RF.20 && Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta\\
+			
+			RF.21 && Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Média\\
+			
+			RF.22&&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
+			
+			RF.23 && Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Média\\
+			
+			RF.24 && Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
+			
+			RF.25 && Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
 			\hline
-			RF6. & A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
+			
+			RF.26 &Autenticação& O utilizador só pode aceder à aplicação após a autenticação & Alta\\
 			\hline
-			RF7. & Guardar e visualizar calendários de exames de anos anteriores sem informações específicas (perguntar ao Paulo) & Média \\
+			RF.27 &\multirow{2}{*}{Pesquisa}& O utilizador pode utilizar um ou mais filtros na pesquisa de calendários & Alta\\
+		
+			RF.28  && Pesquisar por calendários com filtro por cursos, ano, semestre e época de avaliação  & Alta \\
 			\hline
-			RF8.  & Pesquisar por calendários com filtro por cursos, ano, semestre e época de avaliação  & Alta \\
-			\hline
-			RF9. & O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
-			\hline
-			RF10. & Configurar tipo de sala com equipamento e lotação total & Alta \\
-			\hline
-			RF11. & O utilizador pode associar vigilantes a cada exame & Alta \\
-			\hline
-			RF12. & Permitir associar na área do docente dias em que os mesmos não estão disponíveis & Alta\\
-			\hline
-			RF13. & Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
-			\hline
-			RF14. & Exportação de calendários em formato .pdf & Alta \\
-			\hline
-			RF15. & Permitir a opção de exportar o calendário em língua Inglesa & Baixa \\
-			\hline
-			RF16. & Permitir inserir novos docentes & Alta\\
-			\hline
-			RF17. & Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta\\
-			\hline
-			RF.18 &O utilizador pode associar a cada exame vários vigilantes & Alta\\
-			\hline
-			 \endfirsthead
-			RF.19 &	O utilizador pode associar mais do que uma sala a um exame & Alta\\
-			\hline
-			RF.20 &Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
-			\hline
-			RF.21 & Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta \\
-			\hline
-			RF22 & Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta\\
-			\hline
-			RF23 & Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Média\\
-			\hline
-			RF24&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
-			\hline
-			RF25 & Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Média\\
-			\hline
-			RF26 & Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
-			\hline
-			RF27 & Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
-			\hline
-			RF.28 & Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Média\\
-			\hline
-			RF.29 & O utilizador só pode aceder à aplicação após a autenticação & Alta\\
-			\hline
-			RF.30 & O utilizador pode utilizar um ou mais filtros na pesquisa de calendários & Alta\\
+			
+			RF.29 &\multirow{2}{*}{Outros}& A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
+		
+			RF.30 && Guardar e visualizar calendários de exames de anos anteriores sem informações específicas (perguntar ao Paulo) & Média \\
 			\hline
 		\end{longtable}
 	\end{center}
@@ -251,6 +296,9 @@
 
 	
 	\section{Requisitos não funcionais}
+	
+	Os requisitos não funcionais estam dividos em três categorias: requsitos de interface e facilidade de uso que representam todos os requisitos que melhorem a usabilidade da aplicação; requisitos de segurança e integridade dos dados e requisitos de interface com sistemas externos e ambientes de execução.
+	
 	\subsection{Requisitos de interface e facilidade de uso}
 
 	
@@ -329,21 +377,34 @@ perguntar ao cliente
 	
 	\chapter{Modelo de casos de utilização}
 	\section{Diagrama de casos de utilização}
-	\section{Seleção dos casos de utilização}
 	
+\clearpage
+\begin{landscape}
+	\pagestyle{empty}
+	
+		\begin{figure}[H] 
+			\centering 			\includegraphics[width=1.3\textwidth,height=1.3\textheight,keepaspectratio]{image/diagrama}
+			\caption{Diagrama dos casos de utilização}
+		
+		\end{figure}
+\end{landscape}
+
+
+	\section{Seleção dos casos de utilização}
+	\label{selecaocasosdeuso}
 	Os casos de utilização da primeira fase:
 	
 	\begin{itemize}
 		\item Autenticação;
-		\item Importação de ficheiros .csv com a configuração de salas, disciplinas e docentes;
 	 	\item Criação de épocas com data de início e fim;
 	 	\item Configuração dos tipos de salas e a lotação máxima;
-	 	\item Marcação de exames através de \textit{drag \& drop}  no calendário.
+	 	\item Marcação de exames no calendário.
 	 	\item Pesquisa de calendários por curso, ano, semestre e época de avaliação;
 	\end{itemize}
 	
 	Segunda fase:
 	\begin{itemize}
+		\item Importação de ficheiros .csv com a configuração de salas, disciplinas e docentes;
 		\item Inserção de cursos e disciplinas;
 		\item Restringir a marcação de exames ao domingos e feriados;
 		\item Associar um ou mais docentes aos exames para serem vigilantes;
@@ -403,39 +464,6 @@ perguntar ao cliente
 			\end{tabularx}
 		\end{center}
 	\end{table}
-
-	
-\begin{table}[H]
-	\caption{Caso de utilização - importação de ficheiros}
-	\begin{center}	
-		\begin{tabularx}{\textwidth}{|X|X|}
-			\hline
-			\textbf{Nome }	& \textbf{Importação de ficheiros}\\
-			\hline
-			Atores: & Utilizador\\
-			\hline
-			Prioridade: &  Alta\\
-			\hline
-			Requisitos funcionais:&  \\
-			\hline
-			Finalidade: &  Importação de dados para atualizar a base de dados.\\
-			\hline
-			Sumário: &O utilizador pode importar dados sobre os docentes, disciplinas e cursos, atualizando a base de dados, através de um ficheiros .csv. \\
-			\hline
-			Pré-condições: & Ter iniciado sessão na aplicação e ter o ficheiro .csv com os dados correspondentes\\
-			\hline
-			Descrição da interação: &  \\
-			\hline
-			Cenário alternativo 1 - não é possível ler o ficheiro &Irá mostrar uma mensagem de erro.\\
-			\hline
-			Cenário alternativo 2 - o ficheiro adicionado não é do formato .csv &Irá mostrar uma mensagem de erro que não é possível importar ficheiros que não sejam do tipo .csv\\
-			\hline
-		\end{tabularx}
-	\end{center}
-\end{table}
-
-
-
 
 \begin{table}[H]
 	\caption{Caso de utilização - criação de épocas de avaliação}
@@ -555,25 +583,13 @@ perguntar ao cliente
 	\chapter{Lançamento da versão final}
 	\section{Alocação da aplicação no servidor}
 	
-	\pagebreak
-	wasd
-	wasd
 	
-	
-	wasd
-	
-	
-	\pagebreak
-	
-	asd
-	
-	wasd
 	\chapter{Reflexão crítica e conclusão}
 	
 	
 
 	\bibliographystyle{ieeetr}
-	\bibliography{}
+	\bibliography{citations}
 	
 \end{document}	
 	
