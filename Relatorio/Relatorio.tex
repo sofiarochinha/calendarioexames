@@ -133,15 +133,13 @@
 	\chapter{Introdução}
 	
 	No âmbito do Projeto Temático em Desenvolvimento Web associado às disciplinas Web Design e Desenvolvimento Web Multiplataforma foi proposto o desenvolvimento de uma Aplicação web para solucionar a necessidade de um cliente. 
-	O grupo constituinte deste projecto acordou abordar o tema de gestão de calendários de avaliações que consiste no desenvolvimento de uma página web desenvolvida com as tecnologias web lecionadas no módulo temático que engloba este projecto. 
+	O grupo constituinte deste projecto acordou abordar o tema de gestão de calendários de avaliações que consiste no desenvolvimento de uma página web desenvolvida com as tecnologias web lecionadas no módulo temático que engloba este projecto.
+	Este projecto servirá então como solução ao problema apresentado por cliente onde cada funcionalidade será feita à medida mediante as necessidades apresentadas.
 	
-	Um calendário é um sistema para organizar o tempo expresso forma de dias. 
-	Isto pode ser conseguido dando nomes a vários períodos de tempo. 
-	Tipicamente quando se pensa num calendário imagina-se um sistema que organize o tempo na forma de anos, subdivididos em meses e por sua vez divididos em dias. 
-	Este sistema tipicamente usado advém de costumes milenares praticados por várias religiões e civilizações antigas onde a forma mais básica de medir ciclos de tempo vem da observação da rotação do Sol por parte do observador que define um dia, as mudanças da fase da lua que traduz de uma forma bruta o passar de um mês e ainda a observação de estações do ano caracterizadas por eventos climáticos distintos que no seu conjunto formam um ano\cite{stray_mayan_2007}. 
+	Tipicamente quando se pensa num calendário imagina-se um sistema que organize o tempo na forma de anos, subdivididos em meses e por sua vez divididos em dias.
+	Este sistema tipicamente usado advém de costumes milenares praticados por várias religiões e civilizações antigas onde a forma mais básica de medir ciclos de tempo vem da observação da rotação do Sol por parte do observador que define um dia, as mudanças da fase da lua que traduz de uma forma bruta o passar de um mês e ainda a observação de estações do ano caracterizadas por eventos climáticos distintos que no seu conjunto formam um ano\cite{stray_mayan_2007}.
 	
 	Contudo a necessidade de organizar eventos numa escala mais curta de tempo conduz à reorganização de tempo de modo a catalogar acontecimentos associados a pequenos períodos de tempo. 
-	Desta forma um calendário organizado por um pequeno conjunto de dias onde cada está subdividido em horas ou até grupos de horas para que se possam alocar atividades funciona como uma agenda prática para períodos contidos de tempo. 
 	A forma sócio-económica mais comum de organizar dias está no uso unitário de horas, ou períodos do dia caso seja essa a necessidade, e estes aparecem representados graficamente numa tabela\cite{10.1145/2702613.2732512} que divide o dia em blocos iguais por forma ao resultado da sua soma ser proporcional \cite{Russell1910-RUSPMV}. 
 	Esta forma visual de divisão ajuda a que identificação da duração de um bloco seja facilmente interpretável quando vista de relance. 
 	
@@ -153,7 +151,14 @@
 	Hoje em dia o simples ato da criação de um calendário ou agenda digital tem em sî concentrado uma vasta panóplia de ferramentas para o fazer, quer seja no uso do calendário de um sistema operativo ou gestor de email que agenda tarefas e notifica antecipadamente, ou numa aplicação para telemóvel que junta a facilidade de uso de \textit{apps} com o design minimalista para a criação de uma agenda rápida ou ainda o uso de páginas \textit{web}, ou \textit{webapps} que pode ser acedido de qualquer dispositivo com capacidade para aceder à Internet. 
 	
 	De facto existem muitas formas de criar um calendário nos dias modernos, mas do ponto de vista de quem constrói a ferramenta em sî, o princípio é o mesmo, o programador tem sempre de associar uma entidade representativa de um evento a uma hora/data de inicio sendo a duração desta decidida pelo utilizador final. 
-	A forma final de apresentação dos resultados ficará no entanto à descrição do cliente/utilizador final que é para este que todo o desenvolvimento de apresentação e funcionalidades é desenvolvido por forma a satisfazer as necessidades. 
+	A forma final de apresentação dos resultados ficará no entanto à descrição do cliente/utilizador final que é para este que todo o desenvolvimento de apresentação e funcionalidades é desenvolvido por forma a satisfazer as necessidades.
+	Mediante esta realidade a metodologia de trabalho foi baseada em reuniões pré preparadas com o cliente para perceber as necessidades deste, onde retiramos os objectivos principais e identificamos requisitos funcionais e não funcionais.
+	São então desenvolvidas soluções baseadas na informação recolhida e posteriormente apresentadas ao cliente inicialmente na forma de protótipos de baixa fidelidade, \textit{wireframes}, e posteriormente versões funcionais de uma aplicação web com intuito de obtenção de \textit{feedback} durante o processo de desenvolvimento.
+	
+	Este relatório está dividido em vários capítulos começando pela Introdução com uma apresentação breve do evoluir histórico do uso desta ferramenta até às aplicações mais modernas onde se enquadra a solução que será apresentada ao cliente.
+	O conjunto de capítulos seguintes serão dedicados ao planeamento do projecto, englobando planeamento do projecto, casos de uso discutidos com o cliente, requisitos funcionais e não funcionais, e casos de utilização.
+	Pré implementação está um capítulo dedicado à prototipagem e na implementação irá ser abordado  o modelo de dados persistentes, a implementação e as funcionalidades da aplicação seguido dos testes de funcionamento das mesmas e no final a conclusão.
+	
 	\section{Objetivos da aplicação}
 	
 	Este projecto tem como objectivo geral a criação de uma aplicação web para solucionar a necessidade de um cliente que pretende um sistema de criação de calendários digitais para agendamento de um período de avaliações académicas num estabelecimento de ensino superior. 
