@@ -161,21 +161,64 @@
 	
 	\section{Objetivos da aplicação}
 	
-	Este projecto tem como objectivo geral a criação de uma aplicação web para solucionar a necessidade de um cliente que pretende um sistema de criação de calendários digitais para agendamento de um período de avaliações académicas num estabelecimento de ensino superior. 
+	Este projecto tem como principal objetivo a criação de uma aplicação web para solucionar a necessidade de um cliente que pretende um sistema de criação de calendários digitais para agendamento de um período de avaliações académicas num estabelecimento de ensino superior. 
 	Visto o produto final ser projetado para ser distribuído pela comunidade académica, existe também o objectivo principal de exportação num formato facilmente transmissível entre dispositivos.  
 	
 	Este projecto irá então dedicar-se a satisfazer os seguintes objectivos para a \textit{webapp}: 
 	\begin{itemize} 
 		\item \textit{Webapp} de fácil navegação e intuitiva para a criação de um calendário. 
 		\item Possibilidade de agendamento de exames a unidades curriculares separados por curso, ano letivo e semestre.   
-		\item Possibilidade de edição de curso, do corpo docente, unidades curriculares, salas e tipo de sala. 
-		\item Exportação de calendários para formato de distribuição digital comum, \textbf{PDF}. 
-		\item Exportação para formato standard internacional para gestores de calendários, \textbf{ics}.  
+		\item Possibilidade de edição de curso, do docente, unidades curriculares, salas e o seu tipo. 
+		\item Exportação de calendários para formato pdf e csv. 
 	\end{itemize} 
 	\section{Estado de arte}
 	
+	A partir de uma pequena introdução do tema foi feita uma pesquisa sobre aplicações semelhantes para discutir com o cliente sobre a aplicação a ser criada. A pesquisa resultou em duas aplicações: uma em versão mobile e outra em versão web.
 	
-	dizer que foi dificil encontrar
+	A primeira aplicação, que se chama "Timetable", tem como objetivo organizar todas as aulas, exames e tarefas escolares de um aluno. O utilizador pode adicionar aulas e exames (ver figura \ref{inserirvizualizaraula}), indicando a sala, o nome da disciplina, a data de início e fim, o nome do docente, o tipo e o dia da semana em que se realiza, sendo diferenciados pela frequência - as aulas são repetidas a cada semana e o exame só se realiza uma vez. Para além disso o aluno pode associar tarefas tanto a aulas como a exames podendo vizualizar estas informações em forma de lista ou em calendário (ver figura \ref{dayweekview}).
+		\begin{figure}[H] 
+		\centering 
+		\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{image/estadodearte/inserirevizualizar}
+		\caption{Inserir e vizualizar a aula criada}
+		\label{inserirvizualizaraula}
+	\end{figure}
+
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{image/estadodearte/dayweekview}
+		\caption{Lista de aulas e o calendário escolar semanal}
+		\label{dayweekview}
+	\end{figure}
+
+	A segunda aplicação ``StudyLife'' tem o mesmo objetivo que a aplicação anterior no entanto a sua apresentação gráfica é diferente (ver figura \ref{listastudylife}). Poderá criar tarefas e exames associados a disciplinas, previamente criadas. Para cada tarefa pode indicar qual é a sua percentagem de realização (?) e nos exames pode-se vizualizar o dia e a hora do mesmo, a sala, se existe conflitos com aulas ou não e quanto tempo o aluno tem para o realizar, tal como se pode vizualizar na figura \ref{examematematica}. Estas informações podem ser vistas em forma de lista (\ref{listastudylife}) ou em forma de calendário semanal.
+	
+	
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/calendario}
+	\caption{Lista de tarefas e exames}
+	\label{listastudylife}
+\end{figure}
+
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/informacoesexame}
+	\caption{Visualização de informações sobre o exame de Matemática}
+	\label{examematematica}
+\end{figure}
+
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/calendariostudy}
+	\caption{Visualização de informações em forma de calendário semanal}
+	\label{calendariostudylife}
+\end{figure}
+
+
+
+
+	 
+	
 	
 	\chapter{Planificação do projeto}
 
@@ -197,7 +240,7 @@
 	
 	Após a primeira renuião com o cliente chegou-se à conclusão que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
 	
-	O cliente no momento recorre ao excel para a criação de calendários,  colocando todas as salas, cursos e etc com alto risco de erro e com baixa eficiência. Para além disso a formatação final (em .pdf) também é feita pelo excel.
+	O cliente no momento recorre ao excel para a criação de calendários,  colocando todas as salas, cursos e etc com alto risco de erro e com baixa eficiência. Para além disso a formatação final (em .pdf) é exportado a partir do excel.
 
 	
 	
