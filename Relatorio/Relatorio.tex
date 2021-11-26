@@ -172,6 +172,7 @@
 		\item Exportação de calendários para formato pdf e csv. 
 	\end{itemize} 
 	\section{Estado de arte}
+	\label{estadodearte}
 	
 	A partir de uma pequena introdução do tema foi feita uma pesquisa sobre aplicações semelhantes para discutir com o cliente sobre a aplicação a ser criada. A pesquisa resultou em duas aplicações: uma em versão mobile e outra em versão web.
 	
@@ -237,6 +238,7 @@
 	
 	
 	\chapter{Análises dos utilizadores e tarefas}
+	\label{analiseutilizador}
 	
 	Após a primeira reunião com o cliente chegou-se à conclusão que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
 	
@@ -254,6 +256,7 @@
 	Assim para este projeto o cliente quer poder vizualizar todas estas informações numa só aplicação de uma forma mais eficiente e intuitiva. As informações sobre os cursos, disciplinas, docentes e salas serão importadas a partir de um csv. Este será renovado a cada semestre podendo o utilizador importar quantas vezes quiser na aplicação, atualizando todos os dados. No entanto se conter algum erro ou faltar informação poderá alterar/inserir dentro da aplicação. Com isto o utilizador poderá criar os seus calendários associados a um ano letivo, semestre, curso e época (terá de adicionar um nome, uma data de início e fim) que criou. Após isso poderá marcar os exames referentes ao curso na época escolhida. Para cada exame poderá escolher um ou mais vigilantes, sendo por padrão o docente como vigilante e uma ou mais salas. No entanto caso haja alguma incongruência aparecerá um aviso a indicar qual o problema e a aplicação não irá restringir nenhuma funcionalidade ao utilizador. Por fim todos os calendários criados noutros anos serão guardados num histórico caso queira ver de anos passados mas não poderá fazer alterações.
 	
 	\chapter{Modelo de requisitos}
+	\label{requisitos}
 	\section{Requisitos funcionais}
 	
 	
@@ -263,7 +266,7 @@
 	
 	
 	
-\def\arraystretch{1.5}%
+\def\arraystretch{1.5}
 	\begin{center}
 		\label{requisitiosfuncionais}
 		\begin{longtable}{|m{1cm}|m{2.2cm}|m{10cm}|m{2cm}|}
@@ -282,63 +285,66 @@
 			RF.3 && Exportação o calendário em língua Inglesa & Baixa \\
 			\hline
 			
-			RF.4 &\multirow{3}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: manhã (às 9h30), tarde (às 14h) e noite (às 18h30) por padrão & Alta \\
+			RF.4 &\multirow{3}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: às 9h30, às 14h e às 18h30 & Alta \\
 			
-			RF.5 && O utilizador pode associar vigilantes a cada exame & Alta \\
+			RF.5 && Associação de um ou mais vigilantes a cada exame & Alta \\
 			
-			RF.6 && Criação épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
+			RF.6 && O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
 			
-			RF.7 && O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
-			RF.8 &&O utilizador pode associar a cada exame vários vigilantes & Alta\\
+			RF.7 &&	Associação de uma ou mais salas a cada exame & Alta\\
 			
-			RF.9 &&	O utilizador pode associar mais do que uma sala a um exame & Alta\\
-			
-			RF.10 && Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Média\\
+			RF.8 && Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Média\\
 			\hline
 		
-			RF.11. &\multirow{6}{2cm}{Configurações}& Configurar tipo de sala com equipamento e lotação total & Alta \\
+			RF.9 &\multirow{7}{2cm}{Configurações}& Configuração do tipo de sala (informática, laboratório de redes e normal) e lotação máxima & Alta \\
 			
-			RF.12. & 	& Inserção de cursos e disciplinas & Alta\\
+			RF.10 & & Inserção de cursos e disciplinas & Alta\\
 			
-			RF.13. && Permitir inserir novos docentes & Alta\\
+			RF.11 && Permitir inserir novos docentes & Alta\\
 			
-			RF.14. && Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta\\
+			RF.12 && Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta\\
 			
-			RF.15. && Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
+			RF.13 && Permitir editar informações (nome do curso, docente e a disciplina) sobre as disciplinas e cursos & Alta\\
 			
-			RF.16. && Permitir associar na área do docente dias em que os mesmos não estão disponíveis & Alta\\
+			RF.14 && Alterar a disponibilidade dos docentes & Alta\\
 			
+			RF.15 && Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
+			\hline	
+			
+			RF.16 &\multirow{9}{2cm}{Avisos}& Aparecimento de um aviso no caso de incongruência da informação durante a marcação de exames & Alta \\
+			
+			RF.17 &&Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
+			
+			RF.18 && Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta \\
+			
+			RF.19 && Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta\\
+			
+			RF.20 && Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Média\\
+			
+			RF.21&&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
+			
+			RF.22 && Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Média\\
+			
+			RF.23 && Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
+			
+			RF.24 && Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
 			\hline
 			
-			RF.17 &\multirow{9}{2cm}{Avisos}& Aparecimento de um aviso no caso de incongruência da informação durante a marcação de exames & Alta \\
-			
-			RF.18 &&Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
-			
-			RF.19 && Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta \\
-			
-			RF.20 && Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta\\
-			
-			RF.21 && Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Média\\
-			
-			RF.22&&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
-			
-			RF.23 && Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Média\\
-			
-			RF.24 && Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
-			
-			RF.25 && Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
+			RF.25 && Mostrar um aviso de média prioridade se o utilizador tentar exportar um calendário sem exames marcados & Média\\
 			\hline
 			
 			RF.26 &Autenticação& O utilizador só pode aceder à aplicação após a autenticação & Alta\\
 			\hline
-			RF.27 &\multirow{2}{*}{Pesquisa}& O utilizador pode utilizar um ou mais filtros na pesquisa de calendários & Alta\\
-		
-			RF.28  && Pesquisar por calendários com filtro por cursos, ano, semestre e época de avaliação  & Alta \\
-			\hline
 			
-			RF.29 &\multirow{2}{*}{Outros}& A criação de um novo calendário deverá sempre partir do início sem nenhuma configuração associada & Alta\\
-		
-			RF.30 && Guardar e visualizar calendários de exames de anos anteriores sem informações específicas (perguntar ao Paulo) & Média \\
+			RF.27 &\multirow{3}{2cm}{Criação de calendários}&Criação de calendários associados a um curso, ano letivo, ano do curso, época e semestre.& Alta \\
+			
+			RF.28 && Criação de épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
+			
+			RF.29 && A criação de um novo calendário deverá sempre partir do início sem exames marcados & Alta\\
+			\hline
+			RF.30 &\multirow{2}{*}{Histórico}& Guardar e visualizar calendários de exames de anos anteriores (histórico)& Média \\
+			
+			RF.31 && Filtrar o histórico por curso, ano letivo, ano do curso, semestre e época& Média \\
 			\hline
 		\end{longtable}
 	\end{center}
@@ -427,7 +433,18 @@ perguntar ao cliente
 		
 	
 	\chapter{Modelo de casos de utilização}
+	
+	
+	Para entender quais são as funcionalidades da aplicação e como irá interagir com o utilizador foi criado um modelo de casos de utilização apartir do estado de arte (ver secção \ref{estadodearte}), da análise dos utilizadores (ver secção \ref{analiseutilizador}) e tarefas e dos requisitos funcionais (ver secção \ref{requisitos}). Este é composto pelo diagrama de casos de utilização (ver figura \ref{usecasediagram}) e pela descrição dos mesmos. As descrições são detalhadas ao nível da interação do utilizador com a aplicação (ver secção \ref{descricaousecase}). Neste modelo só existe um ator que tem acesso a todas as funcionalidades da aplicação. 
+	Para ajudar na prototipagem da aplicação os casos de utilização foram divididos em várias fases consoante a prioridade dos requsitos funcionais associados (ver secção \ref{selecaocasosdeuso}).
+	
 	\section{Diagrama de casos de utilização}
+	\label{diagrama}
+	
+	No diagrama apresentado na figura \ref{usecasediagram} tem só um único ator que é o utilizador que tem acesso a todas as funcionalidades mas para as realizar terá de iniciar sessão. A seguir terá de importar dados a partir de um ficheiro ou inserir-los na aplicação. Caso exista algum erro ou queira atualizar alguma informação pode alterar dados sobre as salas e a sua lotação máxima, docentes, cursos e disciplinas. Com isto pode criar calendários e marcar os seus exames associando vigilantes e salas aos exames. Contudo se enganar nas datas de início e fim poderá corrigir durante a criação. Após a criação de calendários pode vê-los através do histórico podendo filtrá-los por curso, ano, época, ano do curso e por semestre. Por fim pode exportar para pdf em português ou em inglês todos os calendários que pretender.
+	
+	No entanto todos estes casos de utilização estam com uma explicação mais detalhada na secção \ref{descricaousecase}.
+	
 	
 \clearpage
 \begin{landscape}
@@ -436,6 +453,7 @@ perguntar ao cliente
 		\begin{figure}[H] 
 			\centering 			\includegraphics[width=1.3\textwidth,height=1.3\textheight,keepaspectratio]{image/diagrama}
 			\caption{Diagrama dos casos de utilização}
+			\label{usecasediagram}
 		
 		\end{figure}
 \end{landscape}
@@ -443,26 +461,29 @@ perguntar ao cliente
 
 	\section{Seleção dos casos de utilização}
 	\label{selecaocasosdeuso}
-	Os casos de utilização da primeira fase:
+	
+	Para uma maior eficiência na implementação e prototipagem dos casos de utilização estes foram divididos em várias fases consoante a sua prioridade e a sua dependência de outros casos. Assim sendo os casos de utilização da primeira fase são os mais prioritários e são a base da aplicação:
 	
 	\begin{itemize}
 		\item Autenticação;
 		\item Importação de ficheiros .csv com a configuração de salas, disciplinas e docentes;
-	 	\item Criação de calendários com época, curso, ano letivo e semestre associado.
+	 	\item Criação de calendários com época, curso, ano letivo, semestre e ano do curso associado.
 	 	\item Marcação de exames no calendário.
 	 	\item Inserção de vigilantes e salas nos exames marcados;
-	 	
 	\end{itemize}
 	
-	Segunda fase:
+	Os casos de utilização da segunda fase dependem dos casos de utilização da primeira fase no entanto também são de alta prioridade: 
+	
 	\begin{itemize}
+		\item Vizualização do histórico de calendários filtrando-os por curso, ano letivo, semestre, época e ano do curso.
 		\item Inserção e alteração de cursos e disciplinas a partir da interface;
 		\item Inserção e alteração de novos docentes;
 		\item Exportação do calendário em formato pdf;
 	\end{itemize}
 
 
-	Terceira fase:
+	Na terceira fase contém os avisos mais importantes a mostrar durante a utilização da aplição para além da configuração da disponiblidade dos docentes:
+	
 	\begin{itemize}
 		\item Associar na área de docentes dias em que os mesmos não estão disponíveis;
 		\item Avisar se houver sobreposição de exames;
@@ -472,7 +493,7 @@ perguntar ao cliente
 		\item Avisar caso o docente associado ao exame for repetido;
 	\end{itemize}
 	
-	Quarta fase:
+	Por último, na quarta fase, contém todos os casos de utilização de média e baixa prioridade:
 	\begin{itemize}
 		\item Avisar se o curso for diurno e houver uma marcação para o turno da noite e vice-versa.
 		\item Associar o mesmo exame a todos os cursos que têm a mesma disiplina.
@@ -482,7 +503,9 @@ perguntar ao cliente
 
 	
 	\section{Descrição dos casos de utilização}
+	\label{descricaousecase}
 	
+	Para complementar o diagrama de casos de utilização (ver secção \ref{diagrama}) estes foram descritos detalhamente com através dos seguintes parâmetros: ator, prioridade, requisitos funcionais associados, finalidade, pré-condições, interação e cenários alternativo. Os cenários alternativos consistem em outras interações que o utilizador possa ter, para além da principal, e qual a sua interação e reação da aplicação. Para além disso para uma melhor compreensão tem alguns wireframes associados a cada caso de utilização.
 	
 		
 	\begin{table}[H]
@@ -496,17 +519,17 @@ perguntar ao cliente
 				\hline
 				Prioridade: & Alta \\
 				\hline
-				Requisitos funcionais:&  \\
+				Requisitos funcionais:& RF.25\\
 				\hline
 				Finalidade: & Aceder às funcionalidades da aplicação\\
 				\hline
-				Sumário: &  \\
+				Sumário: & Com o seu email e palavra-passe o utilizador pode aceder às funcionalidades da aplicação.\\
 				\hline
-				Pré-condições: & Ter uma conta registada na aplicação e estar dentro da rede da UA\\
+				Pré-condições: & Estar conectado à rede da Universidade de Aveiro.\\
 				\hline
-				Descrição da interação: &  O utilizador assim que abre a aplicação tem de iniciar a sessão com o seu email e palavra-passe correspondentes\\
+				Descrição da interação: &  O utilizador assim que abre a aplicação tem de iniciar a sessão com o seu email e palavra-passe correspondentes.\\
 				\hline
-				Cenário alternativo:&\\
+				Cenário alternativo 1:& \textbf{Esqueceu da palavra-passe:} Poderá criar uma nova através do botão "Esqueceu-se da palavra-passe".\\
 				\hline
 			\end{tabularx}
 		\end{center}
@@ -514,13 +537,14 @@ perguntar ao cliente
 
 	\begin{figure}[H] 
 		\centering 
-		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/autenticacao}
-		\caption{Interface do programa para vizualizar a disponibilidade dos docentes}
+		\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{image/prototipowireframes/autenticacao}
+		\caption{Interface para o utilizador iniciar sessão.}
 		\label{usecaseautenticacao}
 	\end{figure}
 
 \begin{table}[H]
-	\caption{Caso de utilização - Importação de ficheiros .csv}
+	\caption{Caso de utilização - importação de ficheiros .csv}
+	\label{usecaseimportarcsv}
 	\begin{center}	
 		\begin{tabularx}{\textwidth}{|l|X|}
 			\hline
@@ -530,27 +554,34 @@ perguntar ao cliente
 			\hline
 			Prioridade: &  Alta\\
 			\hline
-			Requisitos funcionais:&  \\
+			Requisitos funcionais:&  RF.1, RF.26\\
 			\hline
-			Finalidade: & Criação de épocas (com data de início e fim) para a realização de exames. \\
+			Finalidade: & Obter e guardar todos os dados referentes aos docentes, cursos e salas. \\
 			\hline
-			Sumário: & O utilizador pode criar épocas de exames para os vários cursos. Cada época estará associada a um ano, semestre e um nome dado pelo utilizador.\\
+			Sumário: & O utilizador pode importar ficheiros no formato .csv que contenha informações sobre os docentes, salas, cursos e disciplinas para que possa criar calendários (ver tabela \ref{usecasecriarcalendario})\\
 			\hline
 			Pré-condições: & Ter iniciado sessão na aplicação.\\
 			\hline
-			Descrição da interação: &  \\
+			Descrição da interação: (mudar)&  \\
 			\hline
-			Cenário alternativo: &\\
+			Cenário alternativo 1: &\textbf{O ficheiro contém erros de formatação:} Aparecerá um aviso a indicar que não é possível o ficheiro em questão porque contém erros. Terá de corrigir e de seguida tente novamente. Volta para a página de importação.\\
+			\hline
+			Cenário alternativo 2: &\textbf{O ficheiro tem informações em falta:} Aparecerá um aviso indicando que contém informações em falta mas que pode adicionar nas configurações.\\
+			\hline
+			Cenário alternativo 3: &\textbf{O ficheiro escolhido não é do formato .csv:} Será rejeitado a sua importação e aparecerá um ficheiro a informar que o ficheiro não é do formato .csv.\\
+			\hline
+			Cenário alternativo 4: &\textbf{O ficheiro escolhido não tem a informação esperada:} Será rejeitado a sua importação e aparecerá um ficheiro a informar que o ficheiro contém informações sobre os cursos, salas e/ou docentes\\
 			\hline
 		\end{tabularx}
 	\end{center}
 \end{table}
 
 
+
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/importar}
-	\caption{Interface do programa para vizualizar a disponibilidade dos docentes}
+	\caption{Interface para importar ficheiros em formato .csv}
 \end{figure}
 
 
@@ -558,128 +589,177 @@ perguntar ao cliente
 
 \begin{table}[H]
 	\caption{Caso de utilização - criação de um calendário}
+	\label{usecasecriarcalendario}
 	\begin{center}	
 		\begin{tabularx}{\textwidth}{|l|X|}
 			\hline
-			\textbf{Nome }	& \textbf{Criação de um calendário} \\
+			\textbf{Nome: }	& \textbf{Criação de um calendário} \\
 			\hline
-			Atores: & Utilizador\\
+			Ator(es): & Utilizador\\
 			\hline
 			Prioridade: &  Alta\\
 			\hline
-			Requisitos funcionais:&  \\
+			Requisitos funcionais:& RF.1, RF.26, RF.27, RF.28, RF.29\\
 			\hline
-			Finalidade: & Marcação de exames na época de avaliações\\
+			Finalidade: & Criação de um novo calendário de avaliação\\
 			\hline
-			Sumário: & O utilizador pode marcar os exames na época de avaliações escolhida. Pode marcar num dos três turnos: manhã, tarde e noite.\\
+			Sumário: & O utilizador pode criar um calendário associando o curso, o ano do curso, o ano letivo, a época (nome, data de início e fim) e o semestre.\\
 			\hline
-			Pré-condições: & Ter iniciado sessão na aplicação, ter importado ou adicionado informações sobre os cursos, disciplinas, docentes e salas e ter escolhido o curso e a época de avaliações.\\
+			Pré-condições: & Ter iniciado sessão na aplicação, ter importado ou adicionado informações sobre os cursos, disciplinas, docentes e salas.\\
 			\hline
-			Descrição da interação: &  \\
+			Descrição da interação: & O utilizador para criar um novo calendário terá de clicar em ``novo'' na figura \ref{interfacevercalendario}. Depois terá de preencher todos os campos (ver figura \ref{interfacecriarcalendario}): curso, ano do curso, ano letivo, nome da época e a sua data de início e fim. Por fim clica no botão "criar". \\
 			\hline
-			Cenário alternativo: &\\
+			Cenário alternativo 1: &\textbf{Não preenche todos os campos  expostos:} Aparecerá uma mensgem de aviso que terá de preencher todos os campos para a criação de um novo calendário.\\
+			\hline
+			Cenário alternativo 2: &\textbf{Quer cancelar a ação:} Clica no botão "cancelar" e nenhuma informação será guardada.\\
+			\hline
+			Cenário alternativo 3: &\textbf{Não existe dados sobre os curso, cursos e/ou docentes:} Pergunta se quer importar um ficheiro .csv (ver figura \ref{interfaceimportarcsv})\\
 			\hline
 		\end{tabularx}
 	\end{center}
 \end{table}
+
+
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/pesquisacalendarioanoletivo}
+	\caption{Interface para visualizar o histórico de calendários}
+	\label{interfacevercalendario}
+\end{figure}
 
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/criarcalendario}
-	\caption{Interface do programa para vizualizar a disponibilidade dos docentes}
+	\caption{Interface para a criação de novos calendários}
+	\label{interfacecriarcalendario}
 \end{figure}
 
-\begin{table}[H]
-	\caption{Caso de utilização - marcação de exames}
-	\begin{center}	
-		\begin{tabularx}{\textwidth}{|l|X|}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/criarcalendarioimportar}
+	\caption{Interface com aviso para importar dados do ficheiro em formato .csv}
+	\label{interfaceimportarcsv}
+\end{figure}
+
+
+	
+
+\def\arraystretch{1.5}
+\begin{center}
+	\label{usecasemarcarexame}
+	\begin{longtable}{|m{4cm}|m{12cm}|}
+		\caption{Requisitos funcionais}\\
+		
 			\hline
-			\textbf{Nome }	& \textbf{Marcação de exames no calendário} \\
-			\hline
-			Atores: & Utilizador\\
-			\hline
-			Prioridade: &  Alta\\
-			\hline
-			Requisitos funcionais:&  \\
-			\hline
-			Finalidade: & Marcação de exames na época de avaliações\\
-			\hline
-			Sumário: & O utilizador pode marcar os exames na época de avaliações escolhida. Pode marcar num dos três turnos: manhã, tarde e noite.\\
-			\hline
-			Pré-condições: & Ter iniciado sessão na aplicação, ter importado ou adicionado informações sobre os cursos, disciplinas, docentes e salas e ter escolhido o curso e a época de avaliações.\\
-			\hline
-			Descrição da interação: &  \\
-			\hline
-			Cenário alternativo: &\\
-			\hline
-		\end{tabularx}
-	\end{center}
-\end{table}
+		\textbf{Nome }	& \textbf{Marcação de exames no calendário} \\
+		\hline
+		Atores: & Utilizador\\
+		\hline
+		Prioridade: &  Alta\\
+		\hline
+		Requisitos funcionais:&  RF.1, RF.4, RF.5, RF.6, RF.7, RF.8\\
+		\hline
+		Finalidade: & Marcação de exames na época de avaliações\\
+		\hline
+		Sumário: & O utilizador pode marcar os exames no calendário criado (ver caso de utilização na tabela \ref{usecasecriarcalendario}). Pode marcar num dos três horários: 9h30, 14h e 18h30.\\
+		\hline
+		Pré-condições: & Ter iniciado sessão na aplicação, ter importado ou adicionado informações sobre os cursos, disciplinas, docentes e salas e ter criado um novo calendário.\\
+		\hline
+		Descrição da interação: & O utilizador terá todas as disciplinas do curso (e ano do curso) escolhido na lista do lado esquerdo (ver figura \ref{interfacemarcarexame}), em relação ao calendário , em que poderá marcar exame em qualquer um dos três horários: 9h30, 14h e 18h30. Assim que marcar um exame a disciplina associada desaparece da lista. Por fim pode adicionar mais vigilantes (tendo o docente como primeiro vigilante) e uma ou mais salas.  \\
+		\hline
+		Cenário alternativo 1: & \textbf{Marca um exame no mesmo dia e na mesma hora que outro exame anteriormente marcado:} Aparece um aviso de alta prioridade a informar que existe sobreposição de exames\\
+		\hline
+		
+		
+		Cenário alternativo 2: & \textbf{Marca um exame se marcar um exame no horário das 18h30 e o curso é diurno e vice-versa:} Aparece um aviso de alta prioridade a informar que o exame marcado está fora do horário do curso\\
+		\hline
+		
+		Cenário alternativo 3: & \textbf{Existe sobreposição de exames no mesmo curso mas anos diferentes:} Aparece um aviso de média prioridade a informar que existe sobreposição de exames em anos diferentes do mesmo curso\\
+		\hline
+	\end{longtable}
+\end{center}
 
 
 	\begin{figure}[H] 
 		\centering 
 		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/calendarioaviso}
-		\caption{Interface do programa para vizualizar a disponibilidade dos docentes}
+		\caption{Interface para marcação de exames no calendário}
+		\label{interfacemarcarexame}
 	\end{figure}
-	
 
-\begin{table}[H]
-	\caption{Caso de utilização - Inserção de vigilantes e salas nos exames marcados}
-	\begin{center}	
-		\begin{tabularx}{\textwidth}{|l|X|}
-			\hline
-			\textbf{Nome }	& \textbf{Inserção de vigilantes e salas nos exames marcados} \\
-			\hline
-			Atores: & Utilizador\\
-			\hline
-			Prioridade: &  Alta\\
-			\hline
-			Requisitos funcionais:&  \\
-			\hline
-			Finalidade: & Pesquisa de calendários através de filtros.\\
-			\hline
-			Sumário: & O utilizador pode pesquisar entre todos os calendários criados através de filtros como o curso, ano, semestre ou ano.\\
-			\hline
-			Pré-condições: & Ter iniciado sessão na aplicação e ter criado calendários de avaliação\\
-			\hline
-			Descrição da interação: &  \\
-			\hline
-			Cenário alternativo: &\\
-			\hline
-		\end{tabularx}
-	\end{center}
-\end{table}
+
+	
+\def\arraystretch{1.5}
+\begin{center}
+	\label{requisitiosfuncionais}
+	\begin{longtable}{|m{4cm}|m{12cm}|}
+	\caption{Caso de utilização - inserção de vigilantes e salas nos exames marcados}\\
+		
+		\hline
+	\textbf{Nome }	& \textbf{Inserção de vigilantes e salas nos exames marcados} \\
+	\hline
+	Atores: & Utilizador\\
+	\hline
+	Prioridade: &  Alta\\
+	\hline
+	Requisitos funcionais:& RF.1, RF.5, RF.7, RF.26 \\
+	\hline
+	Finalidade: & Inserção de vigilantes e salas a exames marcados.\\
+	\hline
+	Sumário: & O utilizador pode adicionar mais que um vigilante a um exame marcado (ver caso de utilização na tabela \ref{usecasemarcarexame}) e uma ou mais salas.\\
+	\hline
+	Pré-condições: & Ter iniciado sessão na aplicação, ter criado calendários de avaliação e ter marcado exames.\\
+	\hline 
+	Descrição da interação: & O utilizador após marcar um exame pode clicar no exame e aparecerá um pop-up (ver figura \ref{interfacevigilantes}) em que pode adicionar vigilantes (por padrão será adicionado o docente da disciplina) e uma ou mais salas. \\
+	\hline
+	Cenário alternativo 1: & \textbf{Associa um docente a um exame que não está disponível:} Aparece um aviso de alta prioridade a indicar que o docente associado não está disponível\\
+	\hline
+	Cenário alternativo 2: & \textbf{Associa uma sala a um exame que está ocupada:} Aparece um aviso de alta prioridade a indicar que o docente associado não está disponível\\
+	\hline
+	Cenário alternativo 3: & \textbf{Associa um docente a um exame que não está disponível:} Aparece um aviso de alta prioridade a indicar que o docente associado não está disponível\\
+	\hline
+	Cenário alternativo 4: & \textbf{Associa o mesmo docente ao mesmo exame duas vezes:} Aparece um aviso de alta prioridade a informar que existe um vigilante duplicado\\
+	\hline
+	Cenário alternativo 5: & \textbf{Associa uma sala que não é apropriada para o exame:} Aparece um aviso de alta prioridade a informar que o tipo de sala (informática, laboratório de redes ou normal) não está de acordo com o exame\\
+	\hline
+	Cenário alternativo 6: & \textbf{A soma da lotação total das salas associadas ao exame é inferior ao número de alunos inscritos à disciplinas:} Aparece um aviso de alta prioridade a informar que necessita de mais salas para o exame marcado\\
+	\hline
+	\end{longtable}
+\end{center}
+
 
 	\begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/popup}
 	\caption{Associar vigilantes e salas a exames marcados}
+	\label{interfacevigilantes}
 \end{figure}
 
 	
 \begin{table}[H]
-	\caption{Caso de utilização - Inserção e alteração de cursos e disciplinas a partir da interface}
+	\caption{Caso de utilização - Inserção e alteração de dados a partir da interface}
 	\begin{center}	
 		\begin{tabularx}{\textwidth}{|l|X|}
 			\hline
-			\textbf{Nome }	& \textbf{Inserção e alteração de cursos e disciplinas} \\
+			\textbf{Nome }	& \textbf{Inserção e alteração de dados} \\
 			\hline
 			Atores: & Utilizador \\
 			\hline
 			Prioridade: & Alta \\
 			\hline
-			Requisitos funcionais:&  \\
+			Requisitos funcionais:& RF.1, RF.9, RF.10, RF.11, RF.12, RF.13, RF.14, RF.26 \\
 			\hline
-			Finalidade: & Aceder às funcionalidades da aplicação\\
+			Finalidade: & Atualizar ou inserir nova informação sobre docentes, disciplinas e/ou salas.\\
 			\hline
-			Sumário: &  \\
+			Sumário: &  O utilizador pode inserir ou alterar informações sobre disciplinas e cursos.\\
 			\hline
-			Pré-condições: & Ter uma conta registada na aplicação e estar dentro da rede da UA\\
+			Pré-condições: & Estar conectado à rede da Universidade de Aveiro e para alterar ou elimnar necessita já ter inserido ou importado um ficheiro no formato .csv (ver caso de utilização na tabela \ref{usecaseimportarcsv}).\\
 			\hline
-			Descrição da interação: &  O utilizador assim que abre a aplicação tem de iniciar a sessão com o seu email e palavra-passe correspondentes\\
+			Descrição da interação: &  O utilizador ao entrar no menu "configurar" poderá escolher entre vizualizar disciplinas, salas ou docentes. Dentro de "Disciplinas" (ver figura \ref{interfaceconfdisciplinas}) pode alterar o nome da disciplina, o docente e o curso associado. Em "Docentes" (ver figura \ref{interfaceconfdocentes})pode alterar o nome do docente, o seu email e os dias disponíveis. E por fim em "Salas" (ver figura \ref{interfaceconfsalas}) poderá mudar o tipo e a lotação máxima. Em todas estas secções pode eliminar, alterar ou adicionar quantas vezes quiser.\\
 			\hline
-			Cenário alternativo:&\\
+			Cenário alternativo 1:&\textbf{Quer retroceder nas alterações feitas:} O utilizador pode eliminar qualquer uma das informações apresentadas.\\
+			\hline
+			Cenário alternativo 2:&\textbf{Insere informação repetida:} Aparece um aviso a informação que existe informação duplicada.\\
 			\hline
 		\end{tabularx}
 	\end{center}
@@ -688,42 +768,24 @@ perguntar ao cliente
 	\begin{figure}[H] 
 		\centering 
 		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/configurardisciplinas}
-		\caption{Configurar disciplinas}
+		\caption{Interface para configurar disciplinas}
+		\label{interfaceconfdisciplinas}
 	\end{figure}
 
-\begin{table}[H]
-	\caption{Caso de utilização - Inserção e alteração de novos docentes}
-	\begin{center}	
-		\begin{tabularx}{\textwidth}{|l|X|}
-			\hline
-			\textbf{Nome }	& \textbf{Inserção e alteração de novos docentes} \\
-			\hline
-			Atores: & Utilizador \\
-			\hline
-			Prioridade: & Alta \\
-			\hline
-			Requisitos funcionais:&  \\
-			\hline
-			Finalidade: & Aceder às funcionalidades da aplicação\\
-			\hline
-			Sumário: &  \\
-			\hline
-			Pré-condições: & Ter uma conta registada na aplicação e estar dentro da rede da UA\\
-			\hline
-			Descrição da interação: &  O utilizador assim que abre a aplicação tem de iniciar a sessão com o seu email e palavra-passe correspondentes\\
-			\hline
-			Cenário alternativo:&\\
-			\hline
-		\end{tabularx}
-	\end{center}
-\end{table}
 	
 		\begin{figure}[H] 
 		\centering 
 		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/configurardocentes}
-		\caption{Configurar disciplinas}
+		\caption{Interface para configurar docentes}
+		\label{interfaceconfdocentes}
 	\end{figure}
 	
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/configurarsalas}
+		\caption{Interface para configurar salas}
+		\label{interfaceconfsalas}
+	\end{figure}
 	
 \begin{table}[H]
 	\caption{Caso de utilização - Exportação do calendário em formato pdf}
@@ -736,18 +798,19 @@ perguntar ao cliente
 			\hline
 			Prioridade: & Alta \\
 			\hline
-			Requisitos funcionais:&  \\
+			Requisitos funcionais:& RF.1, RF.2, RF.25, RF.26 \\
 			\hline
 			Finalidade: & Aceder às funcionalidades da aplicação\\
 			\hline
-			Sumário: &  \\
+			Sumário: & Após a criação dos calendários o utilizador pode exportar em pdf um calendário ou um conjunto de calendários dos vários cursos. \\
 			\hline
-			Pré-condições: & Ter uma conta registada na aplicação e estar dentro da rede da UA\\
+			Pré-condições: & Estar conectado à rede da Universidade de Aveiro e ter criado calendários (ver caso de utilização na tabela \ref{usecasecriarcalendario}).\\
 			\hline
-			Descrição da interação: &  O utilizador assim que abre a aplicação tem de iniciar a sessão com o seu email e palavra-passe correspondentes\\
+			Descrição da interação: &  O utilizador seleciona o botão "Exportar" no menu do lado esquerdo (ver figura \ref{interfaceexportarpdf}) em que aparecerá todos os calendários de cada ano letivo. Terá de selecionar um ano letivo e depois a época e curso. No fim todos os calendáros selecionados serão exportados consoante a época. \\
 			\hline
-			Cenário alternativo:&\\
+			Cenário alternativo 1:&\textbf{O utilizador seleciona um calendário vazio:} Aparecerá um aviso a indicar que não existe exames marcados no calendário selecionado. No entanto se o utilizador quiser continuar o calendário será exportado.\\
 			\hline
+			
 		\end{tabularx}
 	\end{center}
 \end{table}
@@ -755,8 +818,46 @@ perguntar ao cliente
 	\begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/exportarpdf}
-	\caption{Configurar disciplinas}
+	\caption{Interface para exportar, em formato pdf, os calendários}
+	\label{interfaceexportarpdf}
 \end{figure}
+
+	\begin{table}[H]
+	\caption{Caso de utilização - vizualização do histórico de calendários}
+	\begin{center}	
+		\begin{tabularx}{\textwidth}{|l|X|}
+			\hline
+			\textbf{Nome }	& \textbf{Vizualização do histórico de calendários} \\
+			\hline
+			Atores: & Utilizador \\
+			\hline
+			Prioridade: & Alta \\
+			\hline
+			Requisitos funcionais:&  RF.4, RF.26, RF.27, RF.30, RF.31\\
+			\hline
+			Finalidade: & Visualizar o histórico de calendários\\
+			\hline
+			Sumário: & O utilizador pode visualizar todos os calendários que já criou em anos anteriores (ver caso de utilização na tabela \ref{usecasecriarcalendario}) ou do mesmo ano letivo que o ano corrente mas no semestre passado. \\
+			\hline
+			Pré-condições: & Ter iniciado sessão e ter criado calendários\\
+			\hline
+			Descrição da interação: &  O utilizador pode vizualizar todos os calendários filtrando-os por curso, ano do curso, ano letivo, nome da época e semestre (ver figura \ref{interfacehistorico}). Pode ver os exames marcados, o(s) seus vigilante(s) e a(s) sala(s) associada(s), para além da data de início e fim da época selecionada.\\
+			\hline
+			Cenário alternativo 1:& \textbf{Quer alterar o horário da marcação dos exames:} Aparecerá um aviso que informa que não pode alterar exames mais antigos que o ano letivo e semestre atual.\\
+			\hline
+			Cenário alternativo 2:& \textbf{Quer visualizar todos os calendário dos 3 anos de um curso específico:} Seleciona o curso, ano letivo, época, semestre e na opção ``ano'' do curso escolhe ``todo'' e aparecerá todos os anos na mesma página.\\
+			\hline
+		\end{tabularx}
+	\end{center}
+\end{table}
+
+	\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/calendariohistorico}
+	\caption{Interface para visualizar o histórico dos calendários}
+	\label{interfacehistorico}
+\end{figure}
+
 	
 	\chapter{Prototipagem}
 	\section{Protótipo de baixa fidelidade}
