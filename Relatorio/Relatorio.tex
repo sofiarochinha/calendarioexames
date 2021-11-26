@@ -150,7 +150,7 @@
 	
 	Hoje em dia o simples ato da criação de um calendário ou agenda digital tem em sî concentrado uma vasta panóplia de ferramentas para o fazer, quer seja no uso do calendário de um sistema operativo ou gestor de email que agenda tarefas e notifica antecipadamente, ou numa aplicação para telemóvel que junta a facilidade de uso de \textit{apps} com o design minimalista para a criação de uma agenda rápida ou ainda o uso de páginas \textit{web}, ou \textit{webapps} que pode ser acedido de qualquer dispositivo com capacidade para aceder à Internet. 
 	
-	De facto existem muitas formas de criar um calendário nos dias modernos, mas do ponto de vista de quem constrói a ferramenta em sî, o princípio é o mesmo, o programador tem sempre de associar uma entidade representativa de um evento a uma hora/data de inicio sendo a duração desta decidida pelo utilizador final. 
+	De facto existem muitas formas de criar um calendário nos dias modernos, mas do ponto de vista de quem constrói a ferramenta em si, o princípio é o mesmo, o programador tem sempre de associar uma entidade representativa de um evento a uma hora/data de inicio sendo a duração desta decidida pelo utilizador final. 
 	A forma final de apresentação dos resultados ficará no entanto à descrição do cliente/utilizador final que é para este que todo o desenvolvimento de apresentação e funcionalidades é desenvolvido por forma a satisfazer as necessidades.
 	Mediante esta realidade a metodologia de trabalho foi baseada em reuniões pré preparadas com o cliente para perceber as necessidades deste, onde retiramos os objectivos principais e identificamos requisitos funcionais e não funcionais.
 	São então desenvolvidas soluções baseadas na informação recolhida e posteriormente apresentadas ao cliente inicialmente na forma de protótipos de baixa fidelidade, \textit{wireframes}, e posteriormente versões funcionais de uma aplicação web com intuito de obtenção de \textit{feedback} durante o processo de desenvolvimento.
@@ -174,7 +174,7 @@
 	\section{Estado de arte}
 	\label{estadodearte}
 	
-	A partir de uma pequena introdução do tema foi feita uma pesquisa sobre aplicações semelhantes para discutir com o cliente sobre a aplicação a ser criada. A pesquisa resultou em duas aplicações: uma em versão mobile e outra em versão web.
+	A partir de uma pequena introdução do tema foi feita uma pesquisa sobre aplicações semelhantes para discutir com o cliente sobre a aplicação a ser criada. A pesquisa resultou em quatro aplicações: uma em versão mobile, uma em versão web e duas que dispõem de ambas as versões.
 	
 	A primeira aplicação, que se chama "Timetable", tem como objetivo organizar todas as aulas, exames e tarefas escolares de um aluno. O utilizador pode adicionar aulas e exames (ver figura \ref{inserirvizualizaraula}), indicando a sala, o nome da disciplina, a data de início e fim, o nome do docente, o tipo e o dia da semana em que se realiza, sendo diferenciados pela frequência - as aulas são repetidas a cada semana e o exame só se realiza uma vez. Para além disso o aluno pode associar tarefas tanto a aulas como a exames podendo vizualizar estas informações em forma de lista ou em calendário (ver figura \ref{dayweekview}).
 		\begin{figure}[H] 
@@ -191,8 +191,7 @@
 		\label{dayweekview}
 	\end{figure}
 
-	A segunda aplicação ``StudyLife'' tem o mesmo objetivo que a aplicação anterior no entanto a sua apresentação gráfica é diferente (ver figura \ref{listastudylife}). Poderá criar tarefas e exames associados a disciplinas, previamente criadas. Para cada tarefa pode indicar qual é a sua percentagem de realização (?) e nos exames pode-se vizualizar o dia e a hora do mesmo, a sala, se existe conflitos com aulas ou não e quanto tempo o aluno tem para o realizar, tal como se pode vizualizar na figura \ref{examematematica}. Estas informações podem ser vistas em forma de lista (\ref{listastudylife}) ou em forma de calendário semanal.
-	
+	A segunda aplicação "StudyLife'' tem o mesmo objetivo que a aplicação anterior no entanto a sua apresentação gráfica é diferente (ver figura \ref{listastudylife}). Poderá criar tarefas e exames associados a disciplinas, previamente criadas. Para cada tarefa pode indicar qual é a sua percentagem de realização (?) e nos exames pode-se vizualizar o dia e a hora do mesmo, a sala, se existe conflitos com aulas ou não e quanto tempo o aluno tem para o realizar, tal como se pode vizualizar na figura \ref{examematematica}. Estas informações podem ser vistas em forma de lista (\ref{listastudylife}) ou em forma de calendário semanal.	
 	
 \begin{figure}[H] 
 	\centering 
@@ -215,11 +214,73 @@
 	\label{calendariostudylife}
 \end{figure}
 
+	A terceira e a quarta aplicação foram selecionadas pela semelhança no conceito das mesmas face ao nosso projeto, sendo estas o "Google Calendar" e o "Outlook Calendar", ambas têm um funcionamento semelhante, sendo concorrentes diretas uma da outra e dispõem tanto de uma versão web como de uma versão mobile, no entanto iremos apenas abordar a versão web.\\
 
+	Em ambas as aplicações é possível visualizar os conteúdos por dia, semana, mês ou ano e existe uma funcionalidade que nos permite criar diferentes calendários, sendo possível posteriormente adicionar eventos aos mesmos e alterar a visualização entre eles, na figura 1.6 referente à criação do calendário na aplicação da Google podemos observar que esta permite a associação de um nome, descrição e fuso horário ao novo calendário. No caso do Outlook presente na figura 1.7, temos também a possibilidade de escolher a cor e um ícone, porém não existe um campo para associar uma descrição.\\
 
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/criacao_calendario_google}
+		\caption{Criação de um novo calendário no Google Calendar}
+		\label{dayweekview}
+	\end{figure}
 
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/criacao_calendario_outlook}
+		\caption{Criação de um novo calendário no Outlook Calendar}
+		\label{dayweekview}
+	\end{figure}
+
+	No caso do "Google Calendar", o utilizador pode adicionar eventos, tarefas e lembretes ao calendário através do botão criar ou ao selecionar/arrastar uma área diretamente no calendário, porém o funcionamento das tarefas é semelhante ao dos lembretes sendo que estes apenas permitem selecionar uma hora específica ou o dia inteiro. Conforme se pode observar na figura 1.8, aquando a criação de um novo evento é permitido ao utilizador selecionar/escolher um período de horas, onde temos diversos campos para preenchimento, entre os quais um título, datas/horas, convidados, local, descrição, repetição do evento, etc..\\
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/criacao_evento_google}
+		\caption{Criação de um novo evento no Google Calendar}
+		\label{dayweekview}
+	\end{figure}
+
+	No caso do "Outlook Calendar", tal como a figura 1.9 mostra, apenas é possível criar novos eventos, porém à semelhança do "Google Calendar" o utilizador pode proceder à criação dos mesmos recorrendo a um botão existente para o efeito ou ao selecionar/arrastar uma área no calendário, tendo também diversos campos para preenchimento entre os quais o título, participantes, datas/horas, repetição do evento, etc..\\
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/criacao_evento_outlook}
+		\caption{Criação de um novo evento no Outlook Calendar}
+		\label{dayweekview}
+	\end{figure}
+
+Em ambas as aplicações, após um evento ter sido criado no calendário é possível arrastar o mesmo para outro horário recorrendo à funcionalidade de "Drag and Drop" que ambos incorporam, esta funcionalidade é demonstrada na figura 1.10 e 1.11 abaixo.\\
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/drag_drop_google}
+		\caption{Funcionalidade Drag and Drop no Google Calendar}
+		\label{dayweekview}
+	\end{figure}
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/drag_drop_outlook}
+		\caption{Funcionalidade Drag and Drop no Outlook Calendar}
+		\label{dayweekview}
+	\end{figure}
+
+Também existe uma funcionalidade incorporada para imprimir os calendários criados, que através da funcionalidade de impressão do browser permite exportar o ficheiro numa versão .pdf, no entanto, os filtros de impressão presentes nas duas aplicações são diferentes. Ao passo que o "Google Calendar" que pode ser observado na figura 1.12 permite selecionar um período de dias/semanas para imprimir, o "Outlook Calendar" observável na figura 1.13 apenas permite imprimir a semana que estamos a visualizar na aplicação, sendo necessário recorrer a esta funcionalidade múltiplas vezes caso queiramos imprimir mais do que uma semana. No entanto no "Outlook Calendar" é possível selecionar um período de horas para impressão, por exemplo 9h-18h, imprimindo apenas os eventos que se encontram inseridos naquele período.
 	 
-	
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/imprimir_google}
+		\caption{Funcionalidade de impressão no Google Calendar}
+		\label{dayweekview}
+	\end{figure}
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/estadodearte/imprimir_outlook}
+		\caption{Funcionalidade de impressão no Outlook Calendar}
+		\label{dayweekview}
+	\end{figure}
 	
 	\chapter{Planificação do projeto}
 
@@ -863,7 +924,9 @@ perguntar ao cliente
 	\section{Protótipo de baixa fidelidade}
 	\subsection{Wireframes}
 	\subsection{Diagrama de user flow}
+
 	\subsection{Testes}
+		
 	\subsubsection{Análise de resultados}
 	
 	\section{Protótipo de alta fidelidade}
