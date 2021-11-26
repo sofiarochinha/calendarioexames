@@ -145,9 +145,6 @@
 	
 	Com o avanço da tecnologia no século XX e a popularização do uso da Internet, os calendários tradicionais de papel foram gradualmente caindo em desuso dando lugar a calendário digitais que proporcionam numeras vantagens nomeadamente a portabilidade para todos os tipos de dispositivos modernos, maior complexidade de informação que é permitida armazenar nestes, possibilidade de partilhar calendários e agendas, etc.. 
 	
-	A organização de calendários digitais contempla várias implementações diferentes cada uma com as suas especificações, formas de implementar e leitura, mas com o evoluir da tecnologia e da criação de standards internacionais, alguns formatos em particular ficara destacados pelo seu uso comum e estandardizado. 
-	Destes destaca-se o \textit{Internet Calendaring and Scheduling Core Object Specification} (\textbf{iCal})\cite{rfc2445}, talvez mais conhecido pela extensão de ficheiro comummente partilhado pelos seus utilizadores, "\textbf{.ics}". 
-	
 	Hoje em dia o simples ato da criação de um calendário ou agenda digital tem em sî concentrado uma vasta panóplia de ferramentas para o fazer, quer seja no uso do calendário de um sistema operativo ou gestor de email que agenda tarefas e notifica antecipadamente, ou numa aplicação para telemóvel que junta a facilidade de uso de \textit{apps} com o design minimalista para a criação de uma agenda rápida ou ainda o uso de páginas \textit{web}, ou \textit{webapps} que pode ser acedido de qualquer dispositivo com capacidade para aceder à Internet. 
 	
 	De facto existem muitas formas de criar um calendário nos dias modernos, mas do ponto de vista de quem constrói a ferramenta em si, o princípio é o mesmo, o programador tem sempre de associar uma entidade representativa de um evento a uma hora/data de inicio sendo a duração desta decidida pelo utilizador final. 
@@ -284,7 +281,9 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 	
 	\chapter{Planificação do projeto}
 
+ 	Por consequência do âmbito do projeto este já está dividido em várias fases sendo que nesta versão do relatório só está apresentada a primeira e a segunda fase.
  	
+ 	Na primeira fase iniciou-se com a reunião com o cliente (secção \ref{analiseutilizador}), levantamento do estado de arte (secção \ref{estadodearte}) e o levantamento de requisitos (secção \ref{requisitos}). Com estas informações podemos avançar para a segunda fase que consiste na prototipagem de baixa fidelidade - wireframes - e os testes com potenciais utilizadores, como se pode ver na figura \ref{cronogramaexecutado}.
 		
 	\clearpage
 	\begin{landscape}
@@ -295,7 +294,15 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 			\caption{Planeamento da primeira e segunda fase}
 			
 		\end{figure}
+	
+	\begin{figure}[H] 
+		\centering 			\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/cronogramaexecutado}
+		\caption{Cronograma executado da primeira e segunda fase}
+		\label{cronogramaexecutado}
+	\end{figure}
 	\end{landscape}
+
+
 	
 	
 	\chapter{Análises dos utilizadores e tarefas}
@@ -934,18 +941,39 @@ perguntar ao cliente
 	
 	\subsection{Wireframes}
 	
-	Nos wireframes - protótipo de baixa fidelidade - as funcionalidades foram dividas em 3 secções no menu: calendários, configurar e exportar. Dentro do menu na opção ``calendários'' o utilizador pode criar novos calendários ou visualizar o histórico de calendários mais antigos podendo filtrar por ano letivo ou curso, como se pode ver na figura \ref{menucalendario}. A opção que está selecionada fica com uma cor diferente do restante menu. Para além disso a distinção de calendários 
+	Nos wireframes - protótipo de baixa fidelidade - as funcionalidades foram dividas em 3 secções no menu: calendários, configurar e exportar. Dentro do menu na opção ``calendários'' o utilizador pode criar novos calendários ou visualizar o histórico de calendários mais antigos podendo filtrar por ano letivo ou curso, como se pode ver na figura \ref{menucalendario}. A opção que está selecionada fica com uma cor diferente do restante menu. Para além disso a distinção de calendários antigos e recentes é feita por duas cores: a verde são os calendários ``fechados'' e a vermelho são os que podem ser editados. 
 	
 	\begin{figure}[H] 
 		\centering 
 		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/pesquisacalendarioanoletivo}
-		\caption{Template escolhido para se basear a aplicação}
+		\caption{Pesquisar calendários a partir do ano letivo}
 		\label{menucalendario}
 	\end{figure}
 	
+	Dentro da secção ``configurar'' (ver figura \ref{configurarsalas}) estam todas as informações que o utilizador necessita para a criação dos calendários e a marcação de exames. Estas podem ser importados a partir de um ficheiro .csv ou o próprio pode adicionar na aplicação . 
 	
+	 
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/configurarsalas}
+		\caption{Visualização de informações sobre as salas}
+		\label{configurarsalas}
+	\end{figure}
+
+Dentro da secção "exportar"  (figurar \ref{exportar}) o utilizador pode exportar para pdf os calendários que selecionar.
+
+
+	\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/exportarpdf}
+	\caption{Visualização de informações sobre as salas}
+	\label{exportar}
+\end{figure}
+
 	
 	\subsection{Diagrama de user flow}
+
+	Com o desenvolvimento dos wireframes criou-se o diagrama de user flow que é útil para entender quais são os passos que o tuilizador terá de realizar para concluir uma tarefa. Este diagrama foi desenvolvido consoante os wireframes e a descrição dos casos de utilização.
 
 	\begin{landscape}
 		\pagestyle{empty}
