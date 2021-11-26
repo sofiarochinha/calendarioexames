@@ -426,6 +426,7 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 	
 	\subsection{Requisitos de interface e facilidade de uso}
 
+Assim que o utilizador inicia a sessão na aplicação este tem de facilmente entender como a aplicação está organizada. Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir os calendários de avaliaçõesnão seja frustrante.
 	
 	\begin{table}[H]
 	\caption{Requisitos de interface e facilidade de uso}
@@ -450,13 +451,8 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 
 	\subsection{Requisitos de segurança e integridade dos dados}
 	
-	perfil secretaria 
-perfil admin
-
-possibilidade de criar novos utilizadores
-rede da ua
-
-perguntar ao cliente
+	Para que o utilizador possa colocar os seus dados na aplicação sem conter risco de transvazar para utilizadores indesejados foram criados alguns requisitos de segurança referido na	tabela \ref{requisitosdeseguranca}.
+	
 \begin{table}[H]	
 	\caption{Requisitos de segurança e integridade dos dados}
 	
@@ -478,7 +474,9 @@ perguntar ao cliente
 
 	\subsection{Requisitos de interface com sistemas externos e ambientes de execução}
 	
-	
+	A aplicação por ambiente da disciplina irá ser programada em linguagens web,
+	consequentemente não é necessário definir que sistema operativos pode a aplicação ser executada.
+	No entanto é crucial ter acesso à rede da Universidade de Aveiro e um dos navegadores definidos na tabela \ref{requisitosdesistemas}.
 	
 	
 	\begin{table}[H]
@@ -492,7 +490,7 @@ perguntar ao cliente
 				\hline
 				RSA2 & Suportar Firefox ESR e outros derivados de gecko/quantum & Alta \\
 				\hline
-				RSA5 & Ter acesso à Internet (precisa mesmo? rede interna UA não é suficiente?) & Alta\\
+				RSA5 & Estar conectado à rede da Universidade de Aveiro & Alta\\
 				\hline
 			\end{tabularx}
 			\label{requisitosdesistemas}
