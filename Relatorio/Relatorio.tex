@@ -26,22 +26,22 @@
 
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
-%\usepackage{appendix}
-%\noindent %sem indentação
-%\newcommand{\annexname}{Anexo}
-%\makeatletter % treat @ as a letter instead of a control word.
-%
-%\newcommand\annex{\par
-%	\setcounter{chapter}{0}
-%	\setcounter{section}{0}
-%	\renewcommand\appendixname{Anexo}
-%	\renewcommand\appendixpagename{Anexos}
-%	\renewcommand{\appendixtocname}{Anexos}
-%	\gdef\@chapapp{\annexname}
-%	\gdef\thechapter{\@Roman\c@chapter}
-%	\renewcommand{\theHchapter}{\annexname.\thechapter}
-%	\addappheadtotoc
-%}\makeatother
+
+\usepackage{appendix}
+\newcommand{\annexname}{Anexo}
+\makeatletter % treat @ as a letter instead of a control word.
+
+\newcommand\annex{\par
+	\setcounter{chapter}{0}
+	\setcounter{section}{0}
+	\renewcommand\appendixname{Anexo}
+	\renewcommand\appendixpagename{Anexos}
+	\renewcommand{\appendixtocname}{Anexos}
+	\gdef\@chapapp{\annexname}
+	\gdef\thechapter{\@Roman\c@chapter}
+	\renewcommand{\theHchapter}{\annexname.\thechapter}
+	\addappheadtotoc
+}\makeatother
 
 
 
@@ -752,7 +752,6 @@ perguntar ao cliente
 	
 \def\arraystretch{1.5}
 \begin{center}
-	\label{requisitiosfuncionais}
 	\begin{longtable}{|m{4cm}|m{12cm}|}
 	\caption{Caso de utilização - inserção de vigilantes e salas nos exames marcados}\\
 		
@@ -921,7 +920,10 @@ perguntar ao cliente
 
 	
 	\chapter{Prototipagem}
-	Antes de uma primeira implementação em web escolheu-se um template para se basear o protótipo de baixa fidelidade. O template (ver figura \ref{template}) pode ser encontra-do a partir do link \href{https://adminlte.io/themes/v3/pages/calendar.html}{https://adminlte.io/themes/v3/pages/calendar.html} e tem a licença MIT. Com isto protipou-se todos todos os casos de utilização da primeira e da segunda fase.  
+	
+	\section{Protótipo de baixa fidelidade}
+	
+	Antes de uma primeira implementação em web escolheu-se um template para se basear o protótipo de baixa fidelidade. O template (ver figura \ref{template}) pode ser encontra-do a partir do link \href{https://adminlte.io/themes/v3/pages/calendar.html}{https://adminlte.io/themes/v3/pages/calendar.html} e tem a licença MIT. Com isto protipou-se todos todos os casos de utilização da primeira e da segunda fase.
 	
 	\begin{figure}[H] 
 		\centering 
@@ -929,14 +931,29 @@ perguntar ao cliente
 		\caption{Template escolhido para se basear a aplicação}
 		\label{template}
 	\end{figure}
-	\section{Protótipo de baixa fidelidade}
-	
-	
 	
 	\subsection{Wireframes}
 	
+	Nos wireframes - protótipo de baixa fidelidade - as funcionalidades foram dividas em 3 secções no menu: calendários, configurar e exportar. Dentro do menu na opção ``calendários'' o utilizador pode criar novos calendários ou visualizar o histórico de calendários mais antigos podendo filtrar por ano letivo ou curso, como se pode ver na figura \ref{menucalendario}. A opção que está selecionada fica com uma cor diferente do restante menu. Para além disso a distinção de calendários 
+	
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/pesquisacalendarioanoletivo}
+		\caption{Template escolhido para se basear a aplicação}
+		\label{menucalendario}
+	\end{figure}
+	
+	
 	
 	\subsection{Diagrama de user flow}
+
+	\begin{landscape}
+		\pagestyle{empty}
+		\begin{figure}[H] 
+			\centering 							\includegraphics[width=1.5\textwidth,height=1.5\textheight,keepaspectratio]{image/diagramauserflow}
+			\caption{Diagrama de user flow}
+		\end{figure}
+	\end{landscape}
 
 	\subsection{Testes}
 		Após a interface da aplicação estar idealizada e terem sido concluídos os protótipos de baixa fidelidade, foi programada uma sessão de avaliação com a participação de dois utilizadores participantes, o Sr. Paulo e a professora Magda Monteiro, de modo a podermos obter feedback e avaliar se a interface em questão conseguia satisfazer os requisitos que eram propostos. Para que esta sessão de avaliação podesse ocorrer, além dos utilizadores participantes era necessária a presença de um moderador e de pelo menos dois observadores, foram ainda preparados três documentos de apoio à sessão: um guião de apoio ao moderador, um guião para os utilizadores participantes e uma grelha de observação para os elementos observadores. A estrutura de ambos os guiões é semelhante, apresentando uma capa, uma pequena introdução que explica os objetivos da sessão e as tarefas a desempenhar, apenas difere no guião do moderador, que também tem presente o que é necessário para preparar a sessão e as "regras" pela qual este se deverá reger durante a realização da mesma. Para preparar a sessão é necessária a existência de um computador com um periférico de entrada, um browser instalado e acesso à internet de modo a poder aceder ao website onde estão alojados os protótipos de baixa fidelidade (\href{https://www.figma.com/file/nhb5nnIrt3fdDoQhYpsN80/Calendario?node-id=9\%3A154}{\textbf{wireframes}}).
@@ -962,7 +979,7 @@ Durante a sessão de avaliação o papel de moderador foi desempenhado pela Sofi
 	\begin{landscape}
 		\pagestyle{empty}
 		\begin{figure}[H] 
-			\centering 							\includegraphics[width=1.2\textwidth,height=1.2\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_magda}
+			\centering 							\includegraphics[width=1.3\textwidth,height=1.3\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_magda}
 			\caption{Grelha de observação professora Magda Monteiro}
 			
 		\end{figure}
@@ -1005,6 +1022,25 @@ Durante a sessão de avaliação o papel de moderador foi desempenhado pela Sofi
 
 	\bibliographystyle{ieeetr}
 	\bibliography{citations}
+	\pagenumbering{roman}
+	\pagestyle{empty}
+	\chapter*{Anexo A}
+	\section*{Guião dos testes}
+	fdknsfldsjflndslfkjdslkfjds
+	fdlsfndsklfnds
+	fldsnfldsknfds
+	slfkndlskfnds
+	
+
+	
+	\chapter*{Anexo B}
+	\section*{Anexo dois}
+	
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/pesquisacalendarioanoletivo}
+	\caption{Template escolhido para se basear a aplicação}
+\end{figure}
 	
 \end{document}	
 	
