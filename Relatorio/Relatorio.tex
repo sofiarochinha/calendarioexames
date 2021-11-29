@@ -30,7 +30,7 @@
 \usepackage{appendix}
 \newcommand{\annexname}{Anexo}
 \makeatletter % treat @ as a letter instead of a control word.
-
+_{
 \newcommand\annex{\par
 	\setcounter{chapter}{0}
 	\setcounter{section}{0}
@@ -43,7 +43,7 @@
 	\addappheadtotoc
 }\makeatother
 
-
+}
 
 \begin{document}
 	
@@ -714,7 +714,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 \begin{center}
 	\label{usecasemarcarexame}
 	\begin{longtable}{|m{4cm}|m{12cm}|}
-		\caption{Requisitos funcionais}\\
+		\caption{Caso de utilização - marcação de exames no calendário}\\
 		
 			\hline
 		\textbf{Nome }	& \textbf{Marcação de exames no calendário} \\
