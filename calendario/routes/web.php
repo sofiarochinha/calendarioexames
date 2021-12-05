@@ -21,11 +21,11 @@ Route::get('/calendarios', function () {
 });
 
 Route::get('/calendarios/ano-letivo', function () {
-    return view('welcome');
+    return view('academic_year');
 });
 
 Route::get('/calendarios/curso', function () {
-    return view('welcome');
+    return view('courses');
 });
 
 Route::get('/configuracoes/disciplinas', function () {
