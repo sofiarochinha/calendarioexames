@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('/calendarios', function () {
-    return view('welcome');
+    return view('ano_letivo');
 });
 
 Route::get('/calendarios/ano-letivo', function () {
@@ -25,7 +25,11 @@ Route::get('/calendarios/ano-letivo', function () {
 });
 
 Route::get('/calendarios/curso', function () {
-    return view('courses');
+    return view('curso');
+});
+
+Route::get('/calendarios/curso/{curso}', function () {
+    return view('welcome');
 });
 
 Route::get('/configuracoes/disciplinas', function () {
