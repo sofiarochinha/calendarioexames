@@ -110,19 +110,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="/configuracoes/disciplinas" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Disciplinas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                            <a href="/configuracoes/salas" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Salas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/boxed.html" class="nav-link">
+                            <a href="/configuracoes/docentes" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Docentes</p>
                             </a>
@@ -132,7 +132,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="/" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Exportar

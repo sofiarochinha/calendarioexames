@@ -36,7 +36,6 @@
                                         <a href={{'TI'}}>
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=Tecnologias da Informação" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
-                                        @endif
                                     </div>
                                     <div class="filtr-item col-sm-2" data-category="2, 4">
                                         <a href={{'GE'}} data-toggle="lightbox" data-title="sample 2 - black">
