@@ -21,7 +21,19 @@ Route::get('/calendarios', function () {
 });
 
 Route::get('/calendarios/ano-letivo', function () {
-    return view('academic_year');
+    return view('ano_letivo');
+});
+
+Route::get('/calendarios/{anoletivo}', function () {
+    return view('curso');
+});
+
+Route::get('/calendarios/{anoletivo}/{curso}', function () {
+    return view('calendar');
+});
+
+Route::get('/calendarios/{curso}', function () {
+    return view('c');
 });
 
 Route::get('/calendarios/curso', function () {
@@ -33,15 +45,15 @@ Route::get('/calendarios/curso/{curso}', function () {
 });
 
 Route::get('/configuracoes/disciplinas', function () {
-    return view('welcome');
+    return view('configurar');
 });
 
 Route::get('/configuracoes/salas', function () {
-    return view('welcome');
+    return view('configurar');
 });
 
 Route::get('/configuracoes/docentes', function () {
-    return view('welcome');
+    return view('configurar');
 });
 
 Route::get('/exportar', function () {
