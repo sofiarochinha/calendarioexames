@@ -20,15 +20,16 @@ Route::get('/calendarios', function () {
     return view('ano_letivo');
 });
 
-Route::get('/calendarios/ano-letivo', function () {
-    return view('ano_letivo');
+Route::get('/calendarios/atual', function () {
+    return view('curso');
 });
 
-Route::get('/calendarios/{ano-letivo}', function () {
-    return view('ano_letivo');
+Route::get('/calendarios/atual/{curso}', function () {
+    return view('calendario');
 });
 
-Route::get('/calendarios/{ano_letivo}/{curso}', function () {
+
+Route::get('/calendarios/historico', function () {
     return view('calendar');
 });
 

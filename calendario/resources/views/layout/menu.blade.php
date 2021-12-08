@@ -83,15 +83,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/calendarios/ano-letivo" class="nav-link">
+                            <a href="/calendarios/atual" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Ano letivo</p>
+                                <p>Atual</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/calendarios/curso" class="nav-link active">
+                            <a href="/calendarios/historico" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Curso</p>
+                                <p>Histórico</p>
                             </a>
                         </li>
                     </ul>

@@ -25,15 +25,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <!--<div class="card card-primary">
-                          <div class="card-header">
-                            <h4 class="card-title">FilterizR Gallery with Ekko Lightbox</h4>
-                          </div>-->
                         <div class="card-body">
                             <div>
                                 <div class="filter-container p-0 row">
                                     <div class="filtr-item col-sm-2" data-category="1">
-                                        <a href={{'TI'}}>
+                                        <a href=/calendarios/atual/{{'TI'}}>
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=Tecnologias da Informação" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
                                     </div>
