@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="/plugins/fullcalendar/main.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -41,6 +43,9 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Home</a>
+        </li>
     </ul>
 </nav>
 <!-- /.navbar -->
@@ -50,7 +55,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a class="brand-link">
+    <a href="index3.html" class="brand-link">
         <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Ua Calendar</span>
     </a>
@@ -89,9 +94,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/calendarios/historico" class="nav-link active">
+                            <a href="/calendarios/antigos" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Histórico</p>
+                                <p>Antigos</p>
                             </a>
                         </li>
                     </ul>
@@ -107,19 +112,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/configuracoes/disciplinas" class="nav-link">
+                            <a href="pages/layout/top-nav.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Disciplinas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/configuracoes/salas" class="nav-link">
+                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Salas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/configuracoes/docentes" class="nav-link">
+                            <a href="pages/layout/boxed.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Docentes</p>
                             </a>
@@ -129,18 +134,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/exportar" class="nav-link">
+                    <a href="pages/gallery.html" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Exportar
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
-                        <p>
-                            Sair
                         </p>
                     </a>
                 </li>
@@ -168,11 +165,7 @@
 @section('calendario')
 @show
 
-@section('conf_disciplinas')
-@show
 
-@section('importar')
-@show
 
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
@@ -184,6 +177,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -244,6 +239,7 @@
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- fullCalendar 2.2.5 -->
 <script src="/plugins/moment/moment.min.js"></script>
-<script src="/plugins/fullcalendar/main.js"></script>
 
+</body>
 </html>
+

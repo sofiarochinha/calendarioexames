@@ -25,12 +25,12 @@ Route::get('/calendarios/atual', function () {
 });
 
 Route::get('/calendarios/atual/{curso}', function () {
-    return view('calendario');
+    return view('calendario_atual');
 });
 
 
-Route::get('/calendarios/historico', function () {
-    return view('calendar');
+Route::get('/calendarios/antigos', function () {
+    return view('calendario_historico');
 });
 
 Route::get('/configuracoes/disciplinas', function () {

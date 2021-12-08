@@ -1,18 +1,20 @@
 @extends('layout.menu')
 @section('calendario')
-<!-- Main content --><!-- Content Wrapper. Contains page content -->
+
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Calendar</h1>
+                    <h1>Calendario 2021-2022</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Calendar</li>
+                        <li class="breadcrumb-item"><a href="/calendarios">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/calendarios/2021-2022">2021-2022</a></li>
+                        <li class="breadcrumb-item active">TI</li>
                     </ol>
                 </div>
             </div>
@@ -27,19 +29,19 @@
                     <div class="sticky-top mb-3">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Draggable Events</h4>
+                                <h4 class="card-title">Disciplinas</h4>
                             </div>
                             <div class="card-body">
                                 <!-- the events -->
                                 <div id="external-events">
-                                    <div class="external-event bg-success">Lunch</div>
-                                    <div class="external-event bg-warning">Go home</div>
-                                    <div class="external-event bg-info">Do homework</div>
-                                    <div class="external-event bg-primary">Work on UI design</div>
-                                    <div class="external-event bg-danger">Sleep tight</div>
-                                    <div class="checkbox">
+                                    <div class="external-event bg-success">WEB DESIGN</div>
+                                    <div class="external-event bg-warning">OPÇÃO I</div>
+                                    <div class="external-event bg-info">DESENVOLVIMENTO WEB MULTIPLATAFORMA</div>
+                                    <div class="external-event bg-primary">SEGURANÇA INFORMÁTICA</div>
+                                    <!--<div class="external-event bg-danger">Sleep tight</div>-->
+                                    <div class="d-none">
                                         <label for="drop-remove">
-                                            <input type="checkbox" id="drop-remove">
+                                            <input type="checkbox" id="drop-remove" checked>
                                             remove after drop
                                         </label>
                                     </div>
@@ -47,33 +49,7 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Create Event</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                    <ul class="fc-color-picker" id="color-chooser">
-                                        <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-                                        <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-                                        <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-                                        <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-                                        <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
-                                    </ul>
-                                </div>
-                                <!-- /btn-group -->
-                                <div class="input-group">
-                                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
 
-                                    <div class="input-group-append">
-                                        <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-                                    </div>
-                                    <!-- /btn-group -->
-                                </div>
-                                <!-- /input-group -->
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- /.col -->
@@ -110,20 +86,16 @@
 <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
 <!-- Bootstrap -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- jQuery UI -->
-<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<!-- fullCalendar 2.2.5 -->
-<script src="../plugins/moment/moment.min.js"></script>
-<script src="../plugins/fullcalendar/main.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
+<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="/plugins/fullcalendar/main.js"></script>
 <!-- Page specific script -->
 <script>
     $(function () {
@@ -166,7 +138,7 @@
         var Draggable = FullCalendar.Draggable;
 
         var containerEl = document.getElementById('external-events');
-        var checkbox = document.getElementById('drop-remove');
+        //var checkbox = document.getElementById('drop-remove');
         var calendarEl = document.getElementById('calendar');
 
         // initialize the external events
@@ -186,71 +158,23 @@
 
         var calendar = new Calendar(calendarEl, {
             headerToolbar: {
-                left  : 'prev,next today',
+                left  : 'prev,next',
                 center: 'title',
                 right : 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             themeSystem: 'bootstrap',
             //Random default events
             events: [
-                {
-                    title          : 'All Day Event',
-                    start          : new Date(y, m, 1),
-                    backgroundColor: '#f56954', //red
-                    borderColor    : '#f56954', //red
-                    allDay         : true
-                },
-                {
-                    title          : 'Long Event',
-                    start          : new Date(y, m, d - 5),
-                    end            : new Date(y, m, d - 2),
-                    backgroundColor: '#f39c12', //yellow
-                    borderColor    : '#f39c12' //yellow
-                },
-                {
-                    title          : 'Meeting',
-                    start          : new Date(y, m, d, 10, 30),
-                    allDay         : false,
-                    backgroundColor: '#0073b7', //Blue
-                    borderColor    : '#0073b7' //Blue
-                },
-                {
-                    title          : 'Lunch',
-                    start          : new Date(y, m, d, 12, 0),
-                    end            : new Date(y, m, d, 14, 0),
-                    allDay         : false,
-                    backgroundColor: '#00c0ef', //Info (aqua)
-                    borderColor    : '#00c0ef' //Info (aqua)
-                },
-                {
-                    title          : 'Birthday Party',
-                    start          : new Date(y, m, d + 1, 19, 0),
-                    end            : new Date(y, m, d + 1, 22, 30),
-                    allDay         : false,
-                    backgroundColor: '#00a65a', //Success (green)
-                    borderColor    : '#00a65a' //Success (green)
-                },
-                {
-                    title          : 'Click for Google',
-                    start          : new Date(y, m, 28),
-                    end            : new Date(y, m, 29),
-                    url            : 'https://www.google.com/',
-                    backgroundColor: '#3c8dbc', //Primary (light-blue)
-                    borderColor    : '#3c8dbc' //Primary (light-blue)
-                }
             ],
             editable  : true,
             droppable : true, // this allows things to be dropped onto the calendar !!!
             drop      : function(info) {
-                // is the "remove after drop" checkbox checked?
-                if (checkbox.checked) {
-                    // if so, remove the element from the "Draggable Events" list
-                    info.draggedEl.parentNode.removeChild(info.draggedEl);
-                }
-            }
+                info.draggedEl.parentNode.removeChild(info.draggedEl);
+            },
+            initialView: 'timeGridWeek'
         });
-
         calendar.render();
+
         // $('#calendar').fullCalendar()
 
         /* ADDING EVENTS */
@@ -291,5 +215,7 @@
             $('#new-event').val('')
         })
     })
-</script>d
+</script>
+
 @stop
+
