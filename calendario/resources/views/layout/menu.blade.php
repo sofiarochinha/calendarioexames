@@ -86,7 +86,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/calendarios/ano-letivo" class="nav-link">
+                            <a href="/calendarios/" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ano letivo</p>
                             </a>
