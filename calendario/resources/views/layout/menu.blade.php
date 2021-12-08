@@ -132,7 +132,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a href="/exportar" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Exportar
@@ -163,6 +163,8 @@
 @section('calendario')
 @show
 
+@section('conf_disciplinas')
+@show
 
 
 <!-- jQuery -->
@@ -175,8 +177,6 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -238,6 +238,5 @@
 <!-- fullCalendar 2.2.5 -->
 <script src="/plugins/moment/moment.min.js"></script>
 <script src="/plugins/fullcalendar/main.js"></script>
-<!-- Page specific script -->
-</body>
+
 </html>

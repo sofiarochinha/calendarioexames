@@ -25,7 +25,7 @@ Route::get('/calendarios/{ano_letivo}', function () {
 });
 
 Route::get('/calendarios/{ano_letivo}/{curso}', function () {
-    return view('calendario');
+    return view('calendar');
 });
 
 Route::get('/configuracoes/disciplinas', function () {

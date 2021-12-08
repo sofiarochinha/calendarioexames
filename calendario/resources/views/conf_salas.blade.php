@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UACalendário | Configurar salas</title>
+@extends('layout.menu')
+@section('conf_disciplinas')
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
-    <!-- fullCalendar -->
-    <link rel="stylesheet" href="/plugins/fullcalendar/main.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
-</head>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -55,7 +42,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="col-md-3"><input type="text" class="text-center" style="border:0; opacity:0.7; width:100%;" value="5.1.15" disabled/></td>
-                                                <td class="col-md-5"><select style="border:0; width:100%;" disabled/><option class="text-center">Informática</option></select></td>
+                                                <td class="col-md-5"><select style="border:0; width:100%;" disabled/><option class="text-center">Informática</option></td>
                                                 <td class="col-md-3"><input type="select" class="text-center" style="border:0; opacity:0.7; width:100%;" value="50" disabled/></td>
                                                 <td class="col-md-1 text-center"><i class="fas fa-edit" style="cursor:pointer;"></i></td>
                                             </tr>
@@ -94,13 +81,6 @@
                                                 <td class="col-md-3"></td>
                                                 <td class="col-md-1"></td>
                                             </tr>
-                                            
-                                            <tr>
-                                                <td class="col-md-3">&nbsp</td>
-                                                <td class="col-md-5"></td>
-                                                <td class="col-md-3"></td>
-                                                <td class="col-md-1"></td>
-                                            </tr>
 
                                             <tr>
                                                 <td class="col-md-3">&nbsp</td>
@@ -115,8 +95,15 @@
                                                 <td class="col-md-3"></td>
                                                 <td class="col-md-1"></td>
                                             </tr>
-                                        </tbody>       
-                                    </table>                             
+
+                                            <tr>
+                                                <td class="col-md-3">&nbsp</td>
+                                                <td class="col-md-5"></td>
+                                                <td class="col-md-3"></td>
+                                                <td class="col-md-1"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -138,23 +125,4 @@
             <b>Version</b> 3.2.0-rc
         </div>
     </footer>
-</body>
-
-
-
-
-
-<!-- jQuery -->
-<script src="/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery UI -->
-<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
-<!-- fullCalendar 2.2.5 -->
-<script src="/plugins/moment/moment.min.js"></script>
-<script src="/plugins/fullcalendar/main.js"></script>
-
-</body>
-</html>
+@stop
