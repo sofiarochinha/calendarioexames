@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('/calendarios', function () {
-    return view('calendario_atual');
+    return view('curso');
 });
 
 Route::get('/calendarios/atual', function () {

@@ -34,37 +34,37 @@
                                         </a>
                                     </div>
                                     <div class="filtr-item col-sm-2" data-category="2, 4">
-                                        <a href={{'GE'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <a href=/calendarios/atual/{{'GE'}} data-toggle="lightbox" data-title="sample 2 - black">
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=GE" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
                                     </div>
                                     <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                                        <a href={{'EM'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <a href=/calendarios/atual/{{'EM'}} data-toggle="lightbox" data-title="sample 2 - black">
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=EM" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
                                     </div>
                                     <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                                        <a href={{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <a href=/calendarios/atual/{{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=text" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
                                     </div>
                                     <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                                        <a href={{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <a href=/calendarios/atual/{{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=text" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
                                     </div>
                                     <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                                        <a href={{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <a href=/calendarios/atual/{{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=text" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
                                     </div>
                                     <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                                        <a href={{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <a href=/calendarios/atual/{{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=text" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
                                     </div>
                                     <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                                        <a href={{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <a href=/calendarios/atual/{{'text'}} data-toggle="lightbox" data-title="sample 2 - black">
                                             <img src="https://via.placeholder.com/300/FFFFFF?text=text" class="img-fluid mb-2" alt="white sample"/>
                                         </a>
                                     </div>

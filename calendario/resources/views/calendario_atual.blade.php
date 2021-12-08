@@ -24,6 +24,56 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+        <div class="row">
+                <div class="col-sm-8">
+                    <div class="sticky-top mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <label class="card-title">Curso</label>
+                                <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                    <option>Tecnologias de informação</option>
+                                    <option>Eletrónica e Mecânica Industrial</option>
+                                    <option>Engenharia Eletrotécnica </option>
+                                    <option>Gestão Comercial </option>
+                                    <option>Gestão da Qualidade </option>
+                                    <option>Secretariado e Comunicação Empresarial</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-sm-2">
+                    <div class="sticky-top mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <label class="card-title">Época</label>
+                                <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                    <option>Normal</option>
+                                    <option>Recurso</option>
+                                    <option>Especial</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="sticky-top mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <label class="card-title">Ano</label>
+                                <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                    <option>1º</option>
+                                    <option>2º</option>
+                                    <option selected>3º</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="sticky-top mb-3">
