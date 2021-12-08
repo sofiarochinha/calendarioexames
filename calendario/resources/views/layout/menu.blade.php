@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="/plugins/fullcalendar/main.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -86,15 +88,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/calendarios/" class="nav-link">
+                            <a href="/calendarios/atual" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Ano letivo</p>
+                                <p>Atual</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/calendarios/curso" class="nav-link active">
+                            <a href="/calendarios/antigos" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Curso</p>
+                                <p>Antigos</p>
                             </a>
                         </li>
                     </ul>
@@ -163,8 +165,6 @@
 @section('calendario')
 @show
 
-@section('conf_disciplinas')
-@show
 
 
 <!-- jQuery -->
@@ -177,6 +177,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -237,6 +239,7 @@
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- fullCalendar 2.2.5 -->
 <script src="/plugins/moment/moment.min.js"></script>
-<script src="/plugins/fullcalendar/main.js"></script>
 
+</body>
 </html>
+

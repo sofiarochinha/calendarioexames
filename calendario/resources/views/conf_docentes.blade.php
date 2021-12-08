@@ -1,5 +1,5 @@
 @extends('layout.menu')
-@section('conf_disciplinas')
+@section('configurar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
