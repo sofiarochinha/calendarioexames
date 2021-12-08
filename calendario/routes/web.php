@@ -17,15 +17,20 @@ Route::get('/', function () {
 });
 
 Route::get('/calendarios', function () {
-    return view('ano_letivo');
-});
-
-Route::get('/calendarios/{ano_letivo}', function () {
     return view('curso');
 });
 
-Route::get('/calendarios/{ano_letivo}/{curso}', function () {
-    return view('calendario');
+Route::get('/calendarios/atual', function () {
+    return view('curso');
+});
+
+Route::get('/calendarios/atual/{curso}', function () {
+    return view('calendario_atual');
+});
+
+
+Route::get('/calendarios/antigos', function () {
+    return view('calendario_historico');
 });
 
 Route::get('/configuracoes/disciplinas', function () {
