@@ -27,23 +27,7 @@
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
 
-\usepackage{appendix}
-\newcommand{\annexname}{Anexo}
-\makeatletter % treat @ as a letter instead of a control word.
-_{
-\newcommand\annex{\par
-	\setcounter{chapter}{0}
-	\setcounter{section}{0}
-	\renewcommand\appendixname{Anexo}
-	\renewcommand\appendixpagename{Anexos}
-	\renewcommand{\appendixtocname}{Anexos}
-	\gdef\@chapapp{\annexname}
-	\gdef\thechapter{\@Roman\c@chapter}
-	\renewcommand{\theHchapter}{\annexname.\thechapter}
-	\addappheadtotoc
-}\makeatother
 
-}
 
 \begin{document}
 	
@@ -132,12 +116,12 @@ _{
 	
 	\chapter{Introdução}
 	
-	No âmbito do Projeto Temático em Desenvolvimento Web associado às disciplinas Web Design e Desenvolvimento Web Multiplataforma foi proposto o desenvolvimento de uma Aplicação web para solucionar a necessidade de um cliente. 
-	O grupo constituinte deste projecto acordou abordar o tema de gestão de calendários de avaliações que consiste no desenvolvimento de uma página web desenvolvida com as tecnologias web lecionadas no módulo temático que engloba este projecto.
-	Este projecto servirá então como solução ao problema apresentado por cliente onde cada funcionalidade será feita à medida mediante as necessidades apresentadas.
+	No âmbito do Projeto Temático em Desenvolvimento Web associado às disciplinas Web Design e Desenvolvimento Web Multiplataforma foi proposto o desenvolvimento de uma aplicação web para solucionar a necessidade de um cliente. 
+	O grupo constituinte deste projecto acordou abordar o tema de gestão de calendários de avaliações que consiste no desenvolvimento de uma aplicação web desenvolvida com as tecnologias web lecionadas no módulo temático que engloba este projecto.
+	Este projecto servirá então como solução ao problema apresentado pelo cliente onde cada funcionalidade será feita mediante as necessidades apresentadas.
 	
 	Tipicamente quando se pensa num calendário imagina-se um sistema que organize o tempo na forma de anos, subdivididos em meses e por sua vez divididos em dias.
-	Este sistema tipicamente usado advém de costumes milenares praticados por várias religiões e civilizações antigas onde a forma mais básica de medir ciclos de tempo vem da observação da rotação do Sol por parte do observador que define um dia, as mudanças da fase da lua que traduz de uma forma bruta o passar de um mês e ainda a observação de estações do ano caracterizadas por eventos climáticos distintos que no seu conjunto formam um ano\cite{stray_mayan_2007}.
+	Este sistema advém de costumes milenares praticados por várias religiões e civilizações antigas onde a forma mais básica de medir ciclos de tempo vem da observação da rotação do Sol por parte do observador que define um dia, as mudanças da fase da lua que traduz de uma forma bruta o passar de um mês e ainda a observação de estações do ano caracterizadas por eventos climáticos distintos que no seu conjunto formam um ano\cite{stray_mayan_2007}.
 	
 	Contudo a necessidade de organizar eventos numa escala mais curta de tempo conduz à reorganização de tempo de modo a catalogar acontecimentos associados a pequenos períodos de tempo. 
 	A forma sócio-económica mais comum de organizar dias está no uso unitário de horas, ou períodos do dia caso seja essa a necessidade, e estes aparecem representados graficamente numa tabela\cite{10.1145/2702613.2732512} que divide o dia em blocos iguais por forma ao resultado da sua soma ser proporcional \cite{Russell1910-RUSPMV}. 
@@ -152,16 +136,15 @@ _{
 	Mediante esta realidade a metodologia de trabalho foi baseada em reuniões pré preparadas com o cliente para perceber as necessidades deste, onde retiramos os objectivos principais e identificamos requisitos funcionais e não funcionais.
 	São então desenvolvidas soluções baseadas na informação recolhida e posteriormente apresentadas ao cliente inicialmente na forma de protótipos de baixa fidelidade, \textit{wireframes}, e posteriormente versões funcionais de uma aplicação web com intuito de obtenção de \textit{feedback} durante o processo de desenvolvimento.
 	
-	Este relatório está dividido em vários capítulos começando pela Introdução com uma apresentação breve do evoluir histórico do uso desta ferramenta até às aplicações mais modernas onde se enquadra a solução que será apresentada ao cliente.
-	O conjunto de capítulos seguintes serão dedicados ao planeamento do projecto, englobando planeamento do projecto, casos de uso discutidos com o cliente, requisitos funcionais e não funcionais, e casos de utilização.
-	Pré implementação está um capítulo dedicado à prototipagem e na implementação irá ser abordado  o modelo de dados persistentes, a implementação e as funcionalidades da aplicação seguido dos testes de funcionamento das mesmas e no final a conclusão.
+	Este relatório está dividido em vários capítulos começando pela introdução que contém uma apresentação breve do evoluir histórico do uso desta ferramenta até às aplicações mais modernas, onde se enquadra a solução que será apresentada ao cliente.
+	O conjunto dos capítulos seguintes serão dedicados ao planeamento do projeto, englobando planeamento ds várias fases do projeto, casos de uso discutidos com o cliente, requisitos funcionais e não funcionais e casos de utilização.
+	A pré implementação está num capítulo dedicado à prototipagem e na implementação é abordado o modelo de dados persistentes, a implementação do protótipo de alta fidelidade funcional e as funcionalidades da aplicação, seguido dos testes de funcionamento das mesmas e pro fim a análise dos resultados e conclusão .
 	
 	\section{Objetivos da aplicação}
 	
-	Este projecto tem como principal objetivo a criação de uma aplicação web para solucionar a necessidade de um cliente que pretende um sistema de criação de calendários digitais para agendamento de um período de avaliações académicas num estabelecimento de ensino superior. 
-	Visto o produto final ser projetado para ser distribuído pela comunidade académica, existe também o objectivo principal de exportação num formato facilmente transmissível entre dispositivos.  
+	Este projeto tem como principal objetivo a criação de uma aplicação web para solucionar a necessidade de um cliente que pretende um sistema de criação de calendários digitais para agendamento de um período de avaliações académicas num estabelecimento de ensino superior. 
 	
-	Este projecto irá então dedicar-se a satisfazer os seguintes objectivos para a \textit{webapp}: 
+	Sendo assim a aplicação tem de satisfazer os seguintes objetivos para a \textit{webapp}: 
 	\begin{itemize} 
 		\item \textit{Webapp} de fácil navegação e intuitiva para a criação de um calendário. 
 		\item Possibilidade de agendamento de exames a unidades curriculares separados por curso, ano letivo e semestre.   
@@ -173,11 +156,11 @@ _{
 	
 	A partir de uma pequena introdução do tema foi feita uma pesquisa sobre aplicações semelhantes para discutir com o cliente sobre a aplicação a ser criada. A pesquisa resultou em quatro aplicações: uma em versão mobile, uma em versão web e duas que dispõem de ambas as versões.
 	
-	A primeira aplicação, que se chama "Timetable", tem como objetivo organizar todas as aulas, exames e tarefas escolares de um aluno. O utilizador pode adicionar aulas e exames (ver figura \ref{inserirvizualizaraula}), indicando a sala, o nome da disciplina, a data de início e fim, o nome do docente, o tipo e o dia da semana em que se realiza, sendo diferenciados pela frequência - as aulas são repetidas a cada semana e o exame só se realiza uma vez. Para além disso o aluno pode associar tarefas tanto a aulas como a exames podendo vizualizar estas informações em forma de lista ou em calendário (ver figura \ref{dayweekview}).
+	A primeira aplicação, que se chama ``Timetable'' que tem como objetivo organizar todas as aulas, exames e tarefas escolares de um aluno. O utilizador pode adicionar aulas e exames (ver figura \ref{inserirvizualizaraula}), indicando a sala, o nome da disciplina, a data de início e fim, o nome do docente, o tipo e o dia da semana em que se realiza, sendo diferenciados pela frequência - as aulas são repetidas a cada semana e o exame só se realiza uma vez. Para além disso o aluno pode associar tarefas tanto a aulas como a exames podendo vizualizar estas informações em forma de lista ou em forma de calendário, como está apresentado na figura \ref{dayweekview}.
 		\begin{figure}[H] 
 		\centering 
 		\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{image/estadodearte/inserirevizualizar}
-		\caption{Inserir e vizualizar a aula criada}
+		\caption{Inserir e vizualizar a aula adicionada}
 		\label{inserirvizualizaraula}
 	\end{figure}
 
@@ -188,7 +171,7 @@ _{
 		\label{dayweekview}
 	\end{figure}
 
-	A segunda aplicação "StudyLife'' tem o mesmo objetivo que a aplicação anterior no entanto a sua apresentação gráfica é diferente (ver figura \ref{listastudylife}). Poderá criar tarefas e exames associados a disciplinas, previamente criadas. Para cada tarefa pode indicar qual é a sua percentagem de realização (?) e nos exames pode-se vizualizar o dia e a hora do mesmo, a sala, se existe conflitos com aulas ou não e quanto tempo o aluno tem para o realizar, tal como se pode vizualizar na figura \ref{examematematica}. Estas informações podem ser vistas em forma de lista (\ref{listastudylife}) ou em forma de calendário semanal.	
+	A segunda aplicação ``StudyLife'' tem o mesmo objetivo que a aplicação anterior no entanto a sua apresentação gráfica é diferente, como se pode ver na figura \ref{listastudylife}. Poderá criar tarefas e exames associados a disciplinas, previamente criadas. Para cada tarefa pode indicar qual é a sua percentagem de realização e nos exames pode-se visualizar o dia e a hora do mesmo, a sala onde se realizará o exame, se existe conflitos com aulas e quanto tempo o aluno tem para o realizar (ver figura \ref{examematematica}). Estas informações podem ser vistas em forma de lista, apresentada na figura \ref{listastudylife} ou em forma de calendário semanal como se pode ver na figura \ref{calendariostudylife}.	
 	
 \begin{figure}[H] 
 	\centering 
@@ -211,9 +194,9 @@ _{
 	\label{calendariostudylife}
 \end{figure}
 
-	A terceira e a quarta aplicação foram selecionadas pela semelhança no conceito das mesmas face ao nosso projeto, sendo estas o "Google Calendar" e o "Outlook Calendar", ambas têm um funcionamento semelhante, sendo concorrentes diretas uma da outra e dispõem tanto de uma versão web como de uma versão mobile, no entanto iremos apenas abordar a versão web.
+	A terceira e a quarta aplicação foram selecionadas pela semelhança no conceito das mesmas face ao nosso projeto, sendo estas o ``Google Calendar'' e o ``Outlook Calendar", ambas têm um funcionamento semelhante, sendo concorrentes diretas uma da outra. Dispõem tanto de uma versão web como de uma versão mobile, no entanto iremos apenas abordar a versão web.
 
-	Em ambas as aplicações é possível visualizar os conteúdos por dia, semana, mês ou ano e existe uma funcionalidade que nos permite criar diferentes calendários, sendo possível posteriormente adicionar eventos aos mesmos e alterar a visualização entre eles, na figura \ref{googlecalendar} referente à criação do calendário na aplicação da Google podemos observar que esta permite a associação de um nome, descrição e fuso horário ao novo calendário. No caso do Outlook presente na figura \ref{calendariooutlook}, temos também a possibilidade de escolher a cor e um ícone, porém não existe um campo para associar uma descrição.
+	Em ambas as aplicações é possível visualizar os conteúdos por dia, semana, mês ou ano e existe uma funcionalidade que nos permite criar diferentes calendários, sendo possível posteriormente adicionar eventos aos mesmos e alterar a visualização entre eles. Na figura \ref{googlecalendar}, referente à criação do calendário na aplicação da Google, podemos observar que esta permite a associação de um nome, descrição e fuso horário. No caso do Outlook, presente na figura \ref{calendariooutlook}, tem também a possibilidade de escolher a cor e um ícone, porém não existe um campo para associar uma descrição.
 
 	\begin{figure}[H] 
 		\centering
@@ -229,7 +212,7 @@ _{
 		\label{calendariooutlook}
 	\end{figure}
 
-	No caso do ``Google Calendar'', o utilizador pode adicionar eventos, tarefas e lembretes ao calendário através do botão criar ou ao selecionar/arrastar uma área diretamente no calendário. Porém o funcionamento das tarefas é semelhante a dos lembretes sendo que estes apenas permitem selecionar uma hora específica ou o dia inteiro. Conforme se pode observar na figura \ref{googlenovoevento}, aquando a criação de um novo evento é permitido ao utilizador selecionar/escolher um período de horas, onde temos diversos campos para preenchimento, entre os quais um título, datas/horas, convidados, local, descrição, repetição do evento, etc..
+	No caso do ``Google Calendar'', o utilizador pode adicionar eventos, tarefas e lembretes ao calendário através do botão criar ou ao selecionar/arrastar uma área diretamente no calendário. Porém o funcionamento das tarefas é semelhante a dos lembretes sendo que estes apenas permitem selecionar uma hora específica ou o dia inteiro. No entanto, conforme se pode observar na figura \ref{googlenovoevento}, aquando a criação de um novo evento é permitido ao utilizador selecionar um período de horas, onde temos diversos campos para preenchimento, entre os quais um título, datas/horas, convidados, local, descrição, repetição do evento, etc..
 
 	\begin{figure}[H] 
 		\centering
@@ -247,7 +230,7 @@ _{
 		\label{outlookevento}
 	\end{figure}
 
-Em ambas as aplicações, após um evento ter sido criado no calendário é possível arrastar o mesmo para outro horário recorrendo à funcionalidade de ``Drag and Drop'' que ambos incorporam, esta funcionalidade é demonstrada na figura \ref{googledragdrop} e \ref{outlookdragdrop} abaixo.\\
+Em ambas as aplicações após um evento ter sido criado no calendário é possível arrastar o mesmo para outro horário recorrendo à funcionalidade de ``Drag and Drop'' que ambos incorporam (ver figura \ref{googledragdrop} e \ref{outlookdragdrop}).\\
 
 	\begin{figure}[H] 
 		\centering
@@ -283,7 +266,7 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 
  	Por consequência do âmbito do projeto este já está dividido em várias fases sendo que nesta versão do relatório só está apresentada a primeira e a segunda fase.
  	
- 	Na primeira fase iniciou-se com a reunião com o cliente (secção \ref{analiseutilizador}), levantamento do estado de arte (secção \ref{estadodearte}) e o levantamento de requisitos (secção \ref{requisitos}). Com estas informações podemos avançar para a segunda fase que consiste na prototipagem de baixa fidelidade - wireframes - e os testes com potenciais utilizadores, como se pode ver na figura \ref{cronogramaexecutado}.
+ 	Na primeira fase iniciou-se com o levantamento do estado de arte (secção \ref{estadodearte}), a reunião com o cliente (secção \ref{analiseutilizador}) e o levantamento de requisitos (secção \ref{requisitos}). Com estas informações  avançou-se para a segunda fase que consiste na prototipagem de baixa fidelidade - wireframes - e os testes com potenciais utilizadores, como se pode ver na figura \ref{cronogramaexecutado}.
 		
 	\clearpage
 	\begin{landscape}
@@ -310,9 +293,15 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 	
 	Após a primeira reunião com o cliente chegou-se à conclusão que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
 	
-	O cliente no momento recorre ao excel para a criação de calendários,  colocando todas as salas, cursos e etc com alto risco de erro e com baixa eficiência. Para além disso a formatação final (em .pdf) é exportado a partir do mesmo programa. E para verificar a disponibilidade dos docentes recorre a outro programa que mostra, em forma de calendário semanal, a vermelho a indisponibilidade e a roxo quando tem aulas, tal como está na figura \ref{disponibilidadedocentes}. 
+	O cliente no momento recorre ao excel para a criação de calendários,  colocando todas as salas, cursos e docentes manualmente tendo o proceso um alto risco de erro e baixa eficiência. Para além disso a formatação final (em .pdf) é exportado a partir do mesmo programa, como se pode verificar na figura \ref{calendarioatual}. Para a verificação da disponibilidade dos docentes recorre a outro programa que mostra, em forma de calendário semanal, a vermelho a indisponibilidade e a roxo quando o mesmo tem aulas, tal como está apresentado na figura \ref{disponibilidadedocentes}. 
 	
-	
+	\begin{figure}[H] 
+		\centering 
+		\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{image/calendarioavaliacao}
+		\caption{Exemplo de um calendário de avaliações que é disponibilizado aos alunos}
+		\label{calendarioatual}
+	\end{figure}
+
 	\begin{figure}[H] 
 		\centering 
 		\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{image/ColorMap}
@@ -321,16 +310,16 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 	\end{figure}
 	
 
-	Assim para este projeto o cliente quer poder vizualizar todas estas informações numa só aplicação de uma forma mais eficiente e intuitiva. As informações sobre os cursos, disciplinas, docentes e salas serão importadas a partir de um csv. Este será renovado a cada semestre podendo o utilizador importar quantas vezes quiser na aplicação, atualizando todos os dados. No entanto se conter algum erro ou faltar informação poderá alterar/inserir dentro da aplicação. Com isto o utilizador poderá criar os seus calendários associados a um ano letivo, semestre, curso e época (terá de adicionar um nome, uma data de início e fim) que criou. Após isso poderá marcar os exames referentes ao curso na época escolhida. Para cada exame poderá escolher um ou mais vigilantes, sendo por padrão o docente como vigilante e uma ou mais salas. No entanto caso haja alguma incongruência aparecerá um aviso a indicar qual o problema e a aplicação não irá restringir nenhuma funcionalidade ao utilizador. Por fim todos os calendários criados noutros anos serão guardados num histórico caso queira ver de anos passados mas não poderá fazer alterações.
+	Assim, para este projeto, o cliente quer poder vizualizar todas estas informações numa só aplicação de uma forma mais eficiente e intuitiva. As informações sobre os cursos, disciplinas, docentes e salas serão importadas a partir de um ficheiro .csv que será renovado a cada semestre podendo o utilizador importar quantas vezes quiser na aplicação, atualizando todos os dados. No entanto se o ficheiro .csv conter algum erro ou faltar informação poderá alterar/inserir dentro da aplicação. Com isto o utilizador poderá criar os seus calendários associados a um ano letivo, semestre, curso e época (terá de adicionar um nome, uma data de início e fim) que criou. Apóes isso poderá marcar os exames referentes ao curso na época escolhida. Para cada exame poderá escolher um ou mais vigilantes, sendo por padrão o docente como vigilante e uma ou mais salas. No entanto caso haja alguma incongruência aparecerá um aviso a indicar qual o problema não restringindo nenhuma funcionalidade. Por fim todos os calendários criados anteriormente noutros anos letivos serão guardados num histórico, no entanto não poderá fazer quaisquer alterações.
 	
 	\chapter{Modelo de requisitos}
 	\label{requisitos}
 	\section{Requisitos funcionais}
 	
 	
-	Os requisitos funcionais representam todas as funcionalidades que o sistema pode fazer ou que o utilizador pode realizar no sistema. Com isso na tabela \ref{requisitiosfuncionais} estam todos os requisitos funcionais dividos por várias categorias: importação, exportação, marcação de exames, configurações, avisos, pesquisa e outros (requisitos que não se encaixam em nenhuma das categorias descritas). Dentro da categoria "avisos" tem as funcionalidades que o sistema irá realizar após uma ação do utilizador, ao contrário de todas as outras categorias em que o utilizador tem a possibilidade realizar determinada tarefa.
+	Os requisitos funcionais representam todas as funcionalidades que o sistema pode fazer ou que o utilizador pode realizar no sistema. Com isso na tabela \ref{requisitiosfuncionais} estam todos os requisitos funcionais dividos por várias categorias: importação, exportação, marcação de exames, configurações, avisos, autenticação, criação de calendários e histórico. Dentro da categoria ``avisos" tem as funcionalidades que o sistema irá realizar após uma ação do utilizador, ao contrário de todas as outras categorias em que o utilizador tem a possibilidade realizar determinada tarefa.
 	
-	Para além disso os requisitos funcionais estam classificados por prioridade sendo os de alta prioridade realizados nas primeiras fases e os de baixa prioridade implementados nas últimas fases (ver secção \ref{selecaocasosdeuso}).  
+	Para além disso os requisitos funcionais estam classificados por prioridade sendo os de alta prioridade realizados nas primeiro e os de baixa prioridade implementados por último, tal como está listado na secção \ref{selecaocasosdeuso}.  
 	
 	
 	
@@ -350,7 +339,7 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 			
 			RF.2 &\multirow{2}{2cm}{Exportação}& Exportação de calendários em formato .pdf & Alta \\
 			
-			RF.3 && Exportação o calendário em língua Inglesa & Baixa \\
+			RF.3 && Exportação o calendário em língua inglesa & Baixa \\
 			\hline
 			
 			RF.4 &\multirow{3}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: às 9h30, às 14h e às 18h30 & Alta \\
@@ -396,7 +385,7 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 			RF.23 && Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
 			
 			RF.24 && Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
-			\hline
+			
 			
 			RF.25 && Mostrar um aviso de média prioridade se o utilizador tentar exportar um calendário sem exames marcados & Média\\
 			\hline
@@ -464,7 +453,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 			\hline
 			RSI1 &O histórico não pode ter associações a outras tabelas da base de dados  &Alta\\
 			\hline
-			RSI2 & Uma única conta de utilizador&\\
+			RSI2 & Uma única conta de utilizador&Alta\\
 			\hline
 		\end{tabularx}
 		\label{requisitosdeseguranca}
@@ -478,7 +467,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	consequentemente não é necessário definir que sistema operativos pode a aplicação ser executada.
 	No entanto é crucial ter acesso à rede da Universidade de Aveiro e um dos navegadores definidos na tabela \ref{requisitosdesistemas}.
 	
-	
+	\def\arraystretch{1.5}
 	\begin{table}[H]
 		\caption{Requisitos de interface com sistemas externos e ambientes de execução}
 		\begin{center}
@@ -501,13 +490,13 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	\chapter{Modelo de casos de utilização}
 	
 	
-	Para entender quais são as funcionalidades da aplicação e como irá interagir com o utilizador foi criado um modelo de casos de utilização apartir do estado de arte (ver secção \ref{estadodearte}), da análise dos utilizadores (ver secção \ref{analiseutilizador}) e tarefas e dos requisitos funcionais (ver secção \ref{requisitos}). Este é composto pelo diagrama de casos de utilização (ver figura \ref{usecasediagram}) e pela descrição dos mesmos. As descrições são detalhadas ao nível da interação do utilizador com a aplicação (ver secção \ref{descricaousecase}). Neste modelo só existe um ator que tem acesso a todas as funcionalidades da aplicação. 
+	Para entender quais são as funcionalidades da aplicação e como irá interagir com o utilizador foi criado um modelo de casos de utilização apartir do estado de arte (ver secção \ref{estadodearte}), da análise dos utilizadores e tarefas  (ver secção \ref{analiseutilizador}) e dos requisitos funcionais (ver secção \ref{requisitos}). Este é composto pelo diagrama de casos de utilização (ver figura \ref{usecasediagram}) e pela descrição dos mesmos, que são detalhadas ao nível da interação do utilizador com a aplicação (ver secção \ref{descricaousecase}). Neste modelo só existe um ator que tem acesso a todas as funcionalidades da aplicação. 
 	Para ajudar na prototipagem da aplicação os casos de utilização foram divididos em várias fases consoante a prioridade dos requsitos funcionais associados (ver secção \ref{selecaocasosdeuso}).
 	
 	\section{Diagrama de casos de utilização}
 	\label{diagrama}
 	
-	No diagrama apresentado na figura \ref{usecasediagram} tem só um único ator que é o utilizador que tem acesso a todas as funcionalidades mas para as realizar terá de iniciar sessão. A seguir terá de importar dados a partir de um ficheiro ou inserir-los na aplicação. Caso exista algum erro ou queira atualizar alguma informação pode alterar dados sobre as salas e a sua lotação máxima, docentes, cursos e disciplinas. Com isto pode criar calendários e marcar os seus exames associando vigilantes e salas aos exames. Contudo se enganar nas datas de início e fim poderá corrigir durante a criação. Após a criação de calendários pode vê-los através do histórico podendo filtrá-los por curso, ano, época, ano do curso e por semestre. Por fim pode exportar para pdf em português ou em inglês todos os calendários que pretender.
+	No diagrama apresentado na figura \ref{usecasediagram} tem só um único ator que é o utilizador que tem acesso a todas as funcionalidades mas para as realizar terá de iniciar sessão. A seguir terá de importar dados a partir de um ficheiro ou inserir-los na aplicação, caso a aplicação não tenha dados do semestre atual. Caso exista algum erro ou queira atualizar alguma informação pode alterar dados sobre as salas e a sua lotação máxima, docentes, cursos e disciplinas. Com isto pode criar calendários e marcar os seus exames associando vigilantes e salas aos exames. Contudo se enganar nas datas de início e fim poderá corrigir durante a criação. Para além disso caso haja alguma incronguência, durante a marcação de exames, a aplicação irá mostrar um aviso consoante o seu tipo. Após a criação de calendários pode vê-los através do histórico podendo filtrá-los por curso, ano, época, ano do curso e por semestre. Por fim pode exportar para pdf em português ou em inglês todos os calendários que pretender.
 	
 	No entanto todos estes casos de utilização estam com uma explicação mais detalhada na secção \ref{descricaousecase}.
 	
@@ -561,7 +550,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	
 	Por último, na quarta fase, contém todos os casos de utilização de média e baixa prioridade:
 	\begin{itemize}
-		\item Avisar se o curso for diurno e houver uma marcação para o turno da noite e vice-versa.
+		\item Avisar se o curso for diurno e houver uma marcação para o turno das 18h30 e vice-versa.
 		\item Associar o mesmo exame a todos os cursos que têm a mesma disiplina.
 		\item Avisar caso o tipo de sala associada ao exame não for apropriada (informática ou normal)
 		\item Exportação do calendário em inglês
@@ -573,7 +562,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	
 	Para complementar o diagrama de casos de utilização (ver secção \ref{diagrama}) estes foram descritos detalhamente com através dos seguintes parâmetros: ator, prioridade, requisitos funcionais associados, finalidade, pré-condições, interação e cenários alternativo. Os cenários alternativos consistem em outras interações que o utilizador possa ter, para além da principal, e qual a sua interação e reação da aplicação. Para além disso para uma melhor compreensão tem alguns wireframes associados a cada caso de utilização.
 	
-		
+	\def\arraystretch{1.5}
 	\begin{table}[H]
 		\caption{Caso de utilização - autenticação}
 		\begin{center}	
@@ -608,6 +597,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 		\label{usecaseautenticacao}
 	\end{figure}
 
+\def\arraystretch{1.5}
 \begin{table}[H]
 	\caption{Caso de utilização - importação de ficheiros .csv}
 	\label{usecaseimportarcsv}
@@ -628,7 +618,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 			\hline
 			Pré-condições: & Ter iniciado sessão na aplicação.\\
 			\hline
-			Descrição da interação: (mudar)&  \\
+			Descrição da interação:& Antes da criação do primeiro calendário do semestre corrente o utilizador tem de importar um ficheiro no formato .csv para a obtenção de todos os dados, como se pode ver na figura \ref{avisoimportarcsv} e na figura \ref{importarcsv}. No entanto caso já tenha importado anteriormente o utilizaodor pode prosseguir diretamente para a criação de calendários.\\
 			\hline
 			Cenário alternativo 1: &\textbf{O ficheiro contém erros de formatação:} Aparecerá um aviso a indicar que não é possível o ficheiro em questão porque contém erros. Terá de corrigir e de seguida tente novamente. Volta para a página de importação.\\
 			\hline
@@ -646,13 +636,22 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 
 \begin{figure}[H] 
 	\centering 
+	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/criarCalendariosAviso}
+	\caption{Aviso que não existe dados referentes ao semestre corrente}
+	\label{avisoimportarcsv}
+\end{figure}
+
+
+\begin{figure}[H] 
+	\centering 
 	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/importar}
 	\caption{Interface para importar ficheiros em formato .csv}
+	\label{importarcsv}
 \end{figure}
 
 
 
-
+\def\arraystretch{1.5}
 \begin{table}[H]
 	\caption{Caso de utilização - criação de um calendário}
 	\label{usecasecriarcalendario}
@@ -673,13 +672,13 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 			\hline
 			Pré-condições: & Ter iniciado sessão na aplicação, ter importado ou adicionado informações sobre os cursos, disciplinas, docentes e salas.\\
 			\hline
-			Descrição da interação: & O utilizador para criar um novo calendário terá de clicar em ``novo'' na figura \ref{interfacevercalendario}. Depois terá de preencher todos os campos (ver figura \ref{interfacecriarcalendario}): curso, ano do curso, ano letivo, nome da época e a sua data de início e fim. Por fim clica no botão "criar". \\
+			Descrição da interação: & O utilizador para criar um novo calendário terá de clicar em ``novo'' na figura \ref{interfacevercalendario}. Depois terá de preencher todos os campos (ver figura \ref{interfacecriarcalendario}): curso, ano do curso, ano letivo, nome da época e a sua data de início e fim. Por fim clica no botão ``criar". \\
 			\hline
 			Cenário alternativo 1: &\textbf{Não preenche todos os campos  expostos:} Aparecerá uma mensgem de aviso que terá de preencher todos os campos para a criação de um novo calendário.\\
 			\hline
-			Cenário alternativo 2: &\textbf{Quer cancelar a ação:} Clica no botão "cancelar" e nenhuma informação será guardada.\\
+			Cenário alternativo 2: &\textbf{Quer cancelar a ação:} Clica no botão ``cancelar" e nenhuma informação será guardada.\\
 			\hline
-			Cenário alternativo 3: &\textbf{Não existe dados sobre os curso, cursos e/ou docentes:} Pergunta se quer importar um ficheiro .csv (ver figura \ref{interfaceimportarcsv})\\
+			Cenário alternativo 3: &\textbf{Não existe dados sobre os curso, cursos e/ou docentes:} Pergunta se quer importar um ficheiro .csv (ver figura \ref{avisoimportarcsv})\\
 			\hline
 		\end{tabularx}
 	\end{center}
@@ -699,15 +698,6 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	\caption{Interface para a criação de novos calendários}
 	\label{interfacecriarcalendario}
 \end{figure}
-
-\begin{figure}[H] 
-	\centering 
-	\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/prototipowireframes/criarcalendarioimportar}
-	\caption{Interface com aviso para importar dados do ficheiro em formato .csv}
-	\label{interfaceimportarcsv}
-\end{figure}
-
-
 	
 
 \def\arraystretch{1.5}
@@ -800,7 +790,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	\label{interfacevigilantes}
 \end{figure}
 
-	
+	\def\arraystretch{1.5}
 \begin{table}[H]
 	\caption{Caso de utilização - Inserção e alteração de dados a partir da interface}
 	\begin{center}	
@@ -818,9 +808,9 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 			\hline
 			Sumário: &  O utilizador pode inserir ou alterar informações sobre disciplinas e cursos.\\
 			\hline
-			Pré-condições: & Estar conectado à rede da Universidade de Aveiro e para alterar ou elimnar necessita já ter inserido ou importado um ficheiro no formato .csv (ver caso de utilização na tabela \ref{usecaseimportarcsv}).\\
+			Pré-condições: & Estar conectado à rede da Universidade de Aveiro e para alterar ou elimnar necessita já ter inserido dados sobre os docnetes, salas e disciplinas ou importado um ficheiro no formato .csv (ver caso de utilização na tabela \ref{usecaseimportarcsv}).\\
 			\hline
-			Descrição da interação: &  O utilizador ao entrar no menu "configurar" poderá escolher entre vizualizar disciplinas, salas ou docentes. Dentro de "Disciplinas" (ver figura \ref{interfaceconfdisciplinas}) pode alterar o nome da disciplina, o docente e o curso associado. Em "Docentes" (ver figura \ref{interfaceconfdocentes})pode alterar o nome do docente, o seu email e os dias disponíveis. E por fim em "Salas" (ver figura \ref{interfaceconfsalas}) poderá mudar o tipo e a lotação máxima. Em todas estas secções pode eliminar, alterar ou adicionar quantas vezes quiser.\\
+			Descrição da interação: &  O utilizador ao entrar no menu ``configurar" poderá escolher entre vizualizar disciplinas, salas ou docentes. Dentro de "Disciplinas" (ver figura \ref{interfaceconfdisciplinas}) pode alterar o nome da disciplina, o docente e o curso associado. Em ``Docentes" (ver figura \ref{interfaceconfdocentes}) pode alterar o nome do docente, o seu email e os dias disponíveis. E por fim em ``Salas" (ver figura \ref{interfaceconfsalas}) poderá mudar o tipo e a lotação máxima. Em todas estas secções pode eliminar, alterar ou adicionar quantas vezes quiser.\\
 			\hline
 			Cenário alternativo 1:&\textbf{Quer retroceder nas alterações feitas:} O utilizador pode eliminar qualquer uma das informações apresentadas.\\
 			\hline
@@ -851,7 +841,8 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 		\caption{Interface para configurar salas}
 		\label{interfaceconfsalas}
 	\end{figure}
-	
+
+\def\arraystretch{1.5}
 \begin{table}[H]
 	\caption{Caso de utilização - Exportação do calendário em formato pdf}
 	\begin{center}	
@@ -871,7 +862,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 			\hline
 			Pré-condições: & Estar conectado à rede da Universidade de Aveiro e ter criado calendários (ver caso de utilização na tabela \ref{usecasecriarcalendario}).\\
 			\hline
-			Descrição da interação: &  O utilizador seleciona o botão "Exportar" no menu do lado esquerdo (ver figura \ref{interfaceexportarpdf}) em que aparecerá todos os calendários de cada ano letivo. Terá de selecionar um ano letivo e depois a época e curso. No fim todos os calendáros selecionados serão exportados consoante a época. \\
+			Descrição da interação: &  O utilizador seleciona o botão ``Exportar" no menu do lado esquerdo (ver figura \ref{interfaceexportarpdf}) em que aparecerá todos os calendários de cada ano letivo. Terá de selecionar um ano letivo e depois a época e curso. No fim todos os calendáros selecionados serão exportados consoante a época. \\
 			\hline
 			Cenário alternativo 1:&\textbf{O utilizador seleciona um calendário vazio:} Aparecerá um aviso a indicar que não existe exames marcados no calendário selecionado. No entanto se o utilizador quiser continuar o calendário será exportado.\\
 			\hline
@@ -887,6 +878,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	\label{interfaceexportarpdf}
 \end{figure}
 
+\def\arraystretch{1.5}
 	\begin{table}[H]
 	\caption{Caso de utilização - vizualização do histórico de calendários}
 	\begin{center}	
@@ -928,7 +920,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	
 	\section{Protótipo de baixa fidelidade}
 	
-	Antes de uma primeira implementação em web escolheu-se um template para se basear o protótipo de baixa fidelidade. O template (ver figura \ref{template}) pode ser encontra-do a partir do link \href{https://adminlte.io/themes/v3/pages/calendar.html}{https://adminlte.io/themes/v3/pages/calendar.html} e tem a licença MIT. Com isto protipou-se todos todos os casos de utilização da primeira e da segunda fase.
+	Antes de uma primeira implementação em web escolheu-se um template para se basear o protótipo de baixa fidelidade não funcional. O template (ver figura \ref{template}) pode ser encontra-do a partir do link \href{https://adminlte.io/themes/v3/pages/calendar.html}{https://adminlte.io/themes/v3/pages/calendar.html} e tem a licença MIT. Com isto protipou-se todos os casos de utilização da primeira e da segunda fase.
 	
 	\begin{figure}[H] 
 		\centering 
@@ -939,7 +931,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	
 	\subsection{Wireframes}
 	
-	Nos wireframes - protótipo de baixa fidelidade - as funcionalidades foram dividas em 3 secções no menu: calendários, configurar e exportar. Dentro do menu na opção ``calendários'' o utilizador pode criar novos calendários ou visualizar o histórico de calendários mais antigos podendo filtrar por ano letivo ou curso, como se pode ver na figura \ref{menucalendario}. A opção que está selecionada fica com uma cor diferente do restante menu. Para além disso a distinção de calendários antigos e recentes é feita por duas cores: a verde são os calendários ``fechados'' e a vermelho são os que podem ser editados. 
+	Nos wireframes - protótipo de baixa fidelidade não funcional - as funcionalidades foram dividas em 3 secções no menu: calendários, configurar e exportar. Dentro do menu na opção ``calendários'' o utilizador pode criar novos calendários ou visualizar o histórico de calendários mais antigos podendo filtrar por ano letivo ou curso, como se pode ver na figura \ref{menucalendario}. A opção que está selecionada apresenta uma cor diferente do restante menu. Para além disso a distinção de calendários antigos e recentes é feita por duas cores: a verde são os calendários ``fechados'' e a vermelho são os que podem ser editados. 
 	
 	\begin{figure}[H] 
 		\centering 
@@ -958,7 +950,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 		\label{configurarsalas}
 	\end{figure}
 
-Dentro da secção "exportar"  (figurar \ref{exportar}) o utilizador pode exportar para pdf os calendários que selecionar.
+Dentro da secção ``exportar"  (figurar \ref{exportar}) o utilizador pode exportar para pdf os calendários que selecionar.
 
 
 	\begin{figure}[H] 
@@ -971,7 +963,7 @@ Dentro da secção "exportar"  (figurar \ref{exportar}) o utilizador pode export
 	
 	\subsection{Diagrama de user flow}
 
-	Com o desenvolvimento dos wireframes criou-se o diagrama de user flow que é útil para entender quais são os passos que o tuilizador terá de realizar para concluir uma tarefa. Este diagrama foi desenvolvido consoante os wireframes e a descrição dos casos de utilização.
+	Com o desenvolvimento dos wireframes criou-se o diagrama de user flow que é útil para entender quais são os passos que o utilizador terá de realizar para concluir uma tarefa. Este diagrama foi desenvolvido consoante os wireframes e a descrição dos casos de utilização.
 
 	\begin{landscape}
 		\pagestyle{empty}
@@ -982,7 +974,7 @@ Dentro da secção "exportar"  (figurar \ref{exportar}) o utilizador pode export
 	\end{landscape}
 
 	\subsection{Testes}
-		Após a interface da aplicação estar idealizada e terem sido concluídos os protótipos de baixa fidelidade, foi programada uma sessão de avaliação com a participação de dois utilizadores participantes, o Sr. Paulo e a professora Magda Monteiro, de modo a podermos obter feedback e avaliar se a interface em questão conseguia satisfazer os requisitos que eram propostos. Para que esta sessão de avaliação podesse ocorrer, além dos utilizadores participantes era necessária a presença de um moderador e de pelo menos dois observadores, foram ainda preparados três documentos de apoio à sessão: um guião de apoio ao moderador, um guião para os utilizadores participantes e uma grelha de observação para os elementos observadores. A estrutura de ambos os guiões é semelhante, apresentando uma capa, uma pequena introdução que explica os objetivos da sessão e as tarefas a desempenhar, apenas difere no guião do moderador, que também tem presente o que é necessário para preparar a sessão e as "regras" pela qual este se deverá reger durante a realização da mesma. Para preparar a sessão é necessária a existência de um computador com um periférico de entrada, um browser instalado e acesso à internet de modo a poder aceder ao website onde estão alojados os protótipos de baixa fidelidade (\href{https://www.figma.com/file/nhb5nnIrt3fdDoQhYpsN80/Calendario?node-id=9\%3A154}{\textbf{wireframes}}).
+		Após a interface da aplicação estar idealizada e terem sido concluídos os protótipos de baixa fidelidade, foi programada uma sessão de avaliação com a participação de dois utilizadores participantes, o Sr. Paulo e a professora Magda Monteiro, de modo a podermos obter feedback e avaliar se a interface em questão consegue satisfazer os requisitos que são propostos. Para que esta sessão de avaliação podesse ocorrer, além dos utilizadores participantes era necessária a presença de um moderador e de pelo menos dois observadores. Foram ainda preparados três documentos de apoio à sessão: um guião de apoio ao moderador, um guião para os utilizadores participantes e uma grelha de observação para os elementos observadores - que podem se observar nos anexos A, B e C. A estrutura de ambos os guiões é semelhante, apresentando uma capa, uma pequena introdução que explica os objetivos da sessão e as tarefas a desempenhar, apenas difere no guião do moderador, que também tem presente o que é necessário para preparar a sessão e as ``regras" pela qual este se deverá reger durante a realização da mesma. Para preparar a sessão é necessária a existência de um computador, um browser instalado e acesso à internet de modo a poder aceder ao website onde estão alojados os protótipos de baixa fidelidade (\href{https://www.figma.com/file/nhb5nnIrt3fdDoQhYpsN80/Calendario?node-id=9\%3A154}{\textbf{wireframes}}).
 
 Foram selecionadas nove tarefas com base nos protótipos desenhados para o utilizador participante desempenhar:
 
@@ -999,22 +991,9 @@ Foram selecionadas nove tarefas com base nos protótipos desenhados para o utili
 \end{itemize}
 
 
-Durante a sessão de avaliação o papel de moderador foi desempenhado pela Sofia Rocha, e o papel de observador foi desempenhado pelo Bruno Lopes, Gonçalo Tavares e o Leandro Silva cujas grelhas de observação individuais ao serem unidas num único documento por utilizador participante resultaram nos ficheiros que se encontram presentes na figura \ref{grelhaObservacaoMagda} e \ref{grelhaObservacaoPaulo}.
+Durante a sessão de avaliação o papel de moderador foi desempenhado pela Sofia Rocha e o papel de observador foi desempenhado pelo Bruno Lopes, Gonçalo Tavares e o Leandro Silva cujas grelhas de observação individuais ao serem unidas num único documento por utilizador participante resultaram nos ficheiros que se encontram presentes no anexo C.
 
-	\clearpage
-	\begin{landscape}
-		\pagestyle{empty}
-		\begin{figure}[H] 
-			\centering 							\includegraphics[width=1.23\textwidth,height=1.23\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_magda}
-			\caption{Grelha de observação professora Magda Monteiro}
-			\label{grelhaObservacaoMagda}
-		\end{figure}
-		\begin{figure}[H] 
-			\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_paulo}
-			\caption{Grelha de observação Sr. Paulo}
-			\label{grelhaObservacaoPaulo}
-		\end{figure}
-	\end{landscape}
+	
 
 	\subsubsection{Análise de resultados}
 Concluída a sessão de avaliação e a posterior junção das grelhas dos observadores, o grupo passou ao momento da análise dos resultados em conjunto com a professora Rita durante a reunião semanal do projeto. Desta análise resultou um conjunto de alterações que foram aplicadas aos protótipos de baixa fidelidade, sendo estas as seguintes alterações:
@@ -1025,8 +1004,8 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\item Alterar a localização do botão importar;
 	\item Destacar o botão novo e alterar a sua posição na página para o canto superior direito;
 	\item Pedir ao utilizador para importar um ficheiro .csv na primeira vez que o mesmo for criar um novo ano letivo, caso ainda não exista informação referente a esse ano letivo na base de dados;
-	\item Remover o menu de registo de contas e realizar a integração com a API de utilizadores universais da UA;
-	\item Remover o submenu "época" do menu "Calendários";		
+	\item Remover o menu de registo de contas;
+	\item Remover o submenu ``época" do menu ``Calendários";		
 	\item Separar o botão exportar dos restantes elementos do menu e acrescentar um segundo botão exportar no canto superior direito junto do botão novo.
 
 \end{itemize}
@@ -1132,6 +1111,24 @@ Todos os dados recolhidos na realização desta sessão de avaliação serão tr
 		\item Exporte para um .pdf;
 		\item Faça log out.
 	\end{itemize}
+
+	
+	\chapter*{Anexo C}
+	\section*{Grelhas de observação}
+\begin{landscape}
+\clearpage
+	\pagestyle{empty}
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=1.23\textwidth,height=1.23\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_magda}
+		\caption{Grelha de observação professora Magda Monteiro}
+		\label{grelhaObservacaoMagda}
+	\end{figure}
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_paulo}
+		\caption{Grelha de observação Sr. Paulo}
+		\label{grelhaObservacaoPaulo}
+	\end{figure}
+\end{landscape}
 	
 \end{document}	
 	
