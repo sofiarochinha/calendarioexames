@@ -13,31 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('/calendarios', function () {
-    return view('welcome');
+    return view('ano_letivo');
 });
 
-Route::get('/calendarios/ano-letivo', function () {
-    return view('academic_year');
+Route::get('/calendarios/{ano_letivo}', function () {
+    return view('curso');
 });
 
-Route::get('/calendarios/curso', function () {
-    return view('courses');
+Route::get('/calendarios/{ano_letivo}/{curso}', function () {
+    return view('calendario');
 });
 
 Route::get('/configuracoes/disciplinas', function () {
-    return view('classes_configuration');
+    return view('conf_disciplinas');
 });
 
 Route::get('/configuracoes/salas', function () {
-    return view('classrooms_configuration');
+    return view('conf_salas');
 });
 
 Route::get('/configuracoes/docentes', function () {
-    return view('teachers_configuration');
+    return view('conf_docentes');
 });
 
 Route::get('/importar', function () {
@@ -45,7 +45,7 @@ Route::get('/importar', function () {
 });
 
 Route::get('/exportar', function () {
-    return view('welcome');
+    return view('exportar');
 });
 
 
