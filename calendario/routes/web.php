@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('/calendarios', function () {
-    return view('ano_letivo');
+    return view('calendario_atual');
 });
 
 Route::get('/calendarios/atual', function () {
