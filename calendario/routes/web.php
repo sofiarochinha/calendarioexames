@@ -33,16 +33,8 @@ Route::get('/calendarios/antigos', function () {
     return view('calendario_historico');
 });
 
-Route::get('/configuracoes/disciplinas', function () {
-    return view('conf_disciplinas');
-});
-
-Route::get('/configuracoes/salas', function () {
-    return view('conf_salas');
-});
-
-Route::get('/configuracoes/docentes', function () {
-    return view('conf_docentes');
+Route::get('/configuracoes/', function () {
+    return view('configurar');
 });
 
 Route::get('/importar', function () {
