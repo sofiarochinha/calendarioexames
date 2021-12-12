@@ -15,7 +15,7 @@
                             <li class="breadcrumb-item"><a href="/calendarios">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Configurações</a></li>
                             <li class="breadcrumb-item active">Docentes</li>
-                        </ol>
+                        </ol> 
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
