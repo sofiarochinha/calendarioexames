@@ -43,9 +43,6 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Home</a>
-        </li>
     </ul>
 </nav>
 <!-- /.navbar -->
@@ -78,11 +75,22 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+
+                <li class="nav-item">
+                    <a href="/criarcalendario" class="nav-link active">
+                        <i class="nav-icon far fa-image "></i>
+                        <p >
+                            Criar Calendário
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header"></li>
+
                 <li class="nav-item menu-open">
-                    <a class="nav-link active">
+                    <a class="nav-link">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>
-                            Calendários
+                            Calendário Atual
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -90,54 +98,46 @@
                         <li class="nav-item">
                             <a href="/calendarios/atual" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Atual</p>
+                                <p>Visualizar</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/calendarios/antigos" class="nav-link active">
+                            <a href="/configuracoes" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Antigos</p>
+                                <p>Configurações</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                <li class="nav-header"></li>
+                <li class="nav-header"></li>
+
+		        <li class="nav-item">
+                    <a href="/calendarios/antigos" class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
                         <p>
-                            Configurações
-                            <i class="fas fa-angle-left right"></i>
+                            Calendários Anteriores
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/configuracoes/disciplinas" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Disciplinas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/configuracoes/salas" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Salas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/configuracoes/docentes" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Docentes</p>
-                            </a>
-                        </li>
-
-                    </ul>
                 </li>
-
                 <li class="nav-item">
                     <a href="/exportar" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Exportar
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-header"></li>
+                <li class="nav-header"></li>
+
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>
+                            Sair
                         </p>
                     </a>
                 </li>
