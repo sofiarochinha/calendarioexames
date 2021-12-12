@@ -50,7 +50,7 @@ Route::get('/importar', function () {
 });
 
 Route::get('/exportar', function () {
-    return view('exportar');
+    return view('export');
 });
 
 

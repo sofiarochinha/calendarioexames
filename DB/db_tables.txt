@@ -1,6 +1,5 @@
 
 
-
 // Creating tables
 Table users as U {
   id int [pk, increment] // auto-increment
@@ -103,10 +102,11 @@ Table historic_evaluation_slot {
   observing_professor varchar
   classroom varchar
   time_slot varchar
+  historic_calendar_id int
   
 }
 
-
+Ref: historic_evaluation_slot.historic_calendar_id > historic_calendar.id
 
 Ref: professors.id  < subject.associated_professor
 
@@ -136,3 +136,4 @@ REF: calendar.id > calendar_day.calendar_id
 //Ref: merchants.country_code > countries.code
 
 //Ref: merchant_periods.(merchant_id, country_code) > merchants.(id, country_code)
+
