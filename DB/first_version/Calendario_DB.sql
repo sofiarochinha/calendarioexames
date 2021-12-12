@@ -74,27 +74,6 @@ CREATE TABLE "evaluation_slot" (
   "time_slot" varchar
 );
 
-CREATE TABLE "historic_calendar" (
-  "id" SERIAL PRIMARY KEY,
-  "calendar_name" varchar,
-  "academic_year" varchar,
-  "evaluation_season" varchar,
-  "course" varchar,
-  "course_year" int,
-  "start_date" date,
-  "end_date" date
-);
-
-CREATE TABLE "historic_evaluation_slot" (
-  "id" SERIAL PRIMARY KEY,
-  "day" date,
-  "subject" varchar,
-  "associated_professor" varchar,
-  "observing_professor" varchar,
-  "classroom" varchar,
-  "time_slot" varchar
-);
-
 ALTER TABLE "subject" ADD FOREIGN KEY ("associated_professor") REFERENCES "professors" ("id");
 
 ALTER TABLE "courses" ADD FOREIGN KEY ("name") REFERENCES "subject" ("associated_course");

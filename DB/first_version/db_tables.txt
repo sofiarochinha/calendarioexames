@@ -1,5 +1,5 @@
-
-
+//// -- LEVEL 1
+//// -- Tables and References
 
 // Creating tables
 Table users as U {
@@ -84,30 +84,6 @@ Table evaluation_slot {
   
 }
 
-Table historic_calendar {
-  id int [pk, increment]
-  calendar_name varchar
-  academic_year varchar
-  evaluation_season varchar
-  course varchar
-  course_year int
-  start_date date
-  end_date date
-}
-
-Table historic_evaluation_slot {
-  id int [pk, increment]
-  day date
-  subject varchar
-  associated_professor varchar
-  observing_professor varchar
-  classroom varchar
-  time_slot varchar
-  
-}
-
-
-
 Ref: professors.id  < subject.associated_professor
 
 
@@ -126,9 +102,6 @@ REF: evaluation_slot.time_slot > time_slot.time_slot
 REF: courses.name > calendar.course
 REF: academic_year.year_name > calendar.academic_year
 REF: calendar.id > calendar_day.calendar_id
-
-
-// ***Examples***
 // Creating references
 // You can also define relaionship separately
 // > many-to-one; < one-to-many; - one-to-one
