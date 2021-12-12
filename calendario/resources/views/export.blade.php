@@ -69,13 +69,16 @@
   <<script >
     function selectCourseToExport(id) {
         var e = document.getElementById(id);
-        var c = window.getComputedStyle(e).backgroundColor;
+        var c = window.getComputedStyle(e).border;
         console.log(c)
-        if (c != "rgb(42, 108, 245)") {
-            document.getElementById(id).style.background = "#2A6CF5";
+        if (c != "10px solid rgb(42, 108, 245)") {
+            document.getElementById(id).style.border = "#2A6CF5";
+            e.style.border = "10px solid rgb(42, 108, 245)";
+            /* document.getElementById(id).style.background = "#2A6CF5"; */
         }
         else{
-document.getElementById(id).style.background = "#f4f6f9";
+            e.style.border = "";
+            /* document.getElementById(id).style.background = "#f4f6f9"; */
         }
     }
   </script>>
