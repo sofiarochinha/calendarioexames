@@ -28,13 +28,24 @@ Route::get('/calendarios/atual/{curso}', function () {
     return view('calendario_atual');
 });
 
-
 Route::get('/calendarios/antigos', function () {
     return view('calendario_historico');
 });
 
 Route::get('/configuracoes/', function () {
-    return view('configurar');
+    return view('conf_disciplinas');
+});
+
+Route::get('/disciplinas/', function () {
+    return view('conf_disciplinas');
+});
+
+Route::get('/docentes/', function () {
+    return view('conf_docentes');
+});
+
+Route::get('/salas/', function () {
+    return view('conf_salas');
 });
 
 Route::get('/importar', function () {
