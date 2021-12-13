@@ -91,7 +91,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="/dist/img/user2-160x160.gif" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Username</a>
@@ -127,7 +127,8 @@
                         <li class="nav-item">
 
                             <a href="/calendario-atual"
-                               @if (\Illuminate\Support\Facades\Route::current()->getName() == "curso")
+                               @if (\Illuminate\Support\Facades\Route::current()->getName() == "curso" ||
+                                    \Illuminate\Support\Facades\Route::current()->getName() == "calendarioatual")
                                class="active nav-link" @else class="nav-link" @endif >
 
                                 <i class="far fa-circle nav-icon"></i>
@@ -153,7 +154,7 @@
                        @if (\Illuminate\Support\Facades\Route::current()->getName() == "calendarioanterior")
                         class="active nav-link"
                        @else class="nav-link" @endif >
-                        <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-archive"></i>
                         <p>
                             Calendários Anteriores
                         </p>
@@ -278,6 +279,17 @@
             "buttons": [, "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
     });
+</script>
+
+<!--function for date range in create calendar page-->
+<script>
+
+    $(function () {
+
+        $('#reservation').daterangepicker();
+
+    })
+
 </script>
 </body>
 </html>

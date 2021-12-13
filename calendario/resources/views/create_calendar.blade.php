@@ -62,12 +62,12 @@
                             <div class="card">
                                 <div class="card-body">
                                     <label class="card-title">Época</label>
-                                    <input type="text" name="product" list="productName" class="custom-select form-control-border"/>
-                                    <datalist id="productName" class="custom-select">
+                                    <input type="text" name="product" list="productName" class="form-control-border"/>
+                                    <select id="productName" class="custom-select">
                                         <option>Normal</option>
                                         <option>Recurso</option>
                                         <option>Especial</option>
-                                    </datalist>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -117,13 +117,6 @@
 
     </div>
 
-
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Select2 -->
-    <script src="../../plugins/select2/js/select2.full.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->
     <script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
     <!-- InputMask -->
@@ -141,18 +134,6 @@
     <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
     <!-- dropzonejs -->
     <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
     <!-- Page specific script -->
-    <script>
 
-        $(function () {
-
-            $('#reservation').daterangepicker();
-
-        })
-
-    </script>
 @stop

@@ -32,6 +32,7 @@
                         <div class="card-body">
                             <label class="card-title">Curso</label>
                             <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                <option>Todos</option>
                                 <option>Tecnologias de informação</option>
                                 <option>Eletrónica e Mecânica Industrial</option>
                                 <option>Engenharia Eletrotécnica </option>
@@ -49,6 +50,7 @@
                         <div class="card-body">
                             <label class="card-title">Ano letivo</label>
                             <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                <option>Todos</option>
                                 <option>2020-2019</option>
                                 <option>2019-2018</option>
                                 <option>2018-2017</option>
@@ -63,6 +65,7 @@
                         <div class="card-body">
                             <label class="card-title">Época</label>
                             <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                <option>Todas</option>
                                 <option>Normal</option>
                                 <option>Recurso</option>
                                 <option>Especial</option>
@@ -77,6 +80,7 @@
                         <div class="card-body">
                             <label class="card-title">Ano</label>
                             <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                <option>Todos</option>
                                 <option>1º</option>
                                 <option>2º</option>
                                 <option selected>3º</option>
@@ -91,6 +95,7 @@
                         <div class="card-body">
                             <label class="card-title">Semestre</label>
                             <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                <option>Todos</option>
                                 <option>1º</option>
                                 <option>2º</option>
                             </select>
