@@ -31,9 +31,6 @@
                             <a class="btn btn-info tablinks" onclick="datatable(event, 'salas')"> Salas </a>
                         </div>
                         <div class="card" id="UC">
-                            <div class="card-header">
-                                <h3 class="card-title">Configurações de Unidades Curriculares</h3>
-                            </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table  id="example1" class="table table-bordered table-striped">
@@ -89,9 +86,6 @@
                             <!-- /.card-body -->
                         </div>
                         <div class="card" id="docentes" style="display: none">
-                            <div class="card-header">
-                                <h3 class="card-title">Configurações de Docentes</h3>
-                            </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-striped" >
@@ -126,9 +120,6 @@
                             <!-- /.card-body -->
                         </div>
                         <div class="card" id="salas" style="display: none">
-                            <div class="card-header">
-                                <h3 class="card-title">Configurações das Salas</h3>
-                            </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example3" class="table table-bordered table-striped " >
