@@ -1,5 +1,5 @@
 @extends('layout.menu')
-@section('calendario')
+@section('content')
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
