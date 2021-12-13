@@ -92,8 +92,11 @@ CREATE TABLE "historic_evaluation_slot" (
   "associated_professor" varchar,
   "observing_professor" varchar,
   "classroom" varchar,
-  "time_slot" varchar
+  "time_slot" varchar,
+  "historic_calendar_id" int
 );
+
+ALTER TABLE "historic_evaluation_slot" ADD FOREIGN KEY ("historic_calendar_id") REFERENCES "historic_calendar" ("id");
 
 ALTER TABLE "subject" ADD FOREIGN KEY ("associated_professor") REFERENCES "professors" ("id");
 

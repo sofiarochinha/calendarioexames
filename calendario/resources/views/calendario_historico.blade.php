@@ -1,7 +1,6 @@
 @extends('layout.menu')
 @section('calendario')
 
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -9,13 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Calendario 2021-2022</h1>
+                    <h1>Calendários Anteriores</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/calendarios">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/calendarios/2021-2022">2021-2022</a></li>
-                        <li class="breadcrumb-item active">TI</li>
+                        <li class="breadcrumb-item"><a href="/calendarios">Calendários</a></li>
+                        <li class="breadcrumb-item active">Calendários Anteriores</li>
                     </ol>
                 </div>
             </div>
@@ -26,8 +24,6 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
-                </div>
                 <div class="col">
                     <div class="sticky-top mb-4">
                         <div class="card">
@@ -44,10 +40,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
                 </div>
                 <div class="col-sm-2">
                     <div class="sticky-top mb-4">
@@ -132,7 +124,7 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-                       
+
                     </div>
                 </div>
                 <!-- /.col -->

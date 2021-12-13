@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Calendario 2021-2022</h1>
+                    <h1>Calendário 2021-2022 1ºsemestre</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="col-sm-2">
                     <div class="sticky-top mb-4">
                         <div class="card">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
             <div class="row">
