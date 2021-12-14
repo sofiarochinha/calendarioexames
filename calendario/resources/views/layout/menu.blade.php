@@ -149,17 +149,7 @@
                 <li class="nav-header"></li>
                 <li class="nav-header"></li>
 
-		        <li class="nav-item">
-                    <a href="/calendario-anterior"
-                       @if (\Illuminate\Support\Facades\Route::current()->getName() == "calendarioanterior")
-                        class="active nav-link"
-                       @else class="nav-link" @endif >
-                        <i class="nav-icon fas fa-archive"></i>
-                        <p>
-                            Calendários Anteriores
-                        </p>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="/exportar"
                        @if (\Illuminate\Support\Facades\Route::current()->getName() == "export")
@@ -168,6 +158,19 @@
                         <i class="nav-icon fas fa-file-pdf"></i>
                         <p>
                             Exportar
+                        </p>
+                    </a>
+                </li><li class="nav-header"></li>
+
+
+                <li class="nav-item">
+                    <a href="/calendario-anterior"
+                       @if (\Illuminate\Support\Facades\Route::current()->getName() == "calendarioanterior")
+                       class="active nav-link"
+                       @else class="nav-link" @endif >
+                        <i class="nav-icon fas fa-archive"></i>
+                        <p>
+                            Calendários Anteriores
                         </p>
                     </a>
                 </li>
