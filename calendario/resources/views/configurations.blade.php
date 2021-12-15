@@ -29,6 +29,7 @@
                             <a class="btn btn-info tablinks active" onclick="datatable(event, 'UC')"> Unidades Curriculares </a>
                             <a class="btn btn-info tablinks" onclick="datatable(event, 'docentes')"> Docentes </a>
                             <a class="btn btn-info tablinks" onclick="datatable(event, 'salas')"> Salas </a>
+                            <a class="btn btn-info tablinks" onclick="datatable(event, 'epocas')"> Épocas </a>
                         </div>
                         <div class="card" id="UC">
                             <!-- /.card-header -->
@@ -132,7 +133,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>5.1.15/td>
+                                        <td>5.1.15 </td>
                                         <td>Informáticas</td>
                                         <td>25</td>
                                     </tr>
@@ -151,7 +152,64 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+
+                        <div class="card" id="epocas" style="display: none">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example4" class="table table-bordered table-striped " >
+                                    <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Data Range</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Normal</td>
+                                        <td>
+                                            <div class="input-group">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                <i class="far fa-calendar-alt"></i>
+                                              </span>
+                                            </div>
+                                            <input type="text" class="form-control float-right" id="reservation">
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recurso</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                  </span>
+                                                </div>
+                                                <input type="text" class="form-control float-right" id="reservation2">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Especial</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                  </span>
+                                                </div>
+                                                <input type="text" class="form-control float-right" id="reservation3">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                         <!-- /.card -->
+
                     </div>
                     <!-- /.col -->
                 </div>

@@ -282,6 +282,12 @@
             "buttons": [, "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
     });
+    $(function () {
+        $("#example4").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": [, "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
+    });
 </script>
 
 <!--function for date range in create calendar page-->
@@ -290,6 +296,8 @@
     $(function () {
 
         $('#reservation').daterangepicker();
+        $('#reservation2').daterangepicker();
+        $('#reservation3').daterangepicker();
 
     })
 
