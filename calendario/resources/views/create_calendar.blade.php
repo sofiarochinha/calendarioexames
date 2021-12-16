@@ -83,40 +83,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="sticky-top mb-4">
-                            <div class="card">
-                                <!-- Date range -->
-                                <div class="card-body">
-                                    <label>Date range:</label>
-
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text">
-                                            <i class="far fa-calendar-alt"></i>
-                                          </span>
-                                        </div>
-                                        <input type="text" class="form-control float-right" id="reservation">
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.form group -->
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-right">
-                        <button class="btn btn-primary">
-                        Criar Calendário            
-                        </button>
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <input type="submit" value="Create new Project" class="btn btn-success float-right">
+                    <a href="/calendario-atual"><input type="submit" value="Criar Calendário" class="btn btn-success float-right"></a>
                 </div>
             </div>
 

@@ -85,7 +85,6 @@
                                 <!-- the events -->
                                 <div id="external-events">
                                     <div class="external-event bg-success">WEB DESIGN</div>
-                                    <div class="external-event bg-warning">OPÇÃO I</div>
                                     <div class="external-event bg-info">DESENVOLVIMENTO WEB MULTIPLATAFORMA</div>
                                     <div class="external-event bg-primary">SEGURANÇA INFORMÁTICA</div>
                                     <!--<div class="external-event bg-danger">Sleep tight</div>-->
@@ -121,13 +120,6 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-<footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.2.0-rc
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-</footer>
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
@@ -210,7 +202,7 @@
             headerToolbar: {
                 left  : 'prev,next',
                 center: 'title',
-                right : 'dayGridMonth,timeGridWeek,timeGridDay'
+                right : 'dayGridMonth,timeGridWeek'
             },
             themeSystem: 'bootstrap',
             //Random default events
@@ -221,7 +213,18 @@
             drop      : function(info) {
                 info.draggedEl.parentNode.removeChild(info.draggedEl);
             },
-            initialView: 'timeGridWeek'
+            initialView: 'timeGridWeek',
+            initialDate: "2021-01-04",
+            locale: 'pt',
+            allDaySlot: false,
+            defaultTimedEventDuration: "04:00",
+            hiddenDays: [0],
+            eventDurationEditable:false,
+            slotMinTime: "09:00:00",
+            eventClick: function() {
+                alert('Test_popup');
+            },
+            aspectRatio: 1.6
         });
         calendar.render();
 

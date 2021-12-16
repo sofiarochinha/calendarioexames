@@ -1,10 +1,5 @@
 @extends('layout.menu')
 @section('content')
-<style>
-    .fc-event{
-    cursor: pointer;
-  }
-</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -174,7 +169,7 @@ var calendar = new Calendar(calendarEl, {
   headerToolbar: {
     left  : 'prev,next',
     center: 'title',
-    right : 'dayGridMonth,timeGridWeek,timeGridDay'
+    right : 'dayGridMonth,timeGridWeek'
   },
   themeSystem: 'bootstrap',
   //Random default events
@@ -219,9 +214,6 @@ var calendar = new Calendar(calendarEl, {
   allDaySlot: false,
   hiddenDays: [0],
   slotMinTime: "09:00:00",
-  eventClick: function() {
-    alert('Test_popup');
-  },
   aspectRatio: 2.115
 });
 
