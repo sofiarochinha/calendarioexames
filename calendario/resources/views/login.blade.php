@@ -24,7 +24,7 @@
     </div>
     <div class="card-body">
 
-      <form action="calendarios" method="get">
+      <form action="calendario-atual" method="get">
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email">
           <div class="input-group-append">

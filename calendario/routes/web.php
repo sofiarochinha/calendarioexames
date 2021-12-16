@@ -16,45 +16,35 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/calendarios', function () {
-    return view('curso');
-});
+Route::get('/criar-calendario', ['as' => 'criarcalendario', function () {
+    return view('create_calendar');
+}]);
 
-Route::get('/calendarios/atual', function () {
-    return view('curso');
-});
 
-Route::get('/calendarios/atual/{curso}', function () {
+Route::get('/calendario-atual', ['as' => 'curso', function () {
+    return view('curso');
+}]);
+
+Route::get('/calendario-atual/{curso}', ['as' => 'calendarioatual', function () {
     return view('calendario_atual');
-});
+}]);
 
-Route::get('/calendarios/antigos', function () {
+
+Route::get('/calendario-anterior', ['as' => 'calendarioanterior', function () {
     return view('calendario_historico');
-});
+}]);
 
-Route::get('/configuracoes/', function () {
-    return view('conf_disciplinas');
-});
+Route::get('/configuracoes/', ['as' => 'configurations',  function () {
+    return view('configurations');
+}]);
 
-Route::get('/disciplinas/', function () {
-    return view('conf_disciplinas');
-});
-
-Route::get('/docentes/', function () {
-    return view('conf_docentes');
-});
-
-Route::get('/salas/', function () {
-    return view('conf_salas');
-});
-
-Route::get('/importar', function () {
+Route::get('/importar', ['as' => 'import', function () {
     return view('import');
-});
+}]);
 
-Route::get('/exportar', function () {
+Route::get('/exportar', ['as' => 'export', function () {
     return view('export');
-});
+}]);
 
 
 
