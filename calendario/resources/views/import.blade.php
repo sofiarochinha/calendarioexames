@@ -8,12 +8,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Importar csv</h1>
+                        <h1 class="m-0">Importar CSV</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/calendarios">Home</a></li>
-                            <li class="breadcrumb-item active">Importar csv</li>
+                            <li class="breadcrumb-item"><a href="/calendarios">Calendário Atual</a></li>
+                            <li class="breadcrumb-item active">Importar CSV</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -23,47 +23,53 @@
 
         <!-- Main content -->
         <section class="content">
-                <div class="container-fluid">
-                    <div class="row d-flex justify-content-center">
-                        <!-- /.col -->
-                        <div class="col-md-7">
-                            <div class="card card-primary" style="height:140px; padding: 30px;">
-                                <div class="card-body p-0">
-                                    <table>
-                                        <tr>
-                                            <td class="col-md-8">
-                                                <input type="text" style="width:100%" disable/>
-                                            </td>
-                                            <td class="col-md-1">
-                                                <i class="fas fa-folder-open" style="cursor:pointer;"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-md-12 text-center">
-                                                <div class="importButton" style="border-radius: 5px; background-color:lightgreen; width:120px; height: 28px; text-align:center; margin:auto; position: relative; top: 25px; left: 20px;">Importar</div>
-                                            </td>
-                                        </tr>
-                                    </table>
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <!-- general form elements disabled -->
+                    <div class="card card-secondary col-sm-6 ">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
+                                    </div>
                                 </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
+                            </form>
+                            <a href="{{'/criar-calendario', true  }}">
+                                <button type="submit" class="btn btn-primary" >Importar</button>
+                            </a>
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </section>
-        <!-- /.content -->
+                </div>
 
-    </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.2.0-rc
+            </div>
+
+        </section>
+
+
+
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Default Modal</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
-    </footer>
-
+        <!-- /.modal -->
 @stop

@@ -54,6 +54,10 @@
     <link rel="stylesheet" href="/plugins/dropzone/min/dropzone.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -105,14 +109,15 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
 
-                <li class="nav-item">
-                    <a href="/criar-calendario" class="nav-link active">
-                        <i class="nav-icon fas fa-calendar-plus "></i>
-                        <p >
-                            Criar Calendário
-                        </p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{($import == true) ?  '/criar-calendario' : '/importar'}}" class="nav-link active">
+                            <i class="nav-icon fas fa-calendar-plus "></i>
+                            <p >
+                                Criar Calendário
+                            </p>
+                        </a>
+                    </li>
+
                 <li class="nav-header"></li>
 
                 <li class="nav-item menu-open">
@@ -176,7 +181,7 @@
                 </li>
 
                 <li class="nav-item fixed-bottom">
-                    <a href="/" class="nav-link">
+                    <a href="/" class="nav-link ">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Sair
@@ -224,6 +229,8 @@
 <script src="/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/dist/js/pages/dashboard.js"></script>
+<!-- Select2 -->
+<script src="/plugins/select2/js/select2.full.min.js"></script>
 
 <!-- Ekko Lightbox -->
 <script src="/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
@@ -261,6 +268,13 @@
 
 <!-- fullCalendar 2.2.5 -->
 <script src="/plugins/moment/moment.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<!-- SweetAlert2 -->
+<script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="/plugins/toastr/toastr.min.js"></script>
 
 <!-- Page configurations specific script -->
 <script>
@@ -298,9 +312,31 @@
         $('#reservation').daterangepicker();
         $('#reservation2').daterangepicker();
         $('#reservation3').daterangepicker();
+        $('.select2').select2();
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
 
     })
 
+</script>
+
+<script>
+    $(function () {
+        bsCustomFileInput.init();
+    });
+</script>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+    });
 </script>
 </body>
 </html>
