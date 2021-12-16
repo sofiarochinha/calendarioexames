@@ -45,40 +45,40 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>Web Design</td>
-                                        <td>Rita Santos</td>
-                                        <td>Tecnologias da Informação</td>
-                                        <td>3º ano</td>
+                                        <td><div contenteditable>Web Design</div></td>
+                                        <td><div contenteditable>Rita Santos</div></td>
+                                        <td><div contenteditable>Tecnologias da Informação</div></td>
+                                        <td><div contenteditable>3º ano</div></td>
                                     </tr>
                                     <tr>
-                                        <td>Web Design</td>
-                                        <td>Rita Santos</td>
-                                        <td>Tecnologias da Informação</td>
-                                        <td>3º ano</td>
+                                        <td><div contenteditable>Web Design</div></td>
+                                        <td><div contenteditable>Rita Santos</div></td>
+                                        <td><div contenteditable>Tecnologias da Informação</div></td>
+                                        <td><div contenteditable>3º ano</div></td>
                                     </tr>
                                     <tr>
-                                        <td>Web Design</td>
-                                        <td>Rita Santos</td>
-                                        <td>Tecnologias da Informação</td>
-                                        <td>3º ano</td>
+                                        <td><div contenteditable>Web Design</div></td>
+                                        <td><div contenteditable>Rita Santos</div></td>
+                                        <td><div contenteditable>Tecnologias da Informação</div></td>
+                                        <td><div contenteditable>3º ano</div></td>
                                     </tr>
                                     <tr>
-                                        <td>Web Design</td>
-                                        <td>Rita Santos</td>
-                                        <td>Tecnologias da Informação</td>
-                                        <td>3º ano</td>
+                                        <td><div contenteditable>Web Design</div></td>
+                                        <td><div contenteditable>Rita Santos</div></td>
+                                        <td><div contenteditable>Tecnologias da Informação</div></td>
+                                        <td><div contenteditable>3º ano</div></td>
                                     </tr>
                                     <tr>
-                                        <td>Segurança Informática</td>
-                                        <td>Hélder Gomes</td>
-                                        <td>Tecnologias da Informação</td>
-                                        <td>3º ano</td>
+                                        <td><div contenteditable>Segurança Informática</div></td>
+                                        <td><div contenteditable>Hélder Gomes</div></td>
+                                        <td><div contenteditable>Tecnologias da Informação</div></td>
+                                        <td><div contenteditable>3º ano</div></td>
                                     </tr>
                                     <tr>
-                                        <td>Economia I</td>
-                                        <td>Miguel Magueta</td>
-                                        <td>Gestão Pública</td>
-                                        <td>1º ano</td>
+                                        <td><div contenteditable>Economia I</div></td>
+                                        <td><div contenteditable>Miguel Magueta</div></td>
+                                        <td><div contenteditable>Gestão Pública</div></td>
+                                        <td><div contenteditable>1º ano</div></td>
                                     </tr>
 
                                     </tfoot>
@@ -99,19 +99,19 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>Rita Santos</td>
-                                        <td>rita.santos@ua.pt</td>
-                                        <td>-</td>
+                                        <td><div contenteditable>Rita Santos</div></td>
+                                        <td><div contenteditable>rita.santos@ua.pt</div></td>
+                                        <td><div contenteditable></div></td>
                                     </tr>
                                     <tr>
-                                        <td>Hélder Gomes</td>
-                                        <td>helder.gomes@ua.pt</td>
-                                        <td></td>
+                                        <td><div contenteditable>Hélder Gomes</div></td>
+                                        <td><div contenteditable>helder.gomes@ua.pt</div></td>
+                                        <td><div contenteditable></div></td>
                                     </tr>
                                     <tr>
-                                        <td>Miguel Magueta</td>
-                                        <td>dmagueta@ua.pt</td>
-                                        <td></td>
+                                        <td><div contenteditable>Miguel Magueta</div></td>
+                                        <td><div contenteditable>dmagueta@ua.pt</div></td>
+                                        <td><div contenteditable></div></td>
                                     </tr>
 
 
@@ -133,19 +133,19 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>5.1.15 </td>
-                                        <td>Informáticas</td>
-                                        <td>25</td>
+                                        <td><div contenteditable>5.1.15</div></td>
+                                        <td><div contenteditable>Informáticas</div></td>
+                                        <td><div contenteditable>25</div></td>
                                     </tr>
                                     <tr>
-                                        <td>5.1.09</td>
-                                        <td>Aulas</td>
-                                        <td>20</td>
+                                        <td><div contenteditable>5.1.09</div></td>
+                                        <td><div contenteditable>Aulas</div></td>
+                                        <td><div contenteditable>20</div></td>
                                     </tr>
                                     <tr>
-                                        <td>5.1.12</td>
-                                        <td>Laboratório de Redes</td>
-                                        <td>35</td>
+                                        <td><div contenteditable>5.1.12</div></td>
+                                        <td><div contenteditable>Laboratório de Redes</div></td>
+                                        <td><div contenteditable>35</div></td>
                                     </tr>
                                     </tfoot>
                                 </table>
