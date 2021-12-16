@@ -109,6 +109,13 @@
                     </div>
                     <!-- /.form group -->
                 </div>
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <button class="btn btn-primary">
+                        Criar Calendário            
+                        </button>
+                    </div>
+                </div>
             </div>
 
         </section>

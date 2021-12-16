@@ -18,10 +18,7 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-
-
-
+    
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -113,9 +110,6 @@
                     <div class="col-12">
                         <div class="card-body">
                             <div>
-                                <button class="btn btn-primary">Exportar PDF</button>
-                                <br>
-                                <br>
                                 <div class="filter-container p-0 row">
                                     <div id="001" class="filtr-item col-sm-2" data-category="1" onclick="selectCourseToExport(this.id)">
 
@@ -144,6 +138,15 @@
                         </div>
                     </div>
                   </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <button class="btn btn-primary">
+                        Exportar PDF &nbsp;
+                        <i class="fas fa-file-pdf"></i>                  
+                        </button>
+                    </div>
                 </div>
         </section>
               </div>

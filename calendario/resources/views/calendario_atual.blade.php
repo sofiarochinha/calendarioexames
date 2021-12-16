@@ -116,15 +116,6 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
-
-            <div class="row">
-                <div class="col-sm-12 text-right">
-                    <button class="btn btn-primary">
-                    <i class="nav-icon fas fa-file-pdf">&nbsp</i> 
-                    Exportar                         
-                    </button>
-                </div>
-            </div>
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
