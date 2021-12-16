@@ -172,7 +172,7 @@ var checkbox = document.getElementById('drop-remove');
 var calendarEl = document.getElementById('calendar');
 var calendar = new Calendar(calendarEl, {
   headerToolbar: {
-    left  : 'prev,next today',
+    left  : 'prev,next',
     center: 'title',
     right : 'dayGridMonth,timeGridWeek,timeGridDay'
   },
@@ -180,35 +180,28 @@ var calendar = new Calendar(calendarEl, {
   //Random default events
   events: [
     {
-      title          : 'All Day Event',
-      start          : new Date(y, m, 1),
-      backgroundColor: '#f56954', //red
-      borderColor    : '#f56954', //red
-      allDay         : true
-    },
-    {
-      title          : 'Meeting',
-      start          : new Date(y, m, d, 9, 00),
-      end            : new Date(y, m, d, 13, 00),
+      title          : 'Desenvolvimento Web Multiplataforma',
+      start          : new Date(2020, 0, 7, 14, 00),
+      end            : new Date(2020, 0, 7, 18, 00),
       allDay         : false,
       backgroundColor: '#0073b7', //Blue
       borderColor    : '#0073b7' //Blue
     },
     {
-      title          : 'Lunch',
-      start          : new Date(y, m, d, 12, 0),
-      end            : new Date(y, m, d, 14, 0),
+      title          : 'Web Design',
+      start          : new Date(2020, 0, 9, 14, 00),
+      end            : new Date(2020, 0, 9, 18, 00),
       allDay         : false,
-      backgroundColor: '#00c0ef', //Info (aqua)
-      borderColor    : '#00c0ef' //Info (aqua)
+      backgroundColor: '#f56954', //Red
+      borderColor    : '#f56954' //Red
     },
     {
-      title          : 'Birthday Party',
-      start          : new Date(y, m, d + 1, 19, 0),
-      end            : new Date(y, m, d + 1, 22, 30),
+      title          : 'Segurança Informática',
+      start          : new Date(2020, 0, 14, 9, 30),
+      end            : new Date(2020, 0, 14, 13, 30),
       allDay         : false,
-      backgroundColor: '#00a65a', //Success (green)
-      borderColor    : '#00a65a' //Success (green)
+      backgroundColor: '#00c0ef', //Red
+      borderColor    : '#00c0ef' //Red
     }
   ],
   editable  : false,
@@ -220,6 +213,7 @@ var calendar = new Calendar(calendarEl, {
       info.draggedEl.parentNode.removeChild(info.draggedEl);
     }
   },
+  initialDate: "2020-01-07",
   initialView: 'timeGridWeek',
   locale: 'pt',
   allDaySlot: false,
