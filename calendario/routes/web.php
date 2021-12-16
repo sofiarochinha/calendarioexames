@@ -16,34 +16,35 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/criar-calendario', ['as' => 'criarcalendario', function () {
-    return view('create_calendar');
+$import = false;
+Route::get('/criar-calendario', ['as' => 'criarcalendario', function () use ($import) {
+    return view("create_calendar", ["import" => $import]);
 }]);
 
 
-Route::get('/calendario-atual', ['as' => 'curso', function () {
-    return view('curso');
+Route::get('/calendario-atual', ['as' => 'curso', function () use ($import) {
+    return view('curso', ["import" => $import]);
 }]);
 
-Route::get('/calendario-atual/{curso}', ['as' => 'calendarioatual', function () {
-    return view('calendario_atual');
+Route::get('/calendario-atual/{curso}', ['as' => 'calendarioatual', function () use ($import) {
+    return view('calendario_atual', ["import" => $import]);
 }]);
 
 
-Route::get('/calendario-anterior', ['as' => 'calendarioanterior', function () {
-    return view('calendario_historico');
+Route::get('/calendario-anterior', ['as' => 'calendarioanterior', function () use ($import) {
+    return view('calendario_historico', ["import" => $import]);
 }]);
 
-Route::get('/configuracoes/', ['as' => 'configurations',  function () {
-    return view('configurations');
+Route::get('/configuracoes/', ['as' => 'configurations',  function () use ($import) {
+    return view('configurations', ["import" => $import]);
 }]);
 
-Route::get('/importar', ['as' => 'import', function () {
-    return view('import');
+Route::get('/importar', ['as' => 'import', function () use ($import) {
+    return view('import', ["import" => $import]);
 }]);
 
-Route::get('/exportar', ['as' => 'export', function () {
-    return view('export');
+Route::get('/exportar', ['as' => 'export', function () use ($import) {
+    return view('export' , ["import" => $import]);
 }]);
 
 
