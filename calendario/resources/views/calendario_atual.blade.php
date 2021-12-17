@@ -12,9 +12,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/calendarios">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/calendarios/2021-2022">2021-2022</a></li>
-                        <li class="breadcrumb-item active">TI</li>
+                        <li class="breadcrumb-item"><a href="/calendario-atual">Calendário Atual</a></li>
+                        <li class="breadcrumb-item" active>2021-2022</li>
                     </ol>
                 </div>
             </div>
