@@ -34,7 +34,9 @@
                   <div class="filter-container p-0 row">
                   <div class="filtr-item col-sm-2" data-category="1">
                       <a href="/calendarios/2021-2022/TI">
-                        <img src="https://via.placeholder.com/300/FFFFFF?text=TI" class="img-fluid mb-2" alt="white sample"/>
+                        <div>
+                          <h3>Tecnologias informação</h3>
+                        </div>
                       </a>
                     </div>
                     <div class="filtr-item col-sm-2" data-category="2, 4">

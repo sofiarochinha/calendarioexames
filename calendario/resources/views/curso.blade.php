@@ -27,42 +27,47 @@
                         <div class="card-body">
                             <div>
                                 <div class="filter-container p-0 row">
-                                    <div class="filtr-item col-sm-2" data-category="1">
-                                        <a href=/calendario-atual/{{'TI'}}>
-                                            <img src="https://via.placeholder.com/300/FFFFFF?text=Tecnologias da Informação" class="img-fluid mb-2" alt="white sample"/>
+                                    <div class="filtr-item col-sm-2" data-category="1" style="height: 250px;">
+                                      <a href=/calendario-atual/{{'TI'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <div class="bg-white d-flex align-items-center justify-content-center" style="height: 97%;">
+                                            <div class="text-center text-muted">Tecnologias informação</div>
+                                        </div>
+                                      </a>
+                                    </div>
+                                    <div class="filtr-item col-sm-2" data-category="2, 4" style="height: 250px;">
+                                        <a href=/calendario-atual/{{'EMI'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                          <div class="bg-white d-flex align-items-center justify-content-center" style="height: 97%;">
+                                              <div class="text-center text-muted">Eletrónica e Mecânica Industrial</div>
+                                          </div>
                                         </a>
                                     </div>
-                                    <div class="filtr-item col-sm-2" data-category="2, 4">
-                                        <a href=/calendario-atual/{{'GE'}} data-toggle="lightbox" data-title="sample 2 - black">
-                                            <img src="https://via.placeholder.com/300/FFFFFF?text=GE" class="img-fluid mb-2" alt="white sample"/>
-                                        </a>
+                                    <div class="filtr-item col-sm-2" data-category="3, 4" style="height: 250px;">
+                                      <a href=/calendario-atual/{{'GC'}} data-toggle="lightbox" data-title="sample 2 - black">
+                                        <div class="bg-white d-flex align-items-center justify-content-center" style="height: 97%;">
+                                            <div class="text-center text-muted">Gestão Comercial</div>
+                                        </div>
+                                      </a>
                                     </div>
-                                    <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                                        <a href=/calendario-atual/{{'EM'}} data-toggle="lightbox" data-title="sample 2 - black">
-                                            <img src="https://via.placeholder.com/300/FFFFFF?text=EM" class="img-fluid mb-2" alt="white sample"/>
-                                        </a>
-                                    </div>
-                                    <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                                    <a href=/calendario-atual/{{'GC'}}>
-                                        <img src="https://via.placeholder.com/300/FFFFFF?text=GC" class="img-fluid mb-2" alt="white sample"/>
-                                    </a>
-                                    </div>
-                                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
+                                    <div class="filtr-item col-sm-2" data-category="3, 4" style="height: 250px;">
                                     <a href=/calendario-atual/{{'GQ'}}>
-                                        <img src="https://via.placeholder.com/300/FFFFFF?text=GQ" class="img-fluid mb-2" alt="white sample"/>
+                                        <div class="bg-white d-flex align-items-center justify-content-center" style="height: 97%;">
+                                            <div class="text-center text-muted">Gestão Qualidade</div>
+                                        </div>
                                     </a>
                                     </div>
-                                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
+                                    <div class="filtr-item col-sm-2" data-category="2, 4" style="height: 250px;">
                                     <a href=/calendario-atual/{{'GP'}}>
-                                        <img src="https://via.placeholder.com/300/FFFFFF?text=GP" class="img-fluid mb-2" alt="white sample"/>
+                                        <div class="bg-white d-flex align-items-center justify-content-center" style="height: 97%;">
+                                            <div class="text-center text-muted">Gestão Pública</div>
+                                        </div>
                                     </a>
                                     </div>
-                                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
+                                    <div class="filtr-item col-sm-2" data-category="1" style="height: 250px;">
                                     <a href=/calendario-atual/{{'SCE'}}>
-                                        <img src="https://via.placeholder.com/300/FFFFFF?text=SCE" class="img-fluid mb-2" alt="white sample"/>
+                                        <div class="bg-white d-flex align-items-center justify-content-center" style="height: 97%;">
+                                            <div class="text-center text-muted">Secretariado e Comunicação Empresarial</div>
+                                        </div>
                                     </a>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
