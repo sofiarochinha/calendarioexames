@@ -41,6 +41,7 @@
                                         <th>Docente</th>
                                         <th>Curso</th>
                                         <th>Ano do Curso</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -49,36 +50,43 @@
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
+                                   	 <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Web Design</div></td>
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
+                                        <td><i class="fas fa-check"></i></td>
+                                        
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Web Design</div></td>
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Web Design</div></td>
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Segurança Informática</div></td>
                                         <td><div contenteditable>Hélder Gomes</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Economia I</div></td>
                                         <td><div contenteditable>Miguel Magueta</div></td>
                                         <td><div contenteditable>Gestão Pública</div></td>
                                         <td><div contenteditable>1º ano</div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
 
                                     </tfoot>
@@ -95,6 +103,7 @@
                                         <th>Nome</th>
                                         <th>E-mail</th>
                                         <th>Disponibilidade</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -102,16 +111,19 @@
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>rita.santos@ua.pt</div></td>
                                         <td><div contenteditable></div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Hélder Gomes</div></td>
                                         <td><div contenteditable>helder.gomes@ua.pt</div></td>
                                         <td><div contenteditable></div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Miguel Magueta</div></td>
                                         <td><div contenteditable>dmagueta@ua.pt</div></td>
                                         <td><div contenteditable></div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
 
 
@@ -129,6 +141,7 @@
                                         <th>Sala</th>
                                         <th>Tipo</th>
                                         <th>Lotação máxima</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -136,16 +149,19 @@
                                         <td><div contenteditable>5.1.15</div></td>
                                         <td><div contenteditable>Informáticas</div></td>
                                         <td><div contenteditable>25</div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>5.1.09</div></td>
                                         <td><div contenteditable>Aulas</div></td>
                                         <td><div contenteditable>20</div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>5.1.12</div></td>
                                         <td><div contenteditable>Laboratório de Redes</div></td>
                                         <td><div contenteditable>35</div></td>
+                                        <td><i class="fas fa-check"></i></td>
                                     </tr>
                                     </tfoot>
                                 </table>
