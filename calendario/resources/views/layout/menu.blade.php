@@ -182,7 +182,7 @@
                      with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-                        <a href="{{($import == true) ?  '/criar-calendario' : '/importar'}}" class="nav-link active">
+                        <a href="/criar-calendario" class="nav-link active">
                             <i class="nav-icon fas fa-calendar-plus "></i>
                             <p >
                                 Criar Calendário
@@ -227,6 +227,17 @@
                 <li class="nav-header"></li>
 
 
+		<li class="nav-item">
+                    <a href="/exportar"
+                       @if (\Illuminate\Support\Facades\Route::current()->getName() == "import")
+                       class="active nav-link"
+                       @else class="nav-link" @endif >
+                        <i class="nav-icon fas fa-file-csv"></i>
+                        <p>
+                            Importar CSV
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="/exportar"
                        @if (\Illuminate\Support\Facades\Route::current()->getName() == "export")
@@ -237,7 +248,9 @@
                             Exportar
                         </p>
                     </a>
-                </li><li class="nav-header"></li>
+                </li>
+                
+                <li class="nav-header"></li>
 
 
                 <li class="nav-item">

@@ -50,14 +50,15 @@
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
-                                   	 <td><i class="fas fa-check"></i></td>
+                                   	 <td><i class="fas fa-save"></i> <i class="fas fa-trash float-right"></i>
+                                   	 </td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Web Design</div></td>
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                         
                                     </tr>
                                     <tr>
@@ -65,28 +66,28 @@
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Web Design</div></td>
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Segurança Informática</div></td>
                                         <td><div contenteditable>Hélder Gomes</div></td>
                                         <td><div contenteditable>Tecnologias da Informação</div></td>
                                         <td><div contenteditable>3º ano</div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Economia I</div></td>
                                         <td><div contenteditable>Miguel Magueta</div></td>
                                         <td><div contenteditable>Gestão Pública</div></td>
                                         <td><div contenteditable>1º ano</div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
 
                                     </tfoot>
@@ -111,19 +112,19 @@
                                         <td><div contenteditable>Rita Santos</div></td>
                                         <td><div contenteditable>rita.santos@ua.pt</div></td>
                                         <td><div contenteditable></div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Hélder Gomes</div></td>
                                         <td><div contenteditable>helder.gomes@ua.pt</div></td>
                                         <td><div contenteditable></div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>Miguel Magueta</div></td>
                                         <td><div contenteditable>dmagueta@ua.pt</div></td>
                                         <td><div contenteditable></div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
 
 
@@ -149,19 +150,19 @@
                                         <td><div contenteditable>5.1.15</div></td>
                                         <td><div contenteditable>Informáticas</div></td>
                                         <td><div contenteditable>25</div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>5.1.09</div></td>
                                         <td><div contenteditable>Aulas</div></td>
                                         <td><div contenteditable>20</div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td><div contenteditable>5.1.12</div></td>
                                         <td><div contenteditable>Laboratório de Redes</div></td>
                                         <td><div contenteditable>35</div></td>
-                                        <td><i class="fas fa-check"></i></td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -192,6 +193,7 @@
                                             <input type="text" class="form-control float-right" id="reservation">
                                         </div>
                                         </td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td>Recurso</td>
@@ -205,6 +207,7 @@
                                                 <input type="text" class="form-control float-right" id="reservation2">
                                             </div>
                                         </td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     <tr>
                                         <td>Especial</td>
@@ -218,6 +221,7 @@
                                                 <input type="text" class="form-control float-right" id="reservation3">
                                             </div>
                                         </td>
+                                        <td><i class="fas fa-save"></i><i class="fas fa-trash float-right"></i></td>
                                     </tr>
                                     </tfoot>
                                 </table>
