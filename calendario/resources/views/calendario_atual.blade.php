@@ -120,6 +120,48 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+!-- Edit Modal -->
+<div class="modal fade" id="schedule-edit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Configurar exame</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                          <label>Vigilantes</label>
+                           <select class="select2" multiple="multiple"
+                                 data-placeholder="Selecione uma época" style="width: 100%;">
+                               <option>Heldér Gomes</option>
+                               <option>Miguel Magueta</option>
+                               <option>Rita Santos</option>
+                               <option>Fábio Marques</option>
+                           </select>
+                     </div>
+                     <div class="form-group">
+                          <label>Salas</label>
+                           <select class="select2" multiple="multiple"
+                                 data-placeholder="Selecione uma época" style="width: 100%;">
+                               <option>5.1.08</option>
+                               <option>5.1.09</option>
+                               <option>5.1.10<option>
+                               <option>5.1.11</option>
+                           </select>
+                     </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
@@ -221,9 +263,11 @@
             hiddenDays: [0],
             eventDurationEditable:false,
             slotMinTime: "09:00:00",
-            eventClick: function() {
-                alert('Test_popup');
+            eventClick: function(event) {
+                var modal = $("#schedule-edit");
+                modal.modal();
             },
+
             aspectRatio: 1.6
         });
         calendar.render();
