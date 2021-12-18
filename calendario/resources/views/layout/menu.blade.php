@@ -136,15 +136,15 @@
                                class="active nav-link" @else class="nav-link" @endif >
 
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Visualizar</p>
+                                <p>Marcar Exames</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/configuracoes"
+                            <a href="/dados-auxiliares"
                                @if (\Illuminate\Support\Facades\Route::current()->getName() == "configurations")
                                 class="active nav-link" @else class="nav-link" @endif >
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Configurações</p>
+                                <p>Dados Auxiliares</p>
                             </a>
                         </li>
                     </ul>
@@ -155,7 +155,7 @@
 
 
 		<li class="nav-item">
-                    <a href="/exportar"
+                    <a href="/importar"
                        @if (\Illuminate\Support\Facades\Route::current()->getName() == "import")
                        class="active nav-link"
                        @else class="nav-link" @endif >
@@ -334,9 +334,6 @@
 
     })
 
-</script>
-
-<script>
     $(function () {
         bsCustomFileInput.init();
     });

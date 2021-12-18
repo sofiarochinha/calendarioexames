@@ -34,7 +34,7 @@ Route::get('/calendario-anterior', ['as' => 'calendarioanterior', function ()  {
     return view('calendario_historico');
 }]);
 
-Route::get('/configuracoes/', ['as' => 'configurations',  function ()  {
+Route::get('/dados-auxiliares', ['as' => 'configurations',  function ()  {
     return view('configurations');
 }]);
 
