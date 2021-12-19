@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('associated_professor');
             $table->string('associated_course');
             $table->integer('course_year');
+            
+ 				$table->foreign('associated_professor')->references('id')->on('professors');
+				$table->foreign('associated_course')->references('name')->on('courses');
         });
     }
 

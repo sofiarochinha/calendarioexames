@@ -22,6 +22,13 @@ class CreateUsersTable extends Migration
             $table->string('observing_professor');
             $table->string('classroom');
             $table->string('time_slot');
+            
+            $table->foreign('associated_professor')->references('name')->on('professors');
+				$table->foreign('observing_professor')->references('name')->on('professors');
+				$table->foreign('time_slot')->references('time_slot')->on('time_slot');
+				$table->foreign('day')->references('evaluation_day')->on('calendar_day');
+				$table->foreign('subject')->references('name')->on('subject');
+				$table->foreign('classroom')->references('classroom')->on('classrooms');
         });
     }
 

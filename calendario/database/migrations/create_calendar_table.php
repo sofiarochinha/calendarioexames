@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->integer('course_year');
             $table->date('start_date');
             $table->date('end_date');
+            
+            $table->foreign('academic_year')->references('year_name')->on('academic_year');
+            $table->foreign('course')->references('name')->on('courses');
         });
     }
 

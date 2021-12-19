@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->integer('calendar_id');
             $table->date('evaluation_day');
+            
+            $table->foreign('evaluation_day')->references('id')->on('calendar');
         });
     }
 

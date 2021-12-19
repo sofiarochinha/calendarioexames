@@ -23,6 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('classroom');
             $table->string('time_slot');
             $table->integer('historic_calendar_id');
+            
+            
+            $table->foreign('historic_calendar_id')->references('id')->on('historic_calendar');
         });
     }
 
