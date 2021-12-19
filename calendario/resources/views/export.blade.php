@@ -1,3 +1,4 @@
+
 @extends('layout.menu')
 @section('content')
 <div class="content-wrapper">
@@ -40,37 +41,78 @@
                                     <tr id="export_checkbox_00666">
                                         <td><div  contenteditable>Tecnologias informação</div></td>
                                         <td><div contenteditable>00666</div></td>
-                                        <td><div contenteditable><input type="checkbox"></div></td>
+                                        <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="TIcheckbox" value="option1">
+                                                    <label for="TIcheckbox" class="custom-control-label">
+                                                        </label>
+                                                </div>
                                     </td>
                                     </tr>
                                     <tr id="export_checkbox_30566">
                                         <td><div  contenteditable>Eletrónica e Mecânica Industrial</div></td>
                                         <td><div contenteditable>30566</div></td>
-                                        <td><div contenteditable><input type="checkbox"></div></td>
+                                        <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="EMIcheckbox" value="option1">
+                                                    <label for="EMIcheckbox" class="custom-control-label">
+                                                        </label>
+                                                </div>
+                                    </td>
                                     </td>
                                     </tr>
                                     <tr id="export_checkbox_51894">
                                         <td><div  contenteditable>Gestão Comercial</div></td>
                                         <td><div contenteditable>51894</div></td>
-                                        <td><div contenteditable><input type="checkbox"></div></td>
+                                        <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="GCcheckbox" value="option1">
+                                                    <label for="GCcheckbox" class="custom-control-label">
+                                                        </label>
+                                                </div>
+                                    </td>
                                     </td>
                                     </tr>
                                     <tr id="export_checkbox_07777">
                                         <td><div  contenteditable>Gestão Qualidade</div></td>
                                         <td><div contenteditable>07777</div></td>
-                                        <td><div contenteditable><input type="checkbox"></div></td>
+                                        <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="GQcheckbox" value="option1">
+                                                    <label for="GQcheckbox" class="custom-control-label">
+                                                        </label>
+                                                </div>
+                                    </td>
                                     </td>
                                     </tr>
                                     <tr id="export_checkbox_42069">
                                         <td><div  contenteditable>Gestão Pública</div></td>
                                         <td><div contenteditable>42069</div></td>
-                                        <td><div contenteditable><input type="checkbox"></div></td>
+                                        <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="GPcheckbox" value="option1">
+                                                    <label for="GPcheckbox" class="custom-control-label">
+                                                        </label>
+                                                </div>
+                                    </td>
                                     </td>
                                     </tr>
                                     <tr id="export_checkbox_42069">
                                         <td><div  contenteditable>Secretariado e Comunicação Empresarial</div></td>
                                         <td><div contenteditable>20069</div></td>
-                                        <td><div contenteditable><input type="checkbox"></div></td>
+                                        <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="SCEcheckbox" value="option1">
+                                                    <label for="SCEcheckbox" class="custom-control-label">
+                                                        </label>
+                                                </div>
+                                    </td>
                                     </td>
                                     </tr>
                                     </tfoot>
