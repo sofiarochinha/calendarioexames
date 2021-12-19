@@ -86,7 +86,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="/calendario-atual"><input type="submit" value="Criar Calendário" class="btn btn-success float-right"></a>
+                    <a href="/calendario-atual"><input type="submit" value="Criar Calendário" class="btn btn-primary float-right"></a>
                 </div>
             </div>
 
