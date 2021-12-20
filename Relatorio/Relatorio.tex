@@ -1014,7 +1014,76 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\subsection{Desenvolvimento do protótipo}
 	\subsection{Guia de estilos}
 	\subsection{Testes}
+	
+	Tal como no teste anterior - no primeiro protótipo - foi realizado uma sessão de avaliação para avaliar todas as alterações ocorridas depois do último teste e também durante o desenvolvimento do protótipo de alta fidelidade. Sendo assim a sua preparação foi idêntica e o número de participantes também (tendo o guião de participante e o guião do moderador que se mantém igual aos guiões do Anexo A e B, exceto as tarefas), alterando somente as tarefas atribuídas a cada um dos participantes: 
+	
+	\begin{itemize}
+		\item Efetuar Login;
+		\item Importar ficheiro .csv;
+		\item Criar um novo calendário para o curso de Ti;
+		\item Marcar exame de Web Design no dia 4 de janeiro de 2021 às 9h da manhã;
+		\item Alterar professor de Economia I para Ricardo Marau;
+		\item Exportar para .pdf o calendário de Tecnologias de Informação;
+		\item Visualizar o calendário de 2019/2020 de Tecnologias de Informação;
+		\item Sair da sessão.
+		
+	\end{itemize}
+	
+	Ao longo da sessão foram criadas duas grelhas de observação - resultante da junção de todas as grelhas de observação que se encontram no Anexo F.
+	
+	
 	\subsubsection{Análise de resultados}
+	
+	Após o término da sessão foi criada uma lista com todas as alterações que têm de ser feitas antes da segunda sessão de avaliação. Essa lista se transformou na tabela \ref{analisederesultados} em que está divida em várias categorias: configurações, calendário atual,menu, importar csv, criar calendário, exportar para pdf e outros.
+	
+
+	\begin{center}
+		\label{analisederesultados}
+		\begin{longtable}{|m{2.2cm}|m{12cm}|}
+			\caption{Análise de resultados da segunda sessão de avaliação}\\
+			
+			\hline			
+			 \textbf{Categoria}&\textbf{Descrição da alteração} \\
+			\hline
+			
+			\multirow{4}{2cm}{Configurações}& Trocar a cor dos icons consoante se está a editar ou não (e colocar um icon para editar as informações) \\
+			
+			& Configurar as disciplinas que são opção \\
+			
+			&Tornar mais visível que as configurações são editáveis \\
+			
+			&Tornar as tabs mais visíveis\\
+			
+			\hline
+			\multirow{8}{2cm}{Calendário atual}& Retirar a vista mensal \\
+			& Mostrar no exame marcado o número de salas atribuídas ao exame\\
+			& Colocar só 3 períodos: manhã, tarde e noite\\
+			& Mostrar apenas as disciplinas ativas naquela época\\
+			& Vista do calendário para duas semanas\\
+			&Alterar o dia do exame através de um aopção no popup\\
+			&Mostrar a cinzento os dias que não pertencem à época escolhida\\
+			&Aparecer um aviso de que falta marcar docentes e salas após ter marcado um exame\\
+			
+			\hline
+			
+			\multirow{2}{2cm}{Menu} &Mudar o nome de ``visualizar" para marcação de exames\\
+			&Mudar o nome de ``configurações" para dados auxiliares\\
+			\hline
+			Importar CSV & ter uma preview dos dados importados.\\
+			\hline
+			\multirow{2}{2cm}{Criar calendário} & Colocar uma checkbox na múltipla seleção para tornar mais perceptível da sua funcionalidade.\\
+			& Verificar se tem o csv e senão pedir para importar\\
+			\hline
+			Exportar para pdf & Mostrar em forma de lista com uma checkbox todos os cursos que se quer exportar\\
+			\hline
+			Outros & Criar um sumário de incompatibilidades\\
+			\hline
+		\end{longtable}
+	\end{center}
+	
+	
+	
+	 
 	
 	\chapter{Implementação do modelo de dados persistentes}
 	\section{Estrutura da base de dados}
@@ -1044,22 +1113,22 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\pagestyle{empty}
 	
 	\chapter*{Anexo A}
-		\section*{Guião da sessão de avaliação}
+		\section*{Guião da sessão de avaliação do protótipo de baixa fidelidade não funcional}
 		\subsection*{Documento de apoio ao moderador}
 			
 		
 		\subsubsection*{Introdução}
-			O presente guião tem como função principal auxiliar/guiar o moderador para a sessão de avaliação da aplicação “UACalendar”. O conjunto de tarefas que se seguem irão servir para avaliar a eficácia, eficiência e satisfação do utilizador perante a interface idealizada, tendo como objetivo a aplicação de melhorias conforme o feedback dos participantes.
+	O presente guião tem como função principal auxiliar/guiar o moderador para a sessão de avaliação da aplicação “UACalendar”. O conjunto de tarefas que se seguem irão servir para avaliar a eficácia, eficiência e satisfação do utilizador perante a interface idealizada, tendo como objetivo a aplicação de melhorias conforme o feedback dos participantes.
 	Todos os dados recolhidos na realização desta sessão de avaliação serão tratados de forma anónima e utilizados apenas no âmbito deste projeto.
 		
 		
-		\subsubsection*{Preparação da sessão de avaliação}
+	\subsubsection*{Preparação da sessão de avaliação}
 			Para que a realização desta sessão de avaliação seja possível, será necessário que cada um dos participantes tenha acesso a:
 	
 	\begin{itemize}
 		\item Um computador com um browser instalado;
 		\item Um periférico de entrada, tal como por exemplo um rato, touchpad, etc.;
-		\item Ligação à internet para acesso aos (\href{https://www.figma.com/file/nhb5nnIrt3fdDoQhYpsN80/Calendario?node-id=9\%3A154}{\textbf{wireframes}}).
+		\item Ligação à internet para acesso aos \href{https://www.figma.com/file/nhb5nnIrt3fdDoQhYpsN80/Calendario?node-id=9\%3A154}{\textbf{wireframes}}.
 	\end{itemize}
 
 \subsubsection*{Durante a sessão de avaliação}	
@@ -1073,31 +1142,30 @@ Durante a sessão de avaliação o moderador deverá:
 		\item Guiar os participantes durante a sessão de avaliação, porém em momento algum deverá ajudar/influenciar os participantes na conclusão das tarefas apresentadas, caso o faça, incorrerá na adulteração dos resultados pretendidos;
 		\item Encerrar a sessão de avaliação.
 	\end{itemize}
-
-\subsubsection*{Tarefas a serem pedidas ao utilizador participante}	
-O utilizador participante deverá:
-
-	\begin{itemize}
-		\item Verificar o calendário final de Ti do ano letivo 2019/2020;
-		\item Importar ficheiro .csv;
-		\item Verificar individualmente quantas disciplinas, salas e docentes existem;
-		\item Pesquisar por "Ti" na barra de pesquisa e abrir o calendário "Ti - 1º Ano - 1º Semestre";
-		\item Criar um novo calendário para o curso de Ti;
-		\item Mova matemática para o período da manhã do dia 14;
-		\item Colocar "Segurança Inf." num período da noite;
-		\item Exportar para um .pdf;
-		\item Fazer log out.
-	\end{itemize}
+	
+	\subsubsection*{Tarefas a serem pedidas ao utilizador participante}	
+	O utilizador participante deverá:
+	
+		\begin{itemize}
+			\item Verificar o calendário final de Ti do ano letivo 2019/2020;
+			\item Importar ficheiro .csv;
+			\item Verificar individualmente quantas disciplinas, salas e docentes existem;
+			\item Pesquisar por "Ti" na barra de pesquisa e abrir o calendário "Ti - 1º Ano - 1º Semestre";
+			\item Criar um novo calendário para o curso de Ti;
+			\item Mova matemática para o período da manhã do dia 14;
+			\item Colocar "Segurança Inf." num período da noite;
+			\item Exportar para um .pdf;
+			\item Fazer log out.
+		\end{itemize}
 	
 	
 	\chapter*{Anexo B}
-		\section*{Guião da sessão de avaliação}
+		\section*{Guião da sessão de avaliação do protótipo de baixa fidelidade não funcional}
 		\subsection*{Documento de apoio ao utilizador participante}
 			
 		
 		\subsubsection*{Introdução}
-			O presente guião tem como função principal guiar o utilizador participante durante a sessão de avaliação da aplicação “UACalendar”. O conjunto de tarefas que se seguem irão servir para obter a opinião do utilizador participante perante a interface idealizada, tendo como objetivo a aplicação de melhorias conforme o feedback do mesmo.
-Todos os dados recolhidos na realização desta sessão de avaliação serão tratados de forma anónima e utilizados apenas no âmbito deste projeto.
+			O presente guião tem como função principal guiar o utilizador participante durante a sessão de avaliação da aplicação “UACalendar”. O conjunto de tarefas que se seguem irão servir para obter a opinião do utilizador participante perante a interface idealizada, tendo como objetivo a aplicação de melhorias conforme o feedback do mesmo. Todos os dados recolhidos na realização desta sessão de avaliação serão tratados de forma anónima e utilizados apenas no âmbito deste projeto.
 	
 		\subsubsection*{Tarefas a realizar}	
 	\begin{itemize}
@@ -1114,21 +1182,40 @@ Todos os dados recolhidos na realização desta sessão de avaliação serão tr
 
 	
 	\chapter*{Anexo C}
-	\section*{Grelhas de observação}
-\begin{landscape}
-\clearpage
-	\pagestyle{empty}
-	\begin{figure}[H] 
-		\centering 							\includegraphics[width=1.23\textwidth,height=1.23\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_magda}
-		\caption{Grelha de observação professora Magda Monteiro}
-		\label{grelhaObservacaoMagda}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_paulo}
-		\caption{Grelha de observação Sr. Paulo}
-		\label{grelhaObservacaoPaulo}
-	\end{figure}
-\end{landscape}
+	\section*{Grelhas de observação da avaliação do protótipo de baixa fidelidade não funcional}
+		\begin{landscape}
+		\clearpage
+			\pagestyle{empty}
+			\begin{figure}[H] 
+				\centering 							\includegraphics[width=1.23\textwidth,height=1.23\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_magda}
+				\caption{Grelha de observação do participante 1}
+				
+			\end{figure}
+			\begin{figure}[H] 
+				\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/testes_prototipo_baixo_fidelidade/grelha_observadores_paulo}
+				\caption{Grelha de observação do participante 2}
+				
+			\end{figure}
+		\end{landscape}
+
+	\chapter*{Anexo F}
+		\section*{Grelhas de observação da avaliação do protótipo de alta fidelidade não funcional}
+		\begin{landscape}
+			\clearpage
+			\pagestyle{empty}
+			
+			\begin{figure}[H] 
+				\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/Testes segunda_sessão/GrelhaObservadorParticipante1}
+				\caption{Grelha de observação do participante 1}
+				
+			\end{figure}
+			\begin{figure}[H] 
+				\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/Testes segunda_sessão/GrelhaObservador_Participante2}
+				\caption{Grelha de observação do participante 2}
+			\end{figure}
+			
+			
+			\end{landscape}
 	
 \end{document}	
 	
