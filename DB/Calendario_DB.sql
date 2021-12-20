@@ -33,7 +33,7 @@ CREATE TABLE "subject" (
   "semester" varchar,
   "associated_professor" varchar,
   "associated_course" varchar,
-  "course_year" varchar
+  "course_year" int
 );
 
 CREATE TABLE "academic_year" (
