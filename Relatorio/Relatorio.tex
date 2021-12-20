@@ -262,6 +262,7 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 		\label{outlookexportar}
 	\end{figure}
 	
+	\chapter{Tecnologias utilizadas}
 	\chapter{Planificação do projeto}
 
  	Por consequência do âmbito do projeto este já está dividido em várias fases sendo que nesta versão do relatório só está apresentada a primeira e a segunda fase.
@@ -918,7 +919,8 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	
 	\chapter{Prototipagem}
 	
-	\section{Protótipo de baixa fidelidade}
+	\section{Protótipo de baixa fidelidade não funcional}
+	\label{prototipobaixafidelidade}
 	
 	Antes de uma primeira implementação em web escolheu-se um template para se basear o protótipo de baixa fidelidade não funcional. O template (ver figura \ref{template}) pode ser encontra-do a partir do link \href{https://adminlte.io/themes/v3/pages/calendar.html}{https://adminlte.io/themes/v3/pages/calendar.html} e tem a licença MIT. Com isto protipou-se todos os casos de utilização da primeira e da segunda fase.
 	
@@ -974,6 +976,7 @@ Dentro da secção ``exportar"  (figurar \ref{exportar}) o utilizador pode expor
 	\end{landscape}
 
 	\subsection{Testes}
+	\label{primeiroTeste}
 		Após a interface da aplicação estar idealizada e terem sido concluídos os protótipos de baixa fidelidade, foi programada uma sessão de avaliação com a participação de dois utilizadores participantes, o Sr. Paulo e a professora Magda Monteiro, de modo a podermos obter feedback e avaliar se a interface em questão consegue satisfazer os requisitos que são propostos. Para que esta sessão de avaliação podesse ocorrer, além dos utilizadores participantes era necessária a presença de um moderador e de pelo menos dois observadores. Foram ainda preparados três documentos de apoio à sessão: um guião de apoio ao moderador, um guião para os utilizadores participantes e uma grelha de observação para os elementos observadores - que podem se observar nos anexos A, B e C. A estrutura de ambos os guiões é semelhante, apresentando uma capa, uma pequena introdução que explica os objetivos da sessão e as tarefas a desempenhar, apenas difere no guião do moderador, que também tem presente o que é necessário para preparar a sessão e as ``regras" pela qual este se deverá reger durante a realização da mesma. Para preparar a sessão é necessária a existência de um computador, um browser instalado e acesso à internet de modo a poder aceder ao website onde estão alojados os protótipos de baixa fidelidade (\href{https://www.figma.com/file/nhb5nnIrt3fdDoQhYpsN80/Calendario?node-id=9\%3A154}{\textbf{wireframes}}).
 
 Foram selecionadas nove tarefas com base nos protótipos desenhados para o utilizador participante desempenhar:
@@ -1010,8 +1013,83 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 
 \end{itemize}
 
-	\section{Protótipo de alta fidelidade}
+	\section{Protótipo de alta fidelidade não funcional}
+	
+	Na segunda fase do projeto criou-se o protótipo de alta fidelidade não funcional utilizando laravel mas sem nenhuma conexão a uma base de dados. Inicialmente houve uma adaptação do template - mencionado na secção \ref{prototipobaixafidelidade} - para o laravel. Este protótipo pode ser visualizado através do \href{http://estga-dev.clients.ua.pt/~ptdw-2021-gr4}{$\underline{link}$}  disponibilizado pela ESTGA dentro da rede da Universidade de Aveiro ou através da sua VPN.
+	
 	\subsection{Desenvolvimento do protótipo}
+	
+	Durante a transição dos wireframes para o protótipo de alta fidelidade não funcional fez-se as várias alterações mecionadas nos testes - secção \ref{primeiroTeste}. No entanto ao longo do desenvolvimento do protótipo ocorreram várias alterações tanto na organização do menu como no aspeto gráfico.
+	
+	Inicialmente o utilizador terá de iniciar sessão e por isso aparece a página da figura \ref{login}, no entanto como não tem ligação à base de dados o utilizador pode prosseguir para a seguinte página sem inserir dados. 
+	
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/login}
+		\caption{Interface para iniciar sessão}
+		\label{login}
+	\end{figure}
+	
+	Assim que entra na aplicação a primeira página que aparece é a de selecionar um curso (ver figura \ref{selecionarCurso}) para visualizar o calendário de exames do mesmo. Nesta página é visível uma reorganização do menu (inspirado pelo ``Outlook Calendar'' e pelo ``Google Calendar") em relação aos wireframes. O menu começa com o ``criar calendário" em que está sempre destacado porque é uma ação importante e que se irá repetir várias vezes. De seguida tem o ``Calendário Atual'' que tem dois opções: ``Visualizar'' - que permite visualizar todos os calendários atuais e marcar os respetivos exames - e ``Configurações'' - que são todas as configurações, das unidades curriculares, docentes, salas e épocas do semestre corrente, que foram importadas do ficheiro .csv. Logo abaixo tem o importar CSV seguido de exportar que são duas ações parecidas. Por fim tem os calendários anteriores que é algo que se espera que o utilizador vá utilizar muito raramente e no final do menu tem a opção de encerrar a sessão.
+	
+	Para além da alteração do menu foi adiconado em todas as páginas \textit{breadcrumbs} para facilitar o utilizador a retrodecer para a página inicial ou identificar em que página está.  
+	
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/VisualizarCalendario}
+		\caption{Interface onde se seleciona o curso para marcar os exames - primeira página da aplicação}
+		\label{selecionarCurso}
+	\end{figure}
+
+	Depois de selecionar um curso pode marcar os exames respetivos adicionando através de um popup os vigilantes e as salas. Cada exame está predefinido com uma duração de 4 horas, porque só haverá um exame de manhã, tarde e noite. Para uma melhor acessibilidade foi adicionado várias caixas de seleção para poder mudar de curso, ano do curso e a época de forma mais rápida evitando ter de voltar atrás. 
+
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/VerCalendarioAtual}
+		\caption{Interface com o calendário atual para marcar os exames}
+		\label{marcarExames}
+	\end{figure}
+	
+	No entanto para que os cursos estejam disponíveis o utilizador tem de - a cada semestre - importar um ficheiro .csv, como se pode visualizar na figura \ref{importarCSV}, que contém todos os dados sobre os docentes, salas e cursos. Todas as informações sobre os dados importados encontram-se na página de configurações (ver figura \ref{configuracoes}). 
+	
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/Importar}
+		\caption{Página para importar o ficheiro .csv}
+		\label{importarCSV}
+	\end{figure}
+
+	Com esta página é possível verificar se todos os dados estam corretos e se tiver algum erro nas informações estas são editáveis. Para além disso se o utilizador pretender pode criar e editar todas as épocas de avaliação na mesma página.  
+	
+	
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/Configuracoes}
+		\caption{Página para visualizar todos os dados importados}
+		\label{configuracoes}
+	\end{figure}
+	
+	Após este passo o utilizador pode criar vários calendários de uma só vez, pode adicionar vários cursos, para várias épocas, de vários anos, como mostra a figura \ref{criarCalendario}, ao contrário dos wireframes em que só podia criar um de cada vez. Cada calendário criado pode ser acedido através da opção ``Visualizar'' para marcar os exames pretendidos. 
+	
+	
+	 \begin{figure}[H] 
+	 	\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/criarCalendario}
+	 	\caption{Página para criar os calendários}
+	 	\label{criarCalendario}
+	 \end{figure}
+ 
+ 	Depois de marcar os exames - como se pode visualizar na figura \ref{marcarExames} - o utilizador pode exportar para .pdf cada um ou vários calendários ao mesmo. Enquanto que nos wireframes só inseria a data de início e a data de fim da época e exportava todos os calendários que tinham as suas épocas dentro deste intervalo. Neste protótipo, tal como em outras páginas do mesmo, o utilizador pode filtrar os calendários por curso, ano letivo (uma vez que pode exportar os calendários anteriores), épocas, ano do curso e semestre. 
+ 	
+ 	 \begin{figure}[H] 
+ 		\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/ExportarPdf}
+ 		\caption{Página para exportar os calendários para .pdf }
+ 		\label{exportarPDF}
+ 	\end{figure}
+ 	
+ 	
+ 	Por fim o utilizador pode visualizar calendários que já tenha criado anteriormente, no entanto não pode remarcar os exames, visualizar quais foram as salas e os vigilantes associados. Só mostra quando o exame foi marcado, qual a disciplina associada e em que horário. 
+	
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/ExportarPdf}
+		\caption{Página para exportar os calendários para .pdf }
+		\label{exportarPDF}
+	\end{figure}
+
 	\subsection{Guia de estilos}
 	\subsection{Testes}
 	
