@@ -11,7 +11,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Calendário Atual</a></li>
+              <li class="breadcrumb-item"><a href="{{route('curso')}}">Calendário Atual</a></li>
               <li class="breadcrumb-item active">Curso</li>
             </ol>
           </div>
@@ -77,6 +77,7 @@
                 </div>
               </div>
             <!--</div>-->
+        </section>
           </div>
         </div>
       </div><!-- /.container-fluid -->

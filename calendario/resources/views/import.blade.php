@@ -12,7 +12,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/calendario-atual">Calendário Atual</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('curso')}}">Calendário Atual</a></li>
                             <li class="breadcrumb-item active">Importar CSV</li>
                         </ol>
                     </div><!-- /.col -->
@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <a href="{{'/criar-calendario', true  }}">
+                            <a href="{{route('curso')}}">
                                 <button type="submit" class="btn btn-primary" >Importar</button>
                             </a>
                         </div>

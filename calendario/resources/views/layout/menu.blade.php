@@ -4,67 +4,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ua Calendar</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href=" {{(asset('/plugins/fontawesome-free/css/all.min.css'))}}">
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet"
+          href="{{(asset('/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'))}}">
     <!-- JQVMap -->
-    <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="{{(asset('/plugins/jqvmap/jqvmap.min.css'))}}">
+    <!-- overlayScrollbars for sidebar -->
+    <link rel="stylesheet" href="{{(asset('/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'))}}">
     <!-- fullCalendar -->
-    <link rel="stylesheet" href="/plugins/fullcalendar/main.css">
+    <link rel="stylesheet" href="{{(asset('/plugins/fullcalendar/main.css'))}}">
     <!-- DataTables -->
-    <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{(asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'))}}">
+    <link rel="stylesheet" href="{{(asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'))}}">
+    <link rel="stylesheet" href="{{(asset('/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'))}}">
 
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- daterange picker -->
-    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="{{(asset('/plugins/daterangepicker/daterangepicker.css'))}}">
     <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="{{(asset('/plugins/icheck-bootstrap/icheck-bootstrap.min.css'))}}">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet"
+          href=" {{(asset('/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'))}}">
     <!-- Select2 -->
-    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <!-- Bootstrap4 Duallistbox -->
-    <link rel="stylesheet" href="/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-    <!-- BS Stepper -->
-    <link rel="stylesheet" href="/plugins/bs-stepper/css/bs-stepper.min.css">
+    <link rel="stylesheet" href="{{(asset('/plugins/select2/css/select2.min.css'))}}">
+    <link rel="stylesheet" href="{{(asset('/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css'))}}">
     <!-- dropzonejs -->
-    <link rel="stylesheet" href="/plugins/dropzone/min/dropzone.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
-    <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="{{(asset('/plugins/dropzone/min/dropzone.min.css'))}}">
+    <!-- Theme style - contain css for multiple select-->
+    <link rel="stylesheet" href="{{(asset('/dist/css/adminlte.min.css'))}}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
 <!-- Preloader -->
 <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{(asset('/dist/img/AdminLTELogo.png'))}}" alt="AdminLTELogo" height="60"
+         width="60">
 </div>
 
 
@@ -79,13 +61,12 @@
 </nav>
 <!-- /.navbar -->
 
-
-
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/calendario-atual" class="brand-link">
-        <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{route('curso')}}" class="brand-link">
+        <img src="{{(asset('/dist/img/AdminLTELogo.png'))}}" alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Ua Calendar</span>
     </a>
 
@@ -94,7 +75,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/dist/img/user2-160x160.gif" class="img-circle elevation-2" alt="User Image">
+                <img src="{{(asset('/dist/img/user2-160x160.gif'))}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Username</a>
@@ -108,14 +89,14 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
 
-                    <li class="nav-item">
-                        <a href="/criar-calendario" class="nav-link active">
-                            <i class="nav-icon fas fa-calendar-plus "></i>
-                            <p >
-                                Criar Calendário
-                            </p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{route('criarcalendario')}}" class="nav-link active">
+                        <i class="nav-icon fas fa-calendar-plus "></i>
+                        <p>
+                            Criar Calendário
+                        </p>
+                    </a>
+                </li>
 
                 <li class="nav-header"></li>
 
@@ -130,7 +111,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
 
-                            <a href="/calendario-atual"
+                            <a href="{{route('curso')}}"
                                @if (\Illuminate\Support\Facades\Route::current()->getName() == "curso" ||
                                     \Illuminate\Support\Facades\Route::current()->getName() == "calendarioatual")
                                class="active nav-link" @else class="nav-link" @endif >
@@ -140,9 +121,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/dados-auxiliares"
+                            <a href="{{route('configurations')}}"
                                @if (\Illuminate\Support\Facades\Route::current()->getName() == "configurations")
-                                class="active nav-link" @else class="nav-link" @endif >
+                               class="active nav-link" @else class="nav-link" @endif >
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dados Auxiliares</p>
                             </a>
@@ -154,8 +135,8 @@
                 <li class="nav-header"></li>
 
 
-		<li class="nav-item">
-                    <a href="/importar"
+                <li class="nav-item">
+                    <a href="{{route('import')}}"
                        @if (\Illuminate\Support\Facades\Route::current()->getName() == "import")
                        class="active nav-link"
                        @else class="nav-link" @endif >
@@ -166,7 +147,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/exportar"
+                    <a href="{{route('export')}}"
                        @if (\Illuminate\Support\Facades\Route::current()->getName() == "export")
                        class="active nav-link"
                        @else class="nav-link" @endif >
@@ -181,7 +162,7 @@
 
 
                 <li class="nav-item">
-                    <a href="/calendario-anterior"
+                    <a href="{{route('calendarioanterior')}}"
                        @if (\Illuminate\Support\Facades\Route::current()->getName() == "calendarioanterior")
                        class="active nav-link"
                        @else class="nav-link" @endif >
@@ -214,79 +195,56 @@
 @show
 
 <!-- jQuery -->
-<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{(asset('/plugins/jquery-ui/jquery-ui.min.js'))}}"></script>
 <!-- Bootstrap 4 -->
-<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="/plugins/chart.js/Chart.min.js"></script>
+<script src="{{(asset('/plugins/bootstrap/js/bootstrap.bundle.min.js'))}}"></script>
 <!-- Sparkline -->
-<script src="/plugins/sparklines/sparkline.js"></script>
+<script src="{{(asset('/plugins/sparklines/sparkline.js'))}}"></script>
 <!-- JQVMap -->
-<script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{(asset('/plugins/jqvmap/jquery.vmap.min.js'))}}"></script>
+<script src="{{(asset('/plugins/jqvmap/maps/jquery.vmap.usa.js'))}}"></script>
 <!-- jQuery Knob Chart -->
-<script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="{{(asset('/plugins/jquery-knob/jquery.knob.min.js'))}}"></script>
 <!-- daterangepicker -->
-<script src="/plugins/moment/moment.min.js"></script>
-<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{(asset('/plugins/moment/moment.min.js'))}}"></script>
+<script src="{{(asset('/plugins/daterangepicker/daterangepicker.js'))}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="{{(asset('/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'))}}"></script>
 <!-- overlayScrollbars -->
-<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{(asset('/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'))}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/dist/js/demo.js"></script>
+<script src="{{(asset('/dist/js/demo.js'))}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/dist/js/pages/dashboard.js"></script>
+<script src="{{(asset('/dist/js/pages/dashboard.js'))}}"></script>
 <!-- Select2 -->
-<script src="/plugins/select2/js/select2.full.min.js"></script>
-
-<!-- Ekko Lightbox -->
-<script src="/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+<script src="{{(asset('/plugins/select2/js/select2.full.min.js'))}}"></script>
 <!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
+<script src="{{(asset('/dist/js/adminlte.min.js'))}}"></script>
 <!-- Filterizr-->
-<script src="/plugins/filterizr/jquery.filterizr.min.js"></script>
+<script src="{{(asset('/plugins/filterizr/jquery.filterizr.min.js'))}}"></script>
 <!-- AdminLTE for demo purposes -->
 
 <!-- DataTables  & Plugins -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../../plugins/jszip/jszip.min.js"></script>
-<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
-<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="{{(asset('/plugins/datatables/jquery.dataTables.min.js'))}}"></script>
+<script src="{{(asset('/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'))}}"></script>
+<script src="{{(asset('/plugins/datatables-responsive/js/dataTables.responsive.min.js'))}}"></script>
+<script src="{{(asset('/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'))}}"></script>
+<script src="{{(asset('/plugins/datatables-buttons/js/dataTables.buttons.min.js'))}}"></script>
+<script src="{{(asset('/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'))}}"></script>
+<script src="{{(asset('/plugins/jszip/jszip.min.js'))}}"></script>
+<!-- buttons for pdf, csv export -->
+<script src="{{(asset('/plugins/pdfmake/pdfmake.min.js'))}}"></script>
+<script src="{{(asset('/plugins/pdfmake/vfs_fonts.js'))}}"></script>
+<script src="{{(asset('/plugins/datatables-buttons/js/buttons.html5.min.js'))}}"></script>
+<script src="{{(asset('/plugins/datatables-buttons/js/buttons.print.min.js'))}}"></script>
 
 <!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="/plugins/raphael/raphael.min.js"></script>
-<script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script src="/plugins/chart.js/Chart.min.js"></script>
-
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/dist/js/pages/dashboard2.js"></script>
-
 <!-- fullCalendar 2.2.5 -->
-<script src="/plugins/moment/moment.min.js"></script>
+<script src="{{(asset('/plugins/moment/moment.min.js'))}}"></script>
 <!-- bs-custom-file-input -->
-<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-
-<!-- SweetAlert2 -->
-<script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- Toastr -->
-<script src="/plugins/toastr/toastr.min.js"></script>
+<script src="{{(asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js'))}}"></script>
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
