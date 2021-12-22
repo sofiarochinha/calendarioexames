@@ -277,17 +277,20 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 	\end{figure}
 	
 	\chapter{Tecnologias utilizadas}
+	
+	As tecnologias utilizadas ao longo do projeto foram o ``Figma'' que permite a criação dos Wireframes de forma gratuita (para estudantes) e simular uma interação que é útil para os testes. Ao longo do desenvolvimento do protótipo de alta fidelidade não funcional foram a \textit{framework} laravel. Como o servidor onde o projeto irá decorrer tem como obrigatoriedade a utilização de \textit{framework} em php então esta foi escolhida por ser lecionada durante as aulas de Desenvolvimento Web Multiplataforma e por haver elementos do grupo que têm algum conhecimento sobre a mesma. Como \textit{front-end} foi utilizado o BootStrap4 que já era utilizado no template escolhido tendo somente que o adaptar para o projeto de laravel.
+	
+	Para os testes de acessibilidade e desempenho foi utilizado a extensão do ``LightHouse'' que permite testar todo o projeto no servidor da UA ou localmente já que utiliza o navegador para o mesmo. 
+	
+	
+	
 	\chapter{Planificação do projeto}
 
  	Por consequência do âmbito do projeto este já está dividido em várias fases sendo que nesta versão do relatório só está apresentada a primeira, a segunda fase e a terceira fase.
  	
  	Na primeira fase iniciou-se com o levantamento do estado de arte (secção \ref{estadodearte}) que demorou mais do que o esperado uma vez que não se encontra aplicações parecidas disponíveis para qualquer utilizador talvez por serem aplicações dirigidas a empresas. De seguida ocorreu a reunião com o cliente que está detalhadamente descrita na secção \ref{analiseutilizador} e o levantamento de requisitos (secção \ref{requisitos}). Uma vez que o cliente tem uma ideia precisa do que pretende e não há potenciais utilizadores para além do próprio então não houve uma análise dos utilizadores através de personas o que poupou imenso tempo. Com estas informações  avançou-se para a segunda fase que consiste na prototipagem de baixa fidelidade - wireframes, secção \ref{prototipobaixafidelidade}. Durante a sua realização houve bastante dificuldade na organização de todas as funcionalidades numa só aplicação provocando a necessidade de extender o tempo para a tarefa, uma vez que a aplicação principal que o utilizador utiliza de momento é o excel e este não é de todo o mais acessível neste contexto. Por fim reparou-se durante os testes (secção \ref{primeiroTeste}) com potenciais utilizadores, que trabalham dentro da área administrativa, que a aplicação estava confusa e pouco intuitva.
  	
- 	Sendo assim na terceira fase do projeto - que se pode ver o seu planeamento na figura \ref{planeamentoTerceiraFase} - implementou-se todas as sugestões e houve uma reorganização do menu lateral e uma mudança de nomes, como se pode ver detalhadamente na secção \ref{prototipoAFNF}. Inicialmente o menu era utilizado como navegação e filtragem de todos os calendários obrigando, deste modo, o utilizador a ``entrar'' e ``sair'' da página sempre que queria marcar exames noutro calendário. Para além disso implementou-se outras funcionalidades que não estavam pervistas inicialmente para facilitar a criação dos calendários, como a criação de múltiplos calendários de uma só vez, e a alteração dos dados associados. No entanto outras funcionalidades bastantes importantes, como a verificação se o utilizador já importou o csv e os avisos, não foram implementados porque reparou-se que, como nesta fase o projeto não tem ligação à base de dados, seria tempo desperdiçado. Entretanto com a ajuda do template criou-se o guia de estilos para manter a consistência de todos os componentes utilizados. Por fim houve uma avaliação do protótipo de alta fidelidade não funcional em que surgiram mais funcionalidades requisitadas pelo cliente que não estavam previstas incialmente. 
-	
-
-	
-
+ 	Sendo assim na terceira fase do projeto - que se pode ver o seu planeamento na figura \ref{planeamentoTerceiraFase} - implementou-se todas as sugestões e houve uma reorganização do menu lateral e uma mudança de nomes, como se pode ver detalhadamente na secção \ref{prototipoAFNF}. Inicialmente o menu era utilizado como navegação e filtragem de todos os calendários obrigando, deste modo, o utilizador a ``entrar'' e ``sair'' da página sempre que queria marcar exames noutro calendário. Para além disso implementou-se outras funcionalidades que não estavam pervistas inicialmente para facilitar a criação dos calendários, como a criação de múltiplos calendários de uma só vez, e a alteração dos dados associados. No entanto outras funcionalidades bastantes importantes, como a verificação se o utilizador já importou o csv e os avisos, não foram implementados porque reparou-se que, como nesta fase o projeto não tem ligação à base de dados, seria tempo desperdiçado. Entretanto com a ajuda do template criou-se o guia de estilos para manter a consistência de todos os componentes utilizados. Por fim houve uma avaliação do protótipo de alta fidelidade não funcional em que surgiram mais funcionalidades requisitadas pelo cliente que não estavam previstas incialmente. E também houve um teste de acessibilidade e desempenho que ocorreu posteormente dos testes com potenciais utilizadores porque o acesso ao servidor é restrito à rede da UA e isso impediu a utilização da maioria dos sites de ``browserTesting''. 
 
 	\clearpage
 	\begin{landscape}
@@ -309,6 +312,13 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 		\centering 			\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/Planeamentodaterceirafase}
 		\caption{Planeamento da terceira fase}
 		\label{planeamentoTerceiraFase}
+	\end{figure}
+
+	\begin{figure}[H] 
+		\centering 			\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/cronogramaExecutado3}
+		\caption{Cronograma executado da terceira fase}
+		\label{cronogramaExcutado3}
+		
 	\end{figure}
 
 	\end{landscape}
@@ -700,7 +710,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 			\hline
 			Pré-condições: & Ter iniciado sessão na aplicação, ter importado ou adicionado informações sobre os cursos, disciplinas, docentes e salas.\\
 			\hline
-			Descrição da interação: & O utilizador para criar um novo calendário terá de clicar em ``novo'' na figura \ref{interfacevercalendario}. Depois terá de preencher todos os campos (ver figura \ref{interfacecriarcalendario}): curso, ano do curso, ano letivo, nome da época e a sua data de início e fim. Por fim clica no botão ``criar". \\
+			Descrição da interação: & O utilizador para criar um novo calendário terá de, ver figura \ref{interfacevercalendario}, de preencher todos os campos (ver figura \ref{interfacecriarcalendario}): curso, ano do curso, ano letivo, nome da época e a sua data de início e fim.  \\
 			\hline
 			Cenário alternativo 1: &\textbf{Não preenche todos os campos  expostos:} Aparecerá uma mensgem de aviso que terá de preencher todos os campos para a criação de um novo calendário.\\
 			\hline
@@ -793,7 +803,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 	\hline
 	Pré-condições: & Ter iniciado sessão na aplicação, ter criado calendários de avaliação e ter marcado exames.\\
 	\hline 
-	Descrição da interação: & O utilizador após marcar um exame pode clicar no exame e aparecerá um pop-up (ver figura \ref{interfacevigilantes}) em que pode adicionar vigilantes (por padrão será adicionado o docente da disciplina) e uma ou mais salas. \\
+	Descrição da interação: & O utilizador após marcar um exame (ver figura \ref{interfacevigilantes}) pode adicionar vigilantes (por padrão será adicionado o docente da disciplina) e uma ou mais salas. \\
 	\hline
 	Cenário alternativo 1: & \textbf{Associa um docente a um exame que não está disponível:} Aparece um aviso de alta prioridade a indicar que o docente associado não está disponível\\
 	\hline
@@ -890,7 +900,7 @@ Assim que o utilizador inicia a sessão na aplicação este tem de facilmente en
 			\hline
 			Pré-condições: & Estar conectado à rede da Universidade de Aveiro e ter criado calendários (ver caso de utilização na tabela \ref{usecasecriarcalendario}).\\
 			\hline
-			Descrição da interação: &  O utilizador seleciona o botão ``Exportar" no menu do lado esquerdo (ver figura \ref{interfaceexportarpdf}) em que aparecerá todos os calendários de cada ano letivo. Terá de selecionar um ano letivo e depois a época e curso. No fim todos os calendáros selecionados serão exportados consoante a época. \\
+			Descrição da interação: &  O utilizador ao entrar na página de exportar (ver figura \ref{interfaceexportarpdf}) aparecerá todos os calendários de cada ano letivo. Terá de selecionar um ano letivo e depois a época e curso. No fim todos os calendáros selecionados serão exportados consoante a época. \\
 			\hline
 			Cenário alternativo 1:&\textbf{O utilizador seleciona um calendário vazio:} Aparecerá um aviso a indicar que não existe exames marcados no calendário selecionado. No entanto se o utilizador quiser continuar o calendário será exportado.\\
 			\hline
@@ -992,7 +1002,12 @@ Dentro da secção ``exportar"  (figurar \ref{exportar}) o utilizador pode expor
 	
 	\subsection{Diagrama de user flow}
 
-	Com o desenvolvimento dos wireframes criou-se o diagrama de user flow que é útil para entender quais são os passos que o utilizador terá de realizar para concluir uma tarefa. Este diagrama foi desenvolvido consoante os wireframes e a descrição dos casos de utilização.
+	Com o desenvolvimento dos wireframes criou-se o diagrama de user flow que é útil para entender quais são os passos que o utilizador terá de realizar para concluir uma tarefa. Este diagrama foi desenvolvido utilizando a informação dos wireframes e dos casos de utilização.
+	
+	Como nesta aplicação o foco é a criação de calendários de exame o foco do user flow encontra-se nessa mesma ação. O utilizador faz o login e é apresentado com um menu onde pode criar um novo calendário, abrir um calendário criado anteriormente, alterar algumas informações relativas aos docentes, salas e disciplinas e por fim exportar calendários.
+	Caso se queira criar um calendário e não exista informação do semestre em que se encontra a aplicação irá mandar um aviso em que poderá ser redirecionado para a página onde irá importar o ficheiro csv com os dados necessários para o semestre.
+	
+	Após ter os dados importados poderá criar o calendário indicando os cursos e anos que quer colocar no calendário assim como a época em que vão ser colocados. De seguida, irá aparecer um calendário com disciplinas do lado, estas disciplinas fazem parte dos cursos que foram selecionados anteriormente e serão arrastadas para o calendário para indicar em que altura do dia irá decorrer o exame. Assim que arrastar a disciplina para o calendário vai aparecer um pop-up para indicar os observadores e salas que serão utilizadas para o exame. Caso o utilizador coloque um exame fora do horário do curso irá aparecer um aviso mas não impede a ação. A qualquer altura o utilizador pode alterar alguns dos dados que importou e também exportar o calendário desejado .
 
 	\begin{landscape}
 		\pagestyle{empty}
@@ -1120,7 +1135,13 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 
 	\subsection{Guia de estilos}
 	
+	O guia de estilos foi criado à medida que o protótipo de alta fidelidade não funcional foi desenvolvimento. Este contém todos os componentes que foram utilizados apesar de que vários foram retirados do template.  Utilizou-se as cores primárias e secundárias do template que são  o azul e o cinzento , como se pode ver na figura \ref{cores}. 
 	
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{image/cores}
+		\caption{Cores utilizadas no protótipo de alta fidelidade }
+		\label{cores}
+	\end{figure}
 	
 	
 	\subsection{Testes com potenciais utilizadores}
@@ -1201,50 +1222,55 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	
 	Para começar escolheu-se duas páginas que têm mais impacto para o utilizador que são a de ``Marcar exames'' e a de ``Configurações''. Na figura \ref{testDesktop} é possível verificar que existe uma boa acessibilidade mas que ainda não está o ideal e um desempenho mediano. Ao contrário do que acontece em mobile, figura \ref{testMobile}, que o desempenho está muito baixo. Estas pontuações podem ser melhoradas, segundo a extensão, através de algumas implementações apresentadas na tabela \ref{upScoreTesting}.
 	
-		\begin{center}
-		\label{upScoreTesting}
-		\begin{longtable}{|m{2.2cm}|m{12cm}|}
-			\caption{Implementações que podem melhorar a pontuação nas várias categorias}\\
-			
-			\hline			
-			\textbf{Categoria}&\textbf{Descrição da alteração} \\
-			\hline
-			
-			\multirow{5}{2cm}{Configurações}& Eliminar recursos que bloqueiam o processamento \\
-			
-			& Reduzir o javaScript que não é utilizado \\
-			
-			&Reduzir o CSS \\
-			
-			&Remover módulos duplicados em pacotes javaScript\\
-			
-			&Utilizar HTTP/2\\
-			\hline
-			\multirow{2}{2cm}{Acessibilidade}& As cores de primeiro e de segundo plano não têm uma relação de contraste suficiente \\
-			&A tag <html> não tem o atributo [lang]\\
-			&Os links não têm um nome percetível\\
-			&Os itens de lista ($<li>$) não estão incluídos nos elementos superiores $<ul>$ ou $<ol>$.\\
-			\hline
-			\multirow{2}{2cm}{Melhores práticas} & As páginas não utilizam https\\
-			&A página não possui o doctype HTML\\
-			\hline
-		\end{longtable}
-	\end{center}
-	 
+	
 	 \begin{figure}[H] 
 	 	\centering 							\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/acessibilityTests/Desktop}
-	 	\caption{Resultado do teste do ``LightHouse'' em abiente \textit{desktop}}
+	 	\caption{Resultado do teste do ``LightHouse'' em ambiente \textit{desktop}}
 	 	\label{testDesktop}
 	 \end{figure}
  
 	
 	\begin{figure}[H] 
 		\centering 							\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/acessibilityTests/mobile}
-		\caption{Resultado do teste do ``LightHouse'' em abiente \textit{mobile}}
+		\caption{Resultado do teste do ``LightHouse'' em ambiente \textit{mobile}}
 		\label{testMobile}
 	\end{figure}
 	
+		 	\begin{center}
+		 	\label{upScoreTesting}
+		 	\begin{longtable}{|m{2.2cm}|m{12cm}|}
+		 		\caption{Implementações que podem melhorar a pontuação nas várias categorias}\\
+		 		
+		 		\hline			
+		 		\textbf{Categoria}&\textbf{Descrição da alteração} \\
+		 		\hline
+		 		
+		 		\multirow{5}{2cm}{Configurações}& Eliminar recursos que bloqueiam o processamento \\
+		 		
+		 		& Reduzir o javaScript que não é utilizado \\
+		 		
+		 		&Reduzir o CSS \\
+		 		
+		 		&Remover módulos duplicados em pacotes javaScript\\
+		 		
+		 		&Utilizar HTTP/2\\
+		 		\hline
+		 		\multirow{2}{2cm}{Acessibilidade}& As cores de primeiro e de segundo plano não têm uma relação de contraste suficiente \\
+		 		&A tag <html> não tem o atributo [lang]\\
+		 		&Os links não têm um nome percetível\\
+		 		&Os itens de lista ($<li>$) não estão incluídos nos elementos superiores $<ul>$ ou $<ol>$.\\
+		 		\hline
+		 		\multirow{2}{2cm}{Melhores práticas} & As páginas não utilizam https\\
+		 		&A página não possui o doctype HTML\\
+		 		\hline
+		 	\end{longtable}
+		 \end{center}
 		 
+		 \begin{figure}[H] 
+		 	\centering 							\includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{image/acessibilityTests/contrast}
+		 	\caption{Resultado do teste de contraste do ``LightHouse'' em abiente \textit{desktop}}
+		 	\label{testContrast}
+		 \end{figure}
 	
 	\chapter{Implementação do modelo de dados persistentes}
 	\section{Estrutura da base de dados}
@@ -1396,17 +1422,16 @@ Durante a sessão de avaliação o moderador deverá:
 			\end{landscape}
 		
 		\chapter*{Anexo E}
-		\section*{Grelhas de observação da avaliação do protótipo de alta fidelidade não funcional}
-			\clearpage
+		\section*{Configurações das simulações da extensão ``LightHouse''}
 			\pagestyle{empty}
 			
 			\begin{figure}[H] 
-				\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/acessibilityTests/testDesktop}
+				\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/acessibilityTests/testDesktop}
 				\caption{Configurações da simulação em ambiente \textit{desktop}}
 				
 			\end{figure}
 			\begin{figure}[H] 
-				\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/acessibilityTests/testMobile}
+				\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/acessibilityTests/testMobile}
 				\caption{Configurações da simulação em ambiente \textit{mobile}}
 			\end{figure}
 	
