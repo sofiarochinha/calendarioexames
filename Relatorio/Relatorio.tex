@@ -23,7 +23,9 @@
 \rfoot{{\footnotesize ESTGA}}
 \rhead{PTDW}
 \lfoot{Calendário de exames}
-
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{Nomenclatura}%mudar o nome da secção
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
 
@@ -110,6 +112,17 @@
 	\listoftables % Lista de tabelas
 	\newpage
 	\listoffigures % Lista de figuras
+	
+	\newpage
+	\thispagestyle{plain}%retira cabeçalho e rodape
+	\thispagestyle{empty}%retira a numeração da pagina
+	
+	\nomenclature{TI}{Tecnologias de Informação}
+	\nomenclature{SEO}{Search Engine Optimization}
+	\nomenclature{CSV}{Comma-separated values}
+	\nomenclature{VPN}{Virtual Private Network}
+	
+	\printnomenclature
 	
 	\newpage
 	\pagenumbering{arabic}
@@ -306,7 +319,7 @@ Também existe uma funcionalidade incorporada para imprimir os calendários cria
 	\chapter{Análises dos utilizadores e tarefas}
 	\label{analiseutilizador}
 	
-	Após a primeira reunião com o cliente chegou-se à conclusão que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
+	Após a primeira reunião com o cliente chegou-se à conclusion que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
 	
 	O cliente no momento recorre ao excel para a criação de calendários,  colocando todas as salas, cursos e docentes manualmente tendo o proceso um alto risco de erro e baixa eficiência. Para além disso a formatação final (em .pdf) é exportado a partir do mesmo programa, como se pode verificar na figura \ref{calendarioatual}. Para a verificação da disponibilidade dos docentes recorre a outro programa que mostra, em forma de calendário semanal, a vermelho a indisponibilidade e a roxo quando o mesmo tem aulas, tal como está apresentado na figura \ref{disponibilidadedocentes}. 
 	
@@ -989,7 +1002,7 @@ Dentro da secção ``exportar"  (figurar \ref{exportar}) o utilizador pode expor
 		\end{figure}
 	\end{landscape}
 
-	\subsection{Testes}
+	\subsection{Testes com potenciais utilizadores}
 	\label{primeiroTeste}
 		Após a interface da aplicação estar idealizada e terem sido concluídos os protótipos de baixa fidelidade, foi programada uma sessão de avaliação com a participação de dois utilizadores participantes, o Sr. Paulo e a professora Magda Monteiro, de modo a podermos obter feedback e avaliar se a interface em questão consegue satisfazer os requisitos que são propostos. Para que esta sessão de avaliação podesse ocorrer, além dos utilizadores participantes era necessária a presença de um moderador e de pelo menos dois observadores. Foram ainda preparados três documentos de apoio à sessão: um guião de apoio ao moderador, um guião para os utilizadores participantes e uma grelha de observação para os elementos observadores - que podem se observar nos anexos A, B e C. A estrutura de ambos os guiões é semelhante, apresentando uma capa, uma pequena introdução que explica os objetivos da sessão e as tarefas a desempenhar, apenas difere no guião do moderador, que também tem presente o que é necessário para preparar a sessão e as ``regras" pela qual este se deverá reger durante a realização da mesma. Para preparar a sessão é necessária a existência de um computador, um browser instalado e acesso à internet de modo a poder aceder ao website onde estão alojados os protótipos de baixa fidelidade (\href{https://www.figma.com/file/nhb5nnIrt3fdDoQhYpsN80/Calendario?node-id=9\%3A154}{\textbf{wireframes}}).
 
@@ -1106,16 +1119,18 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\end{figure}
 
 	\subsection{Guia de estilos}
-	\subsection{Estratégia de acessibilidade}
-	é necessário fazer
-	\subsection{Testes}
+	
+	
+	
+	
+	\subsection{Testes com potenciais utilizadores}
 	
 	Tal como no teste anterior - no primeiro protótipo - foi realizado uma sessão de avaliação para avaliar todas as alterações ocorridas depois do último teste e também durante o desenvolvimento do protótipo de alta fidelidade. Sendo assim a sua preparação foi idêntica e o número de participantes também (tendo o guião de participante e o guião do moderador que se mantém igual aos guiões do Anexo A e B, exceto as tarefas), alterando somente as tarefas atribuídas a cada um dos participantes: 
 	
 	\begin{itemize}
 		\item Efetuar Login;
 		\item Importar ficheiro .csv;
-		\item Criar um novo calendário para o curso de Ti;
+		\item Criar um novo calendário para o curso de TI;
 		\item Marcar exame de Web Design no dia 4 de janeiro de 2021 às 9h da manhã;
 		\item Alterar professor de Economia I para Ricardo Marau;
 		\item Exportar para .pdf o calendário de Tecnologias de Informação;
@@ -1155,7 +1170,7 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 			& Colocar só 3 períodos: manhã, tarde e noite\\
 			& Mostrar apenas as disciplinas ativas naquela época\\
 			& Vista do calendário para duas semanas\\
-			&Alterar o dia do exame através de um aopção no popup\\
+			&Alterar o dia do exame através de uma opção no popup\\
 			&Mostrar a cinzento os dias que não pertencem à época escolhida\\
 			&Aparecer um aviso de que falta marcar docentes e salas após ter marcado um exame\\
 			
@@ -1176,9 +1191,60 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 		\end{longtable}
 	\end{center}
 	
+	\subsection{Testes de acessibilidade e desempenho}
 	
+	Depois da realização dos testes com potenciais utilizadores foi realizado um teste a partir de uma extensão no Google Chrome designada ``Lighthouse'' (dentro das ferramentas de devolvimento) que permite de forma automatizada obter uma pontuação de 0 a 100 em várias categorias: SEO, acessibilidade, desempenho e aplicação de boas práticas. No entanto neste contexto como a aplicação será entregue num servidor da ESTGA então a categoria de SEO não será contabilizada. 
 	
+	Estes testes foram realizados a partir do web site que está no servidor que tem como consequência a obrigatoriedade de utilização de uma VPN ou estar dentro da rede UA e por isso nem todos os sites de ``browser testing'' funcionam. Esta extensão como utiliza a ligação do próprio navegador permite realizar os testes tanto localmente como no servidor da ESTGA. Para além disso permite testar tanto em \textit{desktop} como em \textit{mobile}, apesar de que a versão \textit{mobile} é apenas uma simulação do que poderá acontecer. Estas configurações tanto em \textit{desktop} como em \textit{mobile} estam no anexo E. 
+	
+	Dentro das várias categorias que este apresenta a categoria de desempenho é a que varia pois depende de vários fatores como ligação ao servidor e a resposta do servidor, para além do código implementado. Sendo assim foram realizados cerca de cinco testes diferentes e é aceite o que está mais próximo da mediana. 
+	
+	Para começar escolheu-se duas páginas que têm mais impacto para o utilizador que são a de ``Marcar exames'' e a de ``Configurações''. Na figura \ref{testDesktop} é possível verificar que existe uma boa acessibilidade mas que ainda não está o ideal e um desempenho mediano. Ao contrário do que acontece em mobile, figura \ref{testMobile}, que o desempenho está muito baixo. Estas pontuações podem ser melhoradas, segundo a extensão, através de algumas implementações apresentadas na tabela \ref{upScoreTesting}.
+	
+		\begin{center}
+		\label{upScoreTesting}
+		\begin{longtable}{|m{2.2cm}|m{12cm}|}
+			\caption{Implementações que podem melhorar a pontuação nas várias categorias}\\
+			
+			\hline			
+			\textbf{Categoria}&\textbf{Descrição da alteração} \\
+			\hline
+			
+			\multirow{5}{2cm}{Configurações}& Eliminar recursos que bloqueiam o processamento \\
+			
+			& Reduzir o javaScript que não é utilizado \\
+			
+			&Reduzir o CSS \\
+			
+			&Remover módulos duplicados em pacotes javaScript\\
+			
+			&Utilizar HTTP/2\\
+			\hline
+			\multirow{2}{2cm}{Acessibilidade}& As cores de primeiro e de segundo plano não têm uma relação de contraste suficiente \\
+			&A tag <html> não tem o atributo [lang]\\
+			&Os links não têm um nome percetível\\
+			&Os itens de lista ($<li>$) não estão incluídos nos elementos superiores $<ul>$ ou $<ol>$.\\
+			\hline
+			\multirow{2}{2cm}{Melhores práticas} & As páginas não utilizam https\\
+			&A página não possui o doctype HTML\\
+			\hline
+		\end{longtable}
+	\end{center}
 	 
+	 \begin{figure}[H] 
+	 	\centering 							\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/acessibilityTests/Desktop}
+	 	\caption{Resultado do teste do ``LightHouse'' em abiente \textit{desktop}}
+	 	\label{testDesktop}
+	 \end{figure}
+ 
+	
+	\begin{figure}[H] 
+		\centering 							\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/acessibilityTests/mobile}
+		\caption{Resultado do teste do ``LightHouse'' em abiente \textit{mobile}}
+		\label{testMobile}
+	\end{figure}
+	
+		 
 	
 	\chapter{Implementação do modelo de dados persistentes}
 	\section{Estrutura da base de dados}
@@ -1310,7 +1376,7 @@ Durante a sessão de avaliação o moderador deverá:
 			\end{figure}
 		\end{landscape}
 
-	\chapter*{Anexo F}
+	\chapter*{Anexo D}
 		\section*{Grelhas de observação da avaliação do protótipo de alta fidelidade não funcional}
 		\begin{landscape}
 			\clearpage
@@ -1328,6 +1394,21 @@ Durante a sessão de avaliação o moderador deverá:
 			
 			
 			\end{landscape}
+		
+		\chapter*{Anexo E}
+		\section*{Grelhas de observação da avaliação do protótipo de alta fidelidade não funcional}
+			\clearpage
+			\pagestyle{empty}
+			
+			\begin{figure}[H] 
+				\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/acessibilityTests/testDesktop}
+				\caption{Configurações da simulação em ambiente \textit{desktop}}
+				
+			\end{figure}
+			\begin{figure}[H] 
+				\centering 							\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/acessibilityTests/testMobile}
+				\caption{Configurações da simulação em ambiente \textit{mobile}}
+			\end{figure}
 	
 \end{document}	
 	
