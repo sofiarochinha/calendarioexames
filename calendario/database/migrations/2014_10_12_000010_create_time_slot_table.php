@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCalendarDayTable extends Migration
+class CreateTimeSlotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,9 @@ class CreateCalendarDayTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendar_day', function (Blueprint $table) {
+        Schema::create('time_slot', function (Blueprint $table) {
             $table->id();
-            $table->integer('calendar_id');
-            $table->date('evaluation_day');
-            
-            $table->foreign('evaluation_day')->references('id')->on('calendar');
+            $table->string('time_slot');
         });
     }
 
@@ -30,6 +27,6 @@ class CreateCalendarDayTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendar_day');
+        Schema::dropIfExists('time_slot');
     }
 }

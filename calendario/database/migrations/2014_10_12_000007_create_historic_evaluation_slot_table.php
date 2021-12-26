@@ -14,7 +14,7 @@ class CreateHistoricEvaluationSlotTable extends Migration
      */
     public function up()
     {
-        Schema::create('evaluation_slot', function (Blueprint $table) {
+        Schema::create('historic_evaluation_slot', function (Blueprint $table) {
             $table->id();
             $table->date('day');
             $table->string('subject');

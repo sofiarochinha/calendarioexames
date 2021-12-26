@@ -45,9 +45,9 @@ CREATE TABLE "academic_year" (
 CREATE TABLE "calendar" (
   "id" SERIAL PRIMARY KEY,
   "calendar_name" varchar,
-  "academic_year" varchar,
+  "academic_year" integer,
   "evaluation_season" varchar,
-  "course" varchar,
+  "course" integer,
   "course_year" int,
   "start_date" date,
   "end_date" date
@@ -60,18 +60,18 @@ CREATE TABLE "calendar_day" (
 );
 
 CREATE TABLE "time_slot" (
-  "slot_id" SERIAL PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "time_slot" varchar
 );
 
 CREATE TABLE "evaluation_slot" (
   "id" SERIAL PRIMARY KEY,
-  "day" date,
-  "subject" varchar,
-  "associated_professor" varchar,
-  "observing_professor" varchar,
-  "classroom" varchar,
-  "time_slot" varchar
+  "day" integer,
+  "subject" integer,
+  "associated_professor" integer,
+  "observing_professor" integer,
+  "classroom" integer,
+  "time_slot" integer
 );
 
 CREATE TABLE "historic_calendar" (
@@ -104,18 +104,18 @@ ALTER TABLE "courses" ADD FOREIGN KEY ("name") REFERENCES "subject" ("associated
 
 ALTER TABLE "subject" ADD FOREIGN KEY ("name") REFERENCES "evaluation_slot" ("subject");
 
-ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("day") REFERENCES "calendar_day" ("evaluation_day");
+ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("day") REFERENCES "calendar_day" ("id");
 
-ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("associated_professor") REFERENCES "professors" ("name");
+ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("associated_professor") REFERENCES "professors" ("id");
 
-ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("observing_professor") REFERENCES "professors" ("name");
+ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("observing_professor") REFERENCES "professors" ("id");
 
-ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("classroom") REFERENCES "classrooms" ("classroom");
+ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("classroom") REFERENCES "classrooms" ("id");
 
-ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("time_slot") REFERENCES "time_slot" ("time_slot");
+ALTER TABLE "evaluation_slot" ADD FOREIGN KEY ("time_slot") REFERENCES "time_slot" ("id");
 
-ALTER TABLE "courses" ADD FOREIGN KEY ("name") REFERENCES "calendar" ("course");
+ALTER TABLE "courses" ADD FOREIGN KEY ("id") REFERENCES "calendar" ("course");
 
-ALTER TABLE "academic_year" ADD FOREIGN KEY ("year_name") REFERENCES "calendar" ("academic_year");
+ALTER TABLE "academic_year" ADD FOREIGN KEY ("id") REFERENCES "calendar" ("academic_year");
 
-ALTER TABLE "calendar" ADD FOREIGN KEY ("id") REFERENCES "calendar_day" ("calendar_id");
+ALTER TABLE "calendar_day" ADD FOREIGN KEY ("calendar_id") REFERENCES "calendar" ("id");

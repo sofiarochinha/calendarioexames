@@ -19,12 +19,12 @@ class CreateSubjectTable extends Migration
             $table->string('name');
             $table->string('subject_id');
             $table->string('semester');
-            $table->string('associated_professor');
-            $table->string('associated_course');
+            $table->integer('associated_professor');
+            $table->integer('associated_course');
             $table->integer('course_year');
             
  				$table->foreign('associated_professor')->references('id')->on('professors');
-				$table->foreign('associated_course')->references('name')->on('courses');
+				$table->foreign('associated_course')->references('id')->on('courses');
         });
     }
 
