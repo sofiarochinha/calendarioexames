@@ -1,12 +1,11 @@
 <?php
 
 
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateCalendarDayTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +14,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('calendar_day', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('course_id')->unique();
-            $table->integer('course_years');
+            $table->integer('calendar_id');
+            $table->date('evaluation_day');
+            
+            $table->foreign('calendar_id')->references('id')->on('calendar');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('calendar_day');
     }
 }

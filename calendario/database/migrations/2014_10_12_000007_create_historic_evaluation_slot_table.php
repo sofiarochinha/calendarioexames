@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateHistoricEvaluationSlotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('evaluation_slot', function (Blueprint $table) {
+        Schema::create('historic_evaluation_slot', function (Blueprint $table) {
             $table->id();
             $table->date('day');
             $table->string('subject');
@@ -22,13 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('observing_professor');
             $table->string('classroom');
             $table->string('time_slot');
+            $table->integer('historic_calendar_id');
             
-            $table->foreign('associated_professor')->references('name')->on('professors');
-				$table->foreign('observing_professor')->references('name')->on('professors');
-				$table->foreign('time_slot')->references('time_slot')->on('time_slot');
-				$table->foreign('day')->references('evaluation_day')->on('calendar_day');
-				$table->foreign('subject')->references('name')->on('subject');
-				$table->foreign('classroom')->references('classroom')->on('classrooms');
+            
+            $table->foreign('historic_calendar_id')->references('id')->on('historic_calendar');
         });
     }
 
