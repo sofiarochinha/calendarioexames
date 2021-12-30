@@ -243,10 +243,18 @@
 
             var calendar = new Calendar(calendarEl, {
                 headerToolbar: {
-                    left: 'prev,next',
+                    left: '',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek'
+                    right: ''
                 },
+                views: {
+                    timeGrid2Week: {
+                        type: 'timeGrid',
+                        duration: { days: 15 },
+                        buttonText: 'nothing',
+                    }
+                },
+
                 themeSystem: 'bootstrap',
                 //Random default events
                 events: [],
@@ -255,7 +263,7 @@
                 drop: function (info) {
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 },
-                initialView: 'timeGridWeek',
+                initialView: 'timeGrid2Week',
                 initialDate: "2021-01-04",
                 locale: 'pt',
                 allDaySlot: false,
