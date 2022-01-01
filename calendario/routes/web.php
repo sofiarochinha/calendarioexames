@@ -16,9 +16,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/criar-calendario', ['as' => 'criarcalendario', function () {
-    return view("create_calendar");
-}]);
+Route::get('/criar-calendario', [\App\Http\Controllers\CoursesController::class, 'insert'])->name('criarcalendario');
 
 
 Route::get('/calendario-atual', ['as' => 'curso', function () {
