@@ -36,11 +36,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="btn-group w-100 mb-2">
-                            <a class="btn btn-info tablinks active" onclick="datatable(event, 'UC')"> Unidades
-                                Curriculares </a>
-                            <a class="btn btn-info tablinks" onclick="datatable(event, 'docentes')"> Docentes </a>
-                            <a class="btn btn-info tablinks" onclick="datatable(event, 'salas')"> Salas </a>
-                            <a class="btn btn-info tablinks" onclick="datatable(event, 'epocas')"> Épocas </a>
+                            <a  class="btn btn-info tablinks active" onclick="datatable(event, 'UC')"> Unidades
+                                Curriculares </a><hr>
+                            <a style="margin-left: 10px;" class="btn btn-info tablinks" onclick="datatable(event, 'docentes')"> Docentes </a>
+                            <a style="margin-left: 10px;" class="btn btn-info tablinks" onclick="datatable(event, 'salas')"> Salas </a>
+                            <a style="margin-left: 10px;" class="btn btn-info tablinks" onclick="datatable(event, 'epocas')"> Épocas </a>
                         </div>
                         <div class="card" id="UC">
                             <!-- /.card-header -->
