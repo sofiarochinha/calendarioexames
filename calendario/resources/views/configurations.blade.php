@@ -2,12 +2,12 @@
 @section('configuration')
     <style>
         .fa-save {
-            color: Green;
+            color:  #2a6cf5;
             cursor: pointer;
         }
 
         .fa-trash {
-            color: Red;
+            color: #ff5c33;
             cursor: pointer;
         }
     </style>
@@ -59,18 +59,18 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <div contenteditable>Web Design</div>
+                                            <div id=WD_name contenteditable onClick="edited(this.id)">Web Design</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>Rita Santos</div>
+                                            <div id="WD_prof" onClick="edited(this.id)" contenteditable>Rita Santos</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>Tecnologias da Informação</div>
+                                            <div id="WD_course" onClick="edited(this.id)" contenteditable>Tecnologias da Informação</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>3º ano</div>
+                                            <div id="WD_year" onClick="edited(this.id)" contenteditable>3º ano</div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td  align="center"><i id ="WD_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                         </td>
                                     </tr>
@@ -87,7 +87,7 @@
                                         <td>
                                             <div contenteditable>3º ano</div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
 
                                     </tr>
@@ -104,7 +104,7 @@
                                         <td>
                                             <div contenteditable>3º ano</div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                     </tr>
                                     <tr>
@@ -120,7 +120,7 @@
                                         <td>
                                             <div contenteditable>3º ano</div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                     </tr>
                                     <tr>
@@ -136,23 +136,23 @@
                                         <td>
                                             <div contenteditable>3º ano</div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div contenteditable>Economia I</div>
+                                            <div id="eco_name" onClick="edited(this.id)" contenteditable>Economia I</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>Miguel Magueta</div>
+                                            <div id="eco_prof" onClick="edited(this.id)" contenteditable>Miguel Magueta</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>Gestão Pública</div>
+                                            <div id="eco_course" onClick="edited(this.id)" contenteditable>Gestão Pública</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>1º ano</div>
+                                            <div id="eco_year" onClick="edited(this.id)" contenteditable>1º ano</div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td align="center"><i id="eco_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                     </tr>
 
@@ -177,15 +177,15 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <div contenteditable>Rita Santos</div>
+                                            <div id="editProf_name" onClick="edited(this.id)" contenteditable>Rita Santos</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>rita.santos@ua.pt</div>
+                                            <div id="editProf_email" onClick="edited(this.id)" contenteditable>rita.santos@ua.pt</div>
                                         </td>
                                         <td>
-                                            <div contenteditable></div>
+                                            <div id="editProf_email" onClick="edited(this.id)" contenteditable></div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td align="center"><i id="editProf_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                     </tr>
                                     <tr>
@@ -250,15 +250,15 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div contenteditable>5.1.09</div>
+                                            <div id="salanumber_number" onClick="edited(this.id)" contenteditable>5.1.09</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>Aulas</div>
+                                            <div id="salanumber_type" onClick="edited(this.id)" contenteditable>Aulas</div>
                                         </td>
                                         <td>
-                                            <div contenteditable>20</div>
+                                            <div id="salanumber_capacity" onClick="edited(this.id)" contenteditable>20</div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td align="center"><i id="salanumber_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                     </tr>
                                     <tr>
@@ -296,7 +296,7 @@
                                     <tr>
                                         <td>Normal</td>
                                         <td>
-                                            <div class="input-group">
+                                            <div id="season_dates" onClick="edited(this.id)" class="input-group">
                                                 <div class="input-group-prepend">
                                               <span class="input-group-text">
                                                 <i class="far fa-calendar-alt"></i>
@@ -305,7 +305,7 @@
                                                 <input type="text" class="form-control float-right" id="reservation">
                                             </div>
                                         </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
+                                        <td align="center"><i id="season_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                     </tr>
                                     <tr>
@@ -376,6 +376,17 @@
             document.getElementById(id).style.display = 'block';
             event.currentTarget.className += " active";
         }
+
+        function edited(elementID) {
+            let elemID = String(elementID);
+            let DivId = elemID.split("_")[0];
+            let save_ID = DivId + "_save";
+            document.getElementById(save_ID).style.color = "#99ff66";
+        }
+
+     function on_save(elementID) {
+            document.getElementById(elementID).style.color = "#2a6cf5";
+     }
 
     </script>
 
