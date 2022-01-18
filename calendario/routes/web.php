@@ -38,9 +38,9 @@ Route::get('/dados-auxiliares', ['as' => 'configurations',  function ()  {
     return view('configurations');
 }]);
 
-Route::get('/importar', ['as' => 'import', function ()  {
-    return view('import');
-}]);
+Route::get('/importar', ['as' => 'import',  'uses' => '\App\Http\Controllers\ImportController@showView']);
+Route::post('/importar-csv',[ 'as' => 'importCsv', 'uses' => '\App\Http\Controllers\ImportController@import']); //import csv
+
 
 Route::get('/exportar', ['as' => 'export', function ()  {
     return view('export');

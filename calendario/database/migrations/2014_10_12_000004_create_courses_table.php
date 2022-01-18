@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('course_id')->unique();
-            $table->integer('course_years');
+            $table->integer('course_years')->nullable();
         });
     }
 
