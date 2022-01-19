@@ -18,7 +18,7 @@ class CreateClassroomsTable extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->string('classroom');
-            $table->integer('capacity')->nullable();
+            $table->integer('capacity')->nullable(); //null porque não tem no csv
             $table->string('type');
         });
     }

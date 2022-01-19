@@ -30,28 +30,18 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form action="/importar-csv" method="POST" enctype="multipart/form-data">
-                                @csrf
                                 <div class="form-group">
                                     <div class="custom-file">
+                                        @csrf
                                         <input type="file" class="custom-file-input" name="file" id="customFile">
                                         <label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
                                     </div>
                                 </div>
+                                <button class="btn btn-primary" >Importar</button> {{--submit data to database--}}
                             </form>
-                                <button type="submit" class="btn btn-primary" >Importar</button>
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="card-body">
-                <form action="/importar-csv" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="file" class="form-control">
-                    <br>
-                    <button class="btn btn-success">Import User Data</button>
-                </form>
-            </div>
-
         </section>
 @stop

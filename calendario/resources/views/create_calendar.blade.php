@@ -31,14 +31,15 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Curso</label>
-                                        <select class="select2" multiple="multiple"
+                                        <select class="select2" name="course" multiple="multiple"
                                                 data-placeholder="Selecione um curso" style="width: 100%;">
-                                            <option>Tecnologias de informação</option>
-                                            <option>Eletrónica e Mecânica Industrial</option>
-                                            <option>Engenharia Eletrotécnica</option>
-                                            <option>Gestão Comercial</option>
-                                            <option>Gestão da Qualidade</option>
-                                            <option>Secretariado e Comunicação Empresarial</option>
+                                            @foreach ($courses as $course)
+                                                @if(old('courses') == $course->name)
+                                                    <option value="{{ $course->course_id }}" selected>{{ $course->name }}</option>
+                                                @else
+                                                    <option value="{{ $course->course_id }}">{{ $course->name }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -70,12 +71,15 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Época</label>
-                                        <select class="select2" multiple="multiple"
+                                        <select class="select2" name="course" multiple="multiple"
                                                 data-placeholder="Selecione uma época" style="width: 100%;">
-                                            <option>Normal</option>
-                                            <option>Recurso</option>
-                                            <option>1º subperíodo</option>
-                                            <option>Especial</option>
+                                            @foreach ($academicYears as $academic)
+                                                @if(old('courses') == $academic->evaluation_seasons_name)
+                                                    <option value="{{ $academic->id }}" selected>{{ $academic->evaluation_seasons_name }}</option>
+                                                @else
+                                                    <option value="{{ $academic->id }}">{{ $academic->evaluation_seasons_name }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

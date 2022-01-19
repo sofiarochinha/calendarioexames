@@ -14,10 +14,11 @@ class CreateAcademicYearTable extends Migration
      */
     public function up()
     {
+        //ano académico, tipo 2021-2022 e épocas de avaliação "Normal, Recurso"
         Schema::create('academic_year', function (Blueprint $table) {
             $table->id();
-            $table->string('year_name');
-            $table->string('evaluation_seasons');
+            $table->string('academic_year');
+            $table->string('evaluation_seasons_name');
         });
     }
 
