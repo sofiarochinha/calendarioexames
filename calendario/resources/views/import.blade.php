@@ -29,17 +29,16 @@
                     <div class="card card-secondary col-sm-6 ">
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form>
+                            <form action="/importar-csv" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <input type="file" class="custom-file-input" name="file" id="customFile">
                                         <label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
                                     </div>
                                 </div>
                             </form>
-                            <a href="{{route('curso')}}">
                                 <button type="submit" class="btn btn-primary" >Importar</button>
-                            </a>
                         </div>
                     </div>
                 </div>

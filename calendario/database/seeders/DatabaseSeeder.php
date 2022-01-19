@@ -14,5 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        //chama o seeder
+        $this->call(TimeSlotSeeder::class);
     }
 }

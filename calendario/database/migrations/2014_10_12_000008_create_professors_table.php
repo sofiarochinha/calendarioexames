@@ -19,7 +19,7 @@ class CreateProfessorsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('availability');
+            $table->string('availability')->nullable();
             $table->timestamps();
         });
     }
