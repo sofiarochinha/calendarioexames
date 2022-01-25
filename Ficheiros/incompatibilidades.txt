@@ -1,8 +1,0 @@
-Possíveis imcompatibilidades na Alocação de exames, Professores e salas:
-
-- Professor alocado como vigia no mesmo slot de tempo no mesmo dia para mais que uma cadeira.
-- Professor alocado para um slot fora da sua disponibilidade.
-- Alocação de salas para exames já marcadas no mesmo slot temporal no mesmo dia.
-- ALocação de exames do mesmo curso e ano para o mesmo dia.
-- Alocação de exames do mesmo curso de anos adjacentes para o mesmo dia.
-- Alocação de exames para cadeiras fora do seu semestre próprio (complicado de executar).
