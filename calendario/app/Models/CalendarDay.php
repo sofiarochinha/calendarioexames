@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CalendarDay extends Model
 {
     use HasFactory;
+
+    public function calendar(){
+        return $this->hasMany(Calendar::class);
+    }
 }

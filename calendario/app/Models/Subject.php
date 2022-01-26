@@ -20,4 +20,12 @@ class Subject extends Model
         'course_code',
         'course_year',
     ];
+
+    public function associated_professor(){
+        return $this->hasMany(Professor::class);
+    }
+
+    public function courses(){
+        return $this->belongstoMany(Course::class);
+    }
 }

@@ -13,4 +13,8 @@ class Course extends Model
     public $timestamps = false;
 
     protected $fillable = ['name', 'course_code', 'course_year'];
+
+    public function subject(){
+        return $this->hasMany(Subject::class);
+    }
 }

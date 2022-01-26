@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class HistoricEvaluationSlot extends Model
 {
     use HasFactory;
+
+    public function historic_calendar(){
+        return $this->hasMany(HistoricCalendar::class);
+    }
 }

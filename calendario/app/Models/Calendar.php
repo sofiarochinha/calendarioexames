@@ -21,4 +21,13 @@ class Calendar extends Model
         'start_date',
         'end_date'
     ];
+
+    public function academicyear(){
+        return $this->belongstoMany(AcademicYear::class);
+    }
+
+    public function course(){
+        return $this->belongstoMany(Course::class);
+    }
+
 }
