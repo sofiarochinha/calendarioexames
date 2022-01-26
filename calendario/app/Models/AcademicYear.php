@@ -11,7 +11,7 @@ class AcademicYear extends Model
     protected $table = "academic_year";
     public $timestamps = false;
 
-    protected $fillable = ['elective_year', 'evaluation_seasons'];
+    protected $fillable = ['academic_year', 'evaluation_season'];
 
 
 }

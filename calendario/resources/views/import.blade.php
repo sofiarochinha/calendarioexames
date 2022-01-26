@@ -62,12 +62,9 @@
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     const text = e.target.result;
-                    console.log(e);
                     console.log(text);
                     const data = csvToArray(text);
                     console.log(data);
-
-               //     addTable(data);
 
 
                 }
@@ -76,15 +73,8 @@
             });
 
             function csvToArray(str, delimiter = ";") {
-                // slice from \n index + 1 to the end of the text
-                // use split to create an array of each csv value row
                 const rows = str.slice(str.indexOf("\n")).split("\n");
 
-                // Map the rows
-                // split values from each row into an array
-                // use headers.reduce to create an object
-                // object properties derived from headers:values
-                // the object passed as an element of the array
                 const arr = rows.map(function (row) {
                     const values = row.split(delimiter);
                     return values;
@@ -92,31 +82,6 @@
 
                 // return the array
                 return arr;
-            }
-
-            function addTable(arr){
-
-                var myTableDiv = document.getElementById("table");
-
-                var table = document.createElement('TABLE');
-                table.border = '1';
-
-                var tableBody = document.createElement('TBODY');
-                table.appendChild(tableBody);
-
-                for (var i = 0; i < ; i++) {
-                    var tr = document.createElement('TR');
-                    tableBody.appendChild(tr);
-
-                    for (var j = 0; j < 4; j++) {
-                        var td = document.createElement('TD');
-                        td.width = '75';
-                        td.appendChild(document.createTextNode("Cell " + i + "," + j));
-                        tr.appendChild(td);
-                    }
-                }
-                myTableDiv.appendChild(table);
-
             }
 
         </script>
