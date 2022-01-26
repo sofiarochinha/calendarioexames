@@ -58,23 +58,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr>
-                                         <td>
-                                         <div style="border: 1px solid darkgray;" id="WD_name" contenteditable onClick="edited(this.id)">Web Design</div>
-                                         </td>
-                                         <td>
-                                         <div style="border: 1px solid darkgray;" id="WD_prof" onClick="edited(this.id)" contenteditable>Rita Santos</div>
-                                         </td>
-                                         <td>
-                                         <div style="border: 1px solid darkgray;" id="WD_course" onClick="edited(this.id)" contenteditable>Tecnologias da Informação</div>
-                                         </td>
-                                         <td>
-                                         <div style="border: 1px solid darkgray;" id="WD_year" onClick="edited(this.id)" contenteditable>3º ano</div>
-                                         </td>
-                                         <td align="center"><i id="WD_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                         <td align="center"><i class="fas fa-trash"></i></td>
-                                         <td align="center"><i class="fas fa-edit"></i></td>
-                                         </tr> -->
+
                                     <tr>
                                         <td>
                                             <div contenteditable>Web Design</div>

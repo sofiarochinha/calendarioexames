@@ -274,6 +274,12 @@
             "buttons": [, "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
     });
+    $(function () {
+        $("#example5").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": [, "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example5_wrapper .col-md-6:eq(0)');
+    });
 </script>
 
 <!--function for date range in create calendar page-->

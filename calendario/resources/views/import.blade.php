@@ -44,10 +44,23 @@
                 </div>
             </div>
 
-            <table id="table">
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="example5" class="table table-bordered table-striped">
 
-            </table>
+                                    </table>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
+    </div>
 
         <script>
             const myForm = document.getElementById("myForm");
@@ -56,19 +69,12 @@
             myForm.addEventListener("submit", function (e) {
                 e.preventDefault();
                 const input = csvFile.files[0];
-                console.log(input);
-                console.log("Form submitted");
 
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     const text = e.target.result;
-                    console.log(text);
                     const data = csvToArray(text);
-                    console.log(data);
-
-
                 }
-
                 reader.readAsText(input);
             });
 
@@ -80,7 +86,22 @@
                     return values;
                 });
 
-                // return the array
+                var table = document.getElementById('example5');
+
+                var tableBody = document.createElement('TBODY');
+                table.appendChild(tableBody);
+
+                for (var i = 0; i < arr.length; i++) {
+                    var tr = document.createElement('TR');
+                    tableBody.appendChild(tr);
+
+                    for (var j = 0; j < 15; j++) {
+                        var td = document.createElement('TD');
+                        td.appendChild(document.createTextNode(arr[i][j]));
+                        tr.appendChild(td);
+                    }
+                }
+
                 return arr;
             }
 
