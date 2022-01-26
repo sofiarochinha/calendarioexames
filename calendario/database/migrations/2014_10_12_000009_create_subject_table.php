@@ -17,14 +17,19 @@ class CreateSubjectTable extends Migration
         Schema::create('subject', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('subject_id');
+            $table->string('subject_code');
             $table->string('semester');
-            $table->integer('associated_professor');
-            $table->integer('associated_course');
+            $table->integer('professor_mec');
+            $table->integer('course_code');
             $table->integer('course_year');
-            
- 				$table->foreign('associated_professor')->references('id')->on('professors');
-				$table->foreign('associated_course')->references('id')->on('courses');
+
+            $table->foreign('professor_mec')
+                ->references('mec')
+                ->on('professors');
+
+            $table->foreign('course_code')
+                ->references('course_code')
+                ->on('courses');
         });
     }
 

@@ -22,13 +22,13 @@ class CreateEvaluationSlotTable extends Migration
             $table->integer('observing_professor');
             $table->integer('classroom');
             $table->integer('time_slot');
-            
-            $table->foreign('associated_professor')->references('id')->on('professors');
-            $table->foreign('observing_professor')->references('id')->on('professors');
+
+            $table->foreign('associated_professor')->references('id')->on('professor');
+            $table->foreign('observing_professor')->references('id')->on('professor');
             $table->foreign('time_slot')->references('id')->on('time_slot');
-	    $table->foreign('day')->references('id')->on('calendar_day');
-	    $table->foreign('subject')->references('id')->on('subject');
-	    $table->foreign('classroom')->references('id')->on('classrooms');
+	        $table->foreign('day')->references('id')->on('calendar_day');
+	        $table->foreign('subject')->references('id')->on('subject');
+	        $table->foreign('classroom')->references('id')->on('classroom');
         });
     }
 

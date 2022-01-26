@@ -19,14 +19,19 @@ class CreateCalendarTable extends Migration
             $table->string('calendar_name');
             $table->integer('academic_year');
             $table->string('evaluation_season');
-            $table->string('associated_professor');
-            $table->integer('course');
+            $table->string('professor_mec');
+            $table->integer('course_code');
             $table->integer('course_year');
             $table->date('start_date');
             $table->date('end_date');
-            
-            $table->foreign('academic_year')->references('id')->on('academic_year');
-            $table->foreign('course')->references('id')->on('courses');
+
+            $table->foreign('academic_year')
+                ->references('id')
+                ->on('academic_year');
+
+            $table->foreign('course_code')
+                ->references('course_code')
+                ->on('course');
         });
     }
 
