@@ -13,4 +13,5 @@ class AcademicYear extends Model
 
     protected $fillable = ['elective_year', 'evaluation_seasons'];
 
+
 }

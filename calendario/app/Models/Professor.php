@@ -11,5 +11,5 @@ class Professor extends Model
     protected $table = "professor";
     public $timestamps = true;
 
-    protected $fillable = ['name', 'email', 'availability'];
+    protected $fillable = ['name', 'email', 'availability', 'mec'];
 }

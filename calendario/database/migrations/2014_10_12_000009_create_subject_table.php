@@ -25,11 +25,11 @@ class CreateSubjectTable extends Migration
 
             $table->foreign('professor_mec')
                 ->references('mec')
-                ->on('professors');
+                ->on('professor');
 
             $table->foreign('course_code')
                 ->references('course_code')
-                ->on('courses');
+                ->on('course');
         });
     }
 

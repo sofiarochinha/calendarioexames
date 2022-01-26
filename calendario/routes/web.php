@@ -20,12 +20,12 @@ Route::get('/calendario-atual', ['as' => 'curso', 'uses' => 'App\Http\Controller
 
 Route::get('/calendario-atual/{curso}', ['as' => 'calendarioatual', 'uses' => 'App\Http\Controllers\CalendarController@showView']);
 
-
 Route::get('/calendario-anterior', ['as' => 'calendarioanterior',  'uses' => 'App\Http\Controllers\HistoricController@showView']);
 
 Route::get('/dados-auxiliares', ['as' => 'configurations',  'uses' => 'App\Http\Controllers\ConfigurationController@showView']);
 
 Route::get('/importar', ['as' => 'import', 'uses' => 'App\Http\Controllers\ImportController@showView']);
+Route::post('/importar', ['as' => 'import', 'uses' => 'App\Http\Controllers\ImportController@showView']);
 
 Route::get('/exportar', ['as' => 'export','uses' => 'App\Http\Controllers\ExportController@showView']);
 
