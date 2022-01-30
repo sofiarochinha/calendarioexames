@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="{{(asset('/plugins/dropzone/min/dropzone.min.css'))}}">
     <!-- Theme style - contain css for multiple select-->
     <link rel="stylesheet" href="{{(asset('/dist/css/adminlte.min.css'))}}">
+    <!-- Toast Messages -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -239,7 +241,8 @@
 <script src="{{(asset('/plugins/pdfmake/vfs_fonts.js'))}}"></script>
 <script src="{{(asset('/plugins/datatables-buttons/js/buttons.html5.min.js'))}}"></script>
 <script src="{{(asset('/plugins/datatables-buttons/js/buttons.print.min.js'))}}"></script>
-
+<!-- Toastr -->
+<script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
 <!-- PAGE PLUGINS -->
 <!-- fullCalendar 2.2.5 -->
 <script src="{{(asset('/plugins/moment/moment.min.js'))}}"></script>

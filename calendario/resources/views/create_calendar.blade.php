@@ -96,7 +96,39 @@
 
     </div>
 
+<!-- jQuery -->
+<script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
+<!-- Toastr -->
+<script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
+    <script>
+     // * cookie shennanigans
+     function getCookie(cname) {
+         let name = cname + "=";
+         let decodedCookie = decodeURIComponent(document.cookie);
+         let ca = decodedCookie.split(';');
+         for(let i = 0; i <ca.length; i++) {
+             let c = ca[i];
+             while (c.charAt(0) == ' ') {
+                 c = c.substring(1);
+             }
+             if (c.indexOf(name) == 0) {
+                 return c.substring(name.length, c.length);
+             }
+         }
+         return "";
+     }
 
+     function checkCSV(){
+         if (getCookie("CSV") == "") {
+             console.log("CSV cookie not found")
+             toastr.warning('Atenção! Não foi importado um ficheiro CSV para ler dados.')
+            }
+     }
+
+     checkCSV()
+     //* End of cookie shenannigans
+
+    </script>>
 
 
 
