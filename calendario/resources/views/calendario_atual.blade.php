@@ -30,12 +30,9 @@
                                 <div class="card-body">
                                     <label class="card-title">Curso</label>
                                     <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                        <option>Tecnologias de informação</option>
-                                        <option>Eletrónica e Mecânica Industrial</option>
-                                        <option>Engenharia Eletrotécnica</option>
-                                        <option>Gestão Comercial</option>
-                                        <option>Gestão da Qualidade</option>
-                                        <option>Secretariado e Comunicação Empresarial</option>
+                                        @foreach($epocas as $epoca)    
+                                            <option value="$epoca->course->id">$epoca->course->name</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -48,9 +45,9 @@
                                 <div class="card-body">
                                     <label class="card-title">Época</label>
                                     <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                        <option>Normal</option>
-                                        <option>Recurso</option>
-                                        <option>Especial</option>
+                                    @foreach($epocas as $epoca)    
+                                        <option value="$epoca->id">$epoca->calendar_name</option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -62,9 +59,9 @@
                                 <div class="card-body">
                                     <label class="card-title">Ano</label>
                                     <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                        <option>1º</option>
-                                        <option>2º</option>
-                                        <option selected>3º</option>
+                                        @foreach($epocas as $epoca)    
+                                            <option value="$epoca->course->id">$epoca->course->course_year</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
