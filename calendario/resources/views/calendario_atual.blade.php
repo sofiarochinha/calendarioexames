@@ -29,9 +29,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <label class="card-title">Curso</label>
-                                    <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                        @foreach($epocas as $epoca)    
-                                            <option value="$epoca->course->id">$epoca->course->name</option>
+                                    <select class="custom-select form-control-border" id="curso">
+                                        @foreach($courses as $course)
+                                            <option value="{{$course->id}}">{{$course->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -44,10 +44,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <label class="card-title">Época</label>
-                                    <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                    @foreach($epocas as $epoca)    
-                                        <option value="$epoca->id">$epoca->calendar_name</option>
-                                    @endforeach
+                                    <select class="custom-select form-control-border" id="epoca">
                                     </select>
                                 </div>
                             </div>
@@ -58,10 +55,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <label class="card-title">Ano</label>
-                                    <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                        @foreach($epocas as $epoca)    
-                                            <option value="$epoca->course->id">$epoca->course->course_year</option>
-                                        @endforeach
+                                    <select class="custom-select form-control-border" id="ano">
                                     </select>
                                 </div>
                             </div>
@@ -178,6 +172,68 @@
     <!-- jQuery UI -->
     <script src="{{(asset('/plugins/jquery-ui/jquery-ui.min.js'))}}"></script>
     <script src="{{(asset('/plugins/fullcalendar/main.js'))}}"></script>
+
+    <script>
+    $(document).ready(function () {
+        $("#curso").change(function () {
+            var valcurso = $(this).val();
+            var valano = $("#ano").val();
+            @foreach ($courses as $course)
+                if (valcurso == "$course->id") {
+                    $("#epoca").html("
+                        @foreach ($epocas as $epoca)
+                            @if( $epoca->course_code == $course->id)
+                                @if( $epoca->course_year == valano)
+                                    @if($epoca == reset($epocas))
+                                        <option value='{{$epoca->id}}' selected>{{$epoca->calendar_name}}</option>
+                                    @else
+                                        <option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>
+                                    @endif
+                                @endif
+                            @endif
+                        @endforeach
+                    ");
+                   /* $("#ano").html("
+                        @foreach ($epocas as $epoca)
+                            @if( $epoca->course_code == $course->id)
+                                @if( $epoca->course_year == valano)
+                                    @if($epoca == reset($epocas))
+                                        <option value='$epoca->id' selected>$epoca->calendar_name</option>
+                                    @else
+                                        <option value='$epoca->id'>$epoca->calendar_name</option>
+                                    @endif
+                                @endif
+                            @endif
+                        @endforeach
+                    ");*/
+                }
+            @endforeach
+        });
+
+        $("#ano").change(function () {
+            var valcurso = $("#ano").val();
+            var valano = $(this).val();
+            @foreach ($courses as $course)
+                if (valcurso == "$course->id") {
+                    $("#epoca").html("
+                        @foreach ($epocas as $epoca)
+                            @if( $epoca->course_code == $course->id)
+                                @if( $epoca->course_year == valano)
+                                    @if($epoca == reset($epocas))
+                                        <option value='{{$epoca->id}}' selected>{{$epoca->calendar_name}}</option>
+                                    @else
+                                        <option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>
+                                    @endif
+                                @endif
+                            @endif
+                        @endforeach
+                    ");
+                }
+            @endforeach
+        });
+    });
+    </script>
+
     <!-- Page specific script -->
     <script>
         $(function () {

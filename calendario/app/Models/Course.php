@@ -17,4 +17,8 @@ class Course extends Model
     public function subject(){
         return $this->hasMany(Subject::class);
     }
+
+    public function calendar(){
+        return $this->belongstoMany(Calendar::class);
+    }
 }
