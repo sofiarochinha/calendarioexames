@@ -264,10 +264,10 @@
                 initialDate: "2021-01-04",
                 locale: 'pt',
                 allDaySlot: false,
-                defaultTimedEventDuration: "04:00",
+                defaultTimedEventDuration: "04:30",
                 hiddenDays: [0],
                 eventDurationEditable: false,
-                slotMinTime: "09:00:00",
+                slotMinTime: "09:30:00",
                 eventClick: function (event) {
                     var modal = $("#schedule-edit");
                     modal.modal();
