@@ -59,6 +59,9 @@
                     </div>
                 </div>
             </section>
+            <form method="post" action="">
+
+            </form>
         </section>
     </div>
 <!-- jQuery -->
@@ -118,32 +121,36 @@
                 reader.readAsText(input);
             });
 
-            function csvToArray(str, delimiter = ";") {
-                const rows = str.slice(str.indexOf("\n")).split("\n");
+     /**
+      * Converte um csv num array
+      * @param str
+      * @param delimiter
+      * @returns array
+      */
+     function csvToArray(str, delimiter = ";") {
+         const rows = str.slice(str.indexOf("\n")).split("\n");
 
-                const arr = rows.map(function (row) {
-                    const values = row.split(delimiter);
-                    return values;
-                });
+         const arr = rows.map(function (row) {
+              return row.split(delimiter);
+         });
 
-                var table = document.getElementById('example5');
+         var table = document.getElementById('example5');
 
-                var tableBody = document.createElement('TBODY');
-                table.appendChild(tableBody);
+         var tableBody = document.createElement('TBODY');
+         table.appendChild(tableBody);
 
-                for (var i = 0; i < arr.length; i++) {
-                    var tr = document.createElement('TR');
-                    tableBody.appendChild(tr);
+         for (var i = 0; i < arr.length; i++) {
+             var tr = document.createElement('TR');
+             tableBody.appendChild(tr);
 
-                    for (var j = 0; j < 15; j++) {
-                        var td = document.createElement('TD');
-                        td.appendChild(document.createTextNode(arr[i][j]));
-                        tr.appendChild(td);
-                    }
-                }
+             for (var j = 0; j < 15; j++) {
+                  var td = document.createElement('TD');
+                  td.appendChild(document.createTextNode(arr[i][j]));
+                  tr.appendChild(td);
+             }
+         }
 
-                return arr;
-            }
-
-        </script>
+         return arr;
+     }
+    </script>
 @stop

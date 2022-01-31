@@ -171,71 +171,38 @@
     <script src="{{(asset('/plugins/bootstrap/js/bootstrap.bundle.min.js'))}}"></script>
     <!-- jQuery UI -->
     <script src="{{(asset('/plugins/jquery-ui/jquery-ui.min.js'))}}"></script>
-    <script src="{{(asset('/plugins/fullcalendar/main.js'))}}"></script>
+    <script src="{{(asset('/plugins/fullcalendar/main.js'))}}"></script> 
+
+
 
     <script>
-    $(document).ready(function () {
+    
+   
         $("#curso").change(function () {
             var valcurso = $(this).val();
-            var valano = $("#ano").val();
+            var epocaString = "";
+            
             @foreach ($courses as $course)
-                if (valcurso == "$course->id") {
-                    $("#epoca").html("
-                        @foreach ($epocas as $epoca)
-                            @if( $epoca->course_code == $course->id)
-                                @if( $epoca->course_year == valano)
-                                    @if($epoca == reset($epocas))
-                                        <option value='{{$epoca->id}}' selected>{{$epoca->calendar_name}}</option>
-                                    @else
-                                        <option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>
-                                    @endif
-                                @endif
-                            @endif
-                        @endforeach
-                    ");
-                   /* $("#ano").html("
-                        @foreach ($epocas as $epoca)
-                            @if( $epoca->course_code == $course->id)
-                                @if( $epoca->course_year == valano)
-                                    @if($epoca == reset($epocas))
-                                        <option value='$epoca->id' selected>$epoca->calendar_name</option>
-                                    @else
-                                        <option value='$epoca->id'>$epoca->calendar_name</option>
-                                    @endif
-                                @endif
-                            @endif
-                        @endforeach
-                    ");*/
-                }
+                if (valcurso == {!!$course->id!!}) {
+                @foreach ($epocas as $epoca)
+		        @if( $epoca->course_id == $course->id)
+				 epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+		        @endif
+                @endforeach
+                
+            }
+                
             @endforeach
+            
+            $("#epoca").html(epocaString);
         });
-
-        $("#ano").change(function () {
-            var valcurso = $("#ano").val();
-            var valano = $(this).val();
-            @foreach ($courses as $course)
-                if (valcurso == "$course->id") {
-                    $("#epoca").html("
-                        @foreach ($epocas as $epoca)
-                            @if( $epoca->course_code == $course->id)
-                                @if( $epoca->course_year == valano)
-                                    @if($epoca == reset($epocas))
-                                        <option value='{{$epoca->id}}' selected>{{$epoca->calendar_name}}</option>
-                                    @else
-                                        <option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>
-                                    @endif
-                                @endif
-                            @endif
-                        @endforeach
-                    ");
-                }
-            @endforeach
-        });
-    });
+        
     </script>
-
-    <!-- Page specific script -->
+    
+        <!-- Page specific script -->
     <script>
+    
+    
         $(function () {
 
             /* initialize the external events

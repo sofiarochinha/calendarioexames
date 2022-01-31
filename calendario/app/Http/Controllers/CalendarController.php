@@ -11,6 +11,6 @@ use App\Models\Course;
 class CalendarController extends Controller
 {
     public function showView(){
-        return view('calendario_atual', [ 'courses' => Calendar::all(), 'epocas' => Calendar::all()]);
+        return view('calendario_atual', [ 'courses' => Course::all(), 'epocas' => Calendar::all()]);
     }
 }

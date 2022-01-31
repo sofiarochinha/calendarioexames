@@ -19,7 +19,7 @@ class EvaluationSlotFactory extends Factory
         $subject = Subject::factory()->create();
         $professor = Professor::factory()->create();
         $classroom = Classroom::factory()->create();
-        
+
         return [
             "day" => $this->faker->date(),
             "subject" => $subject->id,
