@@ -31,7 +31,8 @@
                                     <label class="card-title">Curso</label>
                                     <select class="custom-select form-control-border" id="curso">
                                         @foreach($courses as $course)
-                                            <option value="{{$course->id}}">{{$course->name}}</option>
+                                       
+                                            <option value="{{$course->course_code}}">{{$course->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -54,7 +55,7 @@
                         <div class="sticky-top mb-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <label class="card-title">Ano</label>
+                                    <label class="card-title">Ano do curso</label>
                                     <select class="custom-select form-control-border" id="ano">
                                     </select>
                                 </div>
@@ -176,20 +177,65 @@
 
 
     <script>
-    
    
+   
+	   /** 
+	   * comboboxs para o calendário atual
+	   * verifica quais são as epocas que estam associadas ao curso e quais são os anos do curso
+	   */
         $("#curso").change(function () {
             var valcurso = $(this).val();
             var epocaString = "";
+            var anoString = "";
+            var anoArray = [];
+            
+              @foreach ($courses as $course)
+                if (valcurso == {!!$course->course_code!!}) {
+             //   anoArray.push();
+		anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
+                
+            }
+                
+            @endforeach
+            $("#ano").html(anoString);
+            
+            
+            var valAno = $("#ano").val();
             
             @foreach ($courses as $course)
-                if (valcurso == {!!$course->id!!}) {
-                @foreach ($epocas as $epoca)
-		        @if( $epoca->course_id == $course->id)
-				 epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
-		        @endif
-                @endforeach
+                if (valcurso == {!!$course->course_code!!}) {
+                	if(valAno == {!!$course->course_year!!}){
+		        	 @foreach ($epocas as $epoca)
+					@if( $epoca->course_id == $course->id)
+					 	epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+					@endif
+		        	@endforeach
+                	}
+            }
                 
+            @endforeach
+            
+            $("#epoca").html(epocaString);
+        });
+        
+        /**
+        * verifica quais são as épocas que estam associados ao ano do curso
+        */
+        $("#ano").change(function () {
+            var valAno= $(this).val();
+            var epocaString = "";
+            
+            var valcurso = $("#curso").val();
+            
+            @foreach ($courses as $course)
+                if (valcurso == {!!$course->course_code!!}) {
+                	if(valAno == {!!$course->course_year!!}){
+		        	 @foreach ($epocas as $epoca)
+					@if( $epoca->course_id == $course->id)
+					 	epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+					@endif
+		        	@endforeach
+                	}
             }
                 
             @endforeach

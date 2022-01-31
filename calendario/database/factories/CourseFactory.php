@@ -15,7 +15,7 @@ class CourseFactory extends Factory
     {
         return [
             "name" => $this->faker->name(),
-            "course_code" =>$this->faker->unique()->numberBetween(1, 100),
+            "course_code" =>$this->faker->numberBetween(1, 100),
             "course_year" => $this->faker->numberBetween(1,3)
         ];
     }
