@@ -1,7 +1,6 @@
 @extends('layout.menu')
 @section('content')
-
-
+    
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -31,14 +30,14 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Curso</label>
-                                        <select class="select2" multiple="multiple"
-                                                data-placeholder="Selecione um curso" style="width: 100%;">
-                                            <option>Tecnologias de informação</option>
-                                            <option>Eletrónica e Mecânica Industrial</option>
-                                            <option>Engenharia Eletrotécnica</option>
-                                            <option>Gestão Comercial</option>
-                                            <option>Gestão da Qualidade</option>
-                                            <option>Secretariado e Comunicação Empresarial</option>
+                                        <select class="select2" multiple="multiple" data-placeholder="Selecione um curso..." style="width: 100%;">
+                                            @foreach($courses as $course)
+                                                       @if(old('courses') == $course->name)
+                                                            <option value="{{$course->id}}" selected>{{ $course->name}}</option>
+                                                            @else
+                                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                                    @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -70,12 +69,15 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Época</label>
-                                        <select class="select2" multiple="multiple"
-                                                data-placeholder="Selecione uma época" style="width: 100%;">
-                                            <option>Normal</option>
-                                            <option>Recurso</option>
-                                            <option>1º subperíodo</option>
-                                            <option>Especial</option>
+                                        <select class="select2" multiple="multiple" data-placeholder="Selecione um curso..." style="width: 100%;">
+                                            @foreach($evaluation_season as $season)
+                                                @if(old('evaluation_season') == $season->evaluation_season)
+                                                                <option value="{{$season->id}}" selected>{{ $season->evaluation_season}}</option>
+                                                             @else
+                                                        <option value="{{ $season->id }}">{{ $season->evaluation_season }}</option>
+                                                    @endif
+                                                 @endforeach
+                                            </select>
                                         </select>
                                     </div>
                                 </div>

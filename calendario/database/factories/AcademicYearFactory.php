@@ -14,7 +14,7 @@ class AcademicYearFactory extends Factory
     public function definition()
     {
         return [
-            "name" => $this->faker->name(),
+            "academic_year" => $this->faker->name(),
             "evaluation_season" => $this->faker->name()
         ];
     }
