@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('curso')}}">Calendário Atual</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('calendarioatual')}}">Calendário Atual</a></li>
                         <li class="breadcrumb-item active">Configurações</li>
                     </ol>
                 </div>

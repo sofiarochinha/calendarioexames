@@ -16,9 +16,7 @@ Route::get('/', ['as' => 'login', 'uses' => 'App\Http\Controllers\LoginControlle
 
 Route::get('/criar-calendario', ['as' => 'criarcalendario', 'uses' => 'App\Http\Controllers\CreateController@showView']);
 
-Route::get('/calendario-atual', ['as' => 'curso', 'uses' => 'App\Http\Controllers\CourseController@showView']);
-
-Route::get('/calendario-atual/{curso}', ['as' => 'calendarioatual', 'uses' => 'App\Http\Controllers\CalendarController@showView']);
+Route::get('/calendario-atual', ['as' => 'calendarioatual', 'uses' => 'App\Http\Controllers\CalendarController@showView']);
 
 Route::get('/calendario-anterior', ['as' => 'calendarioanterior',  'uses' => 'App\Http\Controllers\HistoricController@showView']);
 

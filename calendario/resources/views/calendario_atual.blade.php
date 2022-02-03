@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('curso')}}">Calendário Atual</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('calendarioatual')}}">Calendário Atual</a></li>
                             <li class="breadcrumb-item" active>2021-2022</li>
                         </ol>
                     </div>
@@ -31,7 +31,7 @@
                                     <label class="card-title">Curso</label>
                                     <select class="custom-select form-control-border" id="curso">
                                         @foreach($courses as $course)
-                                       
+
                                             <option value="{{$course->course_code}}">{{$course->name}}</option>
                                         @endforeach
                                     </select>
@@ -172,14 +172,14 @@
     <script src="{{(asset('/plugins/bootstrap/js/bootstrap.bundle.min.js'))}}"></script>
     <!-- jQuery UI -->
     <script src="{{(asset('/plugins/jquery-ui/jquery-ui.min.js'))}}"></script>
-    <script src="{{(asset('/plugins/fullcalendar/main.js'))}}"></script> 
+    <script src="{{(asset('/plugins/fullcalendar/main.js'))}}"></script>
 
 
 
     <script>
-   
-   
-	   /** 
+
+
+	   /**
 	   * comboboxs para o calendário atual
 	   * verifica quais são as epocas que estam associadas ao curso e quais são os anos do curso
 	   */
@@ -188,20 +188,20 @@
             var epocaString = "";
             var anoString = "";
             var anoArray = [];
-            
+
               @foreach ($courses as $course)
                 if (valcurso == {!!$course->course_code!!}) {
              //   anoArray.push();
 		anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
-                
+
             }
-                
+
             @endforeach
             $("#ano").html(anoString);
-            
-            
+
+
             var valAno = $("#ano").val();
-            
+
             @foreach ($courses as $course)
                 if (valcurso == {!!$course->course_code!!}) {
                 	if(valAno == {!!$course->course_year!!}){
@@ -212,21 +212,21 @@
 		        	@endforeach
                 	}
             }
-                
+
             @endforeach
-            
+
             $("#epoca").html(epocaString);
         });
-        
+
         /**
         * verifica quais são as épocas que estam associados ao ano do curso
         */
         $("#ano").change(function () {
             var valAno= $(this).val();
             var epocaString = "";
-            
+
             var valcurso = $("#curso").val();
-            
+
             @foreach ($courses as $course)
                 if (valcurso == {!!$course->course_code!!}) {
                 	if(valAno == {!!$course->course_year!!}){
@@ -237,18 +237,18 @@
 		        	@endforeach
                 	}
             }
-                
+
             @endforeach
-            
+
             $("#epoca").html(epocaString);
         });
-        
+
     </script>
-    
+
         <!-- Page specific script -->
     <script>
-    
-    
+
+
         $(function () {
 
             /* initialize the external events

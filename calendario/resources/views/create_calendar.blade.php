@@ -1,6 +1,6 @@
 @extends('layout.menu')
 @section('content')
-    
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('curso')}}"></a></li>
+                            <li class="breadcrumb-item"><a href="{{route('calendarioatual')}}"></a></li>
                             <li class="breadcrumb-item active">Criar Calendário</li>
                         </ol>
                     </div>
@@ -88,7 +88,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="{{route('curso')}}"><input type="submit" value="Criar Calendário"
+                    <a href="{{route('calendarioatual')}}"><input type="submit" value="Criar Calendário"
                                                         class="btn btn-primary float-right"></a>
                 </div>
             </div>

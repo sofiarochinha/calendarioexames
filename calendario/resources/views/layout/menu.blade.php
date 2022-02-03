@@ -66,7 +66,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{route('curso')}}" class="brand-link">
+    <a href="{{route('calendarioatual')}}" class="brand-link">
         <img src="{{(asset('/dist/img/AdminLTELogo.png'))}}" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Ua Calendar</span>
@@ -113,9 +113,8 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
 
-                            <a href="{{route('curso')}}"
-                               @if (\Illuminate\Support\Facades\Route::current()->getName() == "curso" ||
-                                    \Illuminate\Support\Facades\Route::current()->getName() == "calendarioatual")
+                            <a href="{{route('calendarioatual')}}"
+                               @if (\Illuminate\Support\Facades\Route::current()->getName() == "calendarioatual")
                                class="active nav-link" @else class="nav-link" @endif >
 
                                 <i class="far fa-circle nav-icon"></i>
@@ -277,12 +276,7 @@
             "buttons": [, "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
     });
-    $(function () {
-        $("#example5").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": [, "csv", "excel", "pdf", "print"]
-        }).buttons().container().appendTo('#example5_wrapper .col-md-6:eq(0)');
-    });
+
 </script>
 
 <!--function for date range in create calendar page-->

@@ -12,7 +12,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('curso')}}">Calendário Atual</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('calendarioatual')}}">Calendário Atual</a></li>
                             <li class="breadcrumb-item active">Importar CSV</li>
                         </ol>
                     </div><!-- /.col -->
@@ -64,11 +64,19 @@
             </form>
         </section>
     </div>
+
 <!-- jQuery -->
 <script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
 <!-- Toastr -->
 <script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
     <script>
+
+        $(function () {
+            $("#example5").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+            });
+        });
+
      // * cookie shennanigans
      document.cookie = "username=John Doe";
 
