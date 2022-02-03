@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <section class="content">
+            <section class="content" style="display:none" id="tabela">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
@@ -53,112 +53,130 @@
                                     <table id="example5" class="table table-bordered table-striped">
 
                                     </table>
-                               </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <form method="post" action="">
-
-            </form>
+            <button onclick="sendToController()">Import</button>
         </section>
     </div>
 
-<!-- jQuery -->
-<script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
-<!-- Toastr -->
-<script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
+    <!-- jQuery -->
+    <script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
+    <!-- Toastr -->
+    <script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
     <script>
 
-        $(function () {
-            $("#example5").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-            });
+
+        // * cookie shennanigans
+        document.cookie = "username=John Doe";
+
+        function setCookie(cname, cvalue) {
+            document.cookie = cname + "=" + cvalue;
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCSV() {
+            if (getCookie("CSV") == "") {
+                console.log("CSV cookie not found")
+                toastr.warning('Atenção! Não foi importado um ficheiro CSV para ler dados.')
+            }
+            if (getCookie("CSV") == "true") {
+                toastr.success("Ficheiro CSV importado!")
+                console.log("Cookie shows CSV is already loaded")
+            }
+        }
+
+        checkCSV()
+        //* End of cookie shenannigans
+
+
+        const myForm = document.getElementById("myForm");
+        const csvFile = document.getElementById("customFile");
+        var data = ""; //guarda os dados do csv
+
+        myForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const input = csvFile.files[0]; //leitura do primeiro ficheiro inserido
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const text = e.target.result;
+                data = csvToArray(text);
+            }
+            reader.readAsText(input);
         });
 
-     // * cookie shennanigans
-     document.cookie = "username=John Doe";
+        /**
+         * Converte um csv num array e depois cria uma tabela
+         * @param str
+         * @param delimiter
+         */
+        function csvToArray(str, delimiter = ";") {
+            const rows = str.split("\n");
+            rows.pop(); //remove o ultimo elemento que é null
 
-     function setCookie(cname, cvalue) {
-         document.cookie = cname + "=" + cvalue ;
-     }
-     function getCookie(cname) {
-         let name = cname + "=";
-         let decodedCookie = decodeURIComponent(document.cookie);
-         let ca = decodedCookie.split(';');
-         for(let i = 0; i <ca.length; i++) {
-             let c = ca[i];
-             while (c.charAt(0) == ' ') {
-                 c = c.substring(1);
-             }
-             if (c.indexOf(name) == 0) {
-                 return c.substring(name.length, c.length);
-             }
-         }
-         return "";
-     }
-
-     function checkCSV(){
-         if (getCookie("CSV") == "") {
-             console.log("CSV cookie not found")
-             toastr.warning('Atenção! Não foi importado um ficheiro CSV para ler dados.')
-         }
-         if (getCookie("CSV") == "true"){
-             toastr.success("Ficheiro CSV importado!")
-             console.log("Cookie shows CSV is already loaded")
-         }
-     }
-
-     checkCSV()
-     //* End of cookie shenannigans
-
-
-            const myForm = document.getElementById("myForm");
-            const csvFile = document.getElementById("customFile");
-
-            myForm.addEventListener("submit", function (e) {
-                e.preventDefault();
-                const input = csvFile.files[0];
-
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const text = e.target.result;
-                    const data = csvToArray(text);
-                }
-                reader.readAsText(input);
+            //separa cada array por ';'
+            const array = rows.map(function (row) {
+                return row.split(delimiter);
             });
 
-     /**
-      * Converte um csv num array
-      * @param str
-      * @param delimiter
-      * @returns array
-      */
-     function csvToArray(str, delimiter = ";") {
-         const rows = str.slice(str.indexOf("\n")).split("\n");
+            //torna a tabela visível
+            table = document.getElementById("tabela");
+            table.style.display = "block";
 
-         const arr = rows.map(function (row) {
-              return row.split(delimiter);
-         });
+            var table = $('#example5').DataTable({
+                columns: [
+                    {title: 'Disciplina'},
+                    {title: 'Abreviatura'},
+                    {title: 'Código disciplina'},
+                    {title: 'Horario'},
+                    {title: 'idk'},
+                    {title: 'Tipo'},
+                    {title: 'Código de curso e ano'},
+                    {title: 'Nome docente'},
+                    {title: 'E-mail'},
+                    {title: 'MEC docente'},
+                    {title: 'Sala'},
+                    {title: 'Dia da semana'},
+                    {title: 'Hora de início'},
+                    {title: 'Hora de fim'},
+                    {title: 'Datas'}
+                ],
+                data: array, //dados da tabela
+                "responsive": true, "lengthChange": false, "autoWidth": false,
 
-         var table = document.getElementById('example5');
+            });
 
-         var tableBody = document.createElement('TBODY');
-         table.appendChild(tableBody);
+            return array;
 
-         for (var i = 0; i < arr.length; i++) {
-             var tr = document.createElement('TR');
-             tableBody.appendChild(tr);
+        }
 
-             for (var j = 0; j < 15; j++) {
-                  var td = document.createElement('TD');
-                  td.appendChild(document.createTextNode(arr[i][j]));
-                  tr.appendChild(td);
-             }
-         }
-
-         return arr;
-     }
+        function sendToController() {
+            $.post("{{route('import')}}",
+                {
+                    value: data
+                },
+                function (data, status){
+                    console.log("importado");
+                });
+        }
     </script>
 @stop
