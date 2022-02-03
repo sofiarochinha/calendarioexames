@@ -23,7 +23,7 @@ Route::get('/calendario-anterior', ['as' => 'calendarioanterior',  'uses' => 'Ap
 Route::get('/dados-auxiliares', ['as' => 'configurations',  'uses' => 'App\Http\Controllers\ConfigurationsController@showView']);
 
 Route::get('/importar', ['as' => 'import', 'uses' => 'App\Http\Controllers\ImportController@showView']);
-Route::post('/importar', ['as' => 'import', 'uses' => 'App\Http\Controllers\ImportController@showView']);
+Route::post('/importar', ['as' => 'import', 'uses' => 'App\Http\Controllers\ImportController@importCSV']);
 
 Route::get('/exportar', ['as' => 'export','uses' => 'App\Http\Controllers\ExportController@showView']);
 

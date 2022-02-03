@@ -1,6 +1,8 @@
 @extends('layout.menu')
 @section('content')
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -170,11 +172,15 @@
         }
 
         function sendToController() {
-            $.post("{{route('import')}}",
-                {
-                    value: data
-                },
-                function (data, status){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('import')}}",
+                { value: data },
+                function (value, status){
                     console.log("importado");
                 });
         }

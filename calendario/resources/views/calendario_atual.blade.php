@@ -31,7 +31,6 @@
                                     <label class="card-title">Curso</label>
                                     <select class="custom-select form-control-border" id="curso">
                                         @foreach($courses as $course)
-
                                             <option value="{{$course->course_code}}">{{$course->name}}</option>
                                         @endforeach
                                     </select>

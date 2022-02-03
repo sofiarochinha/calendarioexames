@@ -11,9 +11,21 @@ class ImportController extends Controller
         return view('import');
     }
 
-    public function import(){
-        return view('calendario_atual');
+    public function importCSV(Request $request){
+
+       //dd($request);
+
+        for($i = 0; $i< count($request); $i++){
+
+            
+
+
+        }
+
+        return view('import');
     }
+
+
 
     /*
     public function import()
