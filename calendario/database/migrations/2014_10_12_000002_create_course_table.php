@@ -18,6 +18,8 @@ class CreateCourseTable extends Migration
             $table->string('name');
             $table->integer('course_code');
             $table->integer('course_year');
+            $table->string('type');
+            $table->string('regime');
         });
     }
 

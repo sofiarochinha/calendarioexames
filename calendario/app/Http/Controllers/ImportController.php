@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EvaluationSlot;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class ImportController extends Controller
@@ -13,16 +15,7 @@ class ImportController extends Controller
 
     public function importCSV(Request $request){
 
-       //dd($request);
 
-        for($i = 0; $i< count($request); $i++){
-
-            
-
-
-        }
-
-        return view('import');
     }
 
 

@@ -13,7 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\EvaluationSlot::factory(10)->create();
-         \App\Models\Calendar::factory(10)->create();
+        $this->call(CourseSeeder::class);
+        $this->call(TimeSlotSeeder::class);
+
+        \App\Models\EvaluationSlot::factory(10)->create();
+        \App\Models\Calendar::factory(10)->create();
     }
 }

@@ -15,12 +15,15 @@ class SubjectFactory extends Factory
      */
     public function definition()
     {
+
+        $course = Course::all();
+
         return [
             "name" => $this->faker->name(),
             "subject_code" => $this->faker->randomDigit(),
             "semester" => $this->faker->numberBetween(1,3),
             "professor_mec" => Professor::factory()->create()->mec,
-            "course_id" => Course::factory()->create()->id
+            "course_id" => $this->faker->randomElement($course),
         ];
     }
 }

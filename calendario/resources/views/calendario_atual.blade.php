@@ -190,8 +190,7 @@
 
               @foreach ($courses as $course)
                 if (valcurso == {!!$course->course_code!!}) {
-             //   anoArray.push();
-		anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
+		            anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
 
             }
 
