@@ -12,4 +12,8 @@ class Classroom extends Model
     public $timestamps = false;
 
     protected $fillable = ['classroom', 'capacity', 'type'];
+
+    public function evaluationSlot(){
+        return $this->hasMany(EvaluationSlot::class);
+    }
 }

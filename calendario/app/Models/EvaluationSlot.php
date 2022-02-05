@@ -21,26 +21,22 @@ class EvaluationSlot extends Model
     ];
 
     public function associated_professor(){
-        return $this->hasMany(Professor::class);
+        return $this->belongsToMany(Professor::class, 'associated_professor');
     }
 
     public function observing_professor(){
-        return $this->hasMany(Professor::class);
+        return $this->belongsTo(Professor::class, 'observing_professor');
     }
 
     public function classroom(){
-        return $this->hasMany(Classroom::class);
+        return $this->belongsToMany(Classroom::class, 'classroom');
     }
 
     public function timeslot(){
-        return $this->hasMany(TimeSlot::class);
+        return $this->belongsTo(TimeSlot::class, 'time_slot');
     }
 
     public function subject(){
-        return $this->belongstoMany(Subject::class);
-    }
-
-    public function day(){
-        return $this->hasMany(CalendarDay::class);
+        return $this->belongsTo(Subject::class, 'subject');
     }
 }

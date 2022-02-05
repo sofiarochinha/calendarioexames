@@ -11,6 +11,7 @@ class Subject extends Model
 
     protected $table = "subject";
     public $timestamps = false;
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
@@ -22,10 +23,14 @@ class Subject extends Model
     ];
 
     public function associated_professor(){
-        return $this->hasMany(Professor::class);
+        return $this->belongsTo(Professor::class, 'professor_mec');
     }
 
     public function courses(){
-        return $this->belongstoMany(Course::class);
+        return $this->belongsTo(Course::class, 'course_code');
+    }
+
+    public function evaluationSlot(){
+        return $this->hasOne(EvaluationSlot::class);
     }
 }

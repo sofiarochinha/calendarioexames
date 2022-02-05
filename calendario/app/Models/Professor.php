@@ -12,4 +12,16 @@ class Professor extends Model
     public $timestamps = true;
 
     protected $fillable = ['name', 'email', 'availability', 'mec'];
+
+    public function subject(){
+        return $this->hasOne(Subject::class);
+    }
+
+    public function associatedProfessor(){
+        return $this->hasOne(EvaluationSlot::class);
+    }
+
+    public function abservingProfessor(){
+        return $this->hasMany(EvaluationSlot::class);
+    }
 }

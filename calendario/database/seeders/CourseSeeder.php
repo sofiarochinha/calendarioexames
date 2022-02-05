@@ -279,7 +279,7 @@ class CourseSeeder extends Seeder
         ]);
 
         DB::table('course')->insert([
-            'name' => 'Eltrónica e Mecânica Industrial',
+            'name' => 'Eletrónica e Mecânica Industrial',
             'course_code' => 8912,
             'course_year' => 1,
             'type' => 'licenciatura',
@@ -287,7 +287,7 @@ class CourseSeeder extends Seeder
         ]);
 
         DB::table('course')->insert([
-            'name' => 'Eltrónica e Mecânica Industrial',
+            'name' => 'Eletrónica e Mecânica Industrial',
             'course_code' => 8912,
             'course_year' => 2,
             'type' => 'licenciatura',
@@ -295,7 +295,7 @@ class CourseSeeder extends Seeder
         ]);
 
         DB::table('course')->insert([
-            'name' => 'Eltrónica e Mecânica Industrial',
+            'name' => 'Eletrónica e Mecânica Industrial',
             'course_code' => 8912,
             'course_year' => 3,
             'type' => 'licenciatura',

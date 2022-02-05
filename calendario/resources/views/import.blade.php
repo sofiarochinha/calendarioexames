@@ -170,5 +170,27 @@
             return array;
 
         }
+
+       function sendToController() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('import')}}",
+                {
+                    data: JSON.stringify(data)
+
+                },
+
+                function (data, status){
+                  console.log(data);
+                  console.log(status);
+                  console.log("importado");
+                });
+        }
+
+
     </script>
 @stop

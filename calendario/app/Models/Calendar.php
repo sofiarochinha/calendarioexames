@@ -16,18 +16,17 @@ class Calendar extends Model
         'academic_year',
         'evaluation_season',
         'professor_mec',
-        'course_code',
-        'course_year',
+        'course_id',
         'start_date',
         'end_date'
     ];
 
     public function academicyear(){
-        return $this->belongstoMany(AcademicYear::class);
+        return $this->belongsTo(AcademicYear::class, 'academic_year');
     }
 
     public function course(){
-        return $this->belongstoMany(Course::class);
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
 }

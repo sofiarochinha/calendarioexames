@@ -13,4 +13,8 @@ class TimeSlot extends Model
     public $timestamps = false;
 
     protected $fillable = ['time_slot'];
+
+    public function evaluationSlot(){
+        return $this->hasOne(EvaluationSlot::class);
+    }
 }

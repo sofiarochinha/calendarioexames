@@ -13,5 +13,7 @@ class AcademicYear extends Model
 
     protected $fillable = ['academic_year', 'evaluation_season'];
 
-
+    public function calendar(){
+        return $this->hasOne(Calendar::class);
+    }
 }

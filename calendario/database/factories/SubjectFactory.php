@@ -23,7 +23,7 @@ class SubjectFactory extends Factory
             "subject_code" => $this->faker->randomDigit(),
             "semester" => $this->faker->numberBetween(1,3),
             "professor_mec" => Professor::factory()->create()->mec,
-            "course_id" => $this->faker->randomElement($course),
+            "course_code" => $this->faker->randomElement($course),
         ];
     }
 }

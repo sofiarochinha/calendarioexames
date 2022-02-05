@@ -15,10 +15,10 @@ class Course extends Model
     protected $fillable = ['name', 'course_code', 'course_year'];
 
     public function subject(){
-        return $this->hasMany(Subject::class);
+        return $this->hasOne(Subject::class);
     }
 
     public function calendar(){
-        return $this->belongstoMany(Calendar::class);
+        return $this->hasOne(Calendar::class);
     }
 }
