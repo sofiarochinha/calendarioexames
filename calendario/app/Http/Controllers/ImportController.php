@@ -63,7 +63,7 @@ class ImportController extends Controller
                     'name' => $data[$i][0],
                     'semester' => 1, //temos de adicionar este dado
                     'professor_id' => $idProfessor,
-                    'course_code' => $idCourse
+                    'course_id' => $idCourse
                 ]);
 
                 //contém a sala e o tipo de sala na forma '5.1.1 Aulas'

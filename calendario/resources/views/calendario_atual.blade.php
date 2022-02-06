@@ -30,8 +30,10 @@
                                 <div class="card-body">
                                     <label class="card-title">Curso</label>
                                     <select class="custom-select form-control-border" id="curso">
-                                        @foreach($courses as $course)
-                                            <option value="{{$course->course_code}}">{{$course->name}}</option>
+                                        @foreach($courses_names as $course)
+                                            @if ($course->calendar != null)
+                                                <option value="{{$course->course_code}}">{{$course->name}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -174,7 +176,7 @@
     <script src="{{(asset('/plugins/fullcalendar/main.js'))}}"></script>
 
 
-
+    <!-- Page specific script -->
     <script>
 
 
@@ -182,16 +184,55 @@
 	   * comboboxs para o calendário atual
 	   * verifica quais são as epocas que estam associadas ao curso e quais são os anos do curso
 	   */
+
+        var valcurso = $('#curso').val();
+        var epocaString = "";
+        var anoString = "";
+        var disciplinaString = "";
+
+            @foreach ($courses as $course)
+            if (valcurso == {!!$course->course_code!!}) {
+                @if ($course->calendar !=null)
+                    anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
+                @endif
+        }
+
+        @endforeach
+        $("#ano").html(anoString);
+
+
+        var valAno = $("#ano").val();
+
+        @foreach ($courses as $course)
+            if (valcurso == {!!$course->course_code!!}) {
+                if(valAno == {!!$course->course_year!!}){
+                    @foreach ($epocas as $epoca)
+                @if( $epoca->course_id == $course->id)
+                    epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+                    @foreach ($epoca->course->subject as $subject)
+                        disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                    @endforeach
+                @endif
+                @endforeach
+                }
+        }
+
+        @endforeach
+
+        $("#external-events").html(disciplinaString);
+        $("#epoca").html(epocaString);
+
         $("#curso").change(function () {
             var valcurso = $(this).val();
             var epocaString = "";
             var anoString = "";
-            var anoArray = [];
+            var disciplinaString = "";
 
-              @foreach ($courses as $course)
+                @foreach ($courses as $course)
                 if (valcurso == {!!$course->course_code!!}) {
-		            anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
-
+                    @if ($course->calendar !=null)
+                        anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
+                    @endif
             }
 
             @endforeach
@@ -202,17 +243,21 @@
 
             @foreach ($courses as $course)
                 if (valcurso == {!!$course->course_code!!}) {
-                	if(valAno == {!!$course->course_year!!}){
-		        	 @foreach ($epocas as $epoca)
-					@if( $epoca->course_id == $course->id)
-					 	epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
-					@endif
-		        	@endforeach
-                	}
+                    if(valAno == {!!$course->course_year!!}){
+                        @foreach ($epocas as $epoca)
+                    @if( $epoca->course_id == $course->id)
+                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+                        @foreach ($epoca->course->subject as $subject)
+                            disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                        @endforeach
+                    @endif
+                    @endforeach
+                    }
             }
 
             @endforeach
 
+            $("#external-events").html(disciplinaString);
             $("#epoca").html(epocaString);
         });
 
@@ -222,7 +267,7 @@
         $("#ano").change(function () {
             var valAno= $(this).val();
             var epocaString = "";
-
+            var disciplinaString = "";
             var valcurso = $("#curso").val();
 
             @foreach ($courses as $course)
@@ -231,6 +276,9 @@
 		        	 @foreach ($epocas as $epoca)
 					@if( $epoca->course_id == $course->id)
 					 	epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+                        @foreach ($epoca->course->subject as $subject)
+                            disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                        @endforeach
 					@endif
 		        	@endforeach
                 	}
@@ -238,14 +286,22 @@
 
             @endforeach
 
+            $("#external-events").html(disciplinaString);
             $("#epoca").html(epocaString);
         });
 
-    </script>
-
-        <!-- Page specific script -->
-    <script>
-
+        $("#epoca").change(function () {
+            var epoca= $(this).val();
+            var disciplinaString = "";
+		        	@foreach ($epocas as $epoca)
+                        if({!!$epoca->id!!} == epoca){
+                            @foreach ($epoca->course->subject as $subject)
+                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                            @endforeach
+                        }
+		        	@endforeach
+                    $("#external-events").html(disciplinaString);
+        });
 
         $(function () {
 

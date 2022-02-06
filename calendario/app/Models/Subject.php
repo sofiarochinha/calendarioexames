@@ -18,7 +18,7 @@ class Subject extends Model
         'subject_code',
         'semester',
         'professor_id',
-        'course_code'
+        'course_id'
     ];
 
     public function associated_professor(){
@@ -26,7 +26,7 @@ class Subject extends Model
     }
 
     public function courses(){
-        return $this->belongsTo(Course::class, 'course_code');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
     public function evaluationSlot(){

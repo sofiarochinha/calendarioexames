@@ -353,7 +353,7 @@ class CourseSeeder extends Seeder
         DB::table('course')->insert([
             'name' => 'Gestão Qualidade Total',
             'course_code' => 9282,
-            'course_year' => 1,
+            'course_year' => 2,
             'type' => 'mestrado',
             'regime' => 'diurno'
         ]);

@@ -15,7 +15,7 @@ class Course extends Model
     protected $fillable = ['name', 'course_code', 'course_year'];
 
     public function subject(){
-        return $this->hasOne(Subject::class);
+        return $this->hasMany(Subject::class);
     }
 
     public function calendar(){
