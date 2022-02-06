@@ -21,7 +21,7 @@ class EvaluationSlot extends Model
     ];
 
     public function associated_professor(){
-        return $this->belongsToMany(Professor::class, 'associated_professor');
+        return $this->belongsTo(Professor::class, 'associated_professor');
     }
 
     public function observing_professor(){
@@ -29,7 +29,7 @@ class EvaluationSlot extends Model
     }
 
     public function classroom(){
-        return $this->belongsToMany(Classroom::class, 'classroom');
+        return $this->belongsTo(Classroom::class, 'classroom');
     }
 
     public function timeslot(){

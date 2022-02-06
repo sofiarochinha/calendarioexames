@@ -14,6 +14,6 @@ class Classroom extends Model
     protected $fillable = ['classroom', 'capacity', 'type'];
 
     public function evaluationSlot(){
-        return $this->hasMany(EvaluationSlot::class);
+        return $this->hasOne(EvaluationSlot::class);
     }
 }

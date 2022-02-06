@@ -22,6 +22,6 @@ class Professor extends Model
     }
 
     public function abservingProfessor(){
-        return $this->hasMany(EvaluationSlot::class);
+        return $this->hasOne(EvaluationSlot::class);
     }
 }
