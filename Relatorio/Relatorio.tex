@@ -162,7 +162,7 @@
 		\item \textit{Webapp} de fácil navegação e intuitiva para a criação de um calendário. 
 		\item Possibilidade de agendamento de exames a unidades curriculares separados por curso, ano letivo e semestre.   
 		\item Possibilidade de edição de curso, do docente, unidades curriculares, salas e o seu tipo. 
-		\item Exportação de calendários para formato pdf e csv. 
+		\item Exportação de calendários para formato \textbf{pdf} e \textbf{csv}. 
 	\end{itemize} 
 	\section{Estado de arte}
 	\label{estadodearte}
@@ -279,11 +279,13 @@ No entanto no ``Outlook Calendar''` é possível selecionar um período de horas
 	
 	\chapter{Tecnologias utilizadas}
 	
-	As tecnologias utilizadas ao longo do projeto foram o ``Figma'' que permite a criação dos Wireframes de forma gratuita (para estudantes) e simular uma interação que é útil para os testes. Ao longo do desenvolvimento do protótipo de alta fidelidade não funcional foram a \textit{framework} laravel.
-	Como o servidor onde o projeto irá decorrer tem como obrigatoriedade a utilização de \textit{framework} em \textit{php} então esta foi escolhida por ser lecionada durante as aulas de Desenvolvimento Web Multiplataforma e por haver elementos do grupo que têm algum conhecimento sobre a mesma. Como \textit{front-end} foi utilizado o BootStrap4 que já era utilizado no template escolhido tendo somente que o adaptar para o projeto de \textit{laravel}.
+	As tecnologias utilizadas ao longo do projeto foram o ``Figma'' que permite a criação dos \textit{Wireframes} de forma gratuita (para estudantes) e simular uma interação que é útil para os testes. Ao longo do desenvolvimento do protótipo de alta fidelidade não funcional foram a \textit{framework} \textit{laravel}.
+	Como o servidor onde o projeto irá decorrer tem como obrigatoriedade a utilização de \textit{framework} em \textit{php} então esta foi escolhida por ser lecionada durante as aulas de Desenvolvimento Web Multiplataforma e por haver elementos do grupo que têm algum conhecimento sobre a mesma.
+	Como \textit{front-end} foi utilizado o BootStrap4 que já era utilizado no template escolhido tendo somente que o adaptar para o projeto de \textit{laravel}.
 	
 	Para os testes de acessibilidade e desempenho foi utilizado a extensão do ``LightHouse'' que permite testar todo o projeto no servidor da UA ou localmente já que utiliza o navegador para o mesmo. 
 	
+	Para construção de diagramas para a base de dados foi utilizado o serviço \textit{web} \href{https://dbdiagram.io/}{dbdiagram} que permite a construção e edição rápida de diagramas de uma forma gratuita e com compatibilidade multi-plataforma.
 	
 	
 	\chapter{Planificação do projeto}
@@ -1009,6 +1011,7 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	
 	\subsection{Wireframes}
 	
+	A construção dos protótipos de baixa fidelidade foi realizada com a aplicação \textit{web} \href{https://www.figma.com/}{figma}.
 	Nos \textit{wireframes} - protótipo de baixa fidelidade não funcional - as funcionalidades foram dividas em 3 secções no menu: calendários, configurar e exportar.
 	Dentro do menu na opção ``calendários'' o utilizador pode criar novos calendários ou visualizar o histórico de calendários mais antigos podendo filtrar por ano letivo ou curso, como se pode ver na figura \ref{menucalendario}.
 	A opção que está selecionada apresenta uma cor diferente do restante menu.
@@ -1344,8 +1347,8 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	Para guardar informação de calendários anteriores foram também criadas duas tabelas de histórico para o calendário momento de avaliação.
 	Estes dados são guardados de forma temporária até o projecto estar terminado e outros mais universais, como o caso de salas de aulas, ficam guardados de forma persistente.
 	
-	O diagrama conceptual da base de dados foi realizado com a aplicação web gratuita \textbf{dbdiagram.io} que facilitou o desenvolvimento por não requerer um instalação local e ser universal a sistemas operativos.
-	A base de dados em si foi construida em PostgresSQL que foi posteriormente alojada num servidor dentro da rede da UA.
+	O diagrama conceptual da base de dados foi realizado com a aplicação web gratuita \href{https://dbdiagram.io/}{dbdiagram.io} que facilitou o desenvolvimento por não requerer um instalação local e ser universal a sistemas operativos.
+	A base de dados em si foi construida em \textit{PostgresSQL} que foi posteriormente alojada num servidor dentro da rede da UA.
 	
 	\begin{figure}[H]
 		\centering
