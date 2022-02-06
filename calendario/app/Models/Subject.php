@@ -17,13 +17,12 @@ class Subject extends Model
         'name',
         'subject_code',
         'semester',
-        'professor_mec',
-        'course_code',
-        'course_year',
+        'professor_id',
+        'course_code'
     ];
 
     public function associated_professor(){
-        return $this->belongsTo(Professor::class, 'professor_mec');
+        return $this->belongsTo(Professor::class, 'professor_id');
     }
 
     public function courses(){

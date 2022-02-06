@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\AcademicYear;
 use App\Models\Course;
+use App\Models\Professor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CalendarFactory extends Factory
@@ -16,9 +17,10 @@ class CalendarFactory extends Factory
     public function definition()
     {
         $course = Course::all();
+        $professor = Professor::all();
 
         return [
-            "professor_mec" => $this->faker->unique()->numberBetween(1,100),
+            "professor_mec" => $this->faker->randomElement($professor),
             "calendar_name" => $this->faker->name(),
             "academic_year" => AcademicYear::factory()->create()->id,
             "evaluation_season" => $this->faker->name(),

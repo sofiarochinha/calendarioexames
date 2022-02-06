@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Classroom;
 use App\Models\Professor;
 use App\Models\Subject;
+use App\Models\TimeSlot;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EvaluationSlotFactory extends Factory
@@ -16,17 +17,18 @@ class EvaluationSlotFactory extends Factory
      */
     public function definition()
     {
-        $subject = Subject::factory()->create();
-        $professor = Professor::factory()->create();
-        $classroom = Classroom::factory()->create();
+        $subject = Subject::all();
+        $professor = Professor::all();
+        $classroom = Classroom::all();
+        $time = TimeSlot::all();
 
         return [
             "day" => $this->faker->date(),
-            "subject" => $subject->id,
-            "associated_professor" => $professor->id,
-            "observing_professor" => $professor->id,
-            "classroom" => $classroom->id,
-            "time_slot" => $this->faker->numberBetween(1,3),
+            "subject" => $this->faker->randomElement($subject),
+            "associated_professor" => $this->faker->randomElement($professor),
+            "observing_professor" =>$this->faker->randomElement($professor),
+            "classroom" => $this->faker->randomElement($classroom),
+            "time_slot" => $this->faker->randomElement($time),
         ];
     }
 }

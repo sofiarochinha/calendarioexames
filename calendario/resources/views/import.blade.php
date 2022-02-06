@@ -39,7 +39,7 @@
                                         <label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
                                     </div>
                                 </div>
-                                <button type="submit" value="submit" class="btn btn-primary">Importar</button>
+                                <button type="submit" value="submit" class="btn btn-primary">Visualizar os Dados</button>
                             </form>
                         </div>
                     </div>
@@ -60,8 +60,9 @@
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-primary" onclick="sendToController()">Importar</button>
             </section>
-            <button onclick="sendToController()">Import</button>
+
         </section>
     </div>
 
@@ -150,7 +151,7 @@
                     {title: 'Abreviatura'},
                     {title: 'Código disciplina'},
                     {title: 'Horario'},
-                    {title: 'idk'},
+                    {title: 'Turma'},
                     {title: 'Tipo'},
                     {title: 'Código de curso e ano'},
                     {title: 'Nome docente'},
@@ -185,10 +186,13 @@
                 },
 
                 function (data, status){
-                  console.log(data);
-                  console.log(status);
-                  console.log("importado");
-                });
+                    if(status === "success"){
+                        setCookie("CSV", true);
+                        checkCSV();
+                    }
+
+
+                })
         }
 
 
