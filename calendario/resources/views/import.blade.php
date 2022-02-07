@@ -190,8 +190,6 @@
                         setCookie("CSV", true);
                         checkCSV();
                     }
-
-
                 })
         }
 

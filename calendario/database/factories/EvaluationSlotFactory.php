@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Calendar;
 use App\Models\Classroom;
 use App\Models\Professor;
 use App\Models\Subject;
@@ -21,9 +22,10 @@ class EvaluationSlotFactory extends Factory
         $professor = Professor::all();
         $classroom = Classroom::all();
         $time = TimeSlot::all();
+        $calendar = Calendar::all();
 
         return [
-            "day" => $this->faker->date(),
+            "calendar_id" => $this->faker->randomElement($calendar),
             "subject" => $this->faker->randomElement($subject),
             "associated_professor" => $this->faker->randomElement($professor),
             "observing_professor" =>$this->faker->randomElement($professor),

@@ -25,6 +25,10 @@ class Calendar extends Model
         return $this->belongsTo(AcademicYear::class, 'academic_year');
     }
 
+    public function evaluationslot(){
+        return $this->hasMany(EvaluationSlot::class);
+    }
+
     public function course(){
         return $this->belongsTo(Course::class, 'course_id');
     }

@@ -12,7 +12,7 @@ class EvaluationSlot extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "day",
+        "calendar_id",
         "subject",
         "associated_professor",
         "observing_professor",
@@ -23,6 +23,11 @@ class EvaluationSlot extends Model
     public function associated_professor(){
         return $this->belongsTo(Professor::class, 'associated_professor');
     }
+
+    public function calendar(){
+        return $this->belongsTo(Calendar::class, 'calendar_id');
+    }
+
 
     public function observing_professor(){
         return $this->belongsTo(Professor::class, 'observing_professor');

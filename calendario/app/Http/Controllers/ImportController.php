@@ -55,6 +55,7 @@ class ImportController extends Controller
                     ->first()
                     ->id;
 
+
                 //adiciona a disiciplina
                 //verifica se não existe nenhuma disciplina com o mesmo subject_code
                 //se existir faz update

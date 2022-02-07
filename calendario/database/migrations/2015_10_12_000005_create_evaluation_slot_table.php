@@ -16,16 +16,17 @@ class CreateEvaluationSlotTable extends Migration
     {
         Schema::create('evaluation_slot', function (Blueprint $table) {
             $table->id();
-            $table->date('day');
+            $table->integer('calendar_id');
             $table->integer('subject');
             $table->integer('associated_professor');
             $table->integer('observing_professor');
             $table->integer('classroom');
             $table->integer('time_slot');
 
+            $table->foreign('calendar_id')->references('id')->on('calendar');
             $table->foreign('associated_professor')->references('id')->on('professor');
             $table->foreign('observing_professor')->references('id')->on('professor');
-           // $table->foreign('time_slot')->references('id')->on('time_slot');
+            $table->foreign('time_slot')->references('id')->on('time_slot');
 	        $table->foreign('subject')->references('id')->on('subject');
 	        $table->foreign('classroom')->references('id')->on('classroom');
         });

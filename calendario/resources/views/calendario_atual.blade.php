@@ -221,6 +221,7 @@
 
         $("#external-events").html(disciplinaString);
         $("#epoca").html(epocaString);
+        alterarCalendario();
 
         $("#curso").change(function () {
             var valcurso = $(this).val();
@@ -259,6 +260,7 @@
 
             $("#external-events").html(disciplinaString);
             $("#epoca").html(epocaString);
+            alterarCalendario();
         });
 
         /**
@@ -270,28 +272,33 @@
             var disciplinaString = "";
             var valcurso = $("#curso").val();
 
+            /**
+             * WARNING: as disciplinas estam repetidas se houver mais que uma época
+             */
             @foreach ($courses as $course)
-                if (valcurso == {!!$course->course_code!!}) {
-                	if(valAno == {!!$course->course_year!!}){
-		        	 @foreach ($epocas as $epoca)
-					@if( $epoca->course_id == $course->id)
-					 	epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
-                        @foreach ($epoca->course->subject as $subject)
-                            disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
-                        @endforeach
-					@endif
-		        	@endforeach
-                	}
+            if (valcurso == {!!$course->course_code!!}) {
+                if(valAno == {!!$course->course_year!!}){
+                    @foreach ($epocas as $epoca)
+                        @if( $epoca->course_id == $course->id)
+                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+                            @foreach ($epoca->course->subject as $subject)
+                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                            @endforeach
+                    @endif
+                    @endforeach
+                }
             }
 
             @endforeach
 
             $("#external-events").html(disciplinaString);
             $("#epoca").html(epocaString);
+
+            alterarCalendario();
         });
 
         $("#epoca").change(function () {
-            var epoca= $(this).val();
+            var epoca = $(this).val(); //epoca selecionada
             var disciplinaString = "";
 		        	@foreach ($epocas as $epoca)
                         if({!!$epoca->id!!} == epoca){
@@ -301,9 +308,27 @@
                         }
 		        	@endforeach
                     $("#external-events").html(disciplinaString);
+                    alterarCalendario();
         });
 
-        $(function () {
+       function alterarCalendario(){
+           var dateEpoca =  $('#epoca').val();
+           var dataInicio = "";
+
+           @foreach($epocas as $epoca)
+           if({!!  $epoca->id !!}  == dateEpoca){
+               dataInicio = '{!! $epoca->start_date !!}'.split(" ");
+               console.log({!! $epoca->evaluationslot !!});
+           }
+           @endforeach
+
+           calendar(dataInicio[0]);
+       }
+
+
+
+
+       function calendar(dataInicio){
 
             /* initialize the external events
              -----------------------------------------------------------------*/
@@ -361,6 +386,7 @@
                 }
             });
 
+
             var calendar = new Calendar(calendarEl, {
                 headerToolbar: {
                     left: '',
@@ -384,7 +410,8 @@
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 },
                 initialView: 'timeGrid2Week',
-                initialDate: "2021-01-04",
+                initialDate: dataInicio,
+
                 locale: 'pt',
                 allDaySlot: false,
                 defaultTimedEventDuration: "04:30",
@@ -439,7 +466,7 @@
                 // Remove event from text input
                 $('#new-event').val('')
             })
-        })
+        };
     </script>
 
 @stop
