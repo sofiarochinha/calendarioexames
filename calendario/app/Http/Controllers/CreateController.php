@@ -25,18 +25,18 @@ class CreateController extends Controller
         {
             $curso = Course::findOrFail($anos[$i]);
 
-            print_r($curso->name);
 
             for ($r = 0; $r < count($epocas); $r ++)
             {
-                $epoca = Epoca::findOrFail($epocas[$r])->first();
-                $calendario = Calendar::where('id_course', $curso->id)->where('id_epoca', $epoca->id)->get();
+                $epoca = Epoca::findOrFail($epocas[$r]);
+                print_r($epoca->id);
+                $calendario = Calendar::where('course_id', $curso->id)->where('epoca_id', $epoca->id)->get();
                 if($calendario=='[]'){
                     $novocalendario = new Calendar();
-                    $novocalendario->id_epoca= $epoca->id;
-                    $novocalendario->id_course= $curso->id;
+                    $novocalendario->epoca_id= $epoca->id;
+                    $novocalendario->course_id= $curso->id;
                     $novocalendario->save();
-                    print_r($novocalendario);
+
                 }
             }
         }

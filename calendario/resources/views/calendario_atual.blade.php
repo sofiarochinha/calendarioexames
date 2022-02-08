@@ -210,7 +210,7 @@
                 if(valAno == {!!$course->course_year!!}){
                     @foreach ($epocas as $epoca)
                 @if( $epoca->course_id == $course->id)
-                    epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+                    epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
                     @foreach ($epoca->course->subject as $subject)
                         disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
                     @endforeach
@@ -249,7 +249,7 @@
                     if(valAno == {!!$course->course_year!!}){
                         @foreach ($epocas as $epoca)
                     @if( $epoca->course_id == $course->id)
-                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
                         @foreach ($epoca->course->subject as $subject)
                             disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
                         @endforeach
@@ -282,7 +282,7 @@
                 if(valAno == {!!$course->course_year!!}){
                     @foreach ($epocas as $epoca)
                         @if( $epoca->course_id == $course->id)
-                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->calendar_name}}</option>";
+                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
                             @foreach ($epoca->course->subject as $subject)
                                 disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
                             @endforeach
@@ -321,13 +321,15 @@
            @foreach($epocas as $epoca)
 
                if({!!  $epoca->id !!}  == dateEpoca){
-                   dataInicio = '{!! $epoca->start_date !!}'.split(" ");
+                   dataInicio = '{!! $epoca->epoca->start_date !!}'.split(" ");
 
                    var inicio = "", fim ="", nome = "";
 
                    if(dateEpoca == {!! $epoca->id !!}){
+                        @if ($epoca->evaluationslot != null)
 
-                       @foreach($epoca->evaluationslot as $event){
+
+                       @foreach($epoca->evaluationslots as $event){
                            var event = {};
                            if({!! $event->timeslot->id !!} == 1){
                                event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
@@ -346,6 +348,7 @@
 
                          }
                          @endforeach
+                         @endif
                    }
                }
            @endforeach

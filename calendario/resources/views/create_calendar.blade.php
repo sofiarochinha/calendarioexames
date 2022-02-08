@@ -68,7 +68,7 @@
                                         <label>Época</label>
                                         <select class="select2" multiple="multiple" data-placeholder="Selecione um curso..." style="width: 100%;" id="epoca">
                                             @foreach($evaluation_season as $season)
-                                                        <option value="{{ $season->id }}">{{ $season->evaluation_season }}</option>
+                                                        <option value="{{ $season->id }}">{{ $season->name }}</option>
                                                  @endforeach
                                             </select>
                                         </select>
@@ -133,7 +133,7 @@
                     epoca: JSON.stringify($valepoca)
 
                 })
-            //window.location.href = "{{ route('import')}}";
+            window.location.href = "{{ route('calendarioatual')}}";
         }
     }
 

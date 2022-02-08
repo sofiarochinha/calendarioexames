@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CourseSeeder::class);
-        $this->call(TimeSlotSeeder::class);
+        //$this->call(CourseSeeder::class);
+        //$this->call(TimeSlotSeeder::class);
 
 
         //para isto funcionar é perciso de importar o csv primeiro
