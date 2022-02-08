@@ -34,8 +34,8 @@ class CalendarFactory extends Factory
         $course = Course::all();
 
         return [
-            "id_course" => $this->faker->randomElement($course),
-            "id_epoca" => Epoca::factory()->create()->id,
+            "course_id" => $this->faker->randomElement($course),
+            "epoca_id" => Epoca::factory()->create()->id,
         ];
     }
 }
