@@ -21,8 +21,8 @@ class Calendar extends Model
         'end_date'
     ];
 
-    public function academicyear(){
-        return $this->belongsTo(AcademicYear::class, 'academic_year');
+    public function epoca(){
+        return $this->belongsTo(Epoca::class, 'academic_year');
     }
 
     public function evaluationslot(){
@@ -30,7 +30,7 @@ class Calendar extends Model
     }
 
     public function course(){
-        return $this->belongsTo(Course::class, 'course_id');
+        return $this->belongsTo(Course::class, 'id_course');
     }
 
 }

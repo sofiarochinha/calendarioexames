@@ -16,19 +16,14 @@ class CreateCalendarTable extends Migration
     {
         Schema::create('calendar', function (Blueprint $table) {
             $table->id();
-            $table->string('calendar_name');
-            $table->integer('academic_year');
-            $table->string('evaluation_season');
-            $table->string('professor_mec');
-            $table->integer('course_id');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->integer('id_epoca');
+            $table->integer('id_course');
 
-            $table->foreign('academic_year')
+            $table->foreign('id_epoca')
                 ->references('id')
-                ->on('academic_year');
+                ->on('epocas');
 
-            $table->foreign('course_id')
+            $table->foreign('id_course')
                 ->references('id')
                 ->on('course');
         });

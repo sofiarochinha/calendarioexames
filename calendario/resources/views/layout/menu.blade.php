@@ -288,7 +288,7 @@
         $('#reservation').daterangepicker();
         $('#reservation2').daterangepicker();
         $('#reservation3').daterangepicker();
-        $('.select2').select2();
+        //$('.select2').select2();
         $('.select2bs4').select2({
             theme: 'bootstrap4'
         })
