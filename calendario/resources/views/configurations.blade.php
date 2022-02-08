@@ -59,91 +59,38 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr>
-                                        <td>
-                                            <div contenteditable>Web Design</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Rita Santos</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Tecnologias da Informação</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>3º ano</div>
-                                        </td>
-                                        <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div contenteditable>Web Design</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Rita Santos</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Tecnologias da Informação</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>3º ano</div>
-                                        </td>
-                                        <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div contenteditable>Web Design</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Rita Santos</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Tecnologias da Informação</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>3º ano</div>
-                                        </td>
-                                        <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div contenteditable>Segurança Informática</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Hélder Gomes</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Tecnologias da Informação</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>3º ano</div>
-                                        </td>
-                                        <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div id="eco_name" onClick="edited(this.id)" contenteditable>Economia I</div>
-                                        </td>
-                                        <td>
-                                            <div id="eco_prof" onClick="edited(this.id)" contenteditable>Miguel Magueta</div>
-                                        </td>
-                                        <td>
-                                            <div id="eco_course" onClick="edited(this.id)" contenteditable>Gestão Pública</div>
-                                        </td>
-                                        <td>
-                                            <div id="eco_year" onClick="edited(this.id)" contenteditable>1º ano</div>
-                                        </td>
-                                        <td align="center"><i id="eco_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
+                                    
+                                        @foreach($subjects as $subject)
+                                        <tr>
+                                                       @if(old('subjects') == $subject->subjects)
+                                                            <td>{{ $subject->name}}</td>
+                                                            <td>
+                                                                @foreach($subject->associated_professor as $professor)
+                                                                    {{$professor->name}}
+                                                                @endforeach
+                                                            </td>
+                                                            <td>{{$subject->courses->name}}</td>
+                                                            <td>{{$subject->courses->course_year}}</td>
+                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                                            @else
+                                                            <td>{{ $subject->name}}</td>
+                                                            <td>
+                                                                @foreach($subject->associated_professor as $professor)
+                                                                    {{$professor->name}}
+                                                                @endforeach
+                                                            </td>
+                                                            <td>{{ $subject->courses->name}}</td>
+                                                            <td>{{ $subject->courses->course_year}}</td>
+                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                                            
+                                                    @endif
+                                                    <tr>
+                                            @endforeach
+                                        
                                 </tbody>
                             </table>
                         </div>
@@ -164,48 +111,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div id="editProf_name" onClick="edited(this.id)" contenteditable>Rita Santos</div>
-                                        </td>
-                                        <td>
-                                            <div id="editProf_email" onClick="edited(this.id)" contenteditable>rita.santos@ua.pt</div>
-                                        </td>
-                                        <td>
-                                            <div id="editProf_email" onClick="edited(this.id)" contenteditable></div>
-                                        </td>
-                                        <td align="center"><i id="editProf_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div contenteditable>Hélder Gomes</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>helder.gomes@ua.pt</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable></div>
-                                        </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div contenteditable>Miguel Magueta</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>dmagueta@ua.pt</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable></div>
-                                        </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
+                                    @foreach($professors as $professor)
+                                        <tr>
+                                                       @if(old('professors') == $professor->professors)
+                                                            <td>{{ $professor->name}}</td>
+                                                            <td>{{$professor->email}}</td>
+                                                            <td>{{$professor->availability}}</td>
+                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                                            @else
+                                                            <td>{{ $professor->name}}</td>
+                                                            <td>{{$professor->email}}</td>
+                                                            <td>{{$professor->availability}}</td>
+                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                                            
+                                                    @endif
+                                                    <tr>
+                                            @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -226,48 +152,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div contenteditable>5.1.15</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Informáticas</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>25</div>
-                                        </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div id="salanumber_number" onClick="edited(this.id)" contenteditable>5.1.09</div>
-                                        </td>
-                                        <td>
-                                            <div id="salanumber_type" onClick="edited(this.id)" contenteditable>Aulas</div>
-                                        </td>
-                                        <td>
-                                            <div id="salanumber_capacity" onClick="edited(this.id)" contenteditable>20</div>
-                                        </td>
-                                        <td align="center"><i id="salanumber_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div contenteditable>5.1.12</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>Laboratório de Redes</div>
-                                        </td>
-                                        <td>
-                                            <div contenteditable>35</div>
-                                        </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
+                                    @foreach($classrooms as $classroom)
+                                        <tr>
+                                                       @if(old('classrooms') == $classroom->classrooms)
+                                                            <td>{{ $classroom->classroom}}</td>
+                                                            <td>{{ $classroom->type}}</td>
+                                                            <td>{{ $classroom->capacity}}</td>
+                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                                            @else
+                                                            <td>{{ $classroom->classroom}}</td>
+                                                            <td>{{ $classroom->type}}</td>
+                                                            <td>{{ $classroom->capacity}}</td>
+                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                                            
+                                                    @endif
+                                                    <tr>
+                                            @endforeach
                                 </tbody>
                             </table>
                         </div>
