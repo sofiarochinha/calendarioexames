@@ -20,7 +20,7 @@ class Calendar extends Model
         return $this->belongsTo(Epoca::class, 'id_epoca');
     }
 
-    public function evaluationslot(){
+    public function evaluationslots(){
         return $this->hasMany(EvaluationSlot::class);
     }
 

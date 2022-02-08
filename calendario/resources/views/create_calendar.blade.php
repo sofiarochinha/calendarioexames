@@ -120,6 +120,7 @@
     function getdata(){
         $valano = $('#ano').val();
         $valepoca= $('#epoca').val();
+        if($valano.length != 0 && $valepoca.length != 0){
         $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -134,6 +135,7 @@
                 })
             //window.location.href = "{{ route('import')}}";
         }
+    }
 
      // * cookie shennanigans
      function getCookie(cname) {
