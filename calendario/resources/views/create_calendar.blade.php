@@ -1,6 +1,8 @@
 @extends('layout.menu')
 @section('content')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -21,7 +23,8 @@
         </section>
 
         <!-- Main content -->
-        <section class="content">
+
+        <section class="content" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
@@ -30,13 +33,9 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Curso</label>
-                                        <select class="select2" multiple="multiple" data-placeholder="Selecione um curso..." style="width: 100%;">
+                                        <select class="select2" multiple="multiple" data-placeholder="Selecione um curso..." style="width: 100%;" id="course">
                                             @foreach($courses as $course)
-                                                       @if(old('courses') == $course->name)
-                                                            <option value="{{$course->id}}" selected>{{ $course->name}}</option>
-                                                            @else
-                                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
-                                                    @endif
+                                                       <option value="{{ $course->course_code }}">{{ $course->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -50,11 +49,9 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Ano do curso</label>
-                                        <select class="select2" multiple="multiple"
+                                        <select class="select2" multiple="multiple" id="ano"
                                                 data-placeholder="Selecione um curso" style="width: 100%;">
-                                            <option>1º ano</option>
-                                            <option>2º ano</option>
-                                            <option>3º ano</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -69,13 +66,9 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Época</label>
-                                        <select class="select2" multiple="multiple" data-placeholder="Selecione um curso..." style="width: 100%;">
+                                        <select class="select2" multiple="multiple" data-placeholder="Selecione um curso..." style="width: 100%;" id="epoca">
                                             @foreach($evaluation_season as $season)
-                                                @if(old('evaluation_season') == $season->evaluation_season)
-                                                                <option value="{{$season->id}}" selected>{{ $season->evaluation_season}}</option>
-                                                             @else
                                                         <option value="{{ $season->id }}">{{ $season->evaluation_season }}</option>
-                                                    @endif
                                                  @endforeach
                                             </select>
                                         </select>
@@ -88,7 +81,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="{{route('calendarioatual')}}"><input type="submit" value="Criar Calendário"
+                    <a onclick="getdata()" ><input type="submit" value="Criar Calendário"
                                                         class="btn btn-primary float-right"></a>
                 </div>
             </div>
@@ -102,7 +95,46 @@
 <script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
 <!-- Toastr -->
 <script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        var $teste = $('#course');
+    $teste.change(function(){
+        var valcourse = $('#course').val();
+        console.log(valcourse);
+        var anostring = "";
+        jQuery.each(valcourse, function(i, val){
+
+            @foreach ($coursesall as $course)
+                if (val == {!!$course->course_code!!}) {
+                        anostring += '<option value="{{ $course->id }}">{{ $course->name }} - {{$course->course_year}}º Ano</option>';
+            }
+
+            @endforeach
+        });
+        console.log(anostring);
+        $("#ano").html(anostring);
+    });
+
+
+    function getdata(){
+        $valano = $('#ano').val();
+        $valepoca= $('#epoca').val();
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('enviardados')}}",
+                {
+                    ano: JSON.stringify($valano),
+                    epoca: JSON.stringify($valepoca)
+
+                })
+            //window.location.href = "{{ route('import')}}";
+        }
+
      // * cookie shennanigans
      function getCookie(cname) {
          let name = cname + "=";
@@ -131,6 +163,8 @@
      //* End of cookie shenannigans
 
     </script>>
+
+
 
 
 

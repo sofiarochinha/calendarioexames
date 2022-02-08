@@ -12,17 +12,12 @@ class Calendar extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'calendar_name',
-        'academic_year',
-        'evaluation_season',
-        'professor_mec',
-        'course_id',
-        'start_date',
-        'end_date'
+        'id_epoca',
+        'id_course',
     ];
 
-    public function academicyear(){
-        return $this->belongsTo(AcademicYear::class, 'academic_year');
+    public function epoca(){
+        return $this->belongsTo(Epoca::class, 'id_epoca');
     }
 
     public function evaluationslot(){
@@ -30,7 +25,7 @@ class Calendar extends Model
     }
 
     public function course(){
-        return $this->belongsTo(Course::class, 'course_id');
+        return $this->belongsTo(Course::class, 'id_course');
     }
 
 }

@@ -27,4 +27,6 @@ Route::post('/importar', ['as' => 'import', 'uses' => 'App\Http\Controllers\Impo
 
 Route::get('/exportar', ['as' => 'export','uses' => 'App\Http\Controllers\ExportController@showView']);
 
+Route::post('/criar-calendario/teste', ['as' => 'enviardados','uses' => 'App\Http\Controllers\CreateController@add']);
+
 
