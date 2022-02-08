@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
 		
 
         //para isto funcionar é perciso de importar o csv primeiro
-       // \App\Models\Calendar::factory(10)->create();
-       // \App\Models\EvaluationSlot::factory(10)->create();
+        \App\Models\Calendar::factory(10)->create();
+        \App\Models\EvaluationSlot::factory(10)->create();
 
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\AcademicYear;
 use App\Models\Course;
+use App\Models\Epoca;
 use App\Models\Professor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -16,7 +17,7 @@ class CalendarFactory extends Factory
      */
     public function definition()
     {
-        $course = Course::all();
+        /*$course = Course::all();
         $professor = Professor::all();
 
         return [
@@ -28,6 +29,13 @@ class CalendarFactory extends Factory
             "start_date" => $this->faker->dateTime(),
             "end_date" => $this->faker->dateTime(),
 
+        ];*/
+
+        $course = Course::all();
+
+        return [
+            "id_course" => $this->faker->randomElement($course),
+            "id_epoca" => Epoca::factory()->create()->id,
         ];
     }
 }
