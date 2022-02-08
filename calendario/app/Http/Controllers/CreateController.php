@@ -29,10 +29,12 @@ class CreateController extends Controller
 
             for ($r = 0; $r < count($epocas); $r ++)
             {
-                $epoca = Calendar::findOrFail($epocas[$r])->first();
+                $epoca = Epoca::findOrFail($epocas[$r])->first();
                 $novocalendario = new Calendar();
-                $novocalendario->academic_year= $epoca->academic_year;
-                print_r($epoca->evaluation_season);
+                $novocalendario->id_epoca= $epoca->id;
+                $novocalendario->id_course= $curso->id;
+                $novocalendario->save();
+                print_r($novocalendario);
             }
         }
         //return $teste;
