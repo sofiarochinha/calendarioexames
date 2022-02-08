@@ -1136,7 +1136,7 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\end{figure}
 
 	Depois de selecionar um curso pode marcar os exames respetivos adicionando através de um \textit{popup} os vigilantes e as salas. Cada exame está predefinido com uma duração de 4 horas, porque só haverá um exame de manhã, tarde e noite.
-	Para uma melhor acessibilidade foi adicionado várias caixas de seleção para poder mudar de curso, ano do curso e a época de forma mais rápida evitando ter de voltar atrás. 
+	Para conferir uma navegação confortável foi adicionado várias caixas de seleção para poder mudar de curso, ano do curso e a época de forma mais rápida evitando a necessidade de retroceder na página. 
 
 	\begin{figure}[H] 
 		\centering 							\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{image/PrototipoAFNF/VerCalendarioAtual}
@@ -1277,12 +1277,13 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	
 	\subsection{Testes de acessibilidade e desempenho}
 	
-	Depois da realização dos testes com potenciais utilizadores foi realizado um teste a partir de uma extensão no Google Chrome designada ``Lighthouse'' (dentro das ferramentas de desenvolvimento) que permite de forma automatizada obter uma pontuação de 0 a 100 em várias categorias: SEO, acessibilidade, desempenho e aplicação de boas práticas.
+	Depois da realização dos testes com potenciais utilizadores foi realizado um teste a partir de uma extensão no Google Chrome designada ``Lighthouse'' (dentro das ferramentas de desenvolvimento) que permite de forma automatizada obter uma pontuação de 0 a 100 em várias categorias: SEO, acessibilidade, desempenho e aplicação de \href{https://web.dev/lighthouse-best-practices/}{boas práticas}boas práticas onde nestas são testados erros comuns do género \textit{docktype}, impressão de erros na consola e aspecto incorrecto de imagens.
+	
 	No entanto neste contexto como a aplicação será entregue num servidor da ESTGA então a categoria de SEO não será contabilizada. 
 	
-	Estes testes foram realizados a partir do web site que está no servidor que tem como consequência a obrigatoriedade de utilização de uma VPN ou estar dentro da rede UA e por isso nem todos os sites de ``browser testing'' funcionam.
+	Estes testes foram realizados a partir do web site que está no servidor que tem como consequência a obrigatoriedade de utilização de uma VPN ou estar dentro da rede UA e por isso nem todos os sites de ``browser testing'' funcionam pois não há forma de fornecer diretamente acesso aos ficheiros.
 	Esta extensão como utiliza a ligação do próprio navegador permite realizar os testes tanto localmente como no servidor da ESTGA.
-	Para além disso permite testar tanto em \textit{desktop} como em \textit{mobile}, apesar de que a versão \textit{mobile} é apenas uma simulação do que poderá acontecer. Estas configurações tanto em \textit{desktop} como em \textit{mobile} estam no anexo E. 
+	Para além disso permite testar tanto em \textit{desktop} como em \textit{mobile}, apesar de que a versão \textit{mobile} é apenas uma simulação do que poderá acontecer. Estas configurações tanto em \textit{desktop} como em \textit{mobile} estão no anexo E. 
 	
 	Dentro das várias categorias que este apresenta a categoria de desempenho é a que varia pois depende de vários fatores como ligação ao servidor e a resposta do servidor, para além do código implementado. Sendo assim foram realizados cerca de cinco testes diferentes e é aceite o que está mais próximo da mediana. 
 	
@@ -1290,6 +1291,37 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	Na figura \ref{testDesktop} é possível verificar que existe uma boa acessibilidade mas que ainda não está o ideal e um desempenho mediano.
 	Ao contrário do que acontece em mobile, figura \ref{testMobile}, que o desempenho está muito baixo. Estas pontuações podem ser melhoradas, segundo a extensão, através de algumas implementações apresentadas na tabela \ref{upScoreTesting}.
 	
+		\begin{center}
+
+		\begin{longtable}[H]{|m{2.2cm}|m{12cm}|}
+			\caption{Implementações que podem melhorar a pontuação nas várias categorias}
+			\label{upScoreTesting}\\
+			\hline			
+			\textbf{Categoria}&\textbf{Descrição da alteração} \\
+			\hline
+			
+			\multirow{5}{2cm}{Configurações}& Eliminar recursos que bloqueiam o processamento \\
+			
+			& Reduzir o javaScript que não é utilizado \\
+			
+			&Reduzir o CSS \\
+			
+			&Remover módulos duplicados em pacotes javaScript\\
+			
+			&Utilizar HTTP/2\\
+			\hline
+			\multirow{2}{2cm}{Acessibilidade}& As cores de primeiro e de segundo plano não têm uma relação de contraste suficiente \\
+			&A tag <html> não tem o atributo [lang]\\
+			&Os links não têm um nome percetível\\
+			&Os itens de lista ($<li>$) não estão incluídos nos elementos superiores $<ul>$ ou $<ol>$.\\
+			\hline
+			\multirow{2}{2cm}{Melhores práticas} & As páginas não utilizam https\\
+			&A página não possui o doctype HTML\\
+			\hline
+		\end{longtable}
+
+	\end{center}
+
 	
 	 \begin{figure}[H] 
 	 	\centering 							\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/acessibilityTests/Desktop}
@@ -1304,35 +1336,7 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 		\label{testMobile}
 	\end{figure}
 	
-		 	\begin{center}
-		 	\label{upScoreTesting}
-		 	\begin{longtable}{|m{2.2cm}|m{12cm}|}
-		 		\caption{Implementações que podem melhorar a pontuação nas várias categorias}\\
-		 		
-		 		\hline			
-		 		\textbf{Categoria}&\textbf{Descrição da alteração} \\
-		 		\hline
-		 		
-		 		\multirow{5}{2cm}{Configurações}& Eliminar recursos que bloqueiam o processamento \\
-		 		
-		 		& Reduzir o javaScript que não é utilizado \\
-		 		
-		 		&Reduzir o CSS \\
-		 		
-		 		&Remover módulos duplicados em pacotes javaScript\\
-		 		
-		 		&Utilizar HTTP/2\\
-		 		\hline
-		 		\multirow{2}{2cm}{Acessibilidade}& As cores de primeiro e de segundo plano não têm uma relação de contraste suficiente \\
-		 		&A tag <html> não tem o atributo [lang]\\
-		 		&Os links não têm um nome percetível\\
-		 		&Os itens de lista ($<li>$) não estão incluídos nos elementos superiores $<ul>$ ou $<ol>$.\\
-		 		\hline
-		 		\multirow{2}{2cm}{Melhores práticas} & As páginas não utilizam https\\
-		 		&A página não possui o doctype HTML\\
-		 		\hline
-		 	\end{longtable}
-		 \end{center}
+
 		 
 		 \begin{figure}[H] 
 		 	\centering 							\includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{image/acessibilityTests/contrast}
