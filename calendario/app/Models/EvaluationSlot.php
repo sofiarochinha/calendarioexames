@@ -17,7 +17,8 @@ class EvaluationSlot extends Model
         "associated_professor",
         "observing_professor",
         "classroom",
-        "time_slot"
+        "time_slot",
+        "calendar_day"
     ];
 
     public function associated_professor(){
@@ -41,7 +42,7 @@ class EvaluationSlot extends Model
         return $this->belongsTo(TimeSlot::class, 'time_slot');
     }
 
-    public function subject(){
+    public function Subject(){
         return $this->belongsTo(Subject::class, 'subject');
     }
 }

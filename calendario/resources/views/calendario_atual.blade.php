@@ -1,6 +1,8 @@
 @extends('layout.menu')
 @section('content')
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -314,21 +316,97 @@
        function alterarCalendario(){
            var dateEpoca =  $('#epoca').val();
            var dataInicio = "";
+           var arrayEvent = [];//criação de um objeto
 
            @foreach($epocas as $epoca)
-           if({!!  $epoca->id !!}  == dateEpoca){
-               dataInicio = '{!! $epoca->start_date !!}'.split(" ");
-               console.log({!! $epoca->evaluationslot !!});
-           }
+
+               if({!!  $epoca->id !!}  == dateEpoca){
+                   dataInicio = '{!! $epoca->start_date !!}'.split(" ");
+
+                   var inicio = "", fim ="", nome = "";
+
+                   if(dateEpoca == {!! $epoca->id !!}){
+
+                       @foreach($epoca->evaluationslot as $event){
+                           var event = {};
+                           if({!! $event->timeslot->id !!} == 1){
+                               event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
+                               event.end = "{!! $event->calendar_day !!}".concat(" ", "13:30:00");
+                           } else if({!! $event->timeslot->id !!} == 2){
+                               event.start = "{!! $event->calendar_day !!}".concat(" ", "14:00:00");
+                               event.end = "{!! $event->calendar_day !!}".concat(" ", "18:00:00");
+                           } else {
+                               event.start = "{!! $event->calendar_day !!}".concat(" ", "18:30:00");
+                               event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
+                           }
+
+                           event.title = "{!! $event->Subject->name!!}";
+
+                           arrayEvent.push(event);
+
+                         }
+                         @endforeach
+                   }
+               }
            @endforeach
 
-           calendar(dataInicio[0]);
+           calendar(dataInicio[0], arrayEvent);
        }
 
+       /**
+        * Tranforma o mes em numero
+        * @param mes
+        * @returns {string}
+        */
+       function getMes(mes){
+           if(mes == "Jan") return "01";
+           if(mes == "Feb") return "02";
+           if(mes == "Mar") return "03";
+           if(mes == "Abr") return "04";
+           if(mes == "Mai") return "05";
+           if(mes == "Jun") return "06";
+           if(mes == "Jul") return "07";
+           if(mes == "Ago") return "08";
+           if(mes == "Set") return "09";
+           if(mes == "Out") return "10";
+           if(mes == "Nov") return "11";
+           if(mes == "Dez") return "12";
+       }
 
+       /**
+        * Envia os dados para o controller
+        */
+       function sendToController(data, name, timeSlot, calendar) {
+           $.ajaxSetup({
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               }
+           });
 
+           $.post("{{ route('addevento')}}",
+               {
+                   data: JSON.stringify(data),
+                   name: JSON.stringify(name),
+                   timeSlot: JSON.stringify(timeSlot),
+                   calendar: JSON.stringify(calendar)
 
-       function calendar(dataInicio){
+               },
+
+               function (data, status){
+                   if(status === "success"){
+                       setCookie("CSV", true);
+                       checkCSV();
+                   }
+               })
+       }
+
+       function getTimeSlot(date){
+           if(date >= 9 && date < 14) return 1;
+           if(date >= 14 && date < 18) return 2;
+           if(date >= 18) return 3;
+       }
+
+       function calendar(dataInicio, event){
 
             /* initialize the external events
              -----------------------------------------------------------------*/
@@ -403,15 +481,30 @@
 
                 themeSystem: 'bootstrap',
                 //Random default events
-                events: [],
+                events: [ {
+                    id: 'a',
+                    title: 'my event',
+                    start: '2018-09-01'
+                }],
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 drop: function (info) {
+                    console.log(info.date);
+                    var date = (info.date).toString().split(" ");
+
+                    var horas = date[4].split(":");
+
+                    var data = new Date(date[3], getMes(date[1]) - 1, date[2],
+                        horas[0], horas[1], horas[2]);
+
+                    var nome = info.draggedEl.innerHTML;
+
+                    sendToController(data, nome, getTimeSlot(data.getUTCHours()), $('#epoca').val());
+
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 },
                 initialView: 'timeGrid2Week',
                 initialDate: dataInicio,
-
                 locale: 'pt',
                 allDaySlot: false,
                 defaultTimedEventDuration: "04:30",
@@ -425,7 +518,10 @@
 
                 aspectRatio: 1.6
             });
-            calendar.render();
+
+           calendar.addEventSource(event); //adiciona os eventos
+
+           calendar.render();
 
             // $('#calendar').fullCalendar()
 

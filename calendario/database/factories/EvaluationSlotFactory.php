@@ -31,6 +31,7 @@ class EvaluationSlotFactory extends Factory
             "observing_professor" =>$this->faker->randomElement($professor),
             "classroom" => $this->faker->randomElement($classroom),
             "time_slot" => $this->faker->randomElement($time),
+            "calendar_day" => $this->faker->date()
         ];
     }
 }

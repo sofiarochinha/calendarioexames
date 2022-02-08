@@ -1,0 +1,11 @@
+O que falta fazer até aos testes:
+ - adicionar eventos da bd ao calendario
+    - chamar o controller para atualizar as variáveis
+    - sempre que um eventofor colocado no calendário adicionar à bd
+
+ - incompatibilidades
+ - criar calendario
+ - exportar
+ - avisar sempre que não tiver época quando for clicado na página de marcar exames
+
+ - adicionar/editar/remover informações nas datables
