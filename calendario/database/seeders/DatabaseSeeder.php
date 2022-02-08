@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TimeSlotSeeder::class);
 		
 
-        //para isto funcionar perciso de importar o csv primeiro
-        \App\Models\Calendar::factory(10)->create();
-        \App\Models\EvaluationSlot::factory(10)->create();
+        //para isto funcionar é perciso de importar o csv primeiro
+       // \App\Models\Calendar::factory(10)->create();
+       // \App\Models\EvaluationSlot::factory(10)->create();
 
     }
 }

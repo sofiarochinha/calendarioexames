@@ -1,11 +1,10 @@
 <?php
 
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAcademicYearTable extends Migration
+class CreateEpocasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,11 @@ class CreateAcademicYearTable extends Migration
      */
     public function up()
     {
-        Schema::create('academic_year', function (Blueprint $table) {
+        Schema::create('epocas', function (Blueprint $table) {
             $table->id();
-            $table->string('academic_year');
-            $table->string('evaluation_season');
+            $table->string('name');
+            $table->date('start_date');
+            $table->date('end_date');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateAcademicYearTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_year');
+        Schema::dropIfExists('epocas');
     }
 }

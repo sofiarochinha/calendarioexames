@@ -26,7 +26,8 @@ class CalendarFactory extends Factory
             "evaluation_season" => $this->faker->name(),
             "course_id" => $this->faker->randomElement($course),
             "start_date" => $this->faker->dateTime(),
-            "end_date" => $this->faker->dateTime()
+            "end_date" => $this->faker->dateTime(),
+
         ];
     }
 }
