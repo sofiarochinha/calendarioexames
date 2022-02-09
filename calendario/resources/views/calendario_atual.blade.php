@@ -293,19 +293,27 @@
                 if(valAno == {!!$course->course_year!!}){
                     @foreach ($epocas as $epoca)
                         @if( $epoca->course_id == $course->id)
-                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
-                            @foreach ($epoca->course->subject as $subject)
-                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
-                            @endforeach
-                    @endif
+                            epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
+                        @endif
                     @endforeach
                 }
             }
 
             @endforeach
+            $("#epoca").html(epocaString);
+
+            var epoca = $('#epoca').val(); //epoca selecionada
+            var disciplinaString = "";
+		        	@foreach ($epocas as $epoca)
+                        if({!!$epoca->id!!} == epoca){
+                            @foreach ($epoca->course->subject as $subject)
+                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                            @endforeach
+                        }
+		        	@endforeach
 
             $("#external-events").html(disciplinaString);
-            $("#epoca").html(epocaString);
+
 
             alterarCalendario();
         });
