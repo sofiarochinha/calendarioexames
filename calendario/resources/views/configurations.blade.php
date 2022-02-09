@@ -126,23 +126,14 @@
                                 <tbody>
                                     @foreach($classrooms as $classroom)
                                         <tr>
-                                                       @if(old('classrooms') == $classroom->classrooms)
-                                                            <td>{{ $classroom->classroom}}</td>
-                                                            <td>{{ $classroom->type}}</td>
-                                                            <td>{{ $classroom->capacity}}</td>
-                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                                            <td align="center"><i class="fas fa-edit"></i></td>
-                                                            @else
-                                                            <td>{{ $classroom->classroom}}</td>
-                                                            <td>{{ $classroom->type}}</td>
-                                                            <td>{{ $classroom->capacity}}</td>
-                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                                            <td align="center"><i class="fas fa-edit"></i></td>
 
-                                                    @endif
-                                                    <tr>
+                                                            <td>{{ $classroom->classroom}}</td>
+                                                            <td>{{ $classroom->type}}</td>
+                                                            <td>{{ $classroom->capacity}}</td>
+                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                        </tr>
                                             @endforeach
                                 </tbody>
                             </table>
