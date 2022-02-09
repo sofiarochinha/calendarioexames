@@ -43,24 +43,4 @@ class CalendarController extends Controller
             $evaluationSlot->save();
 
     }
-
-    public function updateEvento(Request $request){
-        $data = json_decode($request->data);
-        $name = json_decode($request->name);
-        $timeSlot = json_decode($request->timeSlot);
-        echo $timeSlot;
-
-        $calendar = json_decode($request->calendar);
-
-        $evaluationSlot = EvaluationSlot::where();
-        $evaluationSlot->calendar_id = $calendar;
-        $evaluationSlot->subject = Subject::where('name', $name)->first()->id;
-        $evaluationSlot->associated_professor = 6;
-        $evaluationSlot->observing_professor = 15;
-        $evaluationSlot->classroom = 3;
-        $evaluationSlot->time_slot = $timeSlot;
-        $evaluationSlot->calendar_day = $data;
-        $evaluationSlot->save();
-
-}
 }

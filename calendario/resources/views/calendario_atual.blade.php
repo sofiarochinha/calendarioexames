@@ -412,23 +412,6 @@
                });
        }
 
-       function sendToControllerUpdate(data, name, timeSlot, calendar) {
-           $.ajaxSetup({
-               headers: {
-                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               }
-           });
-
-           $.post("{{ route('updateevento')}}",
-               {
-                   data: JSON.stringify(data),
-                   name: JSON.stringify(name),
-                   timeSlot: JSON.stringify(timeSlot),
-                   calendar: JSON.stringify(calendar)
-
-               });
-       }
-
        /**
         * õbtém o id do timeslot associado à data
         * @param date
