@@ -412,6 +412,23 @@
                });
        }
 
+       function sendToControllerUpdate(data, name, timeSlot, calendar) {
+           $.ajaxSetup({
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               }
+           });
+
+           $.post("{{ route('updateevento')}}",
+               {
+                   data: JSON.stringify(data),
+                   name: JSON.stringify(name),
+                   timeSlot: JSON.stringify(timeSlot),
+                   calendar: JSON.stringify(calendar)
+
+               });
+       }
+
        /**
         * õbtém o id do timeslot associado à data
         * @param date
@@ -518,6 +535,18 @@
                     sendToController(data, nome, getTimeSlot(data.getUTCHours()), $('#epoca').val());
 
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
+                },
+                eventDrop: function(info) {
+                    var date = (info.date).toString().split(" ");
+
+                    var horas = date[4].split(":");
+
+                    var data = new Date(date[3], getMes(date[1])-1, date[2],
+                        horas[0], horas[1], horas[2]);
+
+                    var nome = info.draggedEl.innerHTML;
+
+                    sendToControllerUpdate(data, nome, getTimeSlot(data.getUTCHours()), $('#epoca').val());
                 },
                 initialView: 'timeGrid2Week',
                 initialDate: dataInicio,
