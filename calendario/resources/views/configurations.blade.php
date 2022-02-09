@@ -59,38 +59,20 @@
                                 </thead>
                                 <tbody>
 
-                                    
+
                                         @foreach($subjects as $subject)
                                         <tr>
-                                                       @if(old('subjects') == $subject->subjects)
-                                                            <td>{{ $subject->name}}</td>
-                                                            <td>
-                                                                @foreach($subject->associated_professor as $professor)
-                                                                    {{$professor->name}}
-                                                                @endforeach
-                                                            </td>
-                                                            <td>{{$subject->courses->name}}</td>
-                                                            <td>{{$subject->courses->course_year}}</td>
-                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                                            <td align="center"><i class="fas fa-edit"></i></td>
-                                                            @else
-                                                            <td>{{ $subject->name}}</td>
-                                                            <td>
-                                                                @foreach($subject->associated_professor as $professor)
-                                                                    {{$professor->name}}
-                                                                @endforeach
-                                                            </td>
-                                                            <td>{{ $subject->courses->name}}</td>
-                                                            <td>{{ $subject->courses->course_year}}</td>
-                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                                            <td align="center"><i class="fas fa-edit"></i></td>
-                                                            
-                                                    @endif
-                                                    <tr>
+                                            <td >{{ $subject->name}}</td>
+                                            <td >{{$subject->associated_professor->name}} </td>
+                                            <td >{{ $subject->courses->name}}</td>
+                                            <td >{{ $subject->courses->course_year}}</td>
+                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                            <td align="center"><i class="fas fa-edit"></i></td>
+
+                                        </tr>
                                             @endforeach
-                                        
+
                                 </tbody>
                             </table>
                         </div>
@@ -113,25 +95,15 @@
                                 <tbody>
                                     @foreach($professors as $professor)
                                         <tr>
-                                                       @if(old('professors') == $professor->professors)
-                                                            <td>{{ $professor->name}}</td>
-                                                            <td>{{$professor->email}}</td>
-                                                            <td>{{$professor->availability}}</td>
-                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                                            <td align="center"><i class="fas fa-edit"></i></td>
-                                                            @else
-                                                            <td>{{ $professor->name}}</td>
-                                                            <td>{{$professor->email}}</td>
-                                                            <td>{{$professor->availability}}</td>
-                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                                            <td align="center"><i class="fas fa-edit"></i></td>
-                                                            
-                                                    @endif
-                                                    <tr>
+                                            <td>{{ $professor->name}}</td>
+                                            <td>{{$professor->email}}</td>
+                                            <td>{{$professor->availability}}</td>
+                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
+                                            <td align="center"><i class="fas fa-trash"></i></td>
+                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                        </tr>
                                             @endforeach
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -168,7 +140,7 @@
                                                             <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                                             <td align="center"><i class="fas fa-trash"></i></td>
                                                             <td align="center"><i class="fas fa-edit"></i></td>
-                                                            
+
                                                     @endif
                                                     <tr>
                                             @endforeach
@@ -192,54 +164,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($epocas as $epoca)
                                     <tr>
-                                        <td>Normal</td>
+                                        <td>{{$epoca->name}}</td>
                                         <td>
-                                            <div id="season_dates" onClick="edited(this.id)" class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control float-right" id="reservation" />
-                                            </div>
+                                            <input type="text" id = 'datepicker' name="daterange" value="{{$epoca->start_date}} - {{$epoca->end_date}} " />
                                         </td>
                                         <td align="center"><i id="season_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
                                         <td align="center"><i class="fas fa-trash"></i></td>
                                         <td align="center"><i class="fas fa-edit"></i></td>
                                     </tr>
-                                    <tr>
-                                        <td>Recurso</td>
-                                        <td>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control float-right" id="reservation2" />
-                                            </div>
-                                        </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Especial</td>
-                                        <td>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control float-right" id="reservation3" />
-                                            </div>
-                                        </td>
-                                        <td align="center"><i class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -288,5 +223,6 @@
         document.getElementById(elementID).style.color = "#2a6cf5";
     }
 </script>
+
 
 @stop

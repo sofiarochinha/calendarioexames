@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Professor;
 use App\Models\Subject;
 use App\Models\Classroom;
+use App\Models\Epoca;
 use Illuminate\Http\Request;
 
 class ConfigurationsController extends Controller
@@ -13,6 +14,7 @@ class ConfigurationsController extends Controller
         $subjects = Subject::all();
         $professors = Professor::all();
         $classrooms = Classroom::all();
-        return view('configurations', compact(["subjects","professors","classrooms",]));
+        $epocas = Epoca::all();
+        return view('configurations', compact(["subjects","professors","classrooms","epocas"]));
     }
 }

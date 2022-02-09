@@ -40,18 +40,19 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($calendars as $calendar)
                                             <tr id="export_checkbox_00666">
                                                 <td>
-                                                    <div contenteditable>Tecnologias informação</div>
+                                                    <div contenteditable>{{$calendar->course->name}}</div>
                                                 </td>
                                                 <td>
-                                                    <div contenteditable>00666</div>
+                                                    <div contenteditable>{{$calendar->course->course_code}}</div>
                                                 </td>
                                                 <td>
-                                                    <div contenteditable>1º</div>
+                                                    <div contenteditable>{{$calendar->course->course_year}}</div>
                                                 </td>
                                                 <td>
-                                                    <div contenteditable>Normal</div>
+                                                    <div contenteditable>{{$calendar->epoca->name}}</div>
                                                 </td>
                                                 <td>
                                                     <div class="custom-control custom-checkbox">
@@ -62,258 +63,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr id="export_checkbox_00666">
-                                                <td>
-                                                    <div contenteditable>Tecnologias informação</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>00666</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>2º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="TIcheckbox_2_n" value="option1">
-                                                        <label for="TIcheckbox_2_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_00666">
-                                                <td>
-                                                    <div contenteditable>Tecnologias informação</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>00666</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>3º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="TIcheckbox_3_n" value="option1">
-                                                        <label for="TIcheckbox_3_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_30566">
-                                                <td>
-                                                    <div contenteditable>Eletrónica e Mecânica Industrial</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>30566</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>1º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="EMIcheckbox_1_n" value="option1">
-                                                        <label for="EMIcheckbox_1_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_30566">
-                                                <td>
-                                                    <div contenteditable>Eletrónica e Mecânica Industrial</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>30566</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>2º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="EMIcheckbox_2_n" value="option1">
-                                                        <label for="EMIcheckbox_2_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_30566">
-                                                <td>
-                                                    <div contenteditable>Eletrónica e Mecânica Industrial</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>30566</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>3º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="EMIcheckbox_3_n" value="option1">
-                                                        <label for="EMIcheckbox_3_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_30566">
-                                                <td>
-                                                    <div contenteditable>Eletrónica e Mecânica Industrial</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>30566</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>1º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Recurso</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="EMIcheckbox_1_r" value="option1">
-                                                        <label for="EMIcheckbox_1_r" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_30566">
-                                                <td>
-                                                    <div contenteditable>Eletrónica e Mecânica Industrial</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>30566</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>2º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Recurso</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="EMIcheckbox_2_r" value="option1">
-                                                        <label for="EMIcheckbox_2_r" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_51894">
-                                                <td>
-                                                    <div contenteditable>Gestão Comercial</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>51894</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>2º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="GCcheckbox_2_n" value="option1">
-                                                        <label for="GCcheckbox_2_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_07777">
-                                                <td>
-                                                    <div contenteditable>Gestão Qualidade</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>07777</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>2º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="GQcheckbox_2_n" value="option1">
-                                                        <label for="GQcheckbox_2_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_42069">
-                                                <td>
-                                                    <div contenteditable>Gestão Pública</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>42069</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>2º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="GPcheckbox_2_n" value="option1">
-                                                        <label for="GPcheckbox_2_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            <tr id="export_checkbox_42069">
-                                                <td>
-                                                    <div contenteditable>Secretariado e Comunicação Empresarial</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>20069</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>2º</div>
-                                                </td>
-                                                <td>
-                                                    <div contenteditable>Normal</div>
-                                                </td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                               id="SCEcheckbox_2_n" value="option1">
-                                                        <label for="SCEcheckbox_2_n" class="custom-control-label">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                </td>
-                                            </tr>
-                                            </tfoot>
+                                            @endforeach
+
                                         </table>
                                     </div>
                                 </div>
