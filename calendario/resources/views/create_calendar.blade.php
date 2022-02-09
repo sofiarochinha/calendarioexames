@@ -120,6 +120,7 @@
     function getdata(){
         $valano = $('#ano').val();
         $valepoca= $('#epoca').val();
+
         if($valano.length != 0 && $valepoca.length != 0){
         $.ajaxSetup({
                 headers: {
@@ -165,10 +166,4 @@
      //* End of cookie shenannigans
 
     </script>>
-
-
-
-
-
-
 @stop

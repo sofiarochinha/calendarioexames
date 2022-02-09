@@ -30,6 +30,6 @@ class Subject extends Model
     }
 
     public function evaluationSlot(){
-        return $this->hasOne(EvaluationSlot::class);
+        return $this->hasOne(EvaluationSlot::class, 'subject');
     }
 }

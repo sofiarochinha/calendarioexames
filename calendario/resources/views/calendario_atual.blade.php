@@ -127,7 +127,7 @@
                     <form>
                         <div class="form-group">
                             <label>Vigilantes</label>
-                            <select class="select2" multiple="multiple"
+                            <select id="profs" class="select2" multiple="multiple"
                                     data-placeholder="Selecione uma época" style="width: 100%;">
                                 @foreach($professors as $prof)
                                         <option value="{{$prof->id}}">{{$prof->name}}</option>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="form-group">
                             <label>Salas</label>
-                            <select class="select2" multiple="multiple"
+                            <select id="salas" class="select2" multiple="multiple"
                                     data-placeholder="Selecione uma época" style="width: 100%;">
                                 @foreach($classroom as $class)
                                     <option value="{{$class->id}}">{{$class->classroom}}</option>
@@ -205,7 +205,9 @@
                 @if( $epoca->course_id == $course->id)
                     epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
                     @foreach ($epoca->course->subject as $subject)
+                        @if($subject->evaluationSlot == null)
                         disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                        @endif
                     @endforeach
                 @endif
                 @endforeach
@@ -244,9 +246,7 @@
                         @foreach ($epocas as $epoca)
                     @if( $epoca->course_id == $course->id)
                         epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}} </option>";
-                        @foreach ($epoca->course->subject as $subject)
-                            disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
-                        @endforeach
+
                     @endif
                     @endforeach
                     }
@@ -260,7 +260,9 @@
 		        	@foreach ($epocas as $epoca)
                         if({!!$epoca->id!!} == epoca){
                             @foreach ($epoca->course->subject as $subject)
+                                @if($subject->evaluationSlot == null)
                                 disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                                @endif
                             @endforeach
                         }
 		        	@endforeach
@@ -302,15 +304,15 @@
 		        	@foreach ($epocas as $epoca)
                         if({!!$epoca->id!!} == epoca){
                             @foreach ($epoca->course->subject as $subject)
+                                @if($subject->evaluationSlot == null)
                                 disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                                @endif
                             @endforeach
                         }
 		        	@endforeach
 
             $("#external-events").html(disciplinaString);
 
-
-            console.log("3")
             alterarCalendario();
         });
 
@@ -320,12 +322,13 @@
 		        	@foreach ($epocas as $epoca)
                         if({!!$epoca->id!!} == epoca){
                             @foreach ($epoca->course->subject as $subject)
+                                @if($subject->evaluationSlot == null)
                                 disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                                @endif
                             @endforeach
                         }
 		        	@endforeach
                     $("#external-events").html(disciplinaString);
-                    console.log("4")
                     alterarCalendario();
         });
 
@@ -342,7 +345,7 @@
                    var inicio = "", fim ="", nome = "";
 
                    if(dateEpoca == {!! $epoca->id !!}){
-                        @if ($epoca->evaluationslot != null)
+                       @if ($epoca->evaluationslots != null)
 
                            @foreach($epoca->evaluationslots as $event){
                                var event = {};
@@ -377,7 +380,6 @@
         * @returns {string}
         */
        function getMes(mes){
-           console.log(mes);
            if(mes == "Jan") return "01";
            if(mes == "Feb") return "02";
            if(mes == "Mar") return "03";
@@ -393,7 +395,7 @@
        }
 
        /**
-        * Envia os dados para o controller
+        * Envia os dados para o controller por ajax
         */
        function sendToController(data, name, timeSlot, calendar) {
            $.ajaxSetup({
@@ -407,7 +409,7 @@
                    data: JSON.stringify(data),
                    name: JSON.stringify(name),
                    timeSlot: JSON.stringify(timeSlot),
-                   calendar: JSON.stringify(calendar)
+                   calendar: JSON.stringify(calendar),
 
                });
        }
@@ -418,9 +420,10 @@
         * @returns {number}
         */
        function getTimeSlot(date){
+           console.log(date);
            if(date >= 9 && date < 14) return 1;
            if(date >= 14 && date < 18) return 2;
-           if(date >= 18) return 3;
+           return 3;
        }
 
        function calendar(dataInicio, event){
@@ -515,21 +518,30 @@
 
                     var nome = info.draggedEl.innerHTML;
 
-                    sendToController(data, nome, getTimeSlot(data.getUTCHours()), $('#epoca').val());
-
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
+                    sendToController(data, nome, getTimeSlot(data.getUTCHours()),
+                        $('#epoca').val());
                 },
                 eventDrop: function(info) {
-                    var date = (info.date).toString().split(" ");
+                    console.log(info);
+                    console.log(info.event.start.toISOString());
 
-                    var horas = date[4].split(":");
+                    var dateTime = info.event.start.toISOString().split("T");
+                    var date = dateTime[0].split("-");
+                    console.log(date[1]);
 
-                    var data = new Date(date[3], getMes(date[1])-1, date[2],
-                        horas[0], horas[1], horas[2]);
+                    var horas = dateTime[1].split(".");
+                    var hour = horas[0].split(":");
 
-                    var nome = info.draggedEl.innerHTML;
+                    var data = new Date(date[0], date[1]-1, date[2],
+                        hour[0], hour[1], hour[2]);
 
-                    sendToControllerUpdate(data, nome, getTimeSlot(data.getUTCHours()), $('#epoca').val());
+                    var nome = info.event.title;
+
+                    var timeslot = getTimeSlot(parseInt(hour[0]));
+
+                    sendToController(data, nome, timeslot,
+                        $('#epoca').val());
                 },
                 initialView: 'timeGrid2Week',
                 initialDate: dataInicio,
