@@ -17,20 +17,6 @@ class CalendarFactory extends Factory
      */
     public function definition()
     {
-        /*$course = Course::all();
-        $professor = Professor::all();
-
-        return [
-            "professor_mec" => $this->faker->randomElement($professor),
-            "calendar_name" => $this->faker->name(),
-            "academic_year" => AcademicYear::factory()->create()->id,
-            "evaluation_season" => $this->faker->name(),
-            "course_id" => $this->faker->randomElement($course),
-            "start_date" => $this->faker->dateTime(),
-            "end_date" => $this->faker->dateTime(),
-
-        ];*/
-
         $course = Course::all();
 
         return [

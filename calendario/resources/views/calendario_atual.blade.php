@@ -78,9 +78,7 @@
                             <div class="card-body">
                                 <!-- the events -->
                                 <div id="external-events">
-                                    <div class="external-event bg-success">WEB DESIGN</div>
-                                    <div class="external-event bg-info">DESENVOLVIMENTO WEB MULTIPLATAFORMA</div>
-                                    <div class="external-event bg-primary">SEGURANÇA INFORMÁTICA</div>
+
                                     <!--<div class="external-event bg-danger">Sleep tight</div>-->
                                     <div class="d-none">
                                         <label for="drop-remove">
@@ -109,12 +107,13 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+        </section>
     </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    !-- Edit Modal -->
+    <!-- Popup para selecionar a sala e os vigilantes -->
     <div class="modal fade" id="schedule-edit">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -130,21 +129,19 @@
                             <label>Vigilantes</label>
                             <select class="select2" multiple="multiple"
                                     data-placeholder="Selecione uma época" style="width: 100%;">
-                                <option>Heldér Gomes</option>
-                                <option>Miguel Magueta</option>
-                                <option>Rita Santos</option>
-                                <option>Fábio Marques</option>
+                                @foreach($professors as $prof)
+                                        <option value="{{$prof->id}}">{{$prof->name}}</option>
+                                @endforeach
+
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Salas</label>
                             <select class="select2" multiple="multiple"
                                     data-placeholder="Selecione uma época" style="width: 100%;">
-                                <option>5.1.08</option>
-                                <option>5.1.09</option>
-                                <option>5.1.10
-                                <option>
-                                <option>5.1.11</option>
+                                @foreach($classroom as $class)
+                                    <option value="{{$class->id}}">{{$class->classroom}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </form>
@@ -167,10 +164,6 @@
     <!-- ./wrapper -->
 
     <script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
     <!-- Bootstrap -->
     <script src="{{(asset('/plugins/bootstrap/js/bootstrap.bundle.min.js'))}}"></script>
     <!-- jQuery UI -->
@@ -223,6 +216,7 @@
 
         $("#external-events").html(disciplinaString);
         $("#epoca").html(epocaString);
+        console.log("1")
         alterarCalendario();
 
         $("#curso").change(function () {
@@ -273,6 +267,7 @@
 
             $("#external-events").html(disciplinaString);
 
+            console.log("2")
             alterarCalendario();
         });
 
@@ -315,6 +310,7 @@
             $("#external-events").html(disciplinaString);
 
 
+            console.log("3")
             alterarCalendario();
         });
 
@@ -329,6 +325,7 @@
                         }
 		        	@endforeach
                     $("#external-events").html(disciplinaString);
+                    console.log("4")
                     alterarCalendario();
         });
 
@@ -347,26 +344,25 @@
                    if(dateEpoca == {!! $epoca->id !!}){
                         @if ($epoca->evaluationslot != null)
 
+                           @foreach($epoca->evaluationslots as $event){
+                               var event = {};
+                               if({!! $event->timeslot->id !!} == 1){
+                                   event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
+                                   event.end = "{!! $event->calendar_day !!}".concat(" ", "13:30:00");
+                               } else if({!! $event->timeslot->id !!} == 2){
+                                   event.start = "{!! $event->calendar_day !!}".concat(" ", "14:00:00");
+                                   event.end = "{!! $event->calendar_day !!}".concat(" ", "18:00:00");
+                               } else {
+                                   event.start = "{!! $event->calendar_day !!}".concat(" ", "18:30:00");
+                                   event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
+                               }
 
-                       @foreach($epoca->evaluationslots as $event){
-                           var event = {};
-                           if({!! $event->timeslot->id !!} == 1){
-                               event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
-                               event.end = "{!! $event->calendar_day !!}".concat(" ", "13:30:00");
-                           } else if({!! $event->timeslot->id !!} == 2){
-                               event.start = "{!! $event->calendar_day !!}".concat(" ", "14:00:00");
-                               event.end = "{!! $event->calendar_day !!}".concat(" ", "18:00:00");
-                           } else {
-                               event.start = "{!! $event->calendar_day !!}".concat(" ", "18:30:00");
-                               event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
-                           }
+                               event.title = "{!! $event->Subject->name!!}";
 
-                           event.title = "{!! $event->Subject->name!!}";
+                               arrayEvent.push(event);
 
-                           arrayEvent.push(event);
-
-                         }
-                         @endforeach
+                             }
+                             @endforeach
                          @endif
                    }
                }
@@ -381,18 +377,19 @@
         * @returns {string}
         */
        function getMes(mes){
+           console.log(mes);
            if(mes == "Jan") return "01";
            if(mes == "Feb") return "02";
            if(mes == "Mar") return "03";
-           if(mes == "Abr") return "04";
-           if(mes == "Mai") return "05";
+           if(mes == "Apr") return "04";
+           if(mes == "May") return "05";
            if(mes == "Jun") return "06";
            if(mes == "Jul") return "07";
-           if(mes == "Ago") return "08";
-           if(mes == "Set") return "09";
-           if(mes == "Out") return "10";
+           if(mes == "Aug") return "08";
+           if(mes == "Sep") return "09";
+           if(mes == "Oct") return "10";
            if(mes == "Nov") return "11";
-           if(mes == "Dez") return "12";
+           if(mes == "Dec") return "12";
        }
 
        /**
@@ -412,16 +409,14 @@
                    timeSlot: JSON.stringify(timeSlot),
                    calendar: JSON.stringify(calendar)
 
-               },
-
-               function (data, status){
-                   if(status === "success"){
-                       setCookie("CSV", true);
-                       checkCSV();
-                   }
-               })
+               });
        }
 
+       /**
+        * õbtém o id do timeslot associado à data
+        * @param date
+        * @returns {number}
+        */
        function getTimeSlot(date){
            if(date >= 9 && date < 14) return 1;
            if(date >= 14 && date < 18) return 2;
@@ -511,12 +506,11 @@
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 drop: function (info) {
-                    console.log(info.date);
                     var date = (info.date).toString().split(" ");
 
                     var horas = date[4].split(":");
 
-                    var data = new Date(date[3], getMes(date[1]) - 1, date[2],
+                    var data = new Date(date[3], getMes(date[1])-1, date[2],
                         horas[0], horas[1], horas[2]);
 
                     var nome = info.draggedEl.innerHTML;
@@ -544,8 +538,6 @@
            calendar.addEventSource(event); //adiciona os eventos
 
            calendar.render();
-
-            // $('#calendar').fullCalendar()
 
             /* ADDING EVENTS */
             var currColor = '#3c8dbc' //Red by default

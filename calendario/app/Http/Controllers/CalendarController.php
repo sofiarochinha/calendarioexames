@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classroom;
+use App\Models\Professor;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,9 @@ class CalendarController extends Controller
         return view('calendario_atual',
             [ 'courses_names' => Course::distinct('course_code')->with("calendar")->get()->sortBy('name'),
                 'courses' => Course::with("calendar")->get()->sortBy('course_year'),
-                'epocas' => Calendar::all()
+                'epocas' => Calendar::all(),
+                'professors' => Professor::all(),
+                'classroom' => Classroom::all()
             ]);
     }
 
@@ -24,6 +28,8 @@ class CalendarController extends Controller
             $data = json_decode($request->data);
             $name = json_decode($request->name);
             $timeSlot = json_decode($request->timeSlot);
+            echo $timeSlot;
+
             $calendar = json_decode($request->calendar);
 
             $evaluationSlot = new EvaluationSlot();
