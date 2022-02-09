@@ -12,7 +12,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', ['as' => 'login', 'uses' => 'App\Http\Controllers\LoginController@showView']);
+Route::get('/', function (){
+    return view("login");
+});
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
+//Route::get('calendario-atual', [\App\Http\Controllers\LoginController::class, 'dashboard'])->name('calendarioatual');
+Route::get('login', [\App\Http\Controllers\LoginController::class, 'index'])->name('login');
+Route::post('custom-login', [\App\Http\Controllers\LoginController::class, 'customLogin'])->name('login.custom');
+Route::get('registration', [\App\Http\Controllers\LoginController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [\App\Http\Controllers\LoginController::class, 'customRegistration'])->name('register.custom');
+Route::get('signout', [\App\Http\Controllers\LoginController::class, 'signOut'])->name('signout');
 
 Route::get('/criar-calendario', ['as' => 'criarcalendario', 'uses' => 'App\Http\Controllers\CreateController@showView']);
 

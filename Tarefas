@@ -1,11 +1,36 @@
-O que falta fazer até aos testes:
+O que falta fazer para entregar no dia 11:
+
  - adicionar eventos da bd ao calendario
     - chamar o controller para atualizar as variáveis
-    - sempre que um eventofor colocado no calendário adicionar à bd
+    - sempre que um evento for colocado no calendário adicionar à bd
 
  - incompatibilidades
- - criar calendario
+    - verificar se já existe um professor para o exame marcado à mesma hora
+    - verificar se existe espaço suficiente para os alunos inscritos
+
  - exportar
+ - calendários anteriores
+ - colocar uma botão para guardar o histórico e apagar os dados da base de dados
  - avisar sempre que não tiver época quando for clicado na página de marcar exames
 
  - adicionar/editar/remover informações nas datables
+ - login
+ - retirar o passo extra na visualização do csv
+ - colocar as salas e os profs na base de dados associado ao exame marcado
+
+ - colocar uma api para ir buscar os dados cada vez que muda de curso no select e não existe refresh da página
+
+ - ver 3 anos do curso de forma compactada
+ - ter uma visão compactada
+
+
+ TAREFAS DIA 9/02:
+  1º - Login
+  2º - colocar mais um campo na tabela com o número de alunos inscritos
+  3º - adicionar na tabela uma época
+  4º - adiconar na tabela um docente
+  5º - adicionar na tabela uma unidade curricular
+  6º - adicionar na tabela salas
+
+  7º - mudar a base de dados de modo a ter um tabela com os vigilantes do exame e evaluationSlot_id
+  8º - mudar a base de dados de modo a que possa ter mais que uma sala
