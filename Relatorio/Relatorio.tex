@@ -60,7 +60,7 @@
 		\large
 		Autores\\
 		Gonçalo Tavares, Nº 92382  \\
-		Bruno Lopes, Nº 86217 \\
+		%%Bruno Lopes, Nº 86217 \\
 		Leonardo Silva, Nº 95381 \\
 		Ricardo Fernandes, Nº 49880 \\
 		Sofia Rocha, Nº 99991 \\
@@ -86,7 +86,7 @@
 		
 		\large
 		Autores\\
-		Bruno Lopes, Nº 86217 \\
+		%Bruno Lopes, Nº 86217 \\
 		Gonçalo Tavares, Nº 92382  \\
 		Leonardo Silva, Nº 95381 \\
 		Ricardo Fernandes, Nº 49880  \\
@@ -279,11 +279,14 @@ No entanto no ``Outlook Calendar''` é possível selecionar um período de horas
 	
 	\chapter{Tecnologias utilizadas}
 	
-	As tecnologias utilizadas ao longo do projeto foram o ``Figma'' que permite a criação dos \textit{Wireframes} de forma gratuita (para estudantes) e simular uma interação que é útil para os testes. Ao longo do desenvolvimento do protótipo de alta fidelidade não funcional foram a \textit{framework} \textit{laravel}.
-	Como o servidor onde o projeto irá decorrer tem como obrigatoriedade a utilização de \textit{framework} em \textit{php} então esta foi escolhida por ser lecionada durante as aulas de Desenvolvimento Web Multiplataforma e por haver elementos do grupo que têm algum conhecimento sobre a mesma.
-	Como \textit{front-end} foi utilizado o BootStrap4 que já era utilizado no template escolhido tendo somente que o adaptar para o projeto de \textit{laravel}.
+	Ao longo deste projecto foram utilizados vários programas ou \textit{webapps} escolhidos com o propósito de facilitar o desenvolvimento cooperativo em simultâneo entre os vários elementos do grupo e com suporte para uma variedade ambientes de desenvolvimento diferentes.
 	
-	Para os testes de acessibilidade e desempenho foi utilizado a extensão do ``LightHouse'' que permite testar todo o projeto no servidor da UA ou localmente já que utiliza o navegador para o mesmo. 
+	As tecnologias utilizadas ao longo do projeto foram o ``Figma'' que permite a criação dos \textit{Wireframes} e simular uma interação que é útil para os testes e que possui uma licença gratuita para estudantes.
+	Para o desenvolvimento do protótipo de alta fidelidade não funcional foi utilizada a \textit{framework} \textit{laravel} baseada em \textit{php}.
+	Como o servidor onde o projeto irá decorrer tem como requisito a utilização da \textit{framework} em \textit{php} então esta foi escolhida por ser lecionada durante as aulas de Desenvolvimento Web Multiplataforma e por haver elementos do grupo que têm algum conhecimento sobre a mesma.
+	Como \textit{front-end} foi utilizado o BootStrap4 que vem presente no template escolhido tendo somente que o adaptar para o projeto de \textit{laravel}.
+	
+	Para os testes de acessibilidade e desempenho foi utilizado a extensão para \textit{web browser} ``LightHouse'' que permite testar todo o projeto no servidor da UA ou localmente já que a aplicação web é sempre renderizada no \textit{browser}. 
 	
 	Para construção de diagramas para a base de dados foi utilizado o serviço \textit{web} \href{https://dbdiagram.io/}{dbdiagram} que permite a construção e edição rápida de diagramas de uma forma gratuita e com compatibilidade multi-plataforma.
 	
@@ -344,11 +347,12 @@ No entanto no ``Outlook Calendar''` é possível selecionar um período de horas
 	\chapter{Análises dos utilizadores e tarefas}
 	\label{analiseutilizador}
 	
-	Após a primeira reunião com o cliente chegou-se à conclusão que  este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação. Por isso, aliado à restrição de tempo achou-se que não se iria aprofundar na análise dos utilizadores. 
+	Após a primeira reunião com o cliente chegou-se ao consenso que este é também um potencial utilizador e que tem uma ideia precisa das funcionalidades da aplicação.
+	Por isso, aliado à restrição de tempo considerou-se desnecessário aprofundar a análise dos utilizadores. 
 	
-	O cliente no momento recorre ao \textit{MS Excel} para a criação de calendários,  colocando todas as salas, cursos e docentes manualmente tendo o processo um alto risco de erro e baixa eficiência.
+	Atualmente o cliente recorre ao \textit{software} \textit{MS Excel} para a criação de calendários,  colocando todas as salas, cursos e docentes manualmente sendo este um processo trabalhoso, com alto risco de ocorrência de erros e baixa eficiência.
 	Para além disso a formatação final (em \textbf{pdf}) é exportado a partir do mesmo programa, como se pode verificar na figura \ref{calendarioatual}.
-	Para a verificação da disponibilidade dos docentes recorre a outro programa que mostra, em forma de calendário semanal, a vermelho a indisponibilidade e a roxo quando o mesmo tem aulas, tal como está apresentado na figura \ref{disponibilidadedocentes}. 
+	A verificação da disponibilidade dos docentes é realizada com recurso a outro programa que mostra, em forma de calendário semanal, a vermelho a indisponibilidade e a roxo quando o mesmo tem aulas, tal como está apresentado na figura \ref{disponibilidadedocentes}. 
 	
 	\begin{figure}[H] 
 		\centering 
@@ -365,7 +369,9 @@ No entanto no ``Outlook Calendar''` é possível selecionar um período de horas
 	\end{figure}
 	
 
-	Assim, para este projeto, o cliente quer poder visualizar todas estas informações numa só aplicação de uma forma mais eficiente e intuitiva. As informações sobre os cursos, disciplinas, docentes e salas serão importadas a partir de um ficheiro \textbf{csv} que será renovado a cada semestre podendo o utilizador importar quantas vezes quiser na aplicação, atualizando todos os dados. No entanto se o ficheiro \textbf{csv} conter algum erro ou faltar informação poderá alterar/inserir dentro da aplicação.
+	Assim, para este projeto, o cliente quer poder visualizar todas estas informações numa só aplicação de uma forma mais eficiente e intuitiva.
+	As informações sobre os cursos, disciplinas, docentes e salas serão importadas a partir de um ficheiro \textbf{csv} que será renovado a cada semestre podendo o utilizador importar quantas vezes quiser na aplicação, atualizando todos os dados.
+	No entanto se o ficheiro \textbf{csv} conter algum erro ou faltar informação poderá alterar/inserir dentro da aplicação.
 	Com isto o utilizador poderá criar os seus calendários associados a um ano letivo, semestre, curso e época (terá de adicionar um nome, uma data de início e fim) que criou.
 	Após isso poderá marcar os exames referentes ao curso na época escolhida.
 	Para cada exame poderá escolher um ou mais vigilantes, sendo por padrão o docente como vigilante e uma ou mais salas.
@@ -1379,10 +1385,21 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\section{Alocação da aplicação no servidor}
 	
 	
-	\chapter{Reflexão crítica e conclusão}
+	\chapter{Conclusão}
+	
+	Neste projecto temático foi proposta e implementada com sucesso uma \textit{web app} que permite ao utilizador criar uma calendário de eventos de avaliações académicas em determinadas épocas à escolha do mesmo com recurso a ficheiros \textbf{csv} auxiliares para pré preencher as informações sobre salas, docentes, cadeiras, cursos e anos de curso.
+	
+	O projecto foi desenvolvido com uma metodologia de comunicações regulares com o cliente onde ideias eram apresentadas e alteradas conforme as necessidades deste e ainda foram feitos testes públicos de usabilidade para obter \textit{feedback} de utilizadores.
+	Foi implementada uma base de dados escrita com a tecnologia PostgresSQL alojada no mesmo servidor que serve a aplicação de criação de calendários servindo esta para guardar projectos em construção assim como um histórico de calendários anteriores.
+	A aplicação \textit{web} em si foi criada com a \textit{framework Laravel} que é assente em \textbf{php} e foi ainda utilizado um \textit{template} base como fundação funcional para posteriormente acrescentar as funcionalidades desejadas.
+	
+	Face aos método anterior utilizado pelo cliente, esta aplicação proporciona uma forma eficiente de criar calendários utilizando uma interface de \textit{drag and drop}, com a possibilidade de facilmente escolher o curso, ano de curso e ainda a época de exames na mesma página.
+	A informação sobre docentes, salas, unidades curriculares e afins pode ser consultada e editada conforme necessário em páginas dedicadas.
+	
+	Olhando para o futuro consideramos que existem melhorias que ainda podem ser implementadas na aplicação, como por exemplo a possibilidade de exportar calendários de avaliações como eventos que podem ser importados pelo utilizador final em sistemas de calendários eletrónicos encontrados em computadores e serviços de email, seguindo a especificação de \textbf{iCalendar}, para que o utilizador tenha alertas para o evento no calendário seja este um docente ou um aluno com o evento marcado.
+	Com mais tempo de desenvolvimento teria sido possível também melhorar a apresentação gráfica das páginas por forma a conferir um aspeto que se destaque do \textit{template} base.
 	
 	
-
 	\bibliographystyle{ieeetr}
 	\bibliography{citations}
 	\pagenumbering{roman}
