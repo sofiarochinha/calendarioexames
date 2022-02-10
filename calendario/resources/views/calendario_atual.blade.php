@@ -199,17 +199,19 @@
         var valAno = $("#ano").val();
 
         @foreach ($courses as $course)
+
             if (valcurso == {!!$course->course_code!!}) {
                 if(valAno == {!!$course->course_year!!}){
                     @foreach ($epocas as $epoca)
-                @if( $epoca->course_id == $course->id)
-                    epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
-                    @foreach ($epoca->course->subject as $subject)
-                        @if($subject->evaluationSlot == null)
-                        disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
-                        @endif
-                    @endforeach
-                @endif
+
+                    @if( $epoca->course_id == $course->id)
+                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
+                        @foreach ($epoca->course->subject as $subject)
+                            @if($subject->evaluationSlot == null)
+                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
+                            @endif
+                        @endforeach
+                    @endif
                 @endforeach
                 }
         }
