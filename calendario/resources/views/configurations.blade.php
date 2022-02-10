@@ -52,26 +52,25 @@
                                         <th>Docente</th>
                                         <th>Curso</th>
                                         <th>Ano do Curso</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Número de alunos inscritos</th>
+                                        <th>Adicionar</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-
                                         @foreach($subjects as $subject)
-                                        <tr>
-                                            <td >{{ $subject->name}}</td>
-                                            <td >{{$subject->associated_professor->name}} </td>
-                                            <td >{{ $subject->courses->name}}</td>
-                                            <td >{{ $subject->courses->course_year}}</td>
-                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                            <td align="center"><i class="fas fa-edit"></i></td>
-
-                                        </tr>
-                                            @endforeach
+                                            <tr>
+                                                <td >{{ $subject->name}}</td>
+                                                <td >{{$subject->associated_professor->name}} </td>
+                                                <td >{{ $subject->courses->name}}</td>
+                                                <td >{{ $subject->courses->course_year}}</td>
+                                                <td>0</td>
+                                                <td align="center"><a onclick="addrow(this.id)" href="{{route('suject.adicionar', $subject->id)}}"><i class="fas fa-plus"></i></a></td>
+                                                <td align="center"><a href="{{route('suject.edit', $subject->id)}}"><i class="fas fa-edit"></i></a></td>
+                                                <td align="center"><a href="{{route('suject.delete', $subject->id)}}"><i class="fas fa-trash"></i></a></td>
+                                            </tr>
+                                        @endforeach
 
                                 </tbody>
                             </table>
@@ -87,9 +86,9 @@
                                         <th>Nome</th>
                                         <th>E-mail</th>
                                         <th>Disponibilidade</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Adicionar</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,9 +97,10 @@
                                             <td>{{ $professor->name}}</td>
                                             <td>{{$professor->email}}</td>
                                             <td>{{$professor->availability}}</td>
-                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                            <td align="center"><i class="fas fa-edit"></i></td>
+                                            <td align="center"><a onclick="addrow(this.id)" href="{{route('docente.adicionar', $professor->id)}}"><i class="fas fa-plus"></i></a></td>
+                                            <td align="center"><a href="{{route('docente.edit', $professor->id)}}"><i class="fas fa-edit"></i></a></td>
+                                            <td align="center"><a href="{{route('docente.delete', $professor->id)}}"><i class="fas fa-trash"></i></a></td>
+
                                         </tr>
                                             @endforeach
 
@@ -117,22 +117,22 @@
                                     <tr>
                                         <th>Sala</th>
                                         <th>Tipo</th>
-                                        <th>Lotação máxima</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Lotação máxima em exame</th>
+                                        <th>Adicionar</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($classrooms as $classroom)
                                         <tr>
+                                              <td>{{ $classroom->classroom}}</td>
+                                              <td>{{ $classroom->type}}</td>
+                                              <td>{{ $classroom->capacity}}</td>
+                                            <td align="center"><a onclick="addrow(this.id)" href="{{route('sala.adicionar', $classroom->id)}}"><i class="fas fa-plus"></i></a></td>
+                                            <td align="center"><a href="{{route('sala.edit', $classroom->id)}}"><i class="fas fa-edit"></i></a></td>
+                                            <td align="center"><a href="{{route('sala.delete', $classroom->id)}}"><i class="fas fa-trash"></i></a></td>
 
-                                                            <td>{{ $classroom->classroom}}</td>
-                                                            <td>{{ $classroom->type}}</td>
-                                                            <td>{{ $classroom->capacity}}</td>
-                                                            <td align="center"><i onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                                            <td align="center"><i class="fas fa-trash"></i></td>
-                                                            <td align="center"><i class="fas fa-edit"></i></td>
                                         </tr>
                                             @endforeach
                                 </tbody>
@@ -149,9 +149,9 @@
                                     <tr>
                                         <th>Nome</th>
                                         <th>Data Range</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Adicionar</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -161,9 +161,10 @@
                                         <td>
                                             <input type="text" id = 'datepicker' name="daterange" value="{{$epoca->start_date}} - {{$epoca->end_date}} " />
                                         </td>
-                                        <td align="center"><i id="season_save" onClick="on_save(this.id)" class="fas fa-save"></i></td>
-                                        <td align="center"><i class="fas fa-trash"></i></td>
-                                        <td align="center"><i class="fas fa-edit"></i></td>
+                                        <td align="center"><a onclick="addrow(this.id)" href="{{route('epoca.adicionar', $epoca->id)}}"><i class="fas fa-plus"></i></a></td>
+                                        <td align="center"><a href="{{route('epoca.edit', $epoca->id)}}"><i class="fas fa-edit"></i></a></td>
+                                        <td align="center"><a href="{{route('epoca.delete', $epoca->id)}}"><i class="fas fa-trash"></i></a></td>
+
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -178,6 +179,23 @@
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
+
+        {{--<form id="adicionarSubject">
+            <label for="fname">Nome da Unidade Curricular</label><br>
+            <input type="text" id="fname" name="nomeSubject"><br>
+
+            <select class="custom-select form-control-border" id="courseInput">
+                @foreach($courses as $course)
+                    <option value="{{$course->id}}">{{$course->name}}</option>
+                @endforeach
+            </select>
+
+            <select class="custom-select form-control-border" id="profSubject">
+
+            </select>
+
+
+        </form>--}}
     </section>
     <!-- /.content -->
 </div>
@@ -213,6 +231,25 @@
     function on_save(elementID) {
         document.getElementById(elementID).style.color = "#2a6cf5";
     }
+
+    function addrow(id){
+       // let table = document.getElementById(id);
+       // table.Rows.add();
+    }
+
+    /*function formulario(idCourse){
+
+        var option = "";
+
+        $('#courseInput').change(function(){
+            {{--@foreach($professors as $prof)
+                if({!! $prof->suject->courses->id !!} == idCourse){
+                    option = "<option value='{{$prof->id}}'>{{$prof->name}}</option>"
+                }
+            @endforeach--}}
+        });
+    }*/
+
 </script>
 
 

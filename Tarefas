@@ -24,13 +24,12 @@ O que falta fazer para entregar no dia 11:
  - ter uma visão compactada
 
 
- TAREFAS DIA 9/02:
-  1º - Login
-  2º - colocar mais um campo na tabela com o número de alunos inscritos
-  3º - adicionar na tabela uma época
-  4º - adiconar na tabela um docente
-  5º - adicionar na tabela uma unidade curricular
-  6º - adicionar na tabela salas
+ TAREFAS DIA 10/02:
 
-  7º - mudar a base de dados de modo a ter um tabela com os vigilantes do exame e evaluationSlot_id
-  8º - mudar a base de dados de modo a que possa ter mais que uma sala
+  2º - adicionar na tabela uma época
+  3º - adiconar na tabela um docente
+  4º - adicionar na tabela uma unidade curricular
+  5º - adicionar na tabela salas
+
+  6º - mudar a base de dados de modo a ter um tabela com os vigilantes do exame e evaluationSlot_id
+  7º - mudar a base de dados de modo a que possa ter mais que uma sala
