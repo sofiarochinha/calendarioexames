@@ -29,7 +29,6 @@ class EvaluationSlot extends Model
         return $this->belongsTo(Calendar::class, 'calendar_id');
     }
 
-
     public function observing_professor(){
         return $this->belongsTo(Professor::class, 'observing_professor');
     }

@@ -55,7 +55,6 @@
                                         <th>Número de alunos inscritos</th>
                                         <th>Adicionar</th>
                                         <th>Editar</th>
-                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,9 +65,8 @@
                                                 <td >{{ $subject->courses->name}}</td>
                                                 <td >{{ $subject->courses->course_year}}</td>
                                                 <td>0</td>
-                                                <td align="center"><a onclick="addrow(this.id)" href="{{route('suject.adicionar', $subject->id)}}"><i class="fas fa-plus"></i></a></td>
-                                                <td align="center"><a href="{{route('suject.edit', $subject->id)}}"><i class="fas fa-edit"></i></a></td>
-                                                <td align="center"><a href="{{route('suject.delete', $subject->id)}}"><i class="fas fa-trash"></i></a></td>
+                                                <td align="center"><a onclick="addrow(this.id)" href="{{route('subject.adicionar', $subject->id)}}"><i class="fas fa-plus"></i></a></td>
+                                                <td align="center"><a href="{{route('subject.edit', $subject->id)}}"><i class="fas fa-edit"></i></a></td>
                                             </tr>
                                         @endforeach
 
@@ -88,7 +86,6 @@
                                         <th>Disponibilidade</th>
                                         <th>Adicionar</th>
                                         <th>Editar</th>
-                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -99,10 +96,8 @@
                                             <td>{{$professor->availability}}</td>
                                             <td align="center"><a onclick="addrow(this.id)" href="{{route('docente.adicionar', $professor->id)}}"><i class="fas fa-plus"></i></a></td>
                                             <td align="center"><a href="{{route('docente.edit', $professor->id)}}"><i class="fas fa-edit"></i></a></td>
-                                            <td align="center"><a href="{{route('docente.delete', $professor->id)}}"><i class="fas fa-trash"></i></a></td>
-
                                         </tr>
-                                            @endforeach
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -120,7 +115,6 @@
                                         <th>Lotação máxima em exame</th>
                                         <th>Adicionar</th>
                                         <th>Editar</th>
-                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -131,7 +125,6 @@
                                               <td>{{ $classroom->capacity}}</td>
                                             <td align="center"><a onclick="addrow(this.id)" href="{{route('sala.adicionar', $classroom->id)}}"><i class="fas fa-plus"></i></a></td>
                                             <td align="center"><a href="{{route('sala.edit', $classroom->id)}}"><i class="fas fa-edit"></i></a></td>
-                                            <td align="center"><a href="{{route('sala.delete', $classroom->id)}}"><i class="fas fa-trash"></i></a></td>
 
                                         </tr>
                                             @endforeach
