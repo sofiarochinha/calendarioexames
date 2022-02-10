@@ -1360,9 +1360,12 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\chapter{Implementação do modelo de dados persistentes}
 	\section{Estrutura da base de dados}
 	A informação relativa aos vários dados presentes na elaboração de um calendário ficou organizada por tabelas onde cada uma guarda um dos elementos constituintes.
-	As tabelas que formam os calendários são maioritariamente constituídas por informação de outras tabelas onde estão guardados dados de unidades curriculares, professores, salas, cursos, ano académico, dia do calendário, hora e exame e momento de avaliação.
-	Para guardar informação de calendários anteriores foram também criadas duas tabelas de histórico para o calendário momento de avaliação.
-	Estes dados são guardados de forma temporária até o projecto estar terminado e outros mais universais, como o caso de salas de aulas, ficam guardados de forma persistente.
+	A informação necessária à elaboração dos calendários está subdividida em tabelas que guardam a informação associada ao utilizador que valida o ato de inicio de sessão, a informação necessária sobre docentes, unidades curriculares, cursos, salas, época de avaliação e a que horas ocorrem as avaliações.
+	Com esta informação compilada num evento é possível criar as tabelas do evento de avaliação (\textit{$ evaluation_slot $}) e de um calendário que são suadas para construir os calendários finais a exportar.
+	O diagrama da base de dados pode ser consultado na Figura \ref{fig:calendariodb}
+	
+	Para guardar informação de calendários anteriores foi também criado uma tabela de histórico que apenas guarda as informações mais pertinentes de eventos passados.
+	Quando um projecto é dado por terminado e foi devidamente exportado para arquivação e entrega às entidades destinatárias a base de dados é movida para histórico e as tabelas são limpas para serem novamente preenchidas por um projecto novo.
 	
 	O diagrama conceptual da base de dados foi realizado com a aplicação web gratuita \href{https://dbdiagram.io/}{dbdiagram.io} que facilitou o desenvolvimento por não requerer um instalação local e ser universal a sistemas operativos.
 	A base de dados em si foi construida em \textit{PostgresSQL} que foi posteriormente alojada num servidor dentro da rede da UA.
@@ -1394,7 +1397,7 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	
 	\chapter{Conclusão}
 	
-	Neste projecto temático foi proposta e implementada com sucesso uma \textit{web app} que permite ao utilizador criar uma calendário de eventos de avaliações académicas em determinadas épocas à escolha do mesmo com recurso a ficheiros \textbf{csv} auxiliares para pré preencher as informações sobre salas, docentes, cadeiras, cursos e anos de curso.
+	Neste projecto temático foi proposta e implementada uma \textit{web app} parcialmente funcional que permite ao utilizador criar uma calendário de eventos de avaliações académicas em determinadas épocas à escolha do mesmo com recurso a ficheiros \textbf{csv} auxiliares para pré preencher as informações sobre salas, docentes, cadeiras, cursos e anos de curso.
 	
 	O projecto foi desenvolvido com uma metodologia de comunicações regulares com o cliente onde ideias eram apresentadas e alteradas conforme as necessidades deste e ainda foram feitos testes públicos de usabilidade para obter \textit{feedback} de utilizadores.
 	Foi implementada uma base de dados escrita com a tecnologia PostgresSQL alojada no mesmo servidor que serve a aplicação de criação de calendários servindo esta para guardar projectos em construção assim como um histórico de calendários anteriores.
@@ -1402,6 +1405,8 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	
 	Face aos método anterior utilizado pelo cliente, esta aplicação proporciona uma forma eficiente de criar calendários utilizando uma interface de \textit{drag and drop}, com a possibilidade de facilmente escolher o curso, ano de curso e ainda a época de exames na mesma página.
 	A informação sobre docentes, salas, unidades curriculares e afins pode ser consultada e editada conforme necessário em páginas dedicadas.
+	
+	Devido a alguns atrasos causados por problemas técnicos com o \textit{template} escolhido, com imprevistos, mudanças na estrutura do grupo e ainda a ambição do projecto, ainda existem funcionalidades da aplicação por implementar que lamentavelmente o tempo disponível não permitiu.
 	
 	Olhando para o futuro consideramos que existem melhorias que ainda podem ser implementadas na aplicação, como por exemplo a possibilidade de exportar calendários de avaliações como eventos que podem ser importados pelo utilizador final em sistemas de calendários eletrónicos encontrados em computadores e serviços de email, seguindo a especificação de \textbf{iCalendar}\cite{rfc2445}\cite{1644111}, para que o utilizador tenha alertas para o evento no calendário seja este um docente ou um aluno com o evento marcado.
 	Com mais tempo de desenvolvimento teria sido possível também melhorar a apresentação gráfica das páginas por forma a conferir um aspeto que se destaque do \textit{template} base.
