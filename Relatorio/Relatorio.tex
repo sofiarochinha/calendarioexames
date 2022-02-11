@@ -1383,9 +1383,9 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	
 	\subsection{Base de dados - \textit{seeder}}
 	
-		No projeto as factories serviram para criar dados alteatórios para poder testar as funcionalidades testadas. No entanto à medida que as funcionalidades foram implementadas as factories deixaram de ser úteis, estando no fim somente a \textit{factory} para a criação de épocas.
+		No projeto as \textit{factories} serviram para criar dados aleatórios para poder testar as funcionalidades testadas. No entanto à medida que as funcionalidades foram implementadas as \textit{factories} deixaram de ser úteis, estando no fim somente a \textit{factory} para a criação de épocas.
 		
-		Para que esta factory funcione é perciso permeiro colcoar todos os cursos e o tempo do exame a partir do seeder. Com isso foi criado um ficheiro que contém todos os cursos lecionados na Escola Superior e Gestão de Águeda tal como o exemplo apresentado no listing \ref{courseSeeder};
+		Para que esta factory funcione é preciso primeiro colocar todos os cursos e o tempo do exame a partir do \textit{seeder}. Com isso foi criado um ficheiro que contém todos os cursos lecionados na Escola Superior e Gestão de Águeda tal como o exemplo apresentado no listing \ref{courseSeeder};
 		
 		\begin{listing}[H]
 		\begin{minted}{php}
@@ -1431,6 +1431,19 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\subsection{Models e Controllers}
 	
 	\chapter{Primeira versão da aplicação}
+	A primeira versão da aplicação reúne as funcionalidades básicas que foram inicialmente apresentadas nos protótipos em \textit{wireframes}.
+	Esta versão tem presente funcionalidades básicas como a página de inicio de sessão, que valida um utilizador com recurso à base de dados, navegação para a página de criação de um calendário onde é pedido para escolher quais os cursos a colocar no projecto assim como os anos letivos desse curso que se pretende colocar no calendário e ainda escolher as épocas de avaliação para adicionar também ao projecto.
+	
+	Os dados da base de dados usados para construir o calendário, como por exemplo os docentes, as unidades curriculares e salas, podem ser previamente inseridos na base de dados com recurso a um ficheiro \textbf{csv} que costuma ser disponibilizado pela ESTGA para a preparação dos calendários.
+	Nesta página o utilizador escolhe o ficheiro a importar, é apresentado uma pré visualização dos dados que estão presentes no ficheiro e para que tabelas serão importados e por fim é apresentado o botão para finalizar a importação.
+	Em ocasião de não haver um ficheiro \textbf{csv} importado o utilizador é advertido por uma mensagem de aviso amarelo  em estilo \textit{popup} de que este não foi importado, o inverso também acontece no caso de já ter sido importado mas agora com uma mensagem de sucesso em cor verde.
+	Estas mesmas mensagens também aparecem na página de criação do calendário para advertir o utilizador da criação do mesmo sem ter dados importados.
+	Esta funcionalidade foi conseguida recorrendo ao uso de \textit{cookies} no \textit{browser} que ficam guardados no lado do cliente e implementada com \textit{javascript}.
+	
+	Os dados importados para a base de dados referentes à informação necessária para a construção dos calendários pode ser consultada e editada em páginas dedicadas com \textit{tabs} para cada uma das funcionalidades.
+	Após estar terminado um projecto, este pode ser exportado e apagado.
+	Este acto apaga a base de dados para que um projecto novo possa ser começado de início e desativa o \textit{cookie} previamente colocado para que os avisos voltem ao estado inicial.
+	
 	\section{Implementação de funcionalidades}
 	
 	\chapter{Testes finais}
