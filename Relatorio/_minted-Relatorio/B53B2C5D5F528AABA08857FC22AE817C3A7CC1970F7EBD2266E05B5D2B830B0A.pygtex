@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{			DB::table(\PYGZsq{}course\PYGZsq{})\PYGZhy{}\PYGZgt{}insert([}
+\PYG{x}{			\PYGZsq{}name\PYGZsq{} =\PYGZgt{} \PYGZsq{}Redes e Sistemas Informáticos\PYGZsq{},}
+\PYG{x}{			\PYGZsq{}course\PYGZus{}code\PYGZsq{} =\PYGZgt{} 2100,}
+\PYG{x}{			\PYGZsq{}course\PYGZus{}year\PYGZsq{} =\PYGZgt{} 1,}
+\PYG{x}{			\PYGZsq{}type\PYGZsq{} =\PYGZgt{} \PYGZsq{}cstep\PYGZsq{},}
+\PYG{x}{			\PYGZsq{}regime\PYGZsq{} =\PYGZgt{} \PYGZsq{}diurno\PYGZsq{}}
+\PYG{x}{			]);}
+\end{Verbatim}

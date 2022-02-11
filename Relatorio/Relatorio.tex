@@ -18,6 +18,7 @@
 \usepackage{ltablex}
 \usepackage{pdflscape}
 \usepackage{multirow}
+\usepackage{minted} %colocação de códigos
 \pagestyle{fancy}
 \lfoot{{\footnotesize Tecnologias de Informação}}
 \rfoot{{\footnotesize ESTGA}}
@@ -28,6 +29,8 @@
 \renewcommand{\nomname}{Nomenclatura}%mudar o nome da secção
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
+
+\renewcommand\listoflistingscaption{Índices dos comandos e configurações} %lista dos codigos
 
 
 
@@ -1362,12 +1365,12 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	A informação relativa aos vários dados presentes na elaboração de um calendário ficou organizada por tabelas onde cada uma guarda um dos elementos constituintes.
 	A informação necessária à elaboração dos calendários está subdividida em tabelas que guardam a informação associada ao utilizador que valida o ato de inicio de sessão, a informação necessária sobre docentes, unidades curriculares, cursos, salas, época de avaliação e a que horas ocorrem as avaliações.
 	Com esta informação compilada num evento é possível criar as tabelas do evento de avaliação (\textit{$ evaluation_slot $}) e de um calendário que são suadas para construir os calendários finais a exportar.
-	O diagrama da base de dados pode ser consultado na Figura \ref{fig:calendariodb}
+	O diagrama da base de dados pode ser consultado na figura \ref{fig:calendariodb}
 	
 	Para guardar informação de calendários anteriores foi também criado uma tabela de histórico que apenas guarda as informações mais pertinentes de eventos passados.
 	Quando um projecto é dado por terminado e foi devidamente exportado para arquivação e entrega às entidades destinatárias a base de dados é movida para histórico e as tabelas são limpas para serem novamente preenchidas por um projecto novo.
 	
-	O diagrama conceptual da base de dados foi realizado com a aplicação web gratuita \href{https://dbdiagram.io/}{dbdiagram.io} que facilitou o desenvolvimento por não requerer um instalação local e ser universal a sistemas operativos.
+	O diagrama conceptual da base de dados foi realizado com a aplicação web gratuita \href{https://dbdiagram.io/}{\textit{dbdiagram.io}} que facilitou o desenvolvimento por não requerer um instalação local e ser universal a sistemas operativos.
 	A base de dados em si foi construida em \textit{PostgresSQL} que foi posteriormente alojada num servidor dentro da rede da UA.
 	
 	\begin{figure}[H]
@@ -1378,7 +1381,51 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\end{figure}
 	
 	
-	\subsection{Base de dados - factories}
+	\subsection{Base de dados - \textit{seeder}}
+	
+		No projeto as factories serviram para criar dados alteatórios para poder testar as funcionalidades testadas. No entanto à medida que as funcionalidades foram implementadas as factories deixaram de ser úteis, estando no fim somente a \textit{factory} para a criação de épocas.
+		
+		Para que esta factory funcione é perciso permeiro colcoar todos os cursos e o tempo do exame a partir do seeder. Com isso foi criado um ficheiro que contém todos os cursos lecionados na Escola Superior e Gestão de Águeda tal como o exemplo apresentado no listing \ref{courseSeeder};
+		
+		\begin{listing}[H]
+		\begin{minted}{php}
+			DB::table('course')->insert([
+			'name' => 'Redes e Sistemas Informáticos',
+			'course_code' => 2100,
+			'course_year' => 1,
+			'type' => 'cstep',
+			'regime' => 'diurno'
+			]);
+		\end{minted}
+		\caption{Comando para inserir na tabela ``Course''}
+		\label{courseSeeder}
+		\end{listing}
+	
+	Da mesma forma foi criado para a tabela ``time\_slot" que tal como é apresentado no diagrama da figura \ref{fig:calendariodb} com os três momentos do dia que se pode realizar a marcação dos exames: manhã, tarde e noite. 
+	
+		\begin{listing}[H]
+		\begin{minted}{php}
+			DB::table('time_slot')->insert([
+			'time_slot' => 'Manha'
+			]);
+			
+			DB::table('time_slot')->insert([
+			'time_slot' => 'Tarde'
+			]);
+			
+			DB::table('time_slot')->insert([
+			'time_slot' => 'Noite'
+			]);
+		\end{minted}
+		\caption{Seeder para a tabela ``time\_slot''}
+		\label{timeslotSeeder}
+	\end{listing}
+	
+	
+	
+	
+	
+	
 	\section{Arquitetura do sistema - Modelo MVC}
 	é necessário fazer e mudar o template para respeitar este tipo de estrutura
 	\subsection{Models e Controllers}
@@ -1390,6 +1437,89 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	\section{Testes com potenciais clientes}
 	\section{Testes de acessibilidade}
 	\section{Análise de resultados}
+	
+	\def\arraystretch{1.5}
+	\begin{center}
+		\label{analiseresultados}
+		\begin{longtable}{|m{2.2cm}|m{10cm}|m{2cm}|m{2cm}|}
+			\caption{Análise de resultados}\\
+			
+			\hline			
+			\textbf{Categoria}&\textbf{Descrição do requisito} & \textbf{Prioridade} &\textbf{Estado}\\
+			\hline
+			
+			Importação& Importação de ficheiros com a configuração de salas, disciplinas e docentes em formato \textbf{csv} & Alta & Funciona se tiver um único professor\\
+			\hline
+			
+			\multirow{2}{2cm}{Exportação}& Exportação de calendários em formato \textbf{pdf} & Alta & Não está feito\\
+			
+			& Exportação o calendário em língua inglesa & Baixa & Não está feito\\
+			\hline
+			
+			\multirow{3}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: às 9h30, às 14h e às 18h30 & Alta & Feito\\
+			
+			& Associação de um ou mais vigilantes a cada exame & Alta & Não está feito\\
+			
+			& O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta & Feito somente para domingos\\
+			
+			&	Associação de uma ou mais salas a cada exame & Alta & Não está feito\\
+			
+			& Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Média & Feito\\
+			\hline
+			
+			 \multirow{7}{2cm}{Configurações}& Configuração do tipo de sala (informática, laboratório de redes e normal) e lotação máxima & Alta & Não está feito\\
+			
+			 & Inserção de cursos e disciplinas & Alta & Não está feito\\
+			
+			& Permitir inserir novos docentes & Alta & Não está feito\\
+			
+			& Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta &Não está feito\\
+			
+			& Permitir editar informações (nome do curso, docente e a disciplina) sobre as disciplinas e cursos & Alta & Não está feito\\
+			
+			& Alterar a disponibilidade dos docentes & Alta & Não está feito\\
+			
+			& Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa & Não está feito\\
+			\hline	
+			
+			\multirow{9}{2cm}{Avisos}& Aparecimento de um aviso no caso de incongruência da informação durante a marcação de exames & Alta & Não está feito\\
+			
+			&Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta & Não está feito\\
+			
+			& Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta & Não está feito\\
+			
+			& Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta & Não está feito\\
+			
+			& Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Média & Não está feito\\
+			
+			&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta & Não está feito\\
+			
+			& Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Média& Não está feito\\
+			
+			& Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta& Não está feito\\
+			
+			& Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média& Não está feito\\
+			
+			
+			& Mostrar um aviso de média prioridade se o utilizador tentar exportar um calendário sem exames marcados & Média& Não está feito\\
+			\hline
+			
+			Autenticação& O utilizador só pode aceder à aplicação após a autenticação & Alta & Feito\\
+			\hline
+			
+			\multirow{3}{2cm}{Criação de calendários}&Criação de calendários associados a um curso, ano letivo, ano do curso, época e semestre.& Alta & Feito\\
+			
+			& Criação de épocas de avaliação adicionando um nome e uma data de início e fim & Alta & Não está feito\\
+			
+			& A criação de um novo calendário deverá sempre partir do início sem exames marcados & Alta & Feito\\
+			\hline
+			\multirow{2}{*}{Histórico}& Guardar e visualizar calendários de exames de anos anteriores (histórico)& Média &Não está feito \\
+			
+			& Filtrar o histórico por curso, ano letivo, ano do curso, semestre e época& Média &Não está feito\\
+			\hline
+		\end{longtable}
+	\end{center}
+	
 	
 	\chapter{Lançamento da versão final}
 	\section{Alocação da aplicação no servidor}

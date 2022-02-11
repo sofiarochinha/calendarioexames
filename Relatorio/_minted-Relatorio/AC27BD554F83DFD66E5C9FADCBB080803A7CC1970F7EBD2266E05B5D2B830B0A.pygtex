@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{			DB::table(\PYGZsq{}time\PYGZus{}slot\PYGZsq{})\PYGZhy{}\PYGZgt{}insert([}
+\PYG{x}{			\PYGZsq{}time\PYGZus{}slot\PYGZsq{} =\PYGZgt{} \PYGZsq{}Manha\PYGZsq{}}
+\PYG{x}{			]);}
+\PYG{x}{			}
+\PYG{x}{			DB::table(\PYGZsq{}time\PYGZus{}slot\PYGZsq{})\PYGZhy{}\PYGZgt{}insert([}
+\PYG{x}{			\PYGZsq{}time\PYGZus{}slot\PYGZsq{} =\PYGZgt{} \PYGZsq{}Tarde\PYGZsq{}}
+\PYG{x}{			]);}
+\PYG{x}{			}
+\PYG{x}{			DB::table(\PYGZsq{}time\PYGZus{}slot\PYGZsq{})\PYGZhy{}\PYGZgt{}insert([}
+\PYG{x}{			\PYGZsq{}time\PYGZus{}slot\PYGZsq{} =\PYGZgt{} \PYGZsq{}Noite\PYGZsq{}}
+\PYG{x}{			]);}
+\end{Verbatim}
