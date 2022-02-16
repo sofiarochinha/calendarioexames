@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{		 Professor::updateOrCreate([}
+\PYG{x}{			\PYGZsq{}mec\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZdl{}i][9],}
+\PYG{x}{			\PYGZsq{}name\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZdl{}i][7],}
+\PYG{x}{			\PYGZsq{}email\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZdl{}i][8]}
+\PYG{x}{		]);}
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{			}
+\PYG{x}{			public function epoca()\PYGZob{}}
+\PYG{x}{				return \PYGZdl{}this\PYGZhy{}\PYGZgt{}belongsTo(Epoca::class, \PYGZsq{}epoca\PYGZus{}id\PYGZsq{});}
+\PYG{x}{			\PYGZcb{}}
+\end{Verbatim}

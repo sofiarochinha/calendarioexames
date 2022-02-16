@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{		\PYGZdl{}coursesall = Course::all()\PYGZhy{}\PYGZgt{}sortBy(\PYGZsq{}course\PYGZus{}year\PYGZsq{});}
+\PYG{x}{		\PYGZdl{}courses = Course::distinct(\PYGZsq{}course\PYGZus{}code\PYGZsq{})\PYGZhy{}\PYGZgt{}get();}
+\PYG{x}{		\PYGZdl{}evaluation\PYGZus{}season = Epoca::all();}
+\PYG{x}{		return view(\PYGZsq{}create\PYGZus{}calendar\PYGZsq{}, compact([\PYGZdq{}courses\PYGZdq{},}
+\PYG{x}{		\PYGZdq{}evaluation\PYGZus{}season\PYGZdq{},\PYGZdq{}coursesall\PYGZdq{}]));}
+\PYG{x}{		}
+\end{Verbatim}

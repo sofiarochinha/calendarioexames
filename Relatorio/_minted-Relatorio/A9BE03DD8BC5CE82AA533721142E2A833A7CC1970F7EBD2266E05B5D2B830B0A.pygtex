@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{			 \PYGZdl{}request\PYGZhy{}\PYGZgt{}validate([}
+\PYG{x}{				\PYGZsq{}name\PYGZsq{} =\PYGZgt{} \PYGZsq{}required\PYGZsq{},}
+\PYG{x}{				\PYGZsq{}email\PYGZsq{} =\PYGZgt{} \PYGZsq{}required|email|unique:users\PYGZsq{},}
+\PYG{x}{				\PYGZsq{}password\PYGZsq{} =\PYGZgt{} \PYGZsq{}required|min:6\PYGZsq{},}
+\PYG{x}{			]);}
+\end{Verbatim}

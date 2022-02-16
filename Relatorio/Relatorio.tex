@@ -1382,10 +1382,11 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	
 	
 	\subsection{Base de dados - \textit{seeder}}
+	\label{seed}
 	
-		No projeto as \textit{factories} serviram para criar dados aleatórios para poder testar as funcionalidades testadas. No entanto à medida que as funcionalidades foram implementadas as \textit{factories} deixaram de ser úteis, estando no fim somente a \textit{factory} para a criação de épocas.
+		No projeto as factories serviram para criar dados aleatórios para poder testar as funcionalidades testadas. No entanto à medida que estas foram implementadas as factories deixaram de ser úteis, estando no fim somente a \textit{factory} para criação de épocas.
 		
-		Para que esta factory funcione é preciso primeiro colocar todos os cursos e o tempo do exame a partir do \textit{seeder}. Com isso foi criado um ficheiro que contém todos os cursos lecionados na Escola Superior e Gestão de Águeda tal como o exemplo apresentado no listing \ref{courseSeeder};
+		Para que esta factory funcione é preciso primeiro colocar todos os cursos e o tempo do exame a partir do seeder. Com isso foi criado um ficheiro que contém todos os cursos lecionados na Escola Superior e Gestão de Águeda tal como o exemplo apresentado no listing \ref{courseSeeder};
 		
 		\begin{listing}[H]
 		\begin{minted}{php}
@@ -1421,35 +1422,249 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 		\label{timeslotSeeder}
 	\end{listing}
 	
+	Com estas informações na base de dados a factory de épocas utiliza os ids de objetos aleatórios previamente criados a partir do \textit{model} correspondente, como se pode ver no listing \ref{epocasfactory}.
+	
+	\begin{listing}[H]
+		\begin{minted}{php}
+		
+		$subject = Subject::all();
+		$professor = Professor::all();
+		$classroom = Classroom::all();
+		$time = TimeSlot::all();
+		$calendar = Calendar::all();
+		
+		return [
+			"calendar_id" => $this->faker->randomElement($calendar),
+			"subject" => $this->faker->randomElement($subject),
+			"associated_professor" => $this->faker->randomElement($professor),
+			"observing_professor" =>$this->faker->randomElement($professor),
+			"classroom" => $this->faker->randomElement($classroom),
+			"time_slot" => $this->faker->randomElement($time),
+			"calendar_day" => $this->faker->date()
+		];
+		\end{minted}
+		\caption{\textit{Factory} para as épocas}
+		\label{epocasfactory}
+	\end{listing}
+	
+	\section{Arquitetura do sistema - modelo MCV}
+	
+		
+	
+	\subsection{Models}
+	
+		Neste projeto foram criados vários \textit{models} em que cada um está relacionado a uma tabela da base de dados. Cada um tem todos os campos da tabela e também as relações entre as mesmas. Para uma chave estrangeira relacionar-se com uma tabela é necessário no \textit{model} colocar uma função em que retorna o \textit{model} da outra tabela, como está representado no listing \ref{epocasbelongsto}.
+			
+		\begin{listing}[H]
+		\begin{minted}{php}
+			
+			public function epoca(){
+				return $this->belongsTo(Epoca::class, 'epoca_id');
+			}
+		\end{minted}
+		\caption{Relação \textit{belongsTo} para a tabela épocas}
+		\label{epocasbelongsto}
+	\end{listing}
+
+	No entanto para que consigamos retorna a época - utilizando o caso acima descrito - é necessário no \textit{model} colocar a relação representada no listing \ref{calendarHasMany}. Neste caso como cada época pode ter mais que um calendário então é do tipo \textit{hasMany}. Se fosse somente um calendário para uma época então seria do tipo \textit{hasOne}.
+	
+		\begin{listing}[H]
+		\begin{minted}{php}
+			
+		public function calendars(){
+			return $this->hasMany(Calendar::class);
+		}
+		\end{minted}
+		\caption{Relação \textit{hasMany} para a tabela Calendar}
+		\label{calendarHasMany}
+	\end{listing}
+	
+	\section{Controllers}
+	
+	Depois da criação de todos os \textit{models} foi criado um \textit{controller} para cada página da aplicação tendo cada um várias funcionalidades para obter e/ou inserir dados na base de dados e posteriormente apresentar nas páginas. Os \textit{controllers} criados foram:
+	
+	\begin{itemize}
+		\item LoginController - Gere todas as sessões na aplicação;
+		\item ImportController - Importa o \textbf{.csv} para a base de dados;
+		\item CalendarController - Obtém todos os dados da base de dados e envia para a view e adiciona os eventos na base de dados;
+		\item ConfigurationsController - Obtém todos os dados sobre os docentes, salas, professores, epocas e cursos e envia para a view e também elimina as épocas na base de dados;
+		\item CreateController - cria os calendários;
+		\item ExportController - apresenta a view de exportar para pdf;
+		\item HistoricController - apresenta a view de calendários anteriores;
+	\end{itemize}
+
+	\subsubsection{LoginController}
+	
+	Para a realização do login criou-se duas funcionalidades: o registo e o login. O registo foi criado para o cliente criar a sua conta e depois o registo será retirado. No entanto a partir de um formulário são inseridos o nome, email e uma palavra-passe que tem de ter no mínimo de 6 caracteres. Estes dados são validados com o código apresentado no listing \ref{registoValidação}.
+	
+		\begin{listing}[H]
+		\begin{minted}{php}
+			 $request->validate([
+				'name' => 'required',
+				'email' => 'required|email|unique:users',
+				'password' => 'required|min:6',
+			]);
+		\end{minted}
+		\caption{Validação dos dados inseridos no formulário de registo}
+		\label{registoValidação}
+	\end{listing}
+	
+	A seguir é criado um novo utilizador na base de dados em que a palavra-passe fica encriptada com o método \textit{Hash}, como se pode ver no listing \ref{criarUser}, sendo a variável \$data um array com todos os dados.
+
+	\begin{listing}[H]
+		\begin{minted}{php}
+		User::create([
+			'name' => $data['name'],
+			'email' => $data['email'],
+			'password' => Hash::make($data['password'])
+			]);
+		\end{minted}
+		\caption{Criação de um novo utilizador}
+		\label{criarUser}
+
+	\end{listing}
+
+	Depois de registo ter realizado é necessário verificar no login as credenciais e criar um sessão para que o utilizador possa aceder à aplicação. A partir de um formulário são inseridos o email e palavra-passe que serão verificados a partir do método Auth::attempt(\$credentials), tendo a variável \$credentials o email e password. Este método verifica se existe um utilizador com o email inserido e se existir comparada a hash da base de dados com a hash criada com a password inserida. Se forem iguais então uma sessão será criada e o utilizador entra na aplicação. E depois termina-se a sessão com o método Auth::logout(). 
+
+
+	\subsubsection{ImportController}
+	
+	Depois de o utilizador ter iniciado sessão este terá de importar um csv que contém todos os dados necessários para a criação de calendários. Na view o csv importado é transformado num array com todos os dados em JSON que serão enviados por AJAX para o \textit{controller}. Neste transforma o JSON novamente em array com o método \textbf{json\_decode}. A seguir é utilizado o método \textit{createOrUpdate} que verifica o primeiro elemento se já existe na base de dados,  como é mostrado no listing \ref{profCreate}. Se existir faz \textit{update} do mesmo senão cria um novo elemento.
+	
+	\begin{listing}[H]
+		\begin{minted}{php}
+		 Professor::updateOrCreate([
+			'mec' => $data[$i][9],
+			'name' => $data[$i][7],
+			'email' => $data[$i][8]
+		]);
+		\end{minted}
+		\caption{Criação de um novo professor se não existir o número mecanográfico igual}
+		\label{profCreate}
+		
+	\end{listing}
+
+ 	\subsubsection{CreateController}
+ 	
+ 	Assim que seja importado o \textbf{csv} o utilizador pode criar calendários. Para isso vão enviados para a \textit{view} variáveis com  essas informações (ver listing \ref{dadosCalendar}). Neste caso os dados já o ano de curso são ordenados pelo ano e os cursos só são apresentados uma vez - utilizando o método Course::distintc('course\_code) - ignorando cursos repetidos. 
+
+	\begin{listing}[H]
+		\begin{minted}{php}
+		$coursesall = Course::all()->sortBy('course_year');
+		$courses = Course::distinct('course_code')->get();
+		$evaluation_season = Epoca::all();
+		return view('create_calendar', compact(["courses",
+		"evaluation_season","coursesall"]));
+		
+		\end{minted}
+		\caption{Criação de um novo professor se não existir o número mecanográfico igual}
+		\label{dadosCalendar}
+		
+	\end{listing}
+
+	Depois de o utilizador escolher qual calendário será criado e caso não exista um igual - com a mesma época, curso e ano de curso, como se pode ver no listing \ref{criarcalendárioController} - então será adicionado à base de dados. Os dados sobre o calendário são enviados por AJAX na view.
+	
+	
+	\begin{listing}[H]
+		\begin{minted}{php}
+		$epoca = Epoca::findOrFail($epocas[$r]);
+		$calendario = Calendar::where('course_id', $curso->id)
+		->where('epoca_id', $epoca->id)->get();
+		if($calendario=='[]'){
+			$novocalendario = new Calendar();
+			$novocalendario->epoca_id= $epoca->id;
+			$novocalendario->course_id= $curso->id;
+			$novocalendario->save();		
+		}
+			
+		\end{minted}
+		\caption{Criação de um novo calendário caso não exista}
+		\label{criarcalendárioController}
+		
+	\end{listing}
+
+	\subsubsection{CalendarController}
+	
+	Com este \textit{controller} é possível marcar o exames no calendário e guardar na base de dados. E também se existir alguma alteração será guardada. Os dados são enviadas por AJAX para o \textit{controller}. 
+	
+	Primeiro será verificado se existe alguma exame marcado para aquela disciplina com o método apresentado no listing \ref{evaluationslot}. Caso retorne ``null" cria um novo exame, caso contrário atualiza o mesmo.
+	
+	\begin{listing}[H]
+		\begin{minted}{php}
+		 $evaluationSlot = EvaluationSlot::where('subject',
+		 $subject)->where('calendar_id', $calendar)->first();
+		\end{minted}
+		\caption{Criação de um novo calendário caso não exista}
+		\label{evaluationslot}
+		
+	\end{listing}
+
 	
 	
 	
 	
 	
-	\section{Arquitetura do sistema - Modelo MVC}
-	é necessário fazer e mudar o template para respeitar este tipo de estrutura
-	\subsection{Models e Controllers}
-	
+
 	\chapter{Primeira versão da aplicação}
-	A primeira versão da aplicação reúne as funcionalidades básicas que foram inicialmente apresentadas nos protótipos em \textit{wireframes}.
-	Esta versão tem presente funcionalidades básicas como a página de inicio de sessão, que valida um utilizador com recurso à base de dados, navegação para a página de criação de um calendário onde é pedido para escolher quais os cursos a colocar no projecto assim como os anos letivos desse curso que se pretende colocar no calendário e ainda escolher as épocas de avaliação para adicionar também ao projecto.
-	
-	Os dados da base de dados usados para construir o calendário, como por exemplo os docentes, as unidades curriculares e salas, podem ser previamente inseridos na base de dados com recurso a um ficheiro \textbf{csv} que costuma ser disponibilizado pela ESTGA para a preparação dos calendários.
-	Nesta página o utilizador escolhe o ficheiro a importar, é apresentado uma pré visualização dos dados que estão presentes no ficheiro e para que tabelas serão importados e por fim é apresentado o botão para finalizar a importação.
-	Em ocasião de não haver um ficheiro \textbf{csv} importado o utilizador é advertido por uma mensagem de aviso amarelo  em estilo \textit{popup} de que este não foi importado, o inverso também acontece no caso de já ter sido importado mas agora com uma mensagem de sucesso em cor verde.
-	Estas mesmas mensagens também aparecem na página de criação do calendário para advertir o utilizador da criação do mesmo sem ter dados importados.
-	Esta funcionalidade foi conseguida recorrendo ao uso de \textit{cookies} no \textit{browser} que ficam guardados no lado do cliente e implementada com \textit{javascript}.
-	
-	Os dados importados para a base de dados referentes à informação necessária para a construção dos calendários pode ser consultada e editada em páginas dedicadas com \textit{tabs} para cada uma das funcionalidades.
-	Após estar terminado um projecto, este pode ser exportado e apagado.
-	Este acto apaga a base de dados para que um projecto novo possa ser começado de início e desativa o \textit{cookie} previamente colocado para que os avisos voltem ao estado inicial.
-	
 	\section{Implementação de funcionalidades}
+	A primeira versão da aplicação reúne as funcionalidades básicas que foram inicialmente apresentadas nos protótipos em \textit{wireframes}. 
+	Esta versão tem presente funcionalidades básicas como a página de inicio de sessão, que valida um utilizador com recurso à base de dados, navegação para a página de criação de um calendário onde é pedido para escolher quais os cursos a colocar no projeto assim como os anos letivos desse curso que se pretende colocar no calendário e ainda escolher as épocas de avaliação para adicionar também ao projeto. 
 	
-	\chapter{Testes finais}
-	\section{Testes com potenciais clientes}
-	\section{Testes de acessibilidade}
-	\section{Análise de resultados}
+	Os dados da base de dados usados para construir o calendário, como por exemplo os docentes, as unidades curriculares e salas, podem ser previamente inseridos na base de dados com recurso a um ficheiro \textbf{csv} que costuma ser disponibilizado pela ESTGA para a preparação dos calendários. 
+	Nesta página o utilizador escolhe o ficheiro a importar, é apresentado uma pré visualização dos dados que estão presentes no ficheiro e para que tabelas serão importados e por fim é apresentado o botão para finalizar a importação. 
+	Em ocasião de não haver um ficheiro \textbf{csv} importado o utilizador é advertido por uma mensagem de aviso amarelo  em estilo \textit{popup} de que este não foi importado, o inverso também acontece no caso de já ter sido importado mas agora com uma mensagem de sucesso em cor verde. 
+	Estas mesmas mensagens também aparecem na página de criação do calendário para advertir o utilizador da criação do mesmo sem ter dados importados. 
+	Esta funcionalidade foi conseguida recorrendo ao uso de \textit{cookies} no \textit{browser} que ficam guardados no lado do cliente e implementada com \textit{javascript}. 
+	
+	Os dados importados para a base de dados referentes à informação necessária para a construção dos calendários pode ser consultada e editada em páginas dedicadas com \textit{tabs} para cada uma das funcionalidades. 
+	Após estar terminado um projeto, este pode ser exportado e apagado. 
+	Este ato apaga a base de dados para que um projeto novo possa ser começado de início e desativa o \textit{cookie} previamente colocado para que os avisos voltem ao estado inicial. 
+	
+	\chapter{Testes com potenciais clientes}
+	Para testar a aplicação foram feitos testes com potenciais utilizadores para avaliar as nossas funcionalidades realizadas nesta primeira versão da aplicação. Como nem todas as funcionalidades estavam implementadas então foram testadas algumas com as seguintes tarefas:
+	
+	\begin{itemize}
+		\item Login
+		\item Importar ficheiro \textbf{csv};
+		\item Visualizar informações sobre as disciplinas, salas e docentes que foram importadas;
+		\item Criar um calendário para um curso, ano de curso e uma época;
+		\item Marcar um exame de um curso numa data 
+		\item Fazer \textit{Log Out}.
+	\end{itemize}
+		
+	
+	\subsection{Análise de resultados}
+	
+	No final da secção foram anotadas todas as alterações que terão de ser realizadas para a última versão da aplicação estando dividas por categorias - calendário atual, configurações e criar calendário. 
+	
+	
+	\begin{center}
+		\label{analisederesultados3}
+		\begin{longtable}{|m{2.2cm}|m{12cm}|}
+			\caption{Análise de resultados da terceira sessão de avaliação}\\
+			
+			\hline			
+			\textbf{Categoria}&\textbf{Descrição da alteração} \\
+			\hline
+			
+			Configurações& Poder adicionar docentes, disiciplinas, salas e épocas\\
+			
+			\hline
+			\multirow{3}{2cm}{Calendário atual}& Colocação do número de salas utilizadas nos exames marcados \\
+			&Colocação do número de professores no títulos dos exames marcados\\
+			&Colocação de incompatibilidades na marcação de exames\\
+			
+			\hline
+		
+			Criar calendário & Colocação os nomes por ordem alfabética\\
+			\hline
+		\end{longtable}
+	\end{center}
+	
+	
+	\chapter{Análise de resultados}
+	
+		Por fim foi feita uma análise de todo o projeto em que se pode verificar quais requisitos inicialmente propostos foram realizados. Os implementados foram a importação de um ficheiro .csv para a base de dados, foi a marcação dos exames numa época, criação de calendário e visualização dos dados importados, ter uma \textit{preview} dos mesmos, autenticação. Todos os outros não foram implementados tendo a aplicação funcionalidades básicas.
 	
 	\def\arraystretch{1.5}
 	\begin{center}
@@ -1535,21 +1750,39 @@ Concluída a sessão de avaliação e a posterior junção das grelhas dos obser
 	
 	
 	\chapter{Lançamento da versão final}
+	
 	\section{Alocação da aplicação no servidor}
+	
+		Para alocação do servidor utilizou-se da aplicação ``filezilla'' para colocação dos ficheiros no servidor. No entanto para a base de dados teve-se de mudar o ficheiro .env para que possa aceder à base de dados do servidor, tal como está no listing \ref{ficheiroenv}.
+	
+		\begin{listing}[H]
+			\begin{minted}{php}
+				DB_CONNECTION=pgsql
+				DB_HOST=estga-dev.clients.ua.pt
+				DB_PORT=5432
+				DB_DATABASE=ptdw-2021-gr4.
+				DB_USERNAME=ptdw-2021-gr4.
+				DB_PASSWORD=qYgQuY?2VFw)3,Xz
+			\end{minted}
+			\caption{Seeder para a tabela ``time\_slot''}
+			\label{ficheiroenv}
+		\end{listing}
+	
+	Com acesso ao servidor por ssh utilizou-se o comando \textbf{php artisan migrate:fresh --seed} para poder fazer seed, como mostrado na secção \ref{seed}, para poder criar as tabelas na base de dados e colocar todos os cursos e momentos do dia para avaliação.
 	
 	
 	\chapter{Conclusão}
 	
-	Neste projecto temático foi proposta e implementada uma \textit{web app} parcialmente funcional que permite ao utilizador criar uma calendário de eventos de avaliações académicas em determinadas épocas à escolha do mesmo com recurso a ficheiros \textbf{csv} auxiliares para pré preencher as informações sobre salas, docentes, cadeiras, cursos e anos de curso.
+	Neste projeto temático foi proposta e implementada uma \textit{web app} parcialmente funcional que permite ao utilizador criar uma calendário de eventos de avaliações académicas em determinadas épocas à escolha do mesmo com recurso a ficheiros \textbf{csv} auxiliares para pré preencher as informações sobre salas, docentes, cadeiras, cursos e anos de curso.
 	
-	O projecto foi desenvolvido com uma metodologia de comunicações regulares com o cliente onde ideias eram apresentadas e alteradas conforme as necessidades deste e ainda foram feitos testes públicos de usabilidade para obter \textit{feedback} de utilizadores.
-	Foi implementada uma base de dados escrita com a tecnologia PostgresSQL alojada no mesmo servidor que serve a aplicação de criação de calendários servindo esta para guardar projectos em construção assim como um histórico de calendários anteriores.
+	O projeto foi desenvolvido com uma metodologia de comunicações regulares com o cliente onde ideias eram apresentadas e alteradas conforme as necessidades deste e ainda foram feitos testes públicos de usabilidade para obter \textit{feedback} de utilizadores.
+	Foi implementada uma base de dados escrita com a tecnologia PostgresSQL alojada no mesmo servidor que serve a aplicação de criação de calendários servindo esta para guardar projetos em construção assim como um histórico de calendários anteriores.
 	A aplicação \textit{web} em si foi criada com a \textit{framework Laravel} que é assente em \textbf{php} e foi ainda utilizado um \textit{template} base como fundação funcional para posteriormente acrescentar as funcionalidades desejadas.
 	
 	Face aos método anterior utilizado pelo cliente, esta aplicação proporciona uma forma eficiente de criar calendários utilizando uma interface de \textit{drag and drop}, com a possibilidade de facilmente escolher o curso, ano de curso e ainda a época de exames na mesma página.
 	A informação sobre docentes, salas, unidades curriculares e afins pode ser consultada e editada conforme necessário em páginas dedicadas.
 	
-	Devido a alguns atrasos causados por problemas técnicos com o \textit{template} escolhido, com imprevistos, mudanças na estrutura do grupo e ainda a ambição do projecto, ainda existem funcionalidades da aplicação por implementar que lamentavelmente o tempo disponível não permitiu.
+	Devido a alguns atrasos causados por problemas técnicos com o \textit{template} escolhido, com imprevistos, mudanças na estrutura do grupo e ainda a ambição do projeto, ainda existem funcionalidades da aplicação por implementar que lamentavelmente o tempo disponível não permitiu.
 	
 	Olhando para o futuro consideramos que existem melhorias que ainda podem ser implementadas na aplicação, como por exemplo a possibilidade de exportar calendários de avaliações como eventos que podem ser importados pelo utilizador final em sistemas de calendários eletrónicos encontrados em computadores e serviços de email, seguindo a especificação de \textbf{iCalendar}\cite{rfc2445}\cite{1644111}, para que o utilizador tenha alertas para o evento no calendário seja este um docente ou um aluno com o evento marcado.
 	Com mais tempo de desenvolvimento teria sido possível também melhorar a apresentação gráfica das páginas por forma a conferir um aspeto que se destaque do \textit{template} base.

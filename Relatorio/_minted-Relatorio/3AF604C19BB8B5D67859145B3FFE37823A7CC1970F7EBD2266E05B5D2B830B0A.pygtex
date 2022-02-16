@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{		}
+\PYG{x}{		\PYGZdl{}subject = Subject::all();}
+\PYG{x}{		\PYGZdl{}professor = Professor::all();}
+\PYG{x}{		\PYGZdl{}classroom = Classroom::all();}
+\PYG{x}{		\PYGZdl{}time = TimeSlot::all();}
+\PYG{x}{		\PYGZdl{}calendar = Calendar::all();}
+\PYG{x}{		}
+\PYG{x}{		return [}
+\PYG{x}{			\PYGZdq{}calendar\PYGZus{}id\PYGZdq{} =\PYGZgt{} \PYGZdl{}this\PYGZhy{}\PYGZgt{}faker\PYGZhy{}\PYGZgt{}randomElement(\PYGZdl{}calendar),}
+\PYG{x}{			\PYGZdq{}subject\PYGZdq{} =\PYGZgt{} \PYGZdl{}this\PYGZhy{}\PYGZgt{}faker\PYGZhy{}\PYGZgt{}randomElement(\PYGZdl{}subject),}
+\PYG{x}{			\PYGZdq{}associated\PYGZus{}professor\PYGZdq{} =\PYGZgt{} \PYGZdl{}this\PYGZhy{}\PYGZgt{}faker\PYGZhy{}\PYGZgt{}randomElement(\PYGZdl{}professor),}
+\PYG{x}{			\PYGZdq{}observing\PYGZus{}professor\PYGZdq{} =\PYGZgt{}\PYGZdl{}this\PYGZhy{}\PYGZgt{}faker\PYGZhy{}\PYGZgt{}randomElement(\PYGZdl{}professor),}
+\PYG{x}{			\PYGZdq{}classroom\PYGZdq{} =\PYGZgt{} \PYGZdl{}this\PYGZhy{}\PYGZgt{}faker\PYGZhy{}\PYGZgt{}randomElement(\PYGZdl{}classroom),}
+\PYG{x}{			\PYGZdq{}time\PYGZus{}slot\PYGZdq{} =\PYGZgt{} \PYGZdl{}this\PYGZhy{}\PYGZgt{}faker\PYGZhy{}\PYGZgt{}randomElement(\PYGZdl{}time),}
+\PYG{x}{			\PYGZdq{}calendar\PYGZus{}day\PYGZdq{} =\PYGZgt{} \PYGZdl{}this\PYGZhy{}\PYGZgt{}faker\PYGZhy{}\PYGZgt{}date()}
+\PYG{x}{		];}
+\end{Verbatim}

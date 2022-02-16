@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{				DB\PYGZus{}CONNECTION=pgsql}
+\PYG{x}{				DB\PYGZus{}HOST=estga\PYGZhy{}dev.clients.ua.pt}
+\PYG{x}{				DB\PYGZus{}PORT=5432}
+\PYG{x}{				DB\PYGZus{}DATABASE=ptdw\PYGZhy{}2021\PYGZhy{}gr4.}
+\PYG{x}{				DB\PYGZus{}USERNAME=ptdw\PYGZhy{}2021\PYGZhy{}gr4.}
+\PYG{x}{				DB\PYGZus{}PASSWORD=qYgQuY?2VFw)3,Xz}
+\end{Verbatim}

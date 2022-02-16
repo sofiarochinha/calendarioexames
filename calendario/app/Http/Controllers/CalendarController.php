@@ -55,8 +55,6 @@ class CalendarController extends Controller
                     'time_slot' => $timeSlot,
                     'calendar_day' => $data
                 ]);
-
-
             }
 
 

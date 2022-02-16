@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{		 \PYGZdl{}evaluationSlot = EvaluationSlot::where(\PYGZsq{}subject\PYGZsq{},}
+\PYG{x}{		 \PYGZdl{}subject)\PYGZhy{}\PYGZgt{}where(\PYGZsq{}calendar\PYGZus{}id\PYGZsq{}, \PYGZdl{}calendar)\PYGZhy{}\PYGZgt{}first();}
+\end{Verbatim}

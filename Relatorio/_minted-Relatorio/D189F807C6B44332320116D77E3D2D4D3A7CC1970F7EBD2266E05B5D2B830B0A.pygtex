@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{		User::create([}
+\PYG{x}{			\PYGZsq{}name\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZsq{}name\PYGZsq{}],}
+\PYG{x}{			\PYGZsq{}email\PYGZsq{} =\PYGZgt{} \PYGZdl{}data[\PYGZsq{}email\PYGZsq{}],}
+\PYG{x}{			\PYGZsq{}password\PYGZsq{} =\PYGZgt{} Hash::make(\PYGZdl{}data[\PYGZsq{}password\PYGZsq{}])}
+\PYG{x}{			]);}
+\end{Verbatim}

@@ -29,7 +29,6 @@ class CreateController extends Controller
             for ($r = 0; $r < count($epocas); $r ++)
             {
                 $epoca = Epoca::findOrFail($epocas[$r]);
-                print_r($epoca->id);
                 $calendario = Calendar::where('course_id', $curso->id)->where('epoca_id', $epoca->id)->get();
                 if($calendario=='[]'){
                     $novocalendario = new Calendar();

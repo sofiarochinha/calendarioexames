@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{		\PYGZdl{}epoca = Epoca::findOrFail(\PYGZdl{}epocas[\PYGZdl{}r]);}
+\PYG{x}{		\PYGZdl{}calendario = Calendar::where(\PYGZsq{}course\PYGZus{}id\PYGZsq{}, \PYGZdl{}curso\PYGZhy{}\PYGZgt{}id)}
+\PYG{x}{		\PYGZhy{}\PYGZgt{}where(\PYGZsq{}epoca\PYGZus{}id\PYGZsq{}, \PYGZdl{}epoca\PYGZhy{}\PYGZgt{}id)\PYGZhy{}\PYGZgt{}get();}
+\PYG{x}{		if(\PYGZdl{}calendario==\PYGZsq{}[]\PYGZsq{})\PYGZob{}}
+\PYG{x}{			\PYGZdl{}novocalendario = new Calendar();}
+\PYG{x}{			\PYGZdl{}novocalendario\PYGZhy{}\PYGZgt{}epoca\PYGZus{}id= \PYGZdl{}epoca\PYGZhy{}\PYGZgt{}id;}
+\PYG{x}{			\PYGZdl{}novocalendario\PYGZhy{}\PYGZgt{}course\PYGZus{}id= \PYGZdl{}curso\PYGZhy{}\PYGZgt{}id;}
+\PYG{x}{			\PYGZdl{}novocalendario\PYGZhy{}\PYGZgt{}save();		}
+\PYG{x}{		\PYGZcb{}}
+\PYG{x}{			}
+\end{Verbatim}

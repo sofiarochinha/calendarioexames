@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{			}
+\PYG{x}{		public function calendars()\PYGZob{}}
+\PYG{x}{			return \PYGZdl{}this\PYGZhy{}\PYGZgt{}hasMany(Calendar::class);}
+\PYG{x}{		\PYGZcb{}}
+\end{Verbatim}
