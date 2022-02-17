@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{		;extension=pdo\PYGZbs{}\PYGZus{}odbc}
+\PYG{x}{		extension=pdo\PYGZbs{}\PYGZus{}pgsql}
+\PYG{x}{		;extension=pdo\PYGZbs{}\PYGZus{}sqlite}
+\PYG{x}{		extension=pgsql}
+\PYG{x}{		;extension=shmop}
+\end{Verbatim}
