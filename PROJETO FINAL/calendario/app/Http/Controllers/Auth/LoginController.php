@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use function redirect;
+use function view;
 
 class LoginController extends Controller
 {
-    public function index()
-    {
-        return view('login');
+    public function index(){
+        return view('Auth/login');
     }
 
     public function customLogin(Request $request){
@@ -28,11 +30,11 @@ class LoginController extends Controller
 
         //não sei o que faz o attempt
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('calendario-atual')
+            return redirect()->intended('marcar-exames')
                 ->withSuccess('Signed in');
         }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect("Auth/login")->withSuccess('Login details are not valid');
 
     }
 
@@ -43,7 +45,7 @@ class LoginController extends Controller
      */
     public function registration()
     {
-        return view('registration');
+        return view('Auth/registration');
     }
 
     /**
@@ -80,13 +82,11 @@ class LoginController extends Controller
         ]);
     }
 
-    /**
-     * Caso o utilizador não esteje logado não permite navegar pelas páginas
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
+
     public function dashboard()
     {
         if(Auth::check()){
+
             return view('calendario_atual');
         }
 

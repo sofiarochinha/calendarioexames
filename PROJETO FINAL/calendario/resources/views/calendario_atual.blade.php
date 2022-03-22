@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('calendarioatual')}}">Calendário Atual</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('marcarexames')}}">Calendário Atual</a></li>
                             <li class="breadcrumb-item" active>2021-2022</li>
                         </ol>
                     </div>
@@ -417,7 +417,7 @@
        }
 
        /**
-        * õbtém o id do timeslot associado à data
+        * obtém o id do timeslot associado à data
         * @param date
         * @returns {number}
         */

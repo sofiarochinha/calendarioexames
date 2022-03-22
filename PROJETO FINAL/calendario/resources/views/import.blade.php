@@ -3,55 +3,53 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Content Wrapper. Contains page content -->
+
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0">Importar CSV</h1>
-                    </div><!-- /.col -->
+                    </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('calendarioatual')}}">Calendário Atual</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('marcarexames')}}">Calendário Atual</a></li>
                             <li class="breadcrumb-item active">Importar CSV</li>
                         </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.content-header -->
+
 
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row d-flex justify-content-center">
-                    <!-- general form elements disabled -->
                     <div class="card card-secondary col-sm-6 ">
-                        <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{route('import')}}" method="POST" id="myForm">
+                            <form method="POST" id="myForm">
                                 @csrf
                                 <div class="form-group" name="file">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" accept=".csv">
+                                        <input type="file" class="custom-file-input" onchange="" id="customFile" accept=".csv">
                                         <label class="custom-file-label" for="customFile">Escolha um ficheiro</label>
                                     </div>
                                 </div>
-                                <button type="submit" value="submit" class="btn btn-primary">Visualizar os Dados</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {{--Tabela em que se tem uma preview de todos os dados do ficheiro csv--}}
             <section class="content" style="display:none" id="tabela">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <button class="btn btn-primary" onclick="sendToController()">Importar</button>
                                     <table id="example5" class="table table-bordered table-striped">
 
                                     </table>
@@ -60,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" onclick="sendToController()">Importar</button>
+
             </section>
 
         </section>
@@ -71,7 +69,6 @@
     <!-- Toastr -->
     <script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
     <script>
-
 
         // * cookie shennanigans
         document.cookie = "username=John Doe";
@@ -86,10 +83,10 @@
             let ca = decodedCookie.split(';');
             for (let i = 0; i < ca.length; i++) {
                 let c = ca[i];
-                while (c.charAt(0) == ' ') {
+                while (c.charAt(0) === ' ') {
                     c = c.substring(1);
                 }
-                if (c.indexOf(name) == 0) {
+                if (c.indexOf(name) === 0) {
                     return c.substring(name.length, c.length);
                 }
             }
@@ -97,11 +94,11 @@
         }
 
         function checkCSV() {
-            if (getCookie("CSV") == "") {
+            if (getCookie("CSV") === "") {
                 console.log("CSV cookie not found")
                 toastr.warning('Atenção! Não foi importado um ficheiro CSV para ler dados.')
             }
-            if (getCookie("CSV") == "true") {
+            if (getCookie("CSV") === "true") {
                 toastr.success("Ficheiro CSV importado!")
                 console.log("Cookie shows CSV is already loaded")
             }
@@ -115,7 +112,10 @@
         const csvFile = document.getElementById("customFile");
         var data = ""; //guarda os dados do csv
 
-        myForm.addEventListener("submit", function (e) {
+        /**
+         * Quando existe uma alteração do ficheiro introduzido no form será mostrados os dados
+         */
+        myForm.addEventListener("change", function (e) {
             e.preventDefault();
             const input = csvFile.files[0]; //leitura do primeiro ficheiro inserido
 
@@ -126,6 +126,8 @@
             }
             reader.readAsText(input);
         });
+
+
 
         /**
          * Converte um csv num array e depois cria uma tabela

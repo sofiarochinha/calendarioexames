@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Classroom;
 use App\Models\Course;
-use App\Models\EvaluationSlot;
 use App\Models\Professor;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -19,7 +18,7 @@ class ImportController extends Controller
     /**
      * Importa o csv
      * WARNING: falta resolver o problema quando tém vários docentes na mesma disciplina
-     * WARINIG: falta indicar o semestre
+     * WARNING: falta indicar o semestre
      * @param Request $request
      * @return void
      */

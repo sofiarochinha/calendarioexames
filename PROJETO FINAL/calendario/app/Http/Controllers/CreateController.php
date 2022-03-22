@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 class CreateController extends Controller
 {
     public function showView(){
-        $coursesall = Course::all()->sortBy('course_year');
+        $allCourses = Course::all()->sortBy('course_year'); //ordena por ano de curso
         $courses = Course::distinct('course_code')->get();
         $evaluation_season = Epoca::all();
-        return view('create_calendar', compact(["courses", "evaluation_season","coursesall"]));
+
+        return view('create_calendar', compact(["courses", "evaluation_season","allCourses"]));
     }
 
     public function add(Request $request){
@@ -29,7 +30,9 @@ class CreateController extends Controller
             for ($r = 0; $r < count($epocas); $r ++)
             {
                 $epoca = Epoca::findOrFail($epocas[$r]);
-                $calendario = Calendar::where('course_id', $curso->id)->where('epoca_id', $epoca->id)->get();
+                $calendario = Calendar::where('course_id', $curso->id)
+                    ->where('epoca_id', $epoca->id)->get();
+
                 if($calendario=='[]'){
                     $novocalendario = new Calendar();
                     $novocalendario->epoca_id= $epoca->id;

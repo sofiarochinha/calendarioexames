@@ -67,7 +67,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{route('calendarioatual')}}" class="brand-link">
+    <a href="{{route('marcarexames')}}" class="brand-link">
         <img src="{{(asset('/dist/img/AdminLTELogo.png'))}}" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Ua Calendar</span>
@@ -114,8 +114,8 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
 
-                            <a href="{{route('calendarioatual')}}"
-                               @if (\Illuminate\Support\Facades\Route::current()->getName() == "calendarioatual")
+                            <a href="{{route('marcarexames')}}"
+                               @if (\Illuminate\Support\Facades\Route::current()->getName() == "marcarexames")
                                class="active nav-link" @else class="nav-link" @endif >
 
                                 <i class="far fa-circle nav-icon"></i>

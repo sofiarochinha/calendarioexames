@@ -143,31 +143,28 @@ Descrição da estrutura interna do relatório
 	\chapter{Planificação do projeto}
 	Identificação e descrição das atividades previstas para a realização
 	do projeto (Plano de Trabalho)
-	
+	\subsection{Revisão do estado do projeto}
+	\subsection{Planeamento do projeto}
 	
 	\chapter{Modelo de requisitos}
 	\label{requisitos}
 	\section{Requisitos funcionais}
 	
-	
-	Os requisitos funcionais representam todas as funcionalidades que o sistema pode fazer ou que o utilizador pode realizar no sistema. Com isso na tabela \ref{requisitiosfuncionais} estão todos os requisitos funcionais divididos por várias categorias: importação, exportação, marcação de exames, configurações, avisos, autenticação, criação de calendários e histórico. Dentro da categoria ``avisos" tem as funcionalidades que o sistema irá realizar após uma ação do utilizador, ao contrário de todas as outras categorias em que o utilizador tem a possibilidade realizar determinada tarefa.
-	
-	Para além disso os requisitos funcionais estão classificados por prioridade sendo os de alta prioridade realizados nas primeiro e os de baixa prioridade implementados por último, tal como está listado na secção \ref{selecaocasosdeuso}.  
-	
+	Como este projeto é uma continuação de um projeto anterior então na tabela \ref{requisitiosfuncionais} não se encontram todos os requisitos funcionais, mas sim aqueles que serão implementados. 
 	
 	
 \def\arraystretch{1.5}
 	\begin{center}
 		\label{requisitiosfuncionais}
 		\begin{longtable}{|m{1cm}|m{2.2cm}|m{10cm}|m{2cm}|}
-			\caption{Requisitos funcionais}\\
+			\caption{Requisitos funcionais a serem implementados}\\
 			
 			\hline			
 			\textbf{Refª }	& \textbf{Categoria}&\textbf{Descrição do requisito} & \textbf{Prioridade} \\
 			\hline
 			
 			
-			RF.1 &Importação& Importação de ficheiros com a configuração de salas, disciplinas e docentes em formato \textbf{csv} & Alta \\
+			RF.1 &Importação& Importação de ficheiros com a configuração de salas, disciplinas e docentes em formato \textbf{csv} com dois ou mais docentes& Alta \\
 			\hline
 			
 			RF.2 &\multirow{2}{2cm}{Exportação}& Exportação de calendários em formato \textbf{pdf} & Alta \\
@@ -175,62 +172,51 @@ Descrição da estrutura interna do relatório
 			RF.3 && Exportação o calendário em língua inglesa & Baixa \\
 			\hline
 			
-			RF.4 &\multirow{3}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: às 9h30, às 14h e às 18h30 & Alta \\
+			RF.4 &\multirow{2}{2cm}{Marcação de exames}& Associação de um ou mais vigilantes a cada exame & Alta\\
+						
+			RF.5 &&	Associação de uma ou mais salas a cada exame & Alta\\
 			
-			RF.5 && Associação de um ou mais vigilantes a cada exame & Alta \\
-			
-			RF.6 && O calendário não deverá permitir a marcação de exames aos domingos e feriados & Alta \\
-			
-			RF.7 &&	Associação de uma ou mais salas a cada exame & Alta\\
-			
-			RF.8 && Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Média\\
+			RF.6 &&Indicação do número de salas associadas & Alta\\
 			\hline
 		
-			RF.9 &\multirow{7}{2cm}{Configurações}& Configuração do tipo de sala (informática, laboratório de redes e normal) e lotação máxima & Alta \\
+			RF.9 &\multirow{6}{2cm}{Dados Auxiliares}& Inserção da lotação máxima das salas& Média \\
 			
-			RF.10 & & Inserção de cursos e disciplinas & Alta\\
+			RF.10 && Alterar a disponibilidade dos docentes & Alta\\
 			
-			RF.11 && Permitir inserir novos docentes & Alta\\
+			RF.10 && Adicionar épocas & Alta\\
 			
-			RF.12 && Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Alta\\
+			RF.11 && Editar épocas & Média\\
 			
-			RF.13 && Permitir editar informações (nome do curso, docente e a disciplina) sobre as disciplinas e cursos & Alta\\
+			RF.12 && Eliminar épocas & Alta\\
 			
-			RF.14 && Alterar a disponibilidade dos docentes & Alta\\
-			
-			RF.15 && Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Baixa \\
-			\hline	
-			
-			RF.16 &\multirow{9}{2cm}{Avisos}& Aparecimento de um aviso no caso de incongruência da informação durante a marcação de exames & Alta \\
-			
-			RF.17 &&Mostrar um aviso de alta prioridade se houver sobreposições de exames & Alta\\
-			
-			RF.18 && Mostrar um aviso de alta prioridade se o docente não estiver disponível & Alta \\
-			
-			RF.19 && Mostrar um aviso de alta prioridade se a sala não estiver disponível & Alta\\
-			
-			RF.20 && Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Média\\
-			
-			RF.21&&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
-			
-			RF.22 && Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Média\\
-			
-			RF.23 && Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Alta\\
-			
-			RF.24 && Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
-			
-			
-			RF.25 && Mostrar um aviso de média prioridade se o utilizador tentar exportar um calendário sem exames marcados & Média\\
+			RF.13 && Inserir disponibilidade dos docentes & Alta\\
 			\hline
 			
-			RF.26 &Autenticação& O utilizador só pode aceder à aplicação após a autenticação & Alta\\
+			RF.16 &\multirow{9}{2cm}{Avisos}& Mostrar um aviso de alta prioridade se houver sobreposições de exames & Baixa\\
+						
+			RF.17 && Mostrar um aviso de alta prioridade se o docente não estiver disponível & Média \\
+			
+			RF.18 && Mostrar um aviso de alta prioridade se a sala não estiver disponível & Média\\
+			
+			RF.19 && Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Baixa\\
+			
+			RF.20&&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Alta \\
+			
+			RF.21 && Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Alta\\
+			
+			RF.22 && Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Baixa\\
+			
+			RF.23 && Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Média\\
+			
+			RF.24 && Mostrar um aviso de média prioridade se o utilizador tentar exportar um calendário sem todos os exames marcados & Média\\
+			
 			\hline
 			
-			RF.27 &\multirow{3}{2cm}{Criação de calendários}&Criação de calendários associados a um curso, ano letivo, ano do curso, época e semestre.& Alta \\
+			RF.25 &Autenticação& O utilizador só pode aceder à aplicação após a autenticação & Alta\\
+			\hline
 			
-			RF.28 && Criação de épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
-			
-			RF.29 && A criação de um novo calendário deverá sempre partir do início sem exames marcados & Alta\\
+			RF.26 &\multirow{1}{2cm}{Criação de calendários}& Criação de épocas de avaliação adicionando um nome e uma data de início e fim & Alta \\
+	
 			\hline
 			RF.30 &\multirow{2}{*}{Histórico}& Guardar e visualizar calendários de exames de anos anteriores (histórico)& Média \\
 			
