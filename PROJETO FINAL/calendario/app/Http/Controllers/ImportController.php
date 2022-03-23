@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 class ImportController extends Controller
 {
 
+
+    /**
+     * This function returns the view of the import page
+     *
+     * @return A view.
+     */
     public function showView(){
         return view('import');
     }
@@ -19,13 +25,15 @@ class ImportController extends Controller
      * Importa o csv
      * WARNING: falta resolver o problema quando tém vários docentes na mesma disciplina
      * WARNING: falta indicar o semestre
-     * @param Request $request
+     * @param Request $request ficheiro JSON
      * @return void
      */
     public function importCSV(Request $request){
 
-        $var = $request->data; //obtém os dados do método post
-        $data = json_decode($var); //decode do JSON
+        $json = $request->data; //obtém os dados do método post
+        $data = json_decode($json); //decode do JSON
+
+        dd($data);
 
         for ($i = 0; $i < count($data); $i ++)
         {
@@ -77,6 +85,19 @@ class ImportController extends Controller
 
         }
 
+    }
+
+    /**
+     * Verifica se o csv já foi importado
+     * @return bool
+     */
+    public function checkIfImported(){
+
+        if(Professor::exists()){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

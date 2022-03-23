@@ -31,14 +31,6 @@ class CourseSeeder extends Seeder
         ]);
 
         DB::table('course')->insert([
-            'name' => 'Redes e Sistemas Informáticos',
-            'course_code' => 2100,
-            'course_year' => 3,
-            'type' => 'cstep',
-            'regime' => 'diurno'
-        ] );
-
-        DB::table('course')->insert([
             'name' => 'Gestão de PME',
             'course_code' => 2110,
             'course_year' => 1,
@@ -50,15 +42,6 @@ class CourseSeeder extends Seeder
             'name' => 'Gestão de PME',
             'course_code' => 2110,
             'course_year' => 2,
-            'type' => 'cstep',
-            'regime' => 'diurno'
-        ]);
-
-
-        DB::table('course')->insert([
-            'name' => 'Gestão de PME',
-            'course_code' => 2110,
-            'course_year' => 3,
             'type' => 'cstep',
             'regime' => 'diurno'
         ]);
@@ -80,14 +63,6 @@ class CourseSeeder extends Seeder
         ]);
 
         DB::table('course')->insert([
-            'name' => 'Instalações Elétricas e Automação',
-            'course_code' => 2111,
-            'course_year' => 3,
-            'type' => 'cstep',
-            'regime' => 'pós-laboral'
-        ]);
-
-        DB::table('course')->insert([
             'name' => 'Manutenção Industrial',
             'course_code' => 2109,
             'course_year' => 1,
@@ -101,22 +76,6 @@ class CourseSeeder extends Seeder
             'course_year' => 2,
             'type' => 'cstep',
             'regime' => 'diurno'
-        ]);
-
-        DB::table('course')->insert([
-            'name' => 'Manutenção Industrial',
-            'course_code' => 2109,
-            'course_year' => 3,
-            'type' => 'cstep',
-            'regime' => 'diurno'
-        ]);
-
-        DB::table('course')->insert([
-            'name' => 'Programação de Sistemas Informação',
-            'course_code' => 2106,
-            'course_year' => 3,
-            'type' => 'cstep',
-            'regime' => 'pós-laboral'
         ]);
 
         DB::table('course')->insert([
@@ -152,15 +111,7 @@ class CourseSeeder extends Seeder
         ]);
 
         DB::table('course')->insert([
-            'name' => 'Tecnologia Mecânica',
-            'course_code' => 2114,
-            'course_year' => 3,
-            'type' => 'cstep',
-            'regime' => 'pós-laboral'
-        ]);
-
-        DB::table('course')->insert([
-            'name' => 'Licenciatura em Tecnologias da Informação',
+            'name' => 'Tecnologias da Informação',
             'course_code' => 8905,
             'course_year' => 1,
             'type' => 'licenciatura',
@@ -168,7 +119,7 @@ class CourseSeeder extends Seeder
         ]);
 
         DB::table('course')->insert([
-            'name' => 'Licenciatura em Tecnologias da Informação',
+            'name' => 'Tecnologias da Informação',
             'course_code' => 8905,
             'course_year' => 2,
             'type' => 'licenciatura',

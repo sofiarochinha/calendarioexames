@@ -11,7 +11,7 @@ Route::get('/', function () {
     return view("Auth/login");
 });
 
-Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
+Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'showView'])->name('login');
 Route::post('custom-login', [\App\Http\Controllers\Auth\LoginController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [\App\Http\Controllers\Auth\LoginController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [\App\Http\Controllers\Auth\LoginController::class, 'customRegistration'])->name('register.custom');
@@ -23,6 +23,7 @@ Route::middleware([Authenticate::class])->group(function (){
     /*Importar ficheiro csv*/
     Route::get('/importar', [\App\Http\Controllers\ImportController::class, 'showView'])->name('import');
     Route::post('/importar', [\App\Http\Controllers\ImportController::class, 'importCSV'])->name('import');
+    Route::post('/csv-importado', [\App\Http\Controllers\ImportController::class, 'checkIfImported'])->name('checkifimported');
 
     /*Marcação de exames
     - mostrar a view
@@ -49,7 +50,7 @@ Route::middleware([Authenticate::class])->group(function (){
     Route::get('/eliminar-epoca/{id}', ['as' => 'epoca.delete', 'uses' => 'App\Http\Controllers\ConfigurationsController@deleteEpoca']);
 
 
-    Route::get('/criar-calendario', ['as' => 'criarcalendario', 'uses' => 'App\Http\Controllers\CreateController@showView']);
+
 
     Route::get('/calendario-anterior', ['as' => 'calendarioanterior', 'uses' => 'App\Http\Controllers\HistoricController@showView']);
 
@@ -62,4 +63,6 @@ Route::middleware([Authenticate::class])->group(function (){
      */
     Route::post('/criar-calendario/enviar-dados', ['as' => 'enviardados', 'uses' => 'App\Http\Controllers\CreateController@add']);
 
+    //mostra a view criar calendário
+    Route::get('/criar-calendario', ['as' => 'criarcalendario', 'uses' => 'App\Http\Controllers\CreateController@showView']);
 });

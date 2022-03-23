@@ -70,13 +70,50 @@
     <script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
     <script>
 
-        // * cookie shennanigans
+
+
+        /**
+         * verificação de dados na base de dados
+         * importado o csv - existe dado
+         */
+        function checkIfImported(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('checkifimported')}}",
+                function (response){
+                    if(response == 1) setCookie("CSV", true);
+                    else setCookie("CSV", "");
+
+                    checkCSV();
+                })
+        }
+
+        checkIfImported();
+
+
+
+
         document.cookie = "username=John Doe";
 
+        /**
+         * It's a function that sets a cookie.
+         * @param cname
+         * @param cvalue
+         */
         function setCookie(cname, cvalue) {
             document.cookie = cname + "=" + cvalue;
         }
 
+
+        /**
+         * It's a function that returns the value of a cookie.
+         * @param cname
+         * @returns {string}
+         */
         function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
@@ -94,17 +131,14 @@
         }
 
         function checkCSV() {
-            if (getCookie("CSV") === "") {
-                console.log("CSV cookie not found")
+            if (getCookie("CSV") === "")
                 toastr.warning('Atenção! Não foi importado um ficheiro CSV para ler dados.')
-            }
-            if (getCookie("CSV") === "true") {
+
+            if (getCookie("CSV") === "true")
                 toastr.success("Ficheiro CSV importado!")
-                console.log("Cookie shows CSV is already loaded")
-            }
+
         }
 
-        checkCSV()
         //* End of cookie shenannigans
 
 
@@ -174,6 +208,9 @@
 
         }
 
+        /**
+         * Envia os dados do csv para o controller em formato JSON
+         */
        function sendToController() {
             $.ajaxSetup({
                 headers: {
@@ -191,10 +228,10 @@
                     if(status === "success"){
                         setCookie("CSV", true);
                         checkCSV();
+                        window.location.href = "{{ route('criarcalendario')}}";
                     }
                 })
         }
-
 
     </script>
 @stop

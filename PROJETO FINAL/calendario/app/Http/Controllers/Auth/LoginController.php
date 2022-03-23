@@ -13,10 +13,25 @@ use function view;
 
 class LoginController extends Controller
 {
-    public function index(){
+    /**
+     * This function returns the view of the login page
+     *
+     * @return A|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function showView(){
         return view('Auth/login');
     }
 
+    /**
+     * This function is used to authenticate the user.
+     * It checks if the user is authenticated and if not, it redirects the user to the login page.
+     * If the user is authenticated, it redirects the user to the intended page.
+     * If the user is not authenticated, it redirects the user to the login page
+     *
+     * @param Request request The request object.
+     *
+     * @return The|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function customLogin(Request $request){
 
         //validar os inputs do formulário
@@ -34,7 +49,7 @@ class LoginController extends Controller
                 ->withSuccess('Signed in');
         }
 
-        return redirect("Auth/login")->withSuccess('Login details are not valid');
+        return redirect("login")->with('message','Login details are not valid');
 
     }
 
@@ -64,7 +79,7 @@ class LoginController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect("calendario-atual")->withSuccess('You have signed-in');
+        return redirect("marcar-exames")->withSuccess('You have signed-in');
     }
 
     /**
@@ -83,14 +98,17 @@ class LoginController extends Controller
     }
 
 
+    /**
+     * This function is used to display the dashboard
+     *
+     * @return The|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function dashboard()
     {
-        if(Auth::check()){
-
+        if(Auth::check())
             return view('calendario_atual');
-        }
 
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect("login")->with('message','You are not allowed to access');
     }
 
     /**
