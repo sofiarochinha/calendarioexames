@@ -32,22 +32,18 @@ Route::middleware([Authenticate::class])->group(function (){
     Route::get('/marcar-exames', [\App\Http\Controllers\CalendarController::class, 'showView'])->name('marcarexames');
     Route::post('/marcar-exames/adicionar-evento', [\App\Http\Controllers\CalendarController::class, 'adicionarEvento'])->name('addevento');
 
-    //eliminar as disciplinas
-    Route::get('/editar-disiciplina/{id}', ['as' => 'subject.edit', 'uses' => 'App\Http\Controllers\ConfigurationsController@editSubject']);
-    Route::get('/adicionar-disiciplina/', ['as' => 'subject.adicionar', 'uses' => 'App\Http\Controllers\ConfigurationsController@adicionarSubject']);
+    /**
+     * Eliminar épocas
+     * Editar épocas
+     * Adicionar épocas
+     */
+    Route::post('/adicionar-epoca', [\App\Http\Controllers\CreateController::class, 'createEpoca'])->name('criarepoca');
 
-    //eliminar os docentes
-    Route::get('/editar-docente/{id}', ['as' => 'docente.edit', 'uses' => 'App\Http\Controllers\ConfigurationsController@editSubject']);
-    Route::get('/adicionar-docente/', ['as' => 'docente.adicionar', 'uses' => 'App\Http\Controllers\ConfigurationsController@adicionarSubject']);
+    Route::post('/editar-epoca/', [\App\Http\Controllers\ConfigurationsController::class, 'editEpoca'])->name('editepoca');
 
-    //eliminar as salas
-    Route::get('/editar-sala/{id}', ['as' => 'sala.edit', 'uses' => 'App\Http\Controllers\ConfigurationsController@editSubject']);
-    Route::get('/adicionar-sala/', ['as' => 'sala.adicionar', 'uses' => 'App\Http\Controllers\ConfigurationsController@adicionarSubject']);
-
-    //epocas
-    Route::get('/editar-epoca/{id}', ['as' => 'epoca.edit', 'uses' => 'App\Http\Controllers\ConfigurationsController@editSubject']);
+    /*Route::get('/editar-epoca/{id}', ['as' => 'epoca.edit', 'uses' => 'App\Http\Controllers\ConfigurationsController@editSubject']);
     Route::get('/adicionar-epoca/', ['as' => 'epoca.adicionar', 'uses' => 'App\Http\Controllers\ConfigurationsController@adicionarSubject']);
-    Route::get('/eliminar-epoca/{id}', ['as' => 'epoca.delete', 'uses' => 'App\Http\Controllers\ConfigurationsController@deleteEpoca']);
+    Route::get('/eliminar-epoca/{id}', ['as' => 'epoca.delete', 'uses' => 'App\Http\Controllers\ConfigurationsController@deleteEpoca']);*/
 
 
 

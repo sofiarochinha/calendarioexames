@@ -27,7 +27,14 @@ class ConfigurationsController extends Controller
             "courses"]));
     }
 
-    public function deleteEpoca(Request $request){
+    public function editEpoca(Request $request){
+        $id = json_decode($request->id);
+        $name = json_decode($request->name);
+
+        Epoca::findOrFail($id)->update(['name' => $name]);
+    }
+
+    /*public function deleteEpoca(Request $request){
 
         $id = $request->id;
 
@@ -58,7 +65,7 @@ class ConfigurationsController extends Controller
             }*/
 
 
-        }
+        /*}
 
         $subjects = Subject::all();
         $professors = Professor::all();
@@ -71,7 +78,7 @@ class ConfigurationsController extends Controller
             "classrooms",
             "epocas",
             "courses"]));
-    }
+    }*/
 /*
     public function editarSubject(Request $request){
 

@@ -33,16 +33,35 @@ class ImportController extends Controller
         $json = $request->data; //obtém os dados do método post
         $data = json_decode($json); //decode do JSON
 
-        dd($data);
-
         for ($i = 0; $i < count($data); $i ++)
         {
-                //cria um professor ou atualiza o prof se tiver o mesmo número mecanografico
-                Professor::updateOrCreate([
-                    'mec' => $data[$i][9],
-                    'name' => $data[$i][7],
-                    'email' => $data[$i][8],
-                ]);
+                $mec = explode(",",$data[$i][9]);
+                var_dump(count($mec));
+
+
+                if(count($mec) > 1){
+                    var_dump("oi");
+                    $name = explode(",",$data[$i][7]);
+                    $email = explode(",",$data[$i][8]);
+
+                    for($x = 0; $x < count($mec); $x++){
+                        Professor::updateOrCreate([
+                            'mec' => $mec[$x],
+                            'name' => $name[$x],
+                            'email' => $email[$x],
+                        ]);
+                    }
+
+                }else {
+                    //cria um professor ou atualiza o prof se tiver o mesmo número mecanografico
+                    Professor::updateOrCreate([
+                        'mec' => $data[$i][9],
+                        'name' => $data[$i][7],
+                        'email' => $data[$i][8],
+                    ]);
+                }
+
+
 
                 //contém o codigo de curso e o ano do curso na forma '8912-1'
                 $string = $data[$i][6];
@@ -58,9 +77,15 @@ class ImportController extends Controller
                     ->id;
 
                 //obtém o id do professor
-                $idProfessor = Professor::where('mec', $data[$i][9])
-                    ->first()
-                    ->id;
+                if((count($mec) > 1)){
+                    $idProfessor = Professor::where('mec', $mec[0])
+                        ->first()
+                        ->id;
+                }else {
+                    $idProfessor = Professor::where('mec', $data[$i][9])
+                        ->first()
+                        ->id;
+                }
 
 
                 //adiciona a disiciplina

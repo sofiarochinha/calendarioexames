@@ -22,9 +22,7 @@
     <!-- fullCalendar -->
     <link rel="stylesheet" href="{{(asset('/plugins/fullcalendar/main.css'))}}">
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{(asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'))}}">
-    <link rel="stylesheet" href="{{(asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'))}}">
-    <link rel="stylesheet" href="{{(asset('/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'))}}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/r-2.2.9/sb-1.3.2/sp-2.0.0/sl-1.3.4/datatables.min.css"/>
 
     <!-- daterange picker -->
     <link rel="stylesheet" href="{{(asset('/plugins/daterangepicker/daterangepicker.css'))}}">
@@ -175,8 +173,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item bottom">
-                    <a href="{{ route('signout') }}" class="nav-link">
+                <li class="nav-item ">
+                    <a href="{{ route('signout') }}" class="nav-link fixed-bottom">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Sair
@@ -193,11 +191,8 @@
 @section('content')
 @show
 
-@section('configuration')
-@show
-
 <!-- jQuery -->
-<script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
+<script src="{{(asset('/plugins/jquery/jquery-3.6.0.min.js'))}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{(asset('/plugins/jquery-ui/jquery-ui.min.js'))}}"></script>
 <!-- Bootstrap 4 -->
@@ -229,18 +224,11 @@
 <!-- AdminLTE for demo purposes -->
 
 <!-- DataTables  & Plugins -->
-<script src="{{(asset('/plugins/datatables/jquery.dataTables.min.js'))}}"></script>
-<script src="{{(asset('/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'))}}"></script>
-<script src="{{(asset('/plugins/datatables-responsive/js/dataTables.responsive.min.js'))}}"></script>
-<script src="{{(asset('/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'))}}"></script>
-<script src="{{(asset('/plugins/datatables-buttons/js/dataTables.buttons.min.js'))}}"></script>
-<script src="{{(asset('/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'))}}"></script>
-<script src="{{(asset('/plugins/jszip/jszip.min.js'))}}"></script>
-<!-- buttons for pdf, csv export -->
-<script src="{{(asset('/plugins/pdfmake/pdfmake.min.js'))}}"></script>
-<script src="{{(asset('/plugins/pdfmake/vfs_fonts.js'))}}"></script>
-<script src="{{(asset('/plugins/datatables-buttons/js/buttons.html5.min.js'))}}"></script>
-<script src="{{(asset('/plugins/datatables-buttons/js/buttons.print.min.js'))}}"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/r-2.2.9/sb-1.3.2/sp-2.0.0/sl-1.3.4/datatables.min.js"></script>
+
 <!-- Toastr -->
 <script src="{{(asset('/plugins/toastr/toastr.min.js'))}}"></script>
 <!-- PAGE PLUGINS -->
@@ -256,27 +244,28 @@
     $(function () {
         $("#example1").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": [, "csv", "excel", "pdf", "print"]
+            "buttons": [ "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
     $(function () {
         $("#example2").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": [, "csv", "excel", "pdf", "print"]
+            "buttons": ["csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
     });
     $(function () {
         $("#example3").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": [, "csv", "excel", "pdf", "print"]
+            "buttons": ["csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
     });
-    $(function () {
+
+    /*$(function () {
         $("#example4").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": [, "csv", "excel", "pdf", "print"]
+            "buttons": ["csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
-    });
+    });*/
 
 </script>
 
@@ -301,10 +290,8 @@
     });
 
 
-    /* Erase Cokie */
  function deleteCookie (cname) {
      document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
  }
 
 </script>

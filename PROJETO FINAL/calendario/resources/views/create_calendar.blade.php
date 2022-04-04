@@ -74,7 +74,6 @@
                                                 <option value="{{ $season->id }}">{{ $season->name }}</option>
                                             @endforeach
                                         </select>
-                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -82,6 +81,44 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <a onclick="showFrom()">
+                        <input type="submit" value="Criar época" class="btn btn-primary" id="showCriarEpoca">
+                    </a>
+                </div>
+            </div>
+
+
+            {{--It's a form to create a new epoca.--}}
+            <form>
+                <div class="form-group" style="display: none;" id="criarEpocaForm">
+
+                    <label>Nome da época</label>
+                    <input type="text" class="form-control" placeholder="Escreva o nome da época" id="nomeEpoca">
+
+                    <label>Período de avaliação</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="far fa-calendar-alt"></i>
+                      </span>
+                        </div>
+                        <input type="text" class="form-control float-right" id="reservation">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <a onclick="createEpoca()">
+                                <input type="submit" value="Criar Época" class="btn btn-primary">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {{--Cria o calendário com os cursos e a época selecionada--}}
             <div class="row">
                 <div class="col-12">
                     <a onclick="createCalendar()">
@@ -92,6 +129,8 @@
         </section>
     </div>
 
+
+
     <!-- jQuery -->
     <script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
     <!-- Toastr -->
@@ -99,7 +138,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+
     <script>
+        //It's a callback function. It's called when the user selects a course.
         $('#course').change(function () {
 
             //curso ou cursos selecionados
@@ -124,7 +165,7 @@
             $anoCourse = $('#anoCourse').val();
             $epoca = $('#epoca').val();
 
-            if ($valano.length != 0 && $valepoca.length != 0) {
+            if ($anoCourse.length != 0 && $epoca.length != 0) {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -140,32 +181,109 @@
             }
         }
 
-        // * cookie shennanigans
+
+        /**
+         * It's a function that returns the value of a cookie.
+         * @param cname
+         * @returns {string}
+         */
         function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');
             for (let i = 0; i < ca.length; i++) {
                 let c = ca[i];
-                while (c.charAt(0) == ' ') {
+                while (c.charAt(0) == ' ')
                     c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
+
+                if (c.indexOf(name) == 0)
                     return c.substring(name.length, c.length);
-                }
+
             }
             return "";
         }
 
+        //It's a function that checks if there is a CSV file imported.
         function checkCSV() {
-            if (getCookie("CSV") == "") {
-                console.log("CSV cookie not found")
+            if (getCookie("CSV") == "")
                 toastr.warning('Atenção! Não foi importado um ficheiro CSV para ler dados.')
+        }
+
+        /**
+         * verificação de dados na base de dados
+         * importado o csv - existe dado
+         */
+        function checkIfImported() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('checkifimported')}}",
+
+                function (response) {
+                    if (response == 1) setCookie("CSV", true);
+                    else setCookie("CSV", "");
+
+                    checkCSV();
+                })
+        }
+
+        /**
+         * It's a function that sets a cookie.
+         * @param cname
+         * @param cvalue
+         */
+        function setCookie(cname, cvalue) {
+            document.cookie = cname + "=" + cvalue;
+        }
+
+        checkIfImported();
+
+        /**
+         * It's a function that shows or hides the form to create a new epoca.
+         */
+        function showFrom() {
+            let mostrarEpoca = $('#showCriarEpoca');
+            let form = $('#criarEpocaForm');
+
+            if (mostrarEpoca.css("display") === "none") {
+                mostrarEpoca.css("display", "inline-block");
+                form.css("display", "none");
+            } else {
+                mostrarEpoca.css("display", "none");
+                form.css("display", "block");
             }
         }
 
-        checkCSV()
-        //* End of cookie shenannigans
+        /**
+         * It's a function that sends a request to the server to create a new epoca.
+         */
+        function createEpoca() {
 
-    </script>>
+            let nome = $('#nomeEpoca').val();
+            let data = $('#reservation').val();
+            range = data.split("-");
+
+            dataInicio = range[0];
+            dataFim = range[1];
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('criarepoca')}}", {
+                    nome: JSON.stringify(nome),
+                    dataInicio: JSON.stringify(dataInicio),
+                    dataFim: JSON.stringify(dataFim),
+                },
+                function (response) {
+
+                })
+        }
+    </script>
 @stop
