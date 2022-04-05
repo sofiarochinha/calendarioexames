@@ -40,10 +40,7 @@ Route::middleware([Authenticate::class])->group(function (){
     Route::post('/adicionar-epoca', [\App\Http\Controllers\CreateController::class, 'createEpoca'])->name('criarepoca');
 
     Route::post('/editar-epoca/', [\App\Http\Controllers\ConfigurationsController::class, 'editEpoca'])->name('editepoca');
-
-    /*Route::get('/editar-epoca/{id}', ['as' => 'epoca.edit', 'uses' => 'App\Http\Controllers\ConfigurationsController@editSubject']);
-    Route::get('/adicionar-epoca/', ['as' => 'epoca.adicionar', 'uses' => 'App\Http\Controllers\ConfigurationsController@adicionarSubject']);
-    Route::get('/eliminar-epoca/{id}', ['as' => 'epoca.delete', 'uses' => 'App\Http\Controllers\ConfigurationsController@deleteEpoca']);*/
+    Route::post('/eliminar-epoca/', [\App\Http\Controllers\ConfigurationsController::class, 'deleteEpoca'])->name('deleteEpoca');
 
 
 

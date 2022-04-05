@@ -21,7 +21,8 @@ class CreateCalendarTable extends Migration
 
             $table->foreign('epoca_id')
                 ->references('id')
-                ->on('epocas');
+                ->on('epocas')
+                ->onDelete('cascade');
 
             $table->foreign('course_id')
                 ->references('id')

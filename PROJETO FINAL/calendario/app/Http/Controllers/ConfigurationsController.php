@@ -9,6 +9,7 @@ use App\Models\Professor;
 use App\Models\Subject;
 use App\Models\Classroom;
 use App\Models\Epoca;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ConfigurationsController extends Controller
@@ -30,55 +31,21 @@ class ConfigurationsController extends Controller
     public function editEpoca(Request $request){
         $id = json_decode($request->id);
         $name = json_decode($request->name);
+        $start_date = Carbon::createFromFormat('Y-m-d', trim(json_decode($request->startDate)))->format('Y-m-d');
+        var_dump($start_date);
 
-        Epoca::findOrFail($id)->update(['name' => $name]);
+        $end_date = trim(json_decode($request->endDate));
+        var_dump($end_date);
+
+        Epoca::findOrFail($id)->update(
+            ['name' => $name, 'start_date' => $start_date,  'end_date' => $end_date]);
     }
 
-    /*public function deleteEpoca(Request $request){
+    public function deleteEpoca(Request $request){
+        $idEpoca = json_decode($request->id);
 
-        $id = $request->id;
-
-        $calendar = Epoca::where('id', $id)->with('calendars')->get();
-        if($calendar == '[]'){
-            Epoca::where('id', $id)->delete();
-        } else {
-
-            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            //Epoca::where('id', $id)->foreign('')
-
-            $epocas = Epoca::where('id', $id)->with('calendars')->get();
-            foreach ($epocas as $epoca){
-               if($epoca->calendar != null){
-                   Calendar::where('id', $epoca->calendar->first()->id)->delete();
-               }
-            }
-
-            Epoca::where('id', $id)->delete();
-/*
-            if($epocas->calendars != null){
-                foreach ($epocas as $epoca){
-                    Calendar::where('id', $epoca->calendars->first()->id)->delete();
-                }
-                $this->deleteEpoca();
-            }else{
-                Epoca::where('id', $id)->delete();
-            }*/
-
-
-        /*}
-
-        $subjects = Subject::all();
-        $professors = Professor::all();
-        $classrooms = Classroom::all();
-        $epocas = Epoca::all();
-        $courses = Course::all();
-        return view('configurations', compact([
-            "subjects",
-            "professors",
-            "classrooms",
-            "epocas",
-            "courses"]));
-    }*/
+        Epoca::findOrFail($idEpoca)->delete();
+    }
 /*
     public function editarSubject(Request $request){
 

@@ -152,7 +152,8 @@
     <!-- Datatables-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/r-2.2.9/sb-1.3.2/sp-2.0.0/sl-1.3.4/datatables.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/r-2.2.9/sb-1.3.2/sp-2.0.0/sl-1.3.4/datatables.min.js"></script>
 
     <script>
 
@@ -180,6 +181,7 @@
 
         var tableEpocas = $("#example4").DataTable({
             columns: [
+                {title: 'Índice'},
                 {title: 'Nome'},
                 {title: 'Data da época'},
                 {title: 'Operações'}
@@ -191,59 +193,64 @@
         /**
          * The above code is adding data to the table.
          */
-        function addData(){
+        function addData() {
             @foreach ($epocas as $epoca)
-                tableEpocas.row.add([
-                    ' <div class="data" id="{{$epoca->id}}">{{$epoca->name}}</div>',
-                    '  <div class="input-group">' +
-                    '  <input type="text" class="form-control float-right daterange"> </div>',
-                    '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
-                    '  </a> <a class="delete"> <i class="fas fa-trash"></i> </a>' +
-                    '  <a class="save"> <i class="fas fa-save"></i> </a></div>']).draw();
+            tableEpocas.row.add([
+                ' <div class="data" id="{{$epoca->id}}">{{$epoca->name}}</div>', //class "data"
+                '  <div class="epoca">' + "{{$epoca->start_date}}" + " até " + "{{$epoca->end_date}}" + '</div>',
+                '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
+                '  </a> <a class="delete"> <i class="fas fa-trash"></i> </a>' +
+                '  <a class="save"> <i class="fas fa-save"></i> </a></div>']).draw();
 
-                $(".daterange").daterangepicker({
-                    startDate: {{$epoca->start_date}},
-                    endDate: {{$epoca->end_date}}
-                });
             @endforeach
 
         }
 
         addData();
 
-        /*/!**
-         *
-         This function is used to change the color of the save button to green when the user clicks on the save button.
-         * @param elementID
-         *!/
-        function edited(elementID) {
-            let elemID = String(elementID);
-            let DivId = elemID.split("_")[0];
-            let save_ID = DivId + "_save";
-            document.getElementById(save_ID).style.color = "#99ff66";
-        }
-
-        /!**
-         * This function is used to change the color of the save button to green when the user clicks on the save button.
-         * @param elementID
-         *!/
-         function on_save(elementID) {
-            document.getElementById(elementID).style.color = "#2a6cf5";
-        }*/
-
         //The above code is hiding the save button until the user has entered a question.
         $('.save').hide();
 
         /*The above code is making the edit button on the table clickable. When clicked, it will make all the data in the
         table editable.*/
-        $('#epocas').on('click', 'tbody td .edit',function () {
+        $('#epocas').on('click', 'tbody td .edit', function () {
             var clickedRow = $($(this).closest('td')).closest('tr');
 
             //Adding a new input field to each row of the table.
             $(clickedRow).find('td').each(function () {
-                nomeEpoca = $(this).find(".data").html();
-                $(this).find(".data").html('<input class="data" type="text" value="' + nomeEpoca + '" name="nomeEpoca">');
-                idEpoca = $(this).find(".data").attr('id');
+                epoca = $(this).find(".data");
+                data = $(clickedRow).find(".epoca");
+
+                nomeEpoca = epoca.html();
+                dataEpoca = data.html();
+
+                //obtém o id da época
+                idEpoca = epoca.attr('id');
+
+                //adiciona um input para escrever o nome da época
+                epoca.html('<input class="data" type="text" value="' + nomeEpoca + '" name="nomeEpoca">');
+                data.html('<div class="input-group">' +
+                    '   <div class="input-group-prepend">' +
+                    '       <span class="input-group-text">' +
+                    '           <i class="far fa-calendar-alt"></i> ' +
+                    '       </span>' +
+                    '  </div>' +
+                    '  <input type="text" class="form-control float-right daterange" > </div>');
+
+                //coloca as datas no daterange picker comforme o id da epoca
+                @foreach($epocas as $epoca)
+                if (idEpoca == {!! $epoca->id !!}) {
+                    $(".daterange").daterangepicker(
+                        {
+                            locale: {
+                                format: 'YYYY-MM-DD'
+                            },
+                            startDate: '{{ $epoca->start_date}}',
+                            endDate: '{{ $epoca->end_date}}'
+                        });
+                }
+                @endforeach
+
 
                 saveEpoca(idEpoca);
                 return false;
@@ -257,7 +264,7 @@
         });
 
         //Updating the name of the epoca.
-        function updateNameEpoca(idEpoca, nomeEpoca) {
+        function updateEpoca(idEpoca, nomeEpoca, startDate, endDate) {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -268,49 +275,44 @@
                 {
                     id: JSON.stringify(idEpoca),
                     name: JSON.stringify(nomeEpoca),
+                    startDate: JSON.stringify(startDate),
+                    endDate: JSON.stringify(endDate),
 
                 })
         }
 
         //The above code is making the save button on the edit page do the same thing as the save button on the add page.
-        function saveEpoca(idEpoca){
+        function saveEpoca(idEpoca) {
 
             $("#epocas").on('click', 'tbody td .save', function () {
                 nomeEpoca = $('#epocas').find('input.data');
-                console.log(nomeEpoca);
 
-                $.each(nomeEpoca, function (index, $cell){
+                $.each(nomeEpoca, function () {
+                    date = $('.daterange');
+
+                    //indice da row que foi selecionada para ser editada
                     var rowIndex = tableEpocas.row($(nomeEpoca).closest('tr')).index();
-                    console.log(rowIndex);
+
+                    //o nome inserido
                     var fieldName = $('#epocas').find('input.data[name="nomeEpoca"]').val();
-                    console.log(fieldName);
+                    var fieldDate = date.val();
+                    dateArray = fieldDate.split("-");
 
+                    startDate = dateArray[0] + "-" + dateArray[1] + "-" + dateArray[2];
+                    endDate = dateArray[3] + "-" + dateArray[4] + "-" + dateArray[5];
+
+                    //remove todos os dados adicionados anteriormente
                     $('#epocas').find("input.data").remove();
+                    $('#epocas').find("input.daterange").remove();
 
-                    //var rows = $('tr', tableEpocas);
-                    tableEpocas.cell(rowIndex, 0).data(fieldName);
+                    //adiciona o novo nome a celula
+                    tableEpocas.cell(rowIndex, 0).data('<div id=' + idEpoca + ' class="data">' + fieldName + '</div>');
+                    tableEpocas.cell(rowIndex, 1).data('<div class="epoca">' + startDate + " até " + endDate + '</div>');
 
-                    //tableEpocas.row(rowIndex).data(fieldName)[0];
-
-                    //rows.eq(rowIndex).html('<div class="data">' + fieldName + '</div>');
-
-                    //tableEpocas.rows().data()[rowIndex] = fieldName;
-
-                    //$('#epocas').find('input.data').unwrap();
-
-                    updateNameEpoca(idEpoca, fieldName);
+                    //update na base de dados
+                    updateEpoca(idEpoca, fieldName, startDate, endDate);
                     return false;
                 });
-
-                // $('input').each(function () {
-                //     var content = $(this).val();
-                //     $(this).html(content);
-                //     $(this).contents().unwrap();
-                //
-                //     updateNameEpoca(idEpoca, nomeEpoca);
-                //     console.log("loop");
-                //     return false;
-                // });
 
                 $(this).siblings('.edit').show();
                 $(this).siblings('.delete').show();
@@ -319,7 +321,28 @@
         }
 
 
-        $(".delete").on('click', function () {
+        $('#epocas').on('click', 'tbody td .delete', function () {
+            var clickedRow = $($(this).closest('td')).closest('tr');
+            $(clickedRow).find('td').each(function () {
+                epoca = $(this).find(".data");
+
+                //obtém o id da época
+                idEpoca = epoca.attr('id');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.post("{{ route('deleteEpoca')}}",
+                    {
+                        id: JSON.stringify(idEpoca),
+
+                    })
+            })
+
+
             $(this).parents('tr').remove();
         });
 
