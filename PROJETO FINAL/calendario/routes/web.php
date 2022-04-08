@@ -37,12 +37,15 @@ Route::middleware([Authenticate::class])->group(function (){
      * Editar épocas
      * Adicionar épocas
      */
-    Route::post('/adicionar-epoca', [\App\Http\Controllers\CreateController::class, 'createEpoca'])->name('criarepoca');
+    Route::post('/adicionar-epoca', [\App\Http\Controllers\CreateController::class, 'createEpoca'])->name('criarEpoca');
+    Route::post('/adicionar-epoca-dados-auxiliares', [\App\Http\Controllers\ConfigurationsController::class, 'createEpoca'])->name('criarEpocaConfigurations');
 
     Route::post('/editar-epoca/', [\App\Http\Controllers\ConfigurationsController::class, 'editEpoca'])->name('editepoca');
     Route::post('/eliminar-epoca/', [\App\Http\Controllers\ConfigurationsController::class, 'deleteEpoca'])->name('deleteEpoca');
-
-
+    /**
+     * Editar sala de aula
+     */
+    Route::post('/editar-sala/', [\App\Http\Controllers\ConfigurationsController::class, 'editSala'])->name('editSala');
 
 
     Route::get('/calendario-anterior', ['as' => 'calendarioanterior', 'uses' => 'App\Http\Controllers\HistoricController@showView']);

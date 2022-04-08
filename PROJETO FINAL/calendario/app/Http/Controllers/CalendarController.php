@@ -23,15 +23,22 @@ class CalendarController extends Controller
             ]);
     }
 
-
+    /**
+     * Marca um exame
+     * @param Request $request
+     * @return void
+     */
     public function adicionarEvento(Request $request){
             $data = json_decode($request->data);
             $name = json_decode($request->name);
             $subject = Subject::where('name', $name)->first()->id;
+            $associated_professor = Subject::where('id', $subject)->first()->professor_id;
+            echo $associated_professor;
 
             $timeSlot = json_decode($request->timeSlot);
             $calendar = json_decode($request->calendar);
-            echo $timeSlot;
+
+
 
             $evaluationSlot = EvaluationSlot::where('subject', $subject)->where('calendar_id', $calendar)->first();
 
@@ -39,7 +46,7 @@ class CalendarController extends Controller
                 $evaluationSlot = new EvaluationSlot();
                 $evaluationSlot->calendar_id = $calendar;
                 $evaluationSlot->subject = $subject;
-                $evaluationSlot->associated_professor = 6;
+                $evaluationSlot->associated_professor = $associated_professor;
                 $evaluationSlot->observing_professor = 15;
                 $evaluationSlot->classroom = 3;
                 $evaluationSlot->time_slot = $timeSlot;
@@ -49,7 +56,7 @@ class CalendarController extends Controller
                 EvaluationSlot::whereId($evaluationSlot->id)->update([
                     'calendar_id' => $calendar,
                     'subject' => $subject,
-                    'associated_professor' => 6,
+                    'associated_professor' => $associated_professor,
                     'observing_professor' => 15,
                     'classroom' => 3,
                     'time_slot' => $timeSlot,

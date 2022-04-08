@@ -10,6 +10,7 @@ use App\Models\Subject;
 use App\Models\Classroom;
 use App\Models\Epoca;
 use Carbon\Carbon;
+use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 
 class ConfigurationsController extends Controller
@@ -32,12 +33,9 @@ class ConfigurationsController extends Controller
         $id = json_decode($request->id);
         $name = json_decode($request->name);
 
-
         $start_date = Carbon::createFromFormat('Y-m-d', trim(json_decode($request->startDate)))->format('Y-m-d');
-        var_dump($start_date);
 
         $end_date = trim(json_decode($request->endDate));
-        var_dump($end_date);
 
         Epoca::findOrFail($id)->update(
             ['name' => $name, 'start_date' => $start_date,  'end_date' => $end_date]);
@@ -49,23 +47,38 @@ class ConfigurationsController extends Controller
 
         Epoca::findOrFail($idEpoca)->delete();
     }
-/*
-    public function editarSubject(Request $request){
 
-        $id = $request->id;
+    /**
+     * Create a new epoca
+     *
+     * @param Request request The request object.
+     */
+    public function createEpoca(Request $request){
+        $nome = json_decode($request->nome);
+        $startDate = trim(json_decode($request->startDate));
+        $endDate = trim(json_decode($request->endDate));
 
-        Subject::where('id', $id)->update([
+        $epoca = new Epoca();
+        $epoca->name = $nome;
+        $epoca->start_date = $startDate;
+        $epoca->end_date = $endDate;
+
+        $epoca->save();
+        $idEpoca = $epoca->id;
+
+        return \response()->json([
+            'idEpoca' => $idEpoca,
         ]);
-
-        return view('configurations');
     }
 
-    public function adicionarSubject(Request $request){
+    public function editSala(Request $request){
+        $id = json_decode($request->id);
+        $capacidade = json_decode($request->capacidade);
 
-        $id = $request->id;
-        Subject::where('id', $id)->delete();
+        var_dump($capacidade);
+        Classroom::findOrFail($id)->update(
+            ['capacity' => $capacidade]);
+    }
 
-        return view('configurations');
-    }*/
 
 }

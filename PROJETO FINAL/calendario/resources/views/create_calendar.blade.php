@@ -276,7 +276,7 @@
                 }
             });
 
-            $.post("{{ route('criarepoca')}}", {
+            $.post("{{ route('criarEpoca')}}", {
                     nome: JSON.stringify(nome),
                     dataInicio: JSON.stringify(dataInicio),
                     dataFim: JSON.stringify(dataFim),

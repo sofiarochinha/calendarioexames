@@ -50,90 +50,33 @@
                         <div class="card" id="UC">
                             <div class="card-body">
                                 <button class="btn btn-primary float-right" onclick="">Adicionar</button>
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="ucsTabela" class="table table-bordered table-striped">
 
-                                    <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Docente</th>
-                                        <th>Curso</th>
-                                        <th>Ano do Curso</th>
-                                        <th>Número de alunos inscritos</th>
-                                        <th>Editar</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($subjects as $subject)
-                                        <tr>
-                                            <td>{{ $subject->name}}</td>
-                                            <td>{{$subject->associated_professor->name}} </td>
-                                            <td>{{ $subject->courses->name}}</td>
-                                            <td>{{ $subject->courses->course_year}}</td>
-                                            <td>0</td>
-                                            <td align="center"><a><i class="fas fa-edit"></i></a></td>
-                                        </tr>
-                                    @endforeach
-
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="card" id="docentes" style="display: none;">
                             <div class="card-body">
                                 <button class="btn btn-primary float-right" onclick="">Adicionar</button>
-                                <table id="example2" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>E-mail</th>
-                                        <th>Disponibilidade</th>
-                                        <th>Editar</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($professors as $professor)
-                                        <tr>
-                                            <td>{{ $professor->name}}</td>
-                                            <td>{{$professor->email}}</td>
-                                            <td>{{$professor->availability}}</td>
-                                            <td align="center"><a><i class="fas fa-edit"></i></a></td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
+                                <table id="docentesTabela" class="table table-bordered table-striped">
+
                                 </table>
                             </div>
                         </div>
                         <div class="card" id="salas" style="display: none;">
                             <div class="card-body">
                                 <button class="btn btn-primary float-right" onclick="">Adicionar</button>
-                                <table id="example3" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Sala</th>
-                                        <th>Tipo</th>
-                                        <th>Lotação máxima em exame</th>
-                                        <th>Editar</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($classrooms as $classroom)
-                                        <tr>
-                                            <td>{{ $classroom->classroom}}</td>
-                                            <td>{{ $classroom->type}}</td>
-                                            <td>{{ $classroom->capacity}}</td>
-                                            <td align="center"><a><i class="fas fa-edit"></i></a></td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
+                                <table id="salasTabela" class="table table-bordered table-striped">
+
                                 </table>
                             </div>
                         </div>
 
 
                         <div class="card" id="epocas" style="display: none;">
-                            <button class="btn btn-primary float-right" id="adicionar">Adicionar</button>
+                            <button class="btn btn-primary float-right" id="adicionarEpoca">Adicionar</button>
                             <div class="card-body">
-                                <table id="example4" class="table table-bordered table-striped">
+                                <table id="epocasTabela" class="table table-bordered table-striped">
 
                                 </table>
                             </div>
@@ -178,8 +121,11 @@
             event.currentTarget.className += " active";
         }
 
-
-        var tableEpocas = $("#example4").DataTable({
+        /**
+         * Inicialização das datables
+         * @type {*|jQuery}
+         */
+        var tableEpocas = $("#epocasTabela").DataTable({
             columns: [
                 {title: 'Nome'},
                 {title: 'Data da época'},
@@ -189,6 +135,40 @@
             "responsive": true, "lengthChange": false, "autoWidth": false,
         }); //tabela das épocas
 
+        var tableSala = $("#salasTabela").DataTable({
+            columns: [
+                {title: 'Sala'},
+                {title: 'Tipo'},
+                {title: 'Lotação máxima em exame'},
+                {title: 'Operações'}
+            ],
+
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+        }); //tabela das épocas
+
+        var tableDocente = $("#docentesTabela").DataTable({
+            columns: [
+                {title: 'Nome'},
+                {title: 'Email'},
+                {title: 'Disponibilidade'},
+                {title: 'Operações'}
+            ],
+
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+        }); //tabela das épocas
+
+        var tableUCS = $("#ucsTabela").DataTable({
+            columns: [
+                {title: 'Nome'},
+                {title: 'Docente'},
+                {title: 'Curso'},
+                {title: 'Ano do curso'},
+                {title: 'Número de alunos inscritos'},
+                {title: 'Operações'}
+            ],
+
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+        }); //tabela das épocas
 
         /**
          * The above code is adding data to the table.
@@ -204,12 +184,46 @@
 
             @endforeach
 
+            @foreach($classrooms as $classroom)
+            tableSala.row.add([
+                '<div id={{$classroom->id}} class="salaNumber">{{ $classroom->classroom}}</div>',
+                '{{ $classroom->type}}',
+                '<div class="capacitySala">{{ $classroom->capacity}}</div>',
+                '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
+                '  </a> <a class="save"> <i class="fas fa-save"></i> </a></div>'
+            ]).draw();
+            @endforeach
+
+
+            @foreach($subjects as $subject)
+            tableUCS.row.add([
+                '{{ $subject->name}}',
+                '{{$subject->associated_professor->name}}',
+                '{{ $subject->courses->name}}',
+                '{{ $subject->courses->course_year}}',
+                '0',
+                '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
+                '  </a> <a class="save"> <i class="fas fa-save"></i> </a></div>'
+            ]).draw();
+            @endforeach
+
+            @foreach($professors as $professor)
+            tableDocente.row.add([
+                '{{ $professor->name}}',
+                '{{$professor->email}}',
+                '{{$professor->availability}}',
+                '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
+                '  </a> <a class="save"> <i class="fas fa-save"></i> </a></div>'
+            ]).draw();
+            @endforeach
         }
 
         addData();
 
-        //The above code is hiding the save button until the user has entered a question.
-        $('.save').hide();
+        //The above code is hiding the save button until the user has entered a question
+        $('#epocas').find('.save').each(function () {
+            $(this).hide();
+        });
 
         /*The above code is making the edit button on the table clickable. When clicked, it will make all the data in the
         table editable.*/
@@ -263,7 +277,84 @@
 
         });
 
-        //Updating the name of the epoca.
+        /**
+         * Edição na table das salas
+         */
+        $('#salas').on('click', 'tbody td .edit', function () {
+            var clickedRow = $($(this).closest('td')).closest('tr');
+
+            //Adding a new input field to each row of the table.
+            $(clickedRow).find('td').each(function () {
+                var rowIndex = tableSala.row($(this).closest('tr')).index();
+
+                sala = $(this).find(".salaNumber");
+                capacidadeSala = $(this).find(".capacitySala");
+
+                capacidade = 0;
+                if( typeof capacidadeSala.html() !== 'undefined')
+                    capacidade = capacidadeSala.html();
+
+                tableSala.cell(rowIndex, 2).data('<input class="capacitySala" type="text" value="' + capacidade + '" name="capacidadeSala">');
+
+                //obtém o id da sala
+                idSala = sala.attr('id');
+
+                saveSala(idSala);
+                return false;
+            })
+
+            $(this).siblings('.save').show();
+            $(this).hide();
+
+        });
+
+        /**
+         * The above code is making the save button on the edit page do the same thing as the save button on the add page.
+         * @param idSala
+         */
+        function saveSala(idSala) {
+
+            $("#salas").on('click', 'tbody td .save', function () {
+                capacidadeSala = $('#salas').find('input.capacitySala');
+
+                console.log(capacidadeSala);
+
+                $.each(capacidadeSala, function () {
+
+                    //indice da row que foi selecionada para ser editada
+                    var rowIndex = tableSala.row($(capacidadeSala).closest('tr')).index();
+                    console.log(rowIndex);
+
+                    //a capacidade inserida
+                    var fieldCapacity = $('#salas').find('input.capacitySala[name="capacidadeSala"]').val();
+
+                    //remove todos os dados adicionados anteriormente
+                    $('#salas').find("input.capacitySala").remove();
+
+                    //adiciona a nova capacidade da sala à célula
+                    tableSala.cell(rowIndex, 2).data('<div id=' + idSala + ' class="salaNumber">'+ fieldCapacity +'</div>');
+
+                    console.log(idSala);
+                    console.log(fieldCapacity);
+                    //update na base de dados
+                    updateSala(idSala, fieldCapacity);
+
+                    return false;
+                });
+
+                $(this).siblings('.edit').show();
+                $(this).hide();
+            });
+        }
+
+
+        /**
+         * Atualiza uma epoca
+         * @param idEpoca
+         * @param nomeEpoca
+         * @param startDate
+         * @param endDate
+         */
         function updateEpoca(idEpoca, nomeEpoca, startDate, endDate) {
             $.ajaxSetup({
                 headers: {
@@ -281,7 +372,57 @@
                 })
         }
 
-        //The above code is making the save button on the edit page do the same thing as the save button on the add page.
+        /**
+         * Atualiza a sala
+         * @param idSala
+         * @param capacidade
+         */
+        function updateSala(idSala, capacidade) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('editSala')}}",
+                {
+                    id: JSON.stringify(idSala),
+                    capacidade: JSON.stringify(capacidade),
+
+                })
+        }
+
+        /**
+         * Insere uma nova época na base de dados
+         * @param fieldName
+         * @param startDate
+         * @param endDate
+         */
+        function insertNewEpoca(fieldName, startDate, endDate) {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('criarEpocaConfigurations')}}",
+                {
+                    nome: JSON.stringify(fieldName),
+                    startDate: JSON.stringify(startDate),
+                    endDate: JSON.stringify(endDate),
+
+                }, function (response) {
+                    //adiciona o id da epoca
+                    rowIndex = tableEpocas.row(':first').nodes().to$().find('.data').attr('id', response['idEpoca']);
+                })
+
+        }
+
+        /**
+         * The above code is making the save button on the edit page do the same thing as the save button on the add page.
+         * @param idEpoca
+         */
         function saveEpoca(idEpoca) {
 
             $("#epocas").on('click', 'tbody td .save', function () {
@@ -309,8 +450,12 @@
                     tableEpocas.cell(rowIndex, 0).data('<div id=' + idEpoca + ' class="data">' + fieldName + '</div>');
                     tableEpocas.cell(rowIndex, 1).data('<div class="epoca">' + startDate + " até " + endDate + '</div>');
 
-                    //update na base de dados
-                    updateEpoca(idEpoca, fieldName, startDate, endDate);
+                    if (idEpoca == null) {
+                        insertNewEpoca(fieldName, startDate, endDate);
+                    } else {
+                        //update na base de dados
+                        updateEpoca(idEpoca, fieldName, startDate, endDate);
+                    }
                     return false;
                 });
 
@@ -346,7 +491,6 @@
             })
 
 
-
             $(this).parents('tr').remove();
         });
 
@@ -354,21 +498,35 @@
         /**
          * The above code is adding a new row to the table.
          */
-        $("#adicionar").on('click', function () {
+        $("#adicionarEpoca").on('click', function () {
             tableEpocas.row.add([
-                '  <div class="data">0 Nova Época</div>',
-                '  <div class="input-group">' +
+                ' <div class="data">0</div>',
+                '<div class="input-group">' +
                 '   <div class="input-group-prepend">' +
                 '       <span class="input-group-text">' +
                 '           <i class="far fa-calendar-alt"></i> ' +
                 '       </span>' +
                 '  </div>' +
-                '  <a type="text" class="form-control float-right daterange"> </div>',
+                '  <input type="text" class="form-control float-right daterange" > </div>',
                 '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
-                '  </a> <a class="save"> <i class="fas fa-trash"></i> </a>' +
+                '  </a> <a class="save"> <i class="fas fa-save"></i> </a>' +
                 '  <a class="delete"> <i class="fas fa-trash"></i> </a></div>']).draw();
 
+            rowIndex = tableEpocas.row(':first').index();
+            tableEpocas.cell(rowIndex, 0).data('<input class="data" type="text" value="' + 'Nova Época' + '" name="nomeEpoca">');
+
+            $('.daterange').daterangepicker({
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+
+            rowIndex = tableEpocas.row(':first').nodes().to$().find('.edit').hide();
+
+            saveEpoca(null);
         });
+
+
     </script>
 
 

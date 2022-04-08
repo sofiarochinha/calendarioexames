@@ -16,7 +16,7 @@ class CreateClassroomTable extends Migration
         Schema::create('classroom', function (Blueprint $table) {
             $table->id();
             $table->string('classroom')->unique();
-            $table->integer('capacity')->nullable();
+            $table->integer('capacity')->default(0);
             $table->string('type');
         });
     }

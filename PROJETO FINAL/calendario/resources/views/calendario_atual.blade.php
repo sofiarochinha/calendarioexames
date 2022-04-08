@@ -19,7 +19,7 @@
                         </ol>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
 
         <!-- Main content -->
@@ -76,43 +76,28 @@
                                 <h4 class="card-title">Disciplinas</h4>
                             </div>
                             <div class="card-body">
-                                <!-- the events -->
                                 <div id="external-events">
 
-                                    <!--<div class="external-event bg-danger">Sleep tight</div>-->
-                                    <div class="d-none">
-                                        <label for="drop-remove">
-                                            <input type="checkbox" id="drop-remove" checked>
-                                            remove after drop
-                                        </label>
-                                    </div>
+
                                 </div>
                             </div>
-                            <!-- /.card-body -->
                         </div>
 
                     </div>
                 </div>
-                <!-- /.col -->
                 <div class="col-md-9">
                     <div class="card card-primary">
                         <div class="card-body p-0">
                             <!-- THE CALENDAR -->
                             <div id="calendar"></div>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </section>
-    </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
+
     <!-- Popup para selecionar a sala e os vigilantes -->
     <div class="modal fade" id="schedule-edit">
         <div class="modal-dialog">
@@ -130,7 +115,7 @@
                             <select id="profs" class="select2" multiple="multiple"
                                     data-placeholder="Selecione uma época" style="width: 100%;">
                                 @foreach($professors as $prof)
-                                        <option value="{{$prof->id}}">{{$prof->name}}</option>
+                                    <option value="{{$prof->id}}">{{$prof->name}}</option>
                                 @endforeach
 
                             </select>
@@ -155,13 +140,9 @@
         </div>
     </div>
 
-    <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
     </aside>
-    <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
 
     <script src="{{(asset('/plugins/jquery/jquery.min.js'))}}"></script>
     <!-- Bootstrap -->
@@ -175,21 +156,20 @@
     <script>
 
 
-	   /**
-	   * comboboxs para o calendário atual
-	   * verifica quais são as epocas que estam associadas ao curso e quais são os anos do curso
-	   */
-
+        /**
+         * comboboxs para o calendário atual
+         * verifica quais são as epocas que estam associadas ao curso e quais são os anos do curso
+         */
         var valcurso = $('#curso').val();
         var epocaString = "";
         var anoString = "";
         var disciplinaString = "";
 
-            @foreach ($courses as $course)
-            if (valcurso == {!!$course->course_code!!}) {
-                @if ($course->calendar !=null)
-                    anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
-                @endif
+        @foreach ($courses as $course)
+        if (valcurso == {!!$course->course_code!!}) {
+            @if ($course->calendar !=null)
+                anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
+            @endif
         }
 
         @endforeach
@@ -200,27 +180,26 @@
 
         @foreach ($courses as $course)
 
-            if (valcurso == {!!$course->course_code!!}) {
-                if(valAno == {!!$course->course_year!!}){
-                    @foreach ($epocas as $epoca)
+        if (valcurso == {!!$course->course_code!!}) {
+            if (valAno == {!!$course->course_year!!}) {
+                @foreach ($epocas as $epoca)
 
                     @if( $epoca->course_id == $course->id)
-                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
-                        @foreach ($epoca->course->subject as $subject)
-                            @if($subject->evaluationSlot == null)
-                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
-                            @endif
-                        @endforeach
-                    @endif
+                    epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
+                @foreach ($epoca->course->subject as $subject)
+                    @if($subject->evaluationSlot == null)
+                    disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
+                @endif
                 @endforeach
-                }
+                @endif
+                @endforeach
+            }
         }
 
         @endforeach
 
         $("#external-events").html(disciplinaString);
         $("#epoca").html(epocaString);
-        console.log("1")
         alterarCalendario();
 
         $("#curso").change(function () {
@@ -229,11 +208,11 @@
             var anoString = "";
             var disciplinaString = "";
 
-                @foreach ($courses as $course)
-                if (valcurso == {!!$course->course_code!!}) {
-                    @if ($course->calendar !=null)
-                        anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
-                    @endif
+            @foreach ($courses as $course)
+            if (valcurso == {!!$course->course_code!!}) {
+                @if ($course->calendar !=null)
+                    anoString += "<option value='{{$course->course_year}}'>{{$course->course_year}}</option>";
+                @endif
             }
 
             @endforeach
@@ -243,57 +222,13 @@
             var valAno = $("#ano").val();
 
             @foreach ($courses as $course)
-                if (valcurso == {!!$course->course_code!!}) {
-                    if(valAno == {!!$course->course_year!!}){
-                        @foreach ($epocas as $epoca)
-                    @if( $epoca->course_id == $course->id)
+            if (valcurso == {!!$course->course_code!!}) {
+                if (valAno == {!!$course->course_year!!}) {
+                    @foreach ($epocas as $epoca)
+                        @if( $epoca->course_id == $course->id)
                         epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}} </option>";
 
                     @endif
-                    @endforeach
-                    }
-            }
-
-            @endforeach
-            $("#epoca").html(epocaString);
-
-            var epoca = $('#epoca').val(); //epoca selecionada
-            var disciplinaString = "";
-		        	@foreach ($epocas as $epoca)
-                        if({!!$epoca->id!!} == epoca){
-                            @foreach ($epoca->course->subject as $subject)
-                                @if($subject->evaluationSlot == null)
-                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
-                                @endif
-                            @endforeach
-                        }
-		        	@endforeach
-
-            $("#external-events").html(disciplinaString);
-
-            console.log("2")
-            alterarCalendario();
-        });
-
-        /**
-        * verifica quais são as épocas que estam associados ao ano do curso
-        */
-        $("#ano").change(function () {
-            var valAno= $(this).val();
-            var epocaString = "";
-            var disciplinaString = "";
-            var valcurso = $("#curso").val();
-
-            /**
-             * WARNING: as disciplinas estam repetidas se houver mais que uma época
-             */
-            @foreach ($courses as $course)
-            if (valcurso == {!!$course->course_code!!}) {
-                if(valAno == {!!$course->course_year!!}){
-                    @foreach ($epocas as $epoca)
-                        @if( $epoca->course_id == $course->id)
-                            epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
-                        @endif
                     @endforeach
                 }
             }
@@ -303,15 +238,58 @@
 
             var epoca = $('#epoca').val(); //epoca selecionada
             var disciplinaString = "";
-		        	@foreach ($epocas as $epoca)
-                        if({!!$epoca->id!!} == epoca){
-                            @foreach ($epoca->course->subject as $subject)
-                                @if($subject->evaluationSlot == null)
-                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
-                                @endif
-                            @endforeach
-                        }
-		        	@endforeach
+            @foreach ($epocas as $epoca)
+            if ({!!$epoca->id!!} == epoca) {
+                @foreach ($epoca->course->subject as $subject)
+                    @if($subject->evaluationSlot == null)
+                    disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
+                @endif
+                @endforeach
+            }
+            @endforeach
+
+            $("#external-events").html(disciplinaString);
+
+            alterarCalendario();
+        });
+
+        /**
+         * verifica quais são as épocas que estam associados ao ano do curso
+         */
+        $("#ano").change(function () {
+            var valAno = $(this).val();
+            var epocaString = "";
+            var disciplinaString = "";
+            var valcurso = $("#curso").val();
+
+            /**
+             * WARNING: as disciplinas estam repetidas se houver mais que uma época
+             */
+            @foreach ($courses as $course)
+            if (valcurso == {!!$course->course_code!!}) {
+                if (valAno == {!!$course->course_year!!}) {
+                    @foreach ($epocas as $epoca)
+                        @if( $epoca->course_id == $course->id)
+                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
+                    @endif
+                    @endforeach
+                }
+            }
+
+            @endforeach
+            $("#epoca").html(epocaString);
+
+            var epoca = $('#epoca').val(); //epoca selecionada
+            var disciplinaString = "";
+            @foreach ($epocas as $epoca)
+            if ({!!$epoca->id!!} == epoca) {
+                @foreach ($epoca->course->subject as $subject)
+                    @if($subject->evaluationSlot == null)
+                    disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
+                @endif
+                @endforeach
+            }
+            @endforeach
 
             $("#external-events").html(disciplinaString);
 
@@ -321,114 +299,114 @@
         $("#epoca").change(function () {
             var epoca = $(this).val(); //epoca selecionada
             var disciplinaString = "";
-		        	@foreach ($epocas as $epoca)
-                        if({!!$epoca->id!!} == epoca){
-                            @foreach ($epoca->course->subject as $subject)
-                                @if($subject->evaluationSlot == null)
-                                disciplinaString+="<div class='external-event bg-success'>{{$subject->name}}</div>";
-                                @endif
-                            @endforeach
-                        }
-		        	@endforeach
-                    $("#external-events").html(disciplinaString);
-                    alterarCalendario();
+            @foreach ($epocas as $epoca)
+            if ({!!$epoca->id!!} == epoca) {
+                @foreach ($epoca->course->subject as $subject)
+                    @if($subject->evaluationSlot == null)
+                    disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
+                @endif
+                @endforeach
+            }
+            @endforeach
+            $("#external-events").html(disciplinaString);
+            alterarCalendario();
         });
 
-       function alterarCalendario(){
-           var dateEpoca =  $('#epoca').val();
-           var dataInicio = "";
-           var arrayEvent = [];//criação de um objeto
+        function alterarCalendario() {
+            var dateEpoca = $('#epoca').val();
+            var dataInicio = "";
+            var arrayEvent = [];//criação de um objeto
 
-           @foreach($epocas as $epoca)
+            @foreach($epocas as $epoca)
 
-               if({!!  $epoca->id !!}  == dateEpoca){
-                   dataInicio = '{!! $epoca->epoca->start_date !!}'.split(" ");
+            if ({!!  $epoca->id !!} == dateEpoca) {
+                dataInicio = '{!! $epoca->epoca->start_date !!}'.split(" ");
 
-                   var inicio = "", fim ="", nome = "";
+                var inicio = "", fim = "", nome = "";
 
-                   if(dateEpoca == {!! $epoca->id !!}){
-                       @if ($epoca->evaluationslots != null)
+                if (dateEpoca == {!! $epoca->id !!}) {
+                        @if ($epoca->evaluationslots != null)
 
-                           @foreach($epoca->evaluationslots as $event){
-                               var event = {};
-                               if({!! $event->timeslot->id !!} == 1){
-                                   event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
-                                   event.end = "{!! $event->calendar_day !!}".concat(" ", "13:30:00");
-                               } else if({!! $event->timeslot->id !!} == 2){
-                                   event.start = "{!! $event->calendar_day !!}".concat(" ", "14:00:00");
-                                   event.end = "{!! $event->calendar_day !!}".concat(" ", "18:00:00");
-                               } else {
-                                   event.start = "{!! $event->calendar_day !!}".concat(" ", "18:30:00");
-                                   event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
-                               }
+                        @foreach($epoca->evaluationslots as $event){
+                        var event = {};
+                        if ({!! $event->timeslot->id !!} == 1) {
+                            event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
+                            event.end = "{!! $event->calendar_day !!}".concat(" ", "13:30:00");
+                        } else if ({!! $event->timeslot->id !!} == 2) {
+                            event.start = "{!! $event->calendar_day !!}".concat(" ", "14:00:00");
+                            event.end = "{!! $event->calendar_day !!}".concat(" ", "18:00:00");
+                        } else {
+                            event.start = "{!! $event->calendar_day !!}".concat(" ", "18:30:00");
+                            event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
+                        }
 
-                               event.title = "{!! $event->Subject->name!!}";
+                        event.title = "{!! $event->Subject->name!!}";
 
-                               arrayEvent.push(event);
+                        arrayEvent.push(event);
 
-                             }
-                             @endforeach
-                         @endif
-                   }
-               }
-           @endforeach
+                    }
+                    @endforeach
+                    @endif
+                }
+            }
+            @endforeach
 
-           calendar(dataInicio[0], arrayEvent);
-       }
+            calendar(dataInicio[0], arrayEvent);
+        }
 
-       /**
-        * Tranforma o mes em numero
-        * @param mes
-        * @returns {string}
-        */
-       function getMes(mes){
-           if(mes == "Jan") return "01";
-           if(mes == "Feb") return "02";
-           if(mes == "Mar") return "03";
-           if(mes == "Apr") return "04";
-           if(mes == "May") return "05";
-           if(mes == "Jun") return "06";
-           if(mes == "Jul") return "07";
-           if(mes == "Aug") return "08";
-           if(mes == "Sep") return "09";
-           if(mes == "Oct") return "10";
-           if(mes == "Nov") return "11";
-           if(mes == "Dec") return "12";
-       }
+        /**
+         * Tranforma o mes em numero
+         * @param mes
+         * @returns {string}
+         */
+        function getMes(mes) {
+            if (mes == "Jan") return "01";
+            if (mes == "Feb") return "02";
+            if (mes == "Mar") return "03";
+            if (mes == "Apr") return "04";
+            if (mes == "May") return "05";
+            if (mes == "Jun") return "06";
+            if (mes == "Jul") return "07";
+            if (mes == "Aug") return "08";
+            if (mes == "Sep") return "09";
+            if (mes == "Oct") return "10";
+            if (mes == "Nov") return "11";
+            if (mes == "Dec") return "12";
+        }
 
-       /**
-        * Envia os dados para o controller por ajax
-        */
-       function sendToController(data, name, timeSlot, calendar) {
-           $.ajaxSetup({
-               headers: {
-                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               }
-           });
+        /**
+         * Envia os dados para o controller por ajax
+         * Marca um exame
+         */
+        function sendToController(data, name, timeSlot, calendar) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-           $.post("{{ route('addevento')}}",
-               {
-                   data: JSON.stringify(data),
-                   name: JSON.stringify(name),
-                   timeSlot: JSON.stringify(timeSlot),
-                   calendar: JSON.stringify(calendar),
+            $.post("{{ route('addevento')}}",
+                {
+                    data: JSON.stringify(data),
+                    name: JSON.stringify(name),
+                    timeSlot: JSON.stringify(timeSlot),
+                    calendar: JSON.stringify(calendar),
 
-               });
-       }
+                });
+        }
 
-       /**
-        * obtém o id do timeslot associado à data
-        * @param date
-        * @returns {number}
-        */
-       function getTimeSlot(date){
-           console.log(date);
-           if(date >= 9 && date < 14) return 1;
-           if(date >= 14 && date < 18) return 2;
-           return 3;
-       }
+        /**
+         * obtém o id do timeslot associado à data
+         * @param date
+         * @returns {number}
+         */
+        function getTimeSlot(date) {
+            if (date >= 9 && date < 14) return 1;
+            if (date >= 14 && date < 18) return 2;
+            return 3;
+        }
 
-       function calendar(dataInicio, event){
+        function calendar(dataInicio, event) {
 
             /* initialize the external events
              -----------------------------------------------------------------*/
@@ -496,26 +474,26 @@
                 views: {
                     timeGrid2Week: {
                         type: 'timeGrid',
-                        duration: { days: 15 },
+                        duration: {days: 15},
                         buttonText: 'nothing',
                     }
                 },
 
                 themeSystem: 'bootstrap',
                 //Random default events
-                events: [ {
+                events: [{
                     id: 'a',
                     title: 'my event',
                     start: '2018-09-01'
                 }],
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
-                drop: function (info) {
+                drop: function (info) { //marca um exame que ainda não está marcado
                     var date = (info.date).toString().split(" ");
 
                     var horas = date[4].split(":");
 
-                    var data = new Date(date[3], getMes(date[1])-1, date[2],
+                    var data = new Date(date[3], getMes(date[1]) - 1, date[2],
                         horas[0], horas[1], horas[2]);
 
                     var nome = info.draggedEl.innerHTML;
@@ -523,19 +501,18 @@
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                     sendToController(data, nome, getTimeSlot(data.getUTCHours()),
                         $('#epoca').val());
+                    console.log($('#profs').val());
                 },
-                eventDrop: function(info) {
-                    console.log(info);
-                    console.log(info.event.start.toISOString());
+                //quando muda a data do exame marcado
+                eventDrop: function (info) {
 
                     var dateTime = info.event.start.toISOString().split("T");
                     var date = dateTime[0].split("-");
-                    console.log(date[1]);
 
                     var horas = dateTime[1].split(".");
                     var hour = horas[0].split(":");
 
-                    var data = new Date(date[0], date[1]-1, date[2],
+                    var data = new Date(date[0], date[1] - 1, date[2],
                         hour[0], hour[1], hour[2]);
 
                     var nome = info.event.title;
@@ -561,9 +538,9 @@
                 aspectRatio: 1.6
             });
 
-           calendar.addEventSource(event); //adiciona os eventos
+            calendar.addEventSource(event); //adiciona os eventos
 
-           calendar.render();
+            calendar.render();
 
             /* ADDING EVENTS */
             var currColor = '#3c8dbc' //Red by default
@@ -600,7 +577,7 @@
                 ini_events(event)
 
                 // Remove event from text input
-                $('#new-event').val('')
+                $('#new-event').val('');
             })
         };
     </script>
