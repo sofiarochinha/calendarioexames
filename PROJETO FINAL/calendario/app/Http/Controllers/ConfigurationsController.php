@@ -31,6 +31,8 @@ class ConfigurationsController extends Controller
     public function editEpoca(Request $request){
         $id = json_decode($request->id);
         $name = json_decode($request->name);
+
+
         $start_date = Carbon::createFromFormat('Y-m-d', trim(json_decode($request->startDate)))->format('Y-m-d');
         var_dump($start_date);
 
@@ -43,6 +45,7 @@ class ConfigurationsController extends Controller
 
     public function deleteEpoca(Request $request){
         $idEpoca = json_decode($request->id);
+        var_dump($idEpoca);
 
         Epoca::findOrFail($idEpoca)->delete();
     }

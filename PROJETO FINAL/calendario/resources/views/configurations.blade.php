@@ -181,7 +181,6 @@
 
         var tableEpocas = $("#example4").DataTable({
             columns: [
-                {title: 'Índice'},
                 {title: 'Nome'},
                 {title: 'Data da época'},
                 {title: 'Operações'}
@@ -189,6 +188,7 @@
 
             "responsive": true, "lengthChange": false, "autoWidth": false,
         }); //tabela das épocas
+
 
         /**
          * The above code is adding data to the table.
@@ -328,6 +328,7 @@
 
                 //obtém o id da época
                 idEpoca = epoca.attr('id');
+                console.log(idEpoca);
 
                 $.ajaxSetup({
                     headers: {
@@ -340,7 +341,10 @@
                         id: JSON.stringify(idEpoca),
 
                     })
+
+                return false;
             })
+
 
 
             $(this).parents('tr').remove();

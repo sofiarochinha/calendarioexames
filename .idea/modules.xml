@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../Fiverr/Bandas3/Bandas/.idea/Bandas.iml" filepath="$PROJECT_DIR$/../../Fiverr/Bandas3/Bandas/.idea/Bandas.iml" />
-      <module fileurl="file://E:/2ºano/2ºsemestre/Web/PorjetoWeb/PTAW/TTM/.idea/TTM.iml" filepath="E:/2ºano/2ºsemestre/Web/PorjetoWeb/PTAW/TTM/.idea/TTM.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/calendarioexames.iml" filepath="$PROJECT_DIR$/.idea/calendarioexames.iml" />
       <module fileurl="file://$USER_HOME$/Downloads/interfaces web/.idea/interfaces web.iml" filepath="$USER_HOME$/Downloads/interfaces web/.idea/interfaces web.iml" />
     </modules>
