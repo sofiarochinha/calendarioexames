@@ -10,6 +10,7 @@ use App\Models\Subject;
 use App\Models\Classroom;
 use App\Models\Epoca;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 
@@ -80,5 +81,31 @@ class ConfigurationsController extends Controller
             ['capacity' => $capacidade]);
     }
 
+    public function createDocente(Request $request){
+        $nome = json_decode($request->nome);
+        $email = trim(json_decode($request->email));
+        $nmec = trim(json_decode($request->nmec));
+
+        try{
+            $professor = new Professor();
+            $professor->name = $nome;
+            $professor->email = $email;
+            $professor->mec = $nmec;
+            $professor->created_at = Carbon::now();
+            $professor->updated_at = Carbon::now();
+
+            $professor->save();
+            $idDocente = $professor->id;
+
+            return \response()->json([
+                'idDocente' => $idDocente,
+            ]);
+        }catch (QueryException $exception){
+            return \response()->json([
+                'exception' => $exception
+            ]);
+        }
+
+    }
 
 }

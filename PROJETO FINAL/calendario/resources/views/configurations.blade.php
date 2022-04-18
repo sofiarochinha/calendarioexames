@@ -56,8 +56,8 @@
                             </div>
                         </div>
                         <div class="card" id="docentes" style="display: none;">
+                            <button class="btn btn-primary float-right" id="adicionarDocente">Adicionar</button>
                             <div class="card-body">
-                                <button class="btn btn-primary float-right" onclick="">Adicionar</button>
                                 <table id="docentesTabela" class="table table-bordered table-striped">
 
                                 </table>
@@ -148,6 +148,7 @@
 
         var tableDocente = $("#docentesTabela").DataTable({
             columns: [
+                {title: 'NMEC Docente'},
                 {title: 'Nome'},
                 {title: 'Email'},
                 {title: 'Disponibilidade'},
@@ -209,8 +210,9 @@
 
             @foreach($professors as $professor)
             tableDocente.row.add([
-                '{{ $professor->name}}',
-                '{{$professor->email}}',
+                '<div class="mecDocente">{{ $professor->mec }}</div>',
+                '<div class="nomeDocente" id="{{ $professor->id}}">{{ $professor->name}}</div>',
+                '<div class="emailDocente">{{$professor->email}}</div>',
                 '{{$professor->availability}}',
                 '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
                 '  </a> <a class="save"> <i class="fas fa-save"></i> </a></div>'
@@ -225,6 +227,7 @@
             $(this).hide();
         });
 
+        //EDIT DATA ON DATABLE FUNCTIONS
         /*The above code is making the edit button on the table clickable. When clicked, it will make all the data in the
         table editable.*/
         $('#epocas').on('click', 'tbody td .edit', function () {
@@ -309,46 +312,40 @@
         });
 
         /**
-         * The above code is making the save button on the edit page do the same thing as the save button on the add page.
-         * @param idSala
+         * Edição na tabela dos docentes
+         * Edição do nome, email, nmec
          */
-        var adicionarEpoca = true; //permite adicionar uma nova epoca
-        function saveSala(idSala) {
+        $('#docentes').on('click', 'tbody td .edit', function () {
+            var clickedRow = $($(this).closest('td')).closest('tr');
 
-            $("#salas").on('click', 'tbody td .save', function () {
-                capacidadeSala = $('#salas').find('input.capacitySala');
+            //Adding a new input field to each row of the table.
+            $(clickedRow).find('td').each(function () {
+                var rowIndex = tableDocente.row($(this).closest('tr')).index();
 
-                console.log(capacidadeSala);
+                mec = $(this).find(".");
+                capacidadeSala = $(this).find(".capacitySala");
 
-                $.each(capacidadeSala, function () {
+                capacidade = 0;
+                if( typeof capacidadeSala.html() !== 'undefined')
+                    capacidade = capacidadeSala.html();
 
-                    //indice da row que foi selecionada para ser editada
-                    var rowIndex = tableSala.row($(capacidadeSala).closest('tr')).index();
-                    console.log(rowIndex);
+                tableSala.cell(rowIndex, 2).data('<input class="capacitySala" type="text" value="' + capacidade + '" name="capacidadeSala">');
 
-                    //a capacidade inserida
-                    var fieldCapacity = $('#salas').find('input.capacitySala[name="capacidadeSala"]').val();
+                //obtém o id da sala
+                idSala = sala.attr('id');
 
-                    //remove todos os dados adicionados anteriormente
-                    $('#salas').find("input.capacitySala").remove();
+                saveSala(idSala);
+                return false;
+            })
 
-                    //adiciona a nova capacidade da sala à célula
-                    tableSala.cell(rowIndex, 2).data('<div id=' + idSala + ' class="salaNumber">'+ fieldCapacity +'</div>');
+            $(this).siblings('.save').show();
+            $(this).hide();
 
-                    console.log(idSala);
-                    console.log(fieldCapacity);
-                    //update na base de dados
-                    updateSala(idSala, fieldCapacity);
-                    adicionar = true;
-                    return false;
-                });
-
-                $(this).siblings('.edit').show();
-                $(this).hide();
-            });
-        }
+        });
+        //END EDIT DATA ON DATABLE FUNCTIONS
 
 
+        //UPDATE DATA FROM DATABASE FUNCTIONS
         /**
          * Atualiza uma epoca
          * @param idEpoca
@@ -392,7 +389,9 @@
 
                 })
         }
+        //END UPDATE DATA FROM DATABASE FUNCTIONS
 
+        //INSERT DATA TO DATABASE FUNCTIONS
         /**
          * Insere uma nova época na base de dados
          * @param fieldName
@@ -415,9 +414,82 @@
 
                 }, function (response) {
                     //adiciona o id da epoca
-                    rowIndex = tableEpocas.row(':first').nodes().to$().find('.data').attr('id', response['idEpoca']);
+                    tableEpocas.row(':first').nodes().to$().find('.data').attr('id', response['idEpoca']);
                 })
 
+        }
+
+        /**
+         * Insere um novo docente na base de dados
+         * @param fieldNmec numero mecanografico unico
+         * @param fieldName nome
+         * @param fieldEmail email novo e único
+         */
+        function insertNewDocente(fieldNmec, fieldName, fieldEmail) {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('criarDocente')}}",
+                {
+                    nome: JSON.stringify(fieldName),
+                    email: JSON.stringify(fieldEmail),
+                    nmec: JSON.stringify(fieldNmec)
+
+                }, function (response) {
+                    //adiciona o id da epoca
+                    if(typeof response['exception'] === "object"){
+                        toastr.error('Ocorreu um erro! O nmec ou o email já está a ser utilizado.');
+                        tableDocente.row(':first').remove().draw(false);
+
+                    }else if(typeof response['idDocente'] === "number"){
+                        tableDocente.row(':first').nodes().to$().find('.data').attr('id', response['idDocente']);
+                    }
+                })
+
+        }
+
+        //END INSERT DATA TO DATABASE FUNCTIONS
+
+        //SAVE DATA FUNCTIONS
+        var adicionarEpoca = true; //permite adicionar uma nova epoca
+        var adicionarDocente = true; //permite adicionar um novo docente
+
+        /**
+         * The above code is making the save button on the edit page do the same thing as the save button on the add page.
+         * @param idSala
+         */
+        function saveSala(idSala) {
+
+            $("#salas").on('click', 'tbody td .save', function () {
+                capacidadeSala = $('#salas').find('input.capacitySala');
+
+                $.each(capacidadeSala, function () {
+
+                    //indice da row que foi selecionada para ser editada
+                    var rowIndex = tableSala.row($(capacidadeSala).closest('tr')).index();
+
+                    //a capacidade inserida
+                    var fieldCapacity = $('#salas').find('input.capacitySala[name="capacidadeSala"]').val();
+
+                    //remove todos os dados adicionados anteriormente
+                    $('#salas').find("input.capacitySala").remove();
+
+                    //adiciona a nova capacidade da sala à célula
+                    tableSala.cell(rowIndex, 2).data('<div id=' + idSala + ' class="salaNumber">'+ fieldCapacity +'</div>');
+
+                    //update na base de dados
+                    updateSala(idSala, fieldCapacity);
+                    adicionar = true;
+                    return false;
+                });
+
+                $(this).siblings('.edit').show();
+                $(this).hide();
+            });
         }
 
         /**
@@ -457,6 +529,7 @@
                         //update na base de dados
                         updateEpoca(idEpoca, fieldName, startDate, endDate);
                     }
+                    adicionarEpoca = true;
                     return false;
                 });
 
@@ -466,8 +539,61 @@
             });
         }
 
+        /**
+         * Guarda os dados do docente
+         * @param idDocente id do docente
+         */
+        function saveDocente(idDocente) {
 
-        $('#epocas').on('click', 'tbody td .delete', function () {
+            $("#docentes").on('click', 'tbody td .save', function () {
+                nomeDocente = $('#docentes').find('input.nomeDocente');
+
+                $.each(nomeDocente, function () {
+                    docentes = $('#docentes');
+                    var inputName = docentes.find('input.nomeDocente[name="nomeDocente"]');
+                    var inputEmail = docentes.find('input.emailDocente[name="emailDocente"]');
+                    var inputNmec = docentes.find('input.mecDocente[name="nmecDocente"]');
+
+                    console.log(inputName, inputNmec, inputName);
+
+                    //indice da row que foi selecionada para ser editada
+                    var rowIndex = tableDocente.row($(nomeDocente).closest('tr')).index();
+                    console.log(rowIndex);
+
+                    //o nome, email e nmec inserido
+                    var fieldName = inputName.val();
+                    var fieldEmail = inputEmail.val();
+                    var fieldNmec = inputNmec.val();
+
+                    //remove todos os dados adicionados anteriormente
+                    inputName.remove();
+                    inputEmail.remove();
+                    inputNmec.remove();
+
+                    //adiciona o novo nome a celula
+                    tableDocente.cell(rowIndex, 0).data('<div>' + fieldNmec +'</div>');
+                    tableDocente.cell(rowIndex, 1).data('<div id=' + idDocente + ' class="data">' + fieldName + '</div>');
+                    tableDocente.cell(rowIndex, 2).data('<div>' + fieldEmail +'</div>');
+
+                    if (idDocente == null) {
+                        insertNewDocente(fieldNmec,fieldName, fieldEmail);
+                    } else {
+                        //update na base de dados
+                        updateDocente(idDocente, fieldNmec, fieldName, fieldEmail);
+                    }
+                    adicionarDocente = true;
+                    return false;
+                });
+
+                $(this).siblings('.edit').show();
+                $(this).siblings('.delete').show();
+                $(this).hide();
+            });
+        }
+        //END SAVE DATA FUNCTIONS
+
+        //DELETE FUNCTIONS
+        $('#epocas').on('click', 'tbody td .delete',    function () {
             var clickedRow = $($(this).closest('td')).closest('tr');
             $(clickedRow).find('td').each(function () {
                 epoca = $(this).find(".data");
@@ -494,7 +620,9 @@
             $(this).parents('tr').remove();
         });
 
+        //END DELETE FUNCTIONS
 
+        //START ADD DATA TO DATABLE FUNCTIONS
         /**
          * The above code is adding a new row to the table.
          */
@@ -523,7 +651,7 @@
                     }
                 });
 
-                rowIndex = tableEpocas.row(':first').nodes().to$().find('.edit').hide();
+                tableEpocas.row(':first').nodes().to$().find('.edit').hide();
 
                 saveEpoca(null);
             } else {
@@ -531,7 +659,34 @@
             }
         });
 
+        $("#adicionarDocente").on('click', function () {
+            if(adicionarDocente){
+                adicionarDocente = false;
+                tableDocente.row.add([
+                    '<div>0</div>',
+                    '<div class="data">0</div>',
+                    '<div></div>',
+                    '<div></div>',
+                    '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
+                    '  </a> <a class="save"> <i class="fas fa-save"></i> </a>' +
+                    '  <a class="delete"> <i class="fas fa-trash"></i> </a></div>']).draw();
 
+                rowIndex = tableDocente.row(':first').index();
+
+                tableDocente.cell(rowIndex, 0).data('<input class="mecDocente" type="number" value="' + 0 + '" name="nmecDocente">');
+                tableDocente.cell(rowIndex, 1).data('<input class="nomeDocente" type="text" value="' + 'Novo Docente' + '" name="nomeDocente">');
+                tableDocente.cell(rowIndex, 2).data('<input class="emailDocente" type="email" value="' + 'Novo Email' + '" name="emailDocente">');
+
+                tableDocente.row(':first').nodes().to$().find('.edit').hide();
+                tableDocente.row(':first').nodes().to$().find('.delete').hide();
+
+                saveDocente(null);
+            } else {
+                toastr.warning('Só pode adicionar um docente de cada vez.')
+            }
+        });
+
+        //END ADD DATA TO DATABLE FUNCTIONS
     </script>
 
 

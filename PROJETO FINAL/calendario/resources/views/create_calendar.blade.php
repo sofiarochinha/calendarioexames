@@ -71,7 +71,8 @@
                                                 data-placeholder="Selecione um curso..." style="width: 100%;"
                                                 id="epoca">
                                             @foreach($evaluation_season as $season)
-                                                <option value="{{ $season->id }}">{{ $season->name }}</option>
+                                                <option value="{{ $season->id }}">{{ $season->name }} ({{$season->start_date}}
+                                                    até {{$season->end_date}})</option>
                                             @endforeach
                                         </select>
                                     </div>

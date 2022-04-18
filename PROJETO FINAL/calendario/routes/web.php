@@ -47,6 +47,10 @@ Route::middleware([Authenticate::class])->group(function (){
      */
     Route::post('/editar-sala/', [\App\Http\Controllers\ConfigurationsController::class, 'editSala'])->name('editSala');
 
+    /**
+     * Adiciona um novo docente
+     */
+    Route::post('/adicionar-docente/', [\App\Http\Controllers\ConfigurationsController::class, 'createDocente'])->name('criarDocente');
 
     Route::get('/calendario-anterior', ['as' => 'calendarioanterior', 'uses' => 'App\Http\Controllers\HistoricController@showView']);
 
