@@ -268,7 +268,6 @@
             theme: 'bootstrap4'
         })
 
-
     })
 
     $(function () {

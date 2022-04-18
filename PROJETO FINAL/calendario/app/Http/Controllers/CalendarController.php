@@ -26,7 +26,7 @@ class CalendarController extends Controller
     /**
      * Marca um exame
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function adicionarEvento(Request $request){
             $data = json_decode($request->data);
@@ -52,8 +52,12 @@ class CalendarController extends Controller
                 $evaluationSlot->time_slot = $timeSlot;
                 $evaluationSlot->calendar_day = $data;
                 $evaluationSlot->save();
+
+                return \response()->json([
+                    'idEvaluationSlot' => $evaluationSlot->id,
+                ]);
             } else {
-                EvaluationSlot::whereId($evaluationSlot->id)->update([
+                $evaluationSlot = EvaluationSlot::whereId($evaluationSlot->id)->update([
                     'calendar_id' => $calendar,
                     'subject' => $subject,
                     'associated_professor' => $associated_professor,
@@ -62,7 +66,12 @@ class CalendarController extends Controller
                     'time_slot' => $timeSlot,
                     'calendar_day' => $data
                 ]);
+
+                return \response()->json([
+                    'idEvaluationSlot' => $evaluationSlot->id,
+                ]);
             }
+
 
 
     }

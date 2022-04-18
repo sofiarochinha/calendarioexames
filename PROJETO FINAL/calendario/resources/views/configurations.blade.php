@@ -312,6 +312,7 @@
          * The above code is making the save button on the edit page do the same thing as the save button on the add page.
          * @param idSala
          */
+        var adicionarEpoca = true; //permite adicionar uma nova epoca
         function saveSala(idSala) {
 
             $("#salas").on('click', 'tbody td .save', function () {
@@ -338,7 +339,7 @@
                     console.log(fieldCapacity);
                     //update na base de dados
                     updateSala(idSala, fieldCapacity);
-
+                    adicionar = true;
                     return false;
                 });
 
@@ -473,7 +474,6 @@
 
                 //obtém o id da época
                 idEpoca = epoca.attr('id');
-                console.log(idEpoca);
 
                 $.ajaxSetup({
                     headers: {
@@ -499,31 +499,36 @@
          * The above code is adding a new row to the table.
          */
         $("#adicionarEpoca").on('click', function () {
-            tableEpocas.row.add([
-                ' <div class="data">0</div>',
-                '<div class="input-group">' +
-                '   <div class="input-group-prepend">' +
-                '       <span class="input-group-text">' +
-                '           <i class="far fa-calendar-alt"></i> ' +
-                '       </span>' +
-                '  </div>' +
-                '  <input type="text" class="form-control float-right daterange" > </div>',
-                '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
-                '  </a> <a class="save"> <i class="fas fa-save"></i> </a>' +
-                '  <a class="delete"> <i class="fas fa-trash"></i> </a></div>']).draw();
+            if(adicionarEpoca){
+                adicionarEpoca = false;
+                tableEpocas.row.add([
+                    ' <div class="data">0</div>',
+                    '<div class="input-group">' +
+                    '   <div class="input-group-prepend">' +
+                    '       <span class="input-group-text">' +
+                    '           <i class="far fa-calendar-alt"></i> ' +
+                    '       </span>' +
+                    '  </div>' +
+                    '  <input type="text" class="form-control float-right daterange" > </div>',
+                    '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
+                    '  </a> <a class="save"> <i class="fas fa-save"></i> </a>' +
+                    '  <a class="delete"> <i class="fas fa-trash"></i> </a></div>']).draw();
 
-            rowIndex = tableEpocas.row(':first').index();
-            tableEpocas.cell(rowIndex, 0).data('<input class="data" type="text" value="' + 'Nova Época' + '" name="nomeEpoca">');
+                rowIndex = tableEpocas.row(':first').index();
+                tableEpocas.cell(rowIndex, 0).data('<input class="data" type="text" value="' + 'Nova Época' + '" name="nomeEpoca">');
 
-            $('.daterange').daterangepicker({
-                locale: {
-                    format: 'YYYY-MM-DD'
-                }
-            });
+                $('.daterange').daterangepicker({
+                    locale: {
+                        format: 'YYYY-MM-DD'
+                    }
+                });
 
-            rowIndex = tableEpocas.row(':first').nodes().to$().find('.edit').hide();
+                rowIndex = tableEpocas.row(':first').nodes().to$().find('.edit').hide();
 
-            saveEpoca(null);
+                saveEpoca(null);
+            } else {
+                toastr.warning('Só pode adicionar uma época de cada vez.')
+            }
         });
 
 

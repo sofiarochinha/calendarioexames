@@ -155,7 +155,6 @@
     <!-- Page specific script -->
     <script>
 
-
         /**
          * comboboxs para o calendário atual
          * verifica quais são as epocas que estam associadas ao curso e quais são os anos do curso
@@ -183,15 +182,14 @@
         if (valcurso == {!!$course->course_code!!}) {
             if (valAno == {!!$course->course_year!!}) {
                 @foreach ($epocas as $epoca)
-
                     @if( $epoca->course_id == $course->id)
-                    epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
-                @foreach ($epoca->course->subject as $subject)
-                    @if($subject->evaluationSlot == null)
-                    disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
-                @endif
-                @endforeach
-                @endif
+                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
+                        @foreach ($epoca->course->subject as $subject)
+                            @if($subject->evaluationSlot == null)
+                               disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
+                            @endif
+                        @endforeach
+                    @endif
                 @endforeach
             }
         }
@@ -228,7 +226,7 @@
                         @if( $epoca->course_id == $course->id)
                         epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}} </option>";
 
-                    @endif
+                        @endif
                     @endforeach
                 }
             }
@@ -242,8 +240,8 @@
             if ({!!$epoca->id!!} == epoca) {
                 @foreach ($epoca->course->subject as $subject)
                     @if($subject->evaluationSlot == null)
-                    disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
-                @endif
+                        disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
+                    @endif
                 @endforeach
             }
             @endforeach
@@ -503,7 +501,7 @@
                         $('#epoca').val());
                     console.log($('#profs').val());
                 },
-                //quando muda a data do exame marcado
+                //quando muda a data do exame
                 eventDrop: function (info) {
 
                     var dateTime = info.event.start.toISOString().split("T");

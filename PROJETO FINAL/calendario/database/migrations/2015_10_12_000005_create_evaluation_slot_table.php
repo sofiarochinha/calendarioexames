@@ -19,8 +19,8 @@ class CreateEvaluationSlotTable extends Migration
             $table->integer('calendar_id'); //para obter start_date e end_date
             $table->integer('subject'); //nome do evento
             $table->integer('associated_professor');
-            $table->integer('observing_professor');
-            $table->integer('classroom');
+            $table->integer('observing_professor')->nullable();
+            $table->integer('classroom')->nullable();
             $table->integer('time_slot');
             $table->date('calendar_day');
 
