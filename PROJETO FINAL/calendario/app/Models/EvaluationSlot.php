@@ -12,29 +12,16 @@ class EvaluationSlot extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        "id",
         "calendar_id",
         "subject",
-        "associated_professor",
-        "observing_professor",
-        "classroom",
         "time_slot",
         "calendar_day"
     ];
 
-    public function associated_professor(){
-        return $this->belongsTo(Professor::class, 'associated_professor');
-    }
 
     public function calendar(){
         return $this->belongsTo(Calendar::class, 'calendar_id');
-    }
-
-    public function observing_professor(){
-        return $this->belongsTo(Professor::class, 'observing_professor');
-    }
-
-    public function classroom(){
-        return $this->belongsTo(Classroom::class, 'classroom');
     }
 
     public function timeslot(){
@@ -43,5 +30,9 @@ class EvaluationSlot extends Model
 
     public function Subject(){
         return $this->belongsTo(Subject::class, 'subject');
+    }
+
+    public function associatedProf(){
+        return $this->hasMany(ObservingProfessor::class, 'id_evaluation_slot');
     }
 }

@@ -17,11 +17,9 @@ class Professor extends Model
         return $this->hasOne(Subject::class);
     }
 
-    public function associatedProfessor(){
-        return $this->hasOne(EvaluationSlot::class);
+    public function observingProfessor(){
+        return $this->hasOne(ObservingProfessor::class);
     }
 
-    public function abservingProfessor(){
-        return $this->hasOne(EvaluationSlot::class);
-    }
+
 }

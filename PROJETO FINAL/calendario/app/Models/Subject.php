@@ -18,7 +18,8 @@ class Subject extends Model
         'subject_code',
         'semester',
         'professor_id',
-        'course_id'
+        'course_id',
+        'numberOfStudent'
     ];
 
     public function associated_professor(){

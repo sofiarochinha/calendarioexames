@@ -49,7 +49,6 @@
                         </div>
                         <div class="card" id="UC">
                             <div class="card-body">
-                                <button class="btn btn-primary float-right" onclick="">Adicionar</button>
                                 <table id="ucsTabela" class="table table-bordered table-striped">
 
                                 </table>
@@ -65,7 +64,6 @@
                         </div>
                         <div class="card" id="salas" style="display: none;">
                             <div class="card-body">
-                                <button class="btn btn-primary float-right" onclick="">Adicionar</button>
                                 <table id="salasTabela" class="table table-bordered table-striped">
 
                                 </table>
@@ -92,6 +90,8 @@
     <script src="{{(asset('/plugins/jquery/jquery-3.6.0.min.js'))}}"></script>
     <script src="{{(asset('/plugins/moment/moment.min.js'))}}"></script>
     <script src="{{(asset('/plugins/daterangepicker/daterangepicker.js'))}}"></script>
+
+
     <!-- Datatables-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
@@ -195,14 +195,13 @@
             ]).draw();
             @endforeach
 
-
             @foreach($subjects as $subject)
             tableUCS.row.add([
-                '{{ $subject->name}}',
-                '{{$subject->associated_professor->name}}',
+                '<div id={{ $subject->id}} class="nomeUC">{{ $subject->name}}</div>',
+                '<div class="nomeDocente" id={{$subject->associated_professor->id}}>{{$subject->associated_professor->name}}</div>',
                 '{{ $subject->courses->name}}',
                 '{{ $subject->courses->course_year}}',
-                '0',
+                '<div class="alunos">0</div>',
                 '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
                 '  </a> <a class="save"> <i class="fas fa-save"></i> </a></div>'
             ]).draw();
@@ -211,7 +210,7 @@
             @foreach($professors as $professor)
             tableDocente.row.add([
                 '<div class="mecDocente">{{ $professor->mec }}</div>',
-                '<div class="nomeDocente" id="{{ $professor->id}}">{{ $professor->name}}</div>',
+                '<div class="nomeDocente" id={{ $professor->id}}>{{ $professor->name}}</div>',
                 '<div class="emailDocente">{{$professor->email}}</div>',
                 '{{$professor->availability}}',
                 '  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
@@ -234,44 +233,41 @@
             var clickedRow = $($(this).closest('td')).closest('tr');
 
             //Adding a new input field to each row of the table.
-            $(clickedRow).find('td').each(function () {
-                epoca = $(this).find(".data");
-                data = $(clickedRow).find(".epoca");
+            epoca = $(clickedRow).find(".data");
+            data = $(clickedRow).find(".epoca");
 
-                nomeEpoca = epoca.html();
-                dataEpoca = data.html();
+            nomeEpoca = epoca.html();
+            dataEpoca = data.html();
 
-                //obtém o id da época
-                idEpoca = epoca.attr('id');
+            //obtém o id da época
+            idEpoca = epoca.attr('id');
 
-                //adiciona um input para escrever o nome da época
-                epoca.html('<input class="data" type="text" value="' + nomeEpoca + '" name="nomeEpoca">');
-                data.html('<div class="input-group">' +
-                    '   <div class="input-group-prepend">' +
-                    '       <span class="input-group-text">' +
-                    '           <i class="far fa-calendar-alt"></i> ' +
-                    '       </span>' +
-                    '  </div>' +
-                    '  <input type="text" class="form-control float-right daterange" > </div>');
+            //adiciona um input para escrever o nome da época
+            epoca.html('<input class="data" type="text" value="' + nomeEpoca + '" name="nomeEpoca">');
+            data.html('<div class="input-group">' +
+                '   <div class="input-group-prepend">' +
+                '       <span class="input-group-text">' +
+                '           <i class="far fa-calendar-alt"></i> ' +
+                '       </span>' +
+                '  </div>' +
+                '  <input type="text" class="form-control float-right daterange" > </div>');
 
-                //coloca as datas no daterange picker comforme o id da epoca
-                @foreach($epocas as $epoca)
-                if (idEpoca == {!! $epoca->id !!}) {
-                    $(".daterange").daterangepicker(
-                        {
-                            locale: {
-                                format: 'YYYY-MM-DD'
-                            },
-                            startDate: '{{ $epoca->start_date}}',
-                            endDate: '{{ $epoca->end_date}}'
-                        });
-                }
-                @endforeach
+            //coloca as datas no daterange picker comforme o id da epoca
+            @foreach($epocas as $epoca)
+            if (idEpoca == {!! $epoca->id !!}) {
+                $(".daterange").daterangepicker(
+                    {
+                        locale: {
+                            format: 'YYYY-MM-DD'
+                        },
+                        startDate: '{{ $epoca->start_date}}',
+                        endDate: '{{ $epoca->end_date}}'
+                    });
+            }
+            @endforeach
 
 
-                saveEpoca(idEpoca);
-                return false;
-            })
+            saveEpoca(idEpoca);
 
 
             $(this).siblings('.save').show();
@@ -294,7 +290,7 @@
                 capacidadeSala = $(this).find(".capacitySala");
 
                 capacidade = 0;
-                if( typeof capacidadeSala.html() !== 'undefined')
+                if (typeof capacidadeSala.html() !== 'undefined')
                     capacidade = capacidadeSala.html();
 
                 tableSala.cell(rowIndex, 2).data('<input class="capacitySala" type="text" value="' + capacidade + '" name="capacidadeSala">');
@@ -319,29 +315,70 @@
             var clickedRow = $($(this).closest('td')).closest('tr');
 
             //Adding a new input field to each row of the table.
-            $(clickedRow).find('td').each(function () {
-                var rowIndex = tableDocente.row($(this).closest('tr')).index();
+            var rowIndex = tableDocente.row($(this).closest('tr')).index();
 
-                mec = $(this).find(".");
-                capacidadeSala = $(this).find(".capacitySala");
+            mec = $(clickedRow).find(".mecDocente").html();
+            nome = $(clickedRow).find(".nomeDocente").html();
+            email = $(clickedRow).find(".emailDocente").html();
 
-                capacidade = 0;
-                if( typeof capacidadeSala.html() !== 'undefined')
-                    capacidade = capacidadeSala.html();
+            //obtém o id do docente
+            idDocente = $(clickedRow).find(".nomeDocente").attr('id');
 
-                tableSala.cell(rowIndex, 2).data('<input class="capacitySala" type="text" value="' + capacidade + '" name="capacidadeSala">');
+            tableDocente.cell(rowIndex, 0).data('<input class="mecDocente" type="number" value="' + mec + '" name="nmecDocente">');
+            tableDocente.cell(rowIndex, 1).data('<input class="nomeDocente" type="text" value="' + nome + '" name="nomeDocente">');
+            tableDocente.cell(rowIndex, 2).data('<input class="emailDocente" type="email" value="' + email + '" name="emailDocente">');
 
-                //obtém o id da sala
-                idSala = sala.attr('id');
-
-                saveSala(idSala);
-                return false;
-            })
+            saveDocente(idDocente);
 
             $(this).siblings('.save').show();
             $(this).hide();
 
         });
+
+        $('#UC').on('click', 'tbody td .edit', function () {
+            var clickedRow = $($(this).closest('td')).closest('tr');
+
+            var rowIndex = tableUCS.row($(this).closest('tr')).index();
+
+            //Adding a new input field to each row of the table.
+            alunosInscritos = $(clickedRow).find(".alunos");
+            nomeUc = $(clickedRow).find(".nomeUC");
+            nomeDocente = $(clickedRow).find(".nomeDocente");
+
+            numeroAlunos = alunosInscritos.html();
+
+            //obtém o id da unidade curricular
+            idUC = nomeUc.attr('id');
+
+            //adiciona um input para escrever o numero de alunos inscritos
+            tableUCS.cell(rowIndex, 4).data('<input class="alunos" type="number" value="' + numeroAlunos + '" name="alunosInscritos">');
+            tableUCS.cell(rowIndex, 1).data('<div class="row">' +
+                '<div>'+
+                 '<div class="form-group">'+
+                    '<select class="custom-select selectDocente">'+
+
+                        @foreach($professors as $prof)
+                            '<option value="{{$prof->name}}" id="{{$prof->id}}">{{$prof->name}} </option>' +
+                        @endforeach
+
+                                {{--    '<option selected>' + nomeDocente.html()+ '</option>'--}}
+                                {{--else--}}
+                                {{--    '<option value="{{$prof->name}}" id="{{$prof->id}}">{{$prof->name}} </option>'--}}
+
+
+                    + '</select> </div> </div></div>');
+
+            saveUC(idUC);
+
+
+            $(this).siblings('.save').show();
+            $(this).siblings('.delete').hide();
+            $(this).hide();
+
+            return;
+
+        });
+
         //END EDIT DATA ON DATABLE FUNCTIONS
 
 
@@ -389,6 +426,57 @@
 
                 })
         }
+
+
+        /**
+         * A function that is called when the user clicks on the save button. It is responsible for updating the
+         * information of the teacher.
+         * @param idDocente
+         * @param fieldNmec
+         * @param fieldName
+         * @param fieldEmail
+         */
+        function updateDocente(idDocente, fieldNmec, fieldName, fieldEmail) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('editDocente')}}",
+                {
+                    idDocente: JSON.stringify(idDocente),
+                    fieldNmec: JSON.stringify(fieldNmec),
+                    fieldName: JSON.stringify(fieldName),
+                    fieldEmail: JSON.stringify(fieldEmail),
+
+                })
+        }
+
+        /**
+         * Update de uma unidade curricular
+         * @param idUC
+         * @param idDocente
+         * @param alunosInscritos
+         */
+        function updateUC(idUC, idDocente, alunosInscritos) {
+            console.log(alunosInscritos, idDocente);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('editUC')}}",
+                {
+                    idUC: JSON.stringify(idUC),
+                    idDocente: JSON.stringify(idDocente),
+                    alunosInscritos: JSON.stringify(alunosInscritos),
+
+                })
+        }
+
         //END UPDATE DATA FROM DATABASE FUNCTIONS
 
         //INSERT DATA TO DATABASE FUNCTIONS
@@ -441,12 +529,12 @@
 
                 }, function (response) {
                     //adiciona o id da epoca
-                    if(typeof response['exception'] === "object"){
+                    if (typeof response['exception'] === "object") {
                         toastr.error('Ocorreu um erro! O nmec ou o email já está a ser utilizado.');
                         tableDocente.row(':first').remove().draw(false);
 
-                    }else if(typeof response['idDocente'] === "number"){
-                        tableDocente.row(':first').nodes().to$().find('.data').attr('id', response['idDocente']);
+                    } else if (typeof response['idDocente'] === "number") {
+                        tableDocente.row(':first').nodes().to$().find('.nomeDocente').attr('id', response['idDocente']);
                     }
                 })
 
@@ -465,21 +553,21 @@
         function saveSala(idSala) {
 
             $("#salas").on('click', 'tbody td .save', function () {
-                capacidadeSala = $('#salas').find('input.capacitySala');
+                let capacidadeSala = $('#salas').find('input.capacitySala');
 
                 $.each(capacidadeSala, function () {
 
                     //indice da row que foi selecionada para ser editada
-                    var rowIndex = tableSala.row($(capacidadeSala).closest('tr')).index();
+                    let rowIndex = tableSala.row($(capacidadeSala).closest('tr')).index();
 
                     //a capacidade inserida
-                    var fieldCapacity = $('#salas').find('input.capacitySala[name="capacidadeSala"]').val();
+                    let fieldCapacity = $('#salas').find('input.capacitySala[name="capacidadeSala"]').val();
 
                     //remove todos os dados adicionados anteriormente
                     $('#salas').find("input.capacitySala").remove();
 
                     //adiciona a nova capacidade da sala à célula
-                    tableSala.cell(rowIndex, 2).data('<div id=' + idSala + ' class="salaNumber">'+ fieldCapacity +'</div>');
+                    tableSala.cell(rowIndex, 2).data('<div id=' + idSala + ' class="salaNumber">' + fieldCapacity + '</div>');
 
                     //update na base de dados
                     updateSala(idSala, fieldCapacity);
@@ -501,43 +589,41 @@
             $("#epocas").on('click', 'tbody td .save', function () {
                 nomeEpoca = $('#epocas').find('input.data');
 
-                $.each(nomeEpoca, function () {
-                    date = $('.daterange');
+                date = $('.daterange');
 
-                    //indice da row que foi selecionada para ser editada
-                    var rowIndex = tableEpocas.row($(nomeEpoca).closest('tr')).index();
+                //indice da row que foi selecionada para ser editada
+                var rowIndex = tableEpocas.row($(nomeEpoca).closest('tr')).index();
 
-                    //o nome inserido
-                    var fieldName = $('#epocas').find('input.data[name="nomeEpoca"]').val();
-                    var fieldDate = date.val();
-                    dateArray = fieldDate.split("-");
+                //o nome inserido
+                var fieldName = $('#epocas').find('input.data[name="nomeEpoca"]').val();
+                var fieldDate = date.val();
+                dateArray = fieldDate.split("-");
 
-                    startDate = dateArray[0] + "-" + dateArray[1] + "-" + dateArray[2];
-                    endDate = dateArray[3] + "-" + dateArray[4] + "-" + dateArray[5];
+                startDate = dateArray[0] + "-" + dateArray[1] + "-" + dateArray[2];
+                endDate = dateArray[3] + "-" + dateArray[4] + "-" + dateArray[5];
 
-                    //remove todos os dados adicionados anteriormente
-                    $('#epocas').find("input.data").remove();
-                    $('#epocas').find("input.daterange").remove();
+                //remove todos os dados adicionados anteriormente
+                $('#epocas').find("input.data").remove();
+                $('#epocas').find("input.daterange").remove();
 
-                    //adiciona o novo nome a celula
-                    tableEpocas.cell(rowIndex, 0).data('<div id=' + idEpoca + ' class="data">' + fieldName + '</div>');
-                    tableEpocas.cell(rowIndex, 1).data('<div class="epoca">' + startDate + " até " + endDate + '</div>');
+                //adiciona o novo nome a celula
+                tableEpocas.cell(rowIndex, 0).data('<div id=' + idEpoca + ' class="data">' + fieldName + '</div>');
+                tableEpocas.cell(rowIndex, 1).data('<div class="epoca">' + startDate + " até " + endDate + '</div>');
 
-                    if (idEpoca == null) {
-                        insertNewEpoca(fieldName, startDate, endDate);
-                    } else {
-                        //update na base de dados
-                        updateEpoca(idEpoca, fieldName, startDate, endDate);
-                    }
-                    adicionarEpoca = true;
-                    return false;
-                });
+                if (idEpoca == null) {
+                    insertNewEpoca(fieldName, startDate, endDate);
+                } else {
+                    //update na base de dados
+                    updateEpoca(idEpoca, fieldName, startDate, endDate);
+                }
+                adicionarEpoca = true;
 
                 $(this).siblings('.edit').show();
                 $(this).siblings('.delete').show();
                 $(this).hide();
             });
         }
+
 
         /**
          * Guarda os dados do docente
@@ -548,52 +634,85 @@
             $("#docentes").on('click', 'tbody td .save', function () {
                 nomeDocente = $('#docentes').find('input.nomeDocente');
 
-                $.each(nomeDocente, function () {
-                    docentes = $('#docentes');
-                    var inputName = docentes.find('input.nomeDocente[name="nomeDocente"]');
-                    var inputEmail = docentes.find('input.emailDocente[name="emailDocente"]');
-                    var inputNmec = docentes.find('input.mecDocente[name="nmecDocente"]');
+                docentes = $('#docentes');
+                var inputName = docentes.find('input.nomeDocente[name="nomeDocente"]');
+                var inputEmail = docentes.find('input.emailDocente[name="emailDocente"]');
+                var inputNmec = docentes.find('input.mecDocente[name="nmecDocente"]');
 
-                    console.log(inputName, inputNmec, inputName);
+                //indice da row que foi selecionada para ser editada
+                var rowIndex = tableDocente.row($(nomeDocente).closest('tr')).index();
 
-                    //indice da row que foi selecionada para ser editada
-                    var rowIndex = tableDocente.row($(nomeDocente).closest('tr')).index();
-                    console.log(rowIndex);
+                //o nome, email e nmec inserido
+                var fieldName = inputName.val();
+                var fieldEmail = inputEmail.val();
+                var fieldNmec = inputNmec.val();
 
-                    //o nome, email e nmec inserido
-                    var fieldName = inputName.val();
-                    var fieldEmail = inputEmail.val();
-                    var fieldNmec = inputNmec.val();
+                //remove todos os dados adicionados anteriormente
+                inputName.remove();
+                inputEmail.remove();
+                inputNmec.remove();
 
-                    //remove todos os dados adicionados anteriormente
-                    inputName.remove();
-                    inputEmail.remove();
-                    inputNmec.remove();
+                //adiciona o novo nome a celula
+                tableDocente.cell(rowIndex, 0).data('<div>' + fieldNmec + '</div>');
+                tableDocente.cell(rowIndex, 1).data('<div id=' + idDocente + ' class="data">' + fieldName + '</div>');
+                tableDocente.cell(rowIndex, 2).data('<div>' + fieldEmail + '</div>');
 
-                    //adiciona o novo nome a celula
-                    tableDocente.cell(rowIndex, 0).data('<div>' + fieldNmec +'</div>');
-                    tableDocente.cell(rowIndex, 1).data('<div id=' + idDocente + ' class="data">' + fieldName + '</div>');
-                    tableDocente.cell(rowIndex, 2).data('<div>' + fieldEmail +'</div>');
-
-                    if (idDocente == null) {
-                        insertNewDocente(fieldNmec,fieldName, fieldEmail);
-                    } else {
-                        //update na base de dados
-                        updateDocente(idDocente, fieldNmec, fieldName, fieldEmail);
-                    }
-                    adicionarDocente = true;
-                    return false;
-                });
+                if (idDocente == null) {
+                    insertNewDocente(fieldNmec, fieldName, fieldEmail);
+                } else {
+                    //update na base de dados
+                    updateDocente(idDocente, fieldNmec, fieldName, fieldEmail);
+                }
+                adicionarDocente = true;
 
                 $(this).siblings('.edit').show();
                 $(this).siblings('.delete').show();
                 $(this).hide();
             });
         }
+
+        function saveUC(idUC) {
+
+            $("#UC").on('click', 'tbody td .save', function () {
+                let nomeDocente = $('#UC').find('.selectDocente');
+
+                let uc = $('#UC');
+                let alunosInscritos = $("#UC").find("input.alunos");
+
+                var inputAlunosInscritos = uc.find('input.alunos[name="alunosInscritos"]');
+                var selectNomeDocente = uc.find('.selectDocente :selected');
+
+                //indice da row que foi selecionada para ser editada
+                var rowIndex = tableUCS.row($(nomeDocente).closest('tr')).index();
+                console.log(rowIndex);
+
+                //o nome, email e nmec inserido
+                var fieldName = selectNomeDocente.val();
+                var fieldAlunosInscritos = inputAlunosInscritos.val();
+
+                var idDocente = $('.selectDocente :selected').attr('id');
+
+                //remove todos os dados adicionados anteriormente
+                inputAlunosInscritos.remove();
+                selectNomeDocente.remove();
+
+                //adiciona o novo nome a celula
+                tableUCS.cell(rowIndex, 1).data('<div class="nomeDocente">' + fieldName + '</div>');
+                tableUCS.cell(rowIndex, 4).data('<div id=' + idDocente + ' class="alunos">' + fieldAlunosInscritos + '</div>');
+
+                updateUC(idUC, idDocente, fieldAlunosInscritos);
+
+                $(this).siblings('.edit').show();
+                $(this).siblings('.delete').show();
+                $(this).hide();
+
+                return;
+            });
+        }
         //END SAVE DATA FUNCTIONS
 
         //DELETE FUNCTIONS
-        $('#epocas').on('click', 'tbody td .delete',    function () {
+        $('#epocas').on('click', 'tbody td .delete', function () {
             var clickedRow = $($(this).closest('td')).closest('tr');
             $(clickedRow).find('td').each(function () {
                 epoca = $(this).find(".data");
@@ -627,7 +746,7 @@
          * The above code is adding a new row to the table.
          */
         $("#adicionarEpoca").on('click', function () {
-            if(adicionarEpoca){
+            if (adicionarEpoca) {
                 adicionarEpoca = false;
                 tableEpocas.row.add([
                     ' <div class="data">0</div>',
@@ -660,7 +779,7 @@
         });
 
         $("#adicionarDocente").on('click', function () {
-            if(adicionarDocente){
+            if (adicionarDocente) {
                 adicionarDocente = false;
                 tableDocente.row.add([
                     '<div>0</div>',

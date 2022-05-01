@@ -16,6 +16,12 @@ use Illuminate\Http\Request;
 
 class ConfigurationsController extends Controller
 {
+    /**
+     * It returns the view configurations.blade.php, passing the variables $subjects, $professors, $classrooms, $epocas and
+     * $courses to it
+     *
+     * @return A view with the name configurations.blade.php
+     */
     public function showView(){
         $subjects = Subject::all();
         $professors = Professor::all();
@@ -30,6 +36,11 @@ class ConfigurationsController extends Controller
             "courses"]));
     }
 
+    /**
+     * It takes a request, decodes the id, name, startDate and endDate, then updates the Epoca table with the new values
+     *
+     * @param Request request the request object
+     */
     public function editEpoca(Request $request){
         $id = json_decode($request->id);
         $name = json_decode($request->name);
@@ -42,9 +53,13 @@ class ConfigurationsController extends Controller
             ['name' => $name, 'start_date' => $start_date,  'end_date' => $end_date]);
     }
 
+    /**
+     * It receives a request from the front-end, decodes the id of the object to be deleted, and then deletes it
+     *
+     * @param Request request The request object.
+     */
     public function deleteEpoca(Request $request){
         $idEpoca = json_decode($request->id);
-        var_dump($idEpoca);
 
         Epoca::findOrFail($idEpoca)->delete();
     }
@@ -72,15 +87,27 @@ class ConfigurationsController extends Controller
         ]);
     }
 
+    /**
+     * It receives a request from the front-end, decodes the JSON data, and updates the database
+     *
+     * @param Request request The request object.
+     */
     public function editSala(Request $request){
         $id = json_decode($request->id);
         $capacidade = json_decode($request->capacidade);
 
-        var_dump($capacidade);
         Classroom::findOrFail($id)->update(
             ['capacity' => $capacidade]);
     }
 
+
+    /**
+     * It creates a new professor in the database
+     *
+     * @param Request request The request object.
+     *
+     * @return The id of the teacher created.
+     */
     public function createDocente(Request $request){
         $nome = json_decode($request->nome);
         $email = trim(json_decode($request->email));
@@ -107,5 +134,44 @@ class ConfigurationsController extends Controller
         }
 
     }
+
+    /**
+     * It receives a request from the front-end, decodes the JSON data, and updates the database
+     *
+     * @param Request request the request object
+     */
+    public function editUC(Request $request){
+        $idUC = json_decode($request->idUC);
+        $idDocente = json_decode($request->idDocente);
+        $alunosInscritos = (integer)json_decode($request->alunosInscritos);
+
+        //var_dump($request);
+        //dd($alunosInscritos);
+
+        Subject::findOrFail($idUC)->update(
+            ['professor_id' => $idDocente,
+             'numberOfStudent' => $alunosInscritos]);
+    }
+
+    /**
+     * It updates docente with the new values
+     *
+     * @param Request request the request object
+     */
+    public function editDocente(Request $request){
+        $idDocente = json_decode($request->idDocente);
+        $fieldNmec = json_decode($request->fieldNmec);
+        $fieldName = json_decode($request->fieldName);
+        $fieldEmail = json_decode($request->fieldEmail);
+
+        Professor::findOrFail($idDocente)->update(
+            ['name' => $fieldName,
+             'email' => $fieldEmail,
+             'mec' => $fieldNmec,
+             'updated_at' => Carbon::now(),
+            ]);
+    }
+
+
 
 }

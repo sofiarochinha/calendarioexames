@@ -31,8 +31,13 @@ Route::middleware([Authenticate::class])->group(function (){
     */
     Route::get('/marcar-exames', [\App\Http\Controllers\CalendarController::class, 'showView'])->name('marcarexames');
     Route::post('/marcar-exames/adicionar-evento', [\App\Http\Controllers\CalendarController::class, 'adicionarEvento'])->name('addevento');
+    /**
+     * Obter o modal com os professores e salas
+     */
+    //Route::post('/marcar-exames/modal', [\App\Http\Controllers\CalendarController::class, 'modal'])->name('modal');
 
     /**
+     * TAB ÉPOCAS
      * Eliminar épocas
      * Editar épocas
      * Adicionar épocas
@@ -43,14 +48,24 @@ Route::middleware([Authenticate::class])->group(function (){
     Route::post('/editar-epoca/', [\App\Http\Controllers\ConfigurationsController::class, 'editEpoca'])->name('editepoca');
     Route::post('/eliminar-epoca/', [\App\Http\Controllers\ConfigurationsController::class, 'deleteEpoca'])->name('deleteEpoca');
     /**
+     * TAB SALAS
      * Editar sala de aula
      */
     Route::post('/editar-sala/', [\App\Http\Controllers\ConfigurationsController::class, 'editSala'])->name('editSala');
 
     /**
+     * TAB DOCENTES
      * Adiciona um novo docente
+     * Editar um docente existente
      */
     Route::post('/adicionar-docente/', [\App\Http\Controllers\ConfigurationsController::class, 'createDocente'])->name('criarDocente');
+    Route::post('/editar-docente/', [\App\Http\Controllers\ConfigurationsController::class, 'editDocente'])->name('editDocente');
+
+    /**
+     * TAB UNIDADES CURRICULARES
+     * Editar unidade curricular
+     */
+    Route::post('/editar-uc/', [\App\Http\Controllers\ConfigurationsController::class, 'editUC'])->name('editUC');
 
     Route::get('/calendario-anterior', ['as' => 'calendarioanterior', 'uses' => 'App\Http\Controllers\HistoricController@showView']);
 
@@ -65,4 +80,10 @@ Route::middleware([Authenticate::class])->group(function (){
 
     //mostra a view criar calendário
     Route::get('/criar-calendario', ['as' => 'criarcalendario', 'uses' => 'App\Http\Controllers\CreateController@showView']);
+
+    /**
+     * Modal:
+     *  1 - associa os profs às salas
+     */
+    Route::post('/criar-calendario/associar-ao-exame', [\App\Http\Controllers\CalendarController::class, 'associarAoExame'])->name('associarAoExame');
 });

@@ -1,7 +1,13 @@
 @extends('layout.menu')
 @section('content')
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="stylesheet" href="{{(asset('/plugins/select2/css/select2.min.css'))}}">
+        <title>Ua Calendar</title>
+
+    </head>
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -98,45 +104,12 @@
     </section>
     </div>
 
-    <!-- Popup para selecionar a sala e os vigilantes -->
-    <div class="modal fade" id="schedule-edit">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Configurar exame</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Vigilantes</label>
-                            <select id="profs" class="select2" multiple="multiple"
-                                    data-placeholder="Selecione uma época" style="width: 100%;">
-                                @foreach($professors as $prof)
-                                    <option value="{{$prof->id}}">{{$prof->name}}</option>
-                                @endforeach
+    <div id="modal">
+        <div class="modal fade" id="schedule-edit">
 
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Salas</label>
-                            <select id="salas" class="select2" multiple="multiple"
-                                    data-placeholder="Selecione uma época" style="width: 100%;">
-                                @foreach($classroom as $class)
-                                    <option value="{{$class->id}}">{{$class->classroom}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
-                </div>
-            </div>
+
+
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
         </div>
     </div>
 
@@ -151,9 +124,17 @@
     <script src="{{(asset('/plugins/jquery-ui/jquery-ui.min.js'))}}"></script>
     <script src="{{(asset('/plugins/fullcalendar/main.js'))}}"></script>
 
+    <script src="{{(asset('/plugins/select2/js/select2.full.min.js'))}}"></script>
+
 
     <!-- Page specific script -->
     <script>
+
+
+        /*function fechar(){
+            $('#schedule-edit').modal();
+        }*/
+
 
         /**
          * comboboxs para o calendário atual
@@ -200,6 +181,7 @@
         $("#epoca").html(epocaString);
         alterarCalendario();
 
+        // Creating a function that is called when the user changes the course.
         $("#curso").change(function () {
             var valcurso = $(this).val();
             var epocaString = "";
@@ -294,6 +276,7 @@
             alterarCalendario();
         });
 
+        // Creating a function that will be called when the user changes the value of the select element with id "epoca".
         $("#epoca").change(function () {
             var epoca = $(this).val(); //epoca selecionada
             var disciplinaString = "";
@@ -310,10 +293,11 @@
             alterarCalendario();
         });
 
+        // Creating an array of objects, each object containing the start and end date of an event.
         function alterarCalendario() {
-            var dateEpoca = $('#epoca').val();
-            var dataInicio = "";
-            var arrayEvent = [];//criação de um objeto
+            let dateEpoca = $('#epoca').val();
+            let dataInicio = "";
+            let arrayEvent = [];//criação de um objeto
 
             @foreach($epocas as $epoca)
 
@@ -338,6 +322,7 @@
                             event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
                         }
 
+                        event.id = {!! $event->id !!};
                         event.title = "{!! $event->Subject->name!!}";
 
                         arrayEvent.push(event);
@@ -444,7 +429,6 @@
             var Draggable = FullCalendar.Draggable;
 
             var containerEl = document.getElementById('external-events');
-            //var checkbox = document.getElementById('drop-remove');
             var calendarEl = document.getElementById('calendar');
 
             // initialize the external events
@@ -499,7 +483,6 @@
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                     sendToController(data, nome, getTimeSlot(data.getUTCHours()),
                         $('#epoca').val());
-                    console.log($('#profs').val());
                 },
                 //quando muda a data do exame
                 eventDrop: function (info) {
@@ -529,8 +512,22 @@
                 eventDurationEditable: false,
                 slotMinTime: "09:30:00",
                 eventClick: function (event) {
-                    var modal = $("#schedule-edit");
-                    modal.modal();
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.post("{{ route('api-modal')}}",
+                        {
+                            idExame: JSON.stringify(event.event.id),
+
+                        }, function (response) {
+                            $('#schedule-edit').append(response);
+                    })
+
+                    $('#schedule-edit').modal();
                 },
 
                 aspectRatio: 1.6

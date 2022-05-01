@@ -21,6 +21,7 @@ class CreateSubjectTable extends Migration
             $table->string('semester');
             $table->integer('professor_id');
             $table->integer('course_id');
+            $table->integer('numberOfStudent')->default(0);
 
             $table->foreign('professor_id')
                 ->references('id')

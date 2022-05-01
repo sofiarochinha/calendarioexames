@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/modal', [\App\Http\Controllers\CalendarController::class, 'modal'])->name('api-modal');
