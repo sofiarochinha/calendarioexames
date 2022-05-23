@@ -104,12 +104,10 @@
     </section>
     </div>
 
-    <div id="modal">
+    <div>
         <div class="modal fade" id="schedule-edit">
 
 
-
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
         </div>
     </div>
 
@@ -130,10 +128,6 @@
     <!-- Page specific script -->
     <script>
 
-
-        /*function fechar(){
-            $('#schedule-edit').modal();
-        }*/
 
 
         /**
@@ -179,6 +173,38 @@
 
         $("#external-events").html(disciplinaString);
         $("#epoca").html(epocaString);
+
+        //valCurso -> o codigo do curso
+        //valAno -> ano de curso
+
+        /**
+         * Percisa de enviar o codigo de curso
+         * Ano de curso
+         * E a epoca
+         */
+
+        getExames(valcurso, $('#epoca').val(), valAno);
+
+        function getExames(codeCourse, idEpoca, yearCourse){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('api-getExames')}}",
+                {
+                    codeCourse: JSON.stringify(codeCourse),
+                    idEpoca: JSON.stringify(idEpoca),
+                    yearCourse: JSON.stringify(yearCourse),
+
+                }, function (response) {
+                    console.log(response['subjects'])
+                    console.log(response['associatedSala'])
+
+                })
+
+        }
         alterarCalendario();
 
         // Creating a function that is called when the user changes the course.
@@ -295,46 +321,110 @@
 
         // Creating an array of objects, each object containing the start and end date of an event.
         function alterarCalendario() {
-            let dateEpoca = $('#epoca').val();
-            let dataInicio = "";
-            let arrayEvent = [];//criação de um objeto
+            let dateEpoca = $('#epoca').val(), dataInicio = "",arrayEvent = [];//criação de um objeto
 
             @foreach($epocas as $epoca)
 
-            if ({!!  $epoca->id !!} == dateEpoca) {
-                dataInicio = '{!! $epoca->epoca->start_date !!}'.split(" ");
+                if ({!!  $epoca->id !!} == dateEpoca) {
+                    dataInicio = '{!! $epoca->epoca->start_date !!}'.split(" ");
 
-                var inicio = "", fim = "", nome = "";
+                    var inicio = "", fim = "", nome = "";
 
-                if (dateEpoca == {!! $epoca->id !!}) {
-                        @if ($epoca->evaluationslots != null)
+                    if (dateEpoca == {!! $epoca->id !!}) {
+                            @if ($epoca->evaluationslots != null)
 
-                        @foreach($epoca->evaluationslots as $event){
-                        var event = {};
-                        if ({!! $event->timeslot->id !!} == 1) {
-                            event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
-                            event.end = "{!! $event->calendar_day !!}".concat(" ", "13:30:00");
-                        } else if ({!! $event->timeslot->id !!} == 2) {
-                            event.start = "{!! $event->calendar_day !!}".concat(" ", "14:00:00");
-                            event.end = "{!! $event->calendar_day !!}".concat(" ", "18:00:00");
-                        } else {
-                            event.start = "{!! $event->calendar_day !!}".concat(" ", "18:30:00");
-                            event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
+                            @foreach($epoca->evaluationslots as $event){
+                            var event = {};
+                            if ({!! $event->timeslot->id !!} == 1) {
+                                event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
+                                event.end = "{!! $event->calendar_day !!}".concat(" ", "13:30:00");
+                            } else if ({!! $event->timeslot->id !!} == 2) {
+                                event.start = "{!! $event->calendar_day !!}".concat(" ", "14:00:00");
+                                event.end = "{!! $event->calendar_day !!}".concat(" ", "18:00:00");
+                            } else {
+                                event.start = "{!! $event->calendar_day !!}".concat(" ", "18:30:00");
+                                event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
+                            }
+
+                            event.id = {!! $event->id !!};
+
+
+                            event.title = "{!! $event->Subject->name!!}" + getSalas({!! $event->id !!})
+                            + " Salas" + getDocentes({!! $event->id !!}) + " Vigilantes";
+/*
+                                getSalas({!! $event->id !!}, changeTitle(event, {!! $event->Subject->name!!}));
+
+                                changeTitle(event, {!! $event->Subject->name!!});*/
+                            arrayEvent.push(event);
+
                         }
-
-                        event.id = {!! $event->id !!};
-                        event.title = "{!! $event->Subject->name!!}";
-
-                        arrayEvent.push(event);
-
+                        @endforeach
+                        @endif
                     }
-                    @endforeach
-                    @endif
                 }
-            }
             @endforeach
 
             calendar(dataInicio[0], arrayEvent);
+        }
+
+        function changeTitle(event, title){
+            event.title = title;
+        }
+       /* /!**
+         * Obtém o número de salas e de docentes já associadas a um exame
+         *!/
+        function getSalasDocentes(idExame){
+            var array = [];
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('api-getSalasDocentes')}}",
+                {
+                    idExame: JSON.stringify(idExame),
+                }, function (response) {
+                    array.push(response['countSala']);
+                    array.push(response['countProf']);
+                })
+
+            return array; //não funciona
+        }*/
+
+        function getSalas(idExame){
+            var salas;
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('api-getSalas')}}",
+                {
+                    idExame: JSON.stringify(idExame),
+                }, function (response) {
+
+                    salas = response['countSala'];
+                    console.log(salas);
+                })
+            console.log(salas);
+        }
+
+        function getDocentes(idExame){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('api-getDocentes')}}",
+                {
+                    idExame: JSON.stringify(idExame),
+                }, function (response) {
+                    return response['countProf'];
+                })
         }
 
         /**
@@ -483,6 +573,8 @@
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                     sendToController(data, nome, getTimeSlot(data.getUTCHours()),
                         $('#epoca').val());
+
+
                 },
                 //quando muda a data do exame
                 eventDrop: function (info) {
@@ -502,6 +594,8 @@
 
                     sendToController(data, nome, timeslot,
                         $('#epoca').val());
+
+                    alterarCalendario();
                 },
                 initialView: 'timeGrid2Week',
                 initialDate: dataInicio,

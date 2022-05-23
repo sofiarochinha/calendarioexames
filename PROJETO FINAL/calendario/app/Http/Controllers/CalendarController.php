@@ -18,14 +18,63 @@ use Illuminate\Support\Facades\DB;
 
 class CalendarController extends Controller
 {
-    public function showView(){
-        return view('calendario_atual',
-            [ 'courses_names' => Course::distinct('course_code')->with("calendar")->get()->sortBy('name'),
-                'courses' => Course::with("calendar")->get()->sortBy('course_year'),
-                'epocas' => Calendar::all(),
-                'professors' => Professor::all(),
-                'classroom' => Classroom::all()
-            ]);
+   public function showView(){
+        $courses_names = Course::distinct('course_code')->with("calendar")->get()->sortBy('name');
+        $courses = Course::with("calendar")->get()->sortBy('course_year');
+        $epocas = Calendar::all();
+        $professors = Professor::all();
+        $classroom = Classroom::all();
+
+        return view('calendario_atual',compact([
+            'courses',
+            'courses_names',
+            'epocas',
+            'professors',
+            'classroom']));
+    }
+
+
+    /**
+     * Coisas que eu perciso para a view
+     * As disciplinas que estam ativas e não estam marcadas
+     * Os exames marcados
+     * Os professores e as salas associadas ao exame
+     * O horário em que está marcado
+     *
+     * Verificações:
+     *
+     */
+
+    public function getExames(Request $request){
+
+        $codeCourse = json_decode($request->codeCourse);
+        $idEpoca = json_decode($request->idEpoca);
+        $yearCourse = json_decode($request->yearCourse);
+
+        //obtem todas as disciplinas marcadas
+        $subjects = Subject::where('course_id', 11)->with('evaluationSlot')->get();
+
+        //verificar que disciplinas têm incomplatibilidades
+        //salas associadas
+        $associatedSalaArray = [];
+
+        foreach ($subjects as $subject){
+            if($subject->evaluationSlot != null){
+
+                
+                /*
+                array_push($associatedSalaArray, (DB::table('associated_classroom')
+                    ->where('id_evaluation_slot', $subject->evaluationSlot->id)
+                    ->pluck('id_classroom')));
+            */}
+        }
+
+        //retornar um json com essa informação
+
+        return \response()->json([
+            'subjects' => $subjects,
+            'associatedSala' => $associatedSalaArray
+        ]);
     }
 
     /**
@@ -159,11 +208,53 @@ class CalendarController extends Controller
         return \response()->json([
             'success' => true
         ]);
-
-
-
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getSalasDocentes(Request $request){
+        $idExame = json_decode($request->idExame);
+
+        $countProf = count(DB::table('observing_professor')
+            ->where('id_evaluation_slot', $idExame)
+            ->pluck('id_professor'));
+
+
+        $countSala = count(DB::table('associated_classroom')
+            ->where('id_evaluation_slot', $idExame)
+            ->pluck('id_classroom'));
+
+        return \response()->json([
+            'countSala' => $countSala,
+            'countProf' => $countProf,
+        ]);
+    }
+
+    public function getSalas(Request $request){
+        $idExame = json_decode($request->idExame);
+
+        $countSala = count(DB::table('associated_classroom')
+            ->where('id_evaluation_slot', $idExame)
+            ->pluck('id_classroom'));
+
+        return \response()->json([
+            'countSala' => $countSala,
+        ]);
+    }
+
+    public function getDocentes(Request $request){
+        $idExame = json_decode($request->idExame);
+
+        $countProf = count(DB::table('observing_professor')
+            ->where('id_evaluation_slot', $idExame)
+            ->pluck('id_professor'));
+
+        return \response()->json([
+            'countProf' => $countProf,
+        ]);
+    }
 
 
 }

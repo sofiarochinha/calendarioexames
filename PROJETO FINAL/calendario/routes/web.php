@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
 
 /*Autenticação
-/ ->pagina de login
-
+ ->pagina de login
 */
 Route::get('/', function () {
     return view("Auth/login");

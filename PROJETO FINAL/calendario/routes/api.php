@@ -19,3 +19,10 @@ Route::get('/user', function (Request $request) {
 });
 
 Route::post('/modal', [\App\Http\Controllers\CalendarController::class, 'modal'])->name('api-modal');
+
+Route::post('/getSalasDocente', [\App\Http\Controllers\CalendarController::class, 'getSalasDocentes'])->name('api-getSalasDocentes');
+
+Route::post('/getSalas', [\App\Http\Controllers\CalendarController::class, 'getSalas'])->name('api-getSalas');
+Route::post('/getDocente', [\App\Http\Controllers\CalendarController::class, 'getDocentes'])->name('api-getDocentes');
+
+Route::post('/getExames', [\App\Http\Controllers\CalendarController::class, 'getExames'])->name('api-getExames');

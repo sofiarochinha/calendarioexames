@@ -1,6 +1,5 @@
 <!-- Popup para selecionar a sala e os vigilantes -->
-
-<div class="modal-dialog" id="modal">
+<div class="modal-dialog">
     <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
@@ -20,7 +19,8 @@
                 @foreach($associatedProf as $vigilante)
                     @foreach($professors as $prof)
                         @if($prof->id == $vigilante)
-                            <li>{{$prof->name}}</li>
+                            {{--não funciona--}}
+                            <li><span class="fa-li"><i class="fa-solid fa-x"></i></span>{{$prof->name}}</li>
                         @endif
                     @endforeach
                 @endforeach
@@ -68,6 +68,8 @@
 <script src="{{(asset('/plugins/jquery/jquery-3.6.0.min.js'))}}"></script>
 
 <script>
+
+    $('.select2').select2();
 
     var profsSelected, salasSelected;
 
