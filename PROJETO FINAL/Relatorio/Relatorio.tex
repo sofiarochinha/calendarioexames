@@ -143,33 +143,120 @@ Descrição da estrutura interna do relatório
 	\chapter{Planificação do projeto}
 	Identificação e descrição das atividades previstas para a realização
 	do projeto (Plano de Trabalho)
-	\subsection{Revisão do estado do projeto}
+	\section{Revisão do estado do projeto}
 	
-		Antes de começar a implementar novas funcionalidades foi feita uma revisão de todo o projeto para indentificar que funcionalidades necessitavam de revisões e correção de erros e quais não foram implementadas do planeamento inicial.
+		Antes de começar a implementar novas funcionalidades foi feita uma revisão de todo o projeto, a partir dos requisitos identificados no semestre passado (ver tabela \ref{requisitiosfuncionaisrevisao}), para identificar que funcionalidades necessitavam de revisões e correções de erros e quais não foram implementadas do planeamento inicial.
 		
-			\begin{table}[H]
-			\caption{Requisitos não implementados}
+		
+	\def\arraystretch{1.5}
+	\begin{center}
+		\label{requisitiosfuncionaisrevisao}
+		\begin{longtable}{|m{1cm}|m{2.2cm}|m{9cm}|m{3cm}|}
+			\caption{Requisitos funcionais implementados e não implementados}\\
 			
-			\begin{center}
-				\begin{tabularx}{\textwidth}{|c|X|c|}
-					\hline
-					\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
-					\hline
-					RF1 & As disciplinas e cursos podem ser inseridas através de \textit{drag e drop} &Alta\\
-					\hline
-					RIF2 & Interface responsivo permitindo a sua visualização em ambiente mobile &Alta\\
-					\hline
-					RIF3 & Linguagem padrão em Português de Portugal &Alta\\
-					\hline
-					RIF4 & Há dois tipos de avisos distinguidos com texto e cor &Alta\\
-					\hline
-				\end{tabularx}
-				\label{requisitosdeinterface}
-			\end{center}
-		\end{table}
+			\hline			
+			\textbf{Refª }	& \textbf{Categoria}&\textbf{Descrição do requisito} & \textbf{Implementado?} \\
+			\hline
+			
+			RF.1 &Importação& Importação de ficheiros com a configuração de salas, disciplinas e docentes em formato \textbf{csv} & Sim \\
+			\hline
+			
+			RF.2 &\multirow{2}{2cm}{Exportação}& Exportação de calendários em formato \textbf{pdf} & Não \\
+			
+			RF.3 && Exportação o calendário em língua inglesa & Não \\
+			\hline
+			
+			RF.4 &\multirow{3}{2cm}{Marcação de exames}& Os exames podem ser marcados em três turnos: às 9h30, às 14h e às 18h30 & Sim \\
+			
+			RF.5 && Associação de um ou mais vigilantes a cada exame & Não \\
+			
+			RF.6 && O calendário não deverá permitir a marcação de exames aos domingos e feriados & Não \\
+			
+			RF.7 &&	Associação de uma ou mais salas a cada exame & Não\\
+			
+			RF.8 && Se houver vários cursos com o mesmo exame então será associado a todos os calendários dos cursos associados. & Não\\
+			\hline
+			
+			RF.9 &\multirow{7}{2cm}{Configurações}& Configuração do tipo de sala (informática, laboratório de redes e normal) e lotação máxima & Não \\
+			
+			RF.10 & & Inserção de cursos e disciplinas & Não\\
+			
+			RF.11 && Permitir inserir novos docentes & Não\\
+			
+			RF.12 && Permitir editar informações (nome, que disciplinas está a lecionar, horário de trabalho) sobre os docentes & Não\\
+			
+			RF.13 && Permitir editar informações (nome do curso, docente e a disciplina) sobre as disciplinas e cursos & Não\\
+			
+			RF.14 && Alterar a disponibilidade dos docentes & Não\\
+			
+			RF.15 && Permitir colocar restrições arbitrárias introduzidas pelo utilizador & Não \\
+			\hline	
+			
+			RF.16 &\multirow{9}{2cm}{Avisos}& Aparecimento de um aviso no caso de incongruência da informação durante a marcação de exames & Não \\
+			
+			RF.17 &&Mostrar um aviso de alta prioridade se houver sobreposições de exames & Não\\
+			
+			RF.18 && Mostrar um aviso de alta prioridade se o docente não estiver disponível & Não \\
+			
+			RF.19 && Mostrar um aviso de alta prioridade se a sala não estiver disponível & Não\\
+			
+			RF.20 && Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Não\\
+			
+			RF.21&&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Não \\
+			
+			RF.22 && Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Não\\
+			
+			RF.23 && Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Não\\
+			
+			RF.24 && Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Não\\
+			
+			
+			RF.25 && Mostrar um aviso de média prioridade se o utilizador tentar exportar um calendário sem exames marcados & Não\\
+			\hline
+			
+			RF.26 &Autenticação& O utilizador só pode aceder à aplicação após a autenticação & Sim\\
+			\hline
+			
+			RF.27 &\multirow{3}{2cm}{Criação de calendários}&Criação de calendários associados a um curso, ano letivo, ano do curso, época e semestre.& Sim \\
+			
+			RF.28 && Criação de épocas de avaliação adicionando um nome e uma data de início e fim & Não \\
+			
+			RF.29 && A criação de um novo calendário deverá sempre partir do início sem exames marcados & Sim\\
+			\hline
+			RF.30 &\multirow{2}{*}{Histórico}& Guardar e visualizar calendários de exames de anos anteriores (histórico)& Não \\
+			
+			RF.31 && Filtrar o histórico por curso, ano letivo, ano do curso, semestre e época& Não \\
+			\hline
+		\end{longtable}
+	\end{center}
 	
-	\subsection{Planeamento do projeto}
+	Apesar de haver várias funcionalidades implementadas algumas destas necessitavam de correção de \textit{bugs}, apresentado na tabela \ref{revisaodaaplicacaobugs}, que prejudicavam a segurança da aplicação ou o comprometimento da funcionalidade. Os requisitos relacionados são referentes à tabela \ref{requisitiosfuncionaisrevisao}.
 	
+		\begin{table}[H]
+		\caption{Requisitos que têm \textit{bugs}}
+		
+		\begin{center}
+			\begin{tabularx}{\textwidth}{|X|X|}
+				\hline
+				\textbf{Descrição do \textit{bug}} & \textbf{Req. relacionado} \\
+				\hline
+				O utilizador consegue aceder à aplicação sem autenticação através do url & RF.26\\
+				\hline
+				Aparece várias vezes o mesmo ano do curso & RF.27\\
+				\hline
+				Não importa se tiver mais de um professor & RF.1\\
+				\hline
+				Não verifica se tem dados na base de dados & RF.1\\
+				\hline
+			\end{tabularx}
+			\label{revisaodaaplicacaobugs}
+		\end{center}
+	\end{table}
+	
+	\section{Planeamento do projeto}
+	
+	A partir da revisão feita anteriormente foi possível planear todo o projeto como se pode verificar na figura 
+	\ref{planeamentoinicial}.
 	
 		\clearpage
 	\begin{landscape}
@@ -178,6 +265,7 @@ Descrição da estrutura interna do relatório
 		\begin{figure}[H] 
 			\centering 			\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/planeamentoInicial}
 			\caption{Planeamento do projeto}
+			\label{planeamentoinicial}
 			
 		\end{figure}
 		
@@ -344,60 +432,48 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	\end{table}
 		
 	
-	\chapter{Modelo de casos de utilização}
-	
-	
-	\section{Diagrama de casos de utilização}
-	\label{diagrama}
-	
-
-
-	\section{Seleção dos casos de utilização}
 
 	
-	\section{Descrição dos casos de utilização}
-	\label{descricaousecase}
 	
-
-
+	\chapter{Modelo de dados persistentes}
 	
-	\chapter{Prototipagem}
+		Para cumprir com as novas funcionalidades, apresentados anteriormente na secção \ref{requisitos}, a base de dados teve de ser alterada. 
 	
-	\section{Protótipo de baixa fidelidade não funcional}
-	
-	\subsection{Wireframes}
-
-	
-	\subsection{Diagrama de user flow}
-
-	\subsection{Testes com potenciais utilizadores}
-
-	\subsubsection{Análise de resultados}
-	\section{Protótipo de alta fidelidade não funcional}
-	
-	\subsection{Desenvolvimento do protótipo}
-
-	\subsection{Guia de estilos}
-	
-	
-	\subsection{Testes com potenciais utilizadores}
-	
-	\subsubsection{Análise de resultados}
-	
-	\subsection{Testes de acessibilidade e desempenho}
-	
-	\chapter{Implementação do modelo de dados persistentes}
 	\section{Estrutura da base de dados}
+	
+	Para a preparação da aplicação a tabela "course" é preenchida com todos os cursos da universidade a partir da própria \textit{framework} assim como "time\_slot" que contém somente os três blocos em que se pode marcar um exame (manhã, tarde e noite).
+	
+	De seguida, Para utilizar a aplicação o utilizador terá de se autenticar com a sua conta (se não tiver terá de se registar) que está registada na tabela "users". No entanto não existe nenhuma associação dos dados às contas sendo que todas as contas têm acesso ao mesmos dados.
+	
+	Depois o utilizador terá de importar o csv em que os dados serão guardados nas tabelas "professor", "subject" e "classroom". Se existir mais que um professor para uma disciplina, estes serão guardados na tabela "professor", mas só será associado à disciplina o primeiro que aparece no csv uma vez que se assume que é o representante da mesma.
+	
+	???????????????
+	E as salas não são associadas uma vez que na época de exames não existe aulas. (ver o que fazer com os cursos de ctesp) 
+	
+	
+	
+	Uma das alterações foi a criação de duas tabelas "observing\_professor", que guarda todos os vigilantes associados a um exame, e "associated\_classroom", que armazena todos as salas de um exame. Assim permite que possa ser associado um ou mais vigilantes ou uma ou mais salas a cada exame (RF.2 e RF.3 da tabela \ref{requisitiosfuncionais}).
+	
+	\clearpage
+	\begin{landscape}
+		\pagestyle{empty}
+		
+		\begin{figure}[H] 
+			\centering 			\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/databaseDiagram}
+			\caption{Diagrama da base de dados}
+			\label{planeamentoinicial}
+			
+		\end{figure}
+		
+		
+	\end{landscape}
 	
 	\section{Arquitetura do sistema - modelo MCV}
 	
 	
-	
-
-	\chapter{Primeira versão da aplicação}
 	\section{Implementação de funcionalidades}
 
-		
+	\subsection{Autenticação}	
 	
 	\subsection{Análise de resultados}
 	
