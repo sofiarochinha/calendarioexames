@@ -199,6 +199,7 @@
                     yearCourse: JSON.stringify(yearCourse),
 
                 }, function (response) {
+                    console.log("response", response)
                     console.log(response['subjects'])
                     console.log(response['associatedSala'])
 

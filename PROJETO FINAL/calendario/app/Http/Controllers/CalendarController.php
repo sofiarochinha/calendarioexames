@@ -54,27 +54,121 @@ class CalendarController extends Controller
         //obtem todas as disciplinas marcadas
         $subjects = Subject::where('course_id', 11)->with('evaluationSlot')->get();
 
-        //verificar que disciplinas têm incomplatibilidades
-        //salas associadas
-        $associatedSalaArray = [];
+        //verificar que disciplinas têm incompatibilidades
+        //salas e docentes associadas
+        $array = [];
 
         foreach ($subjects as $subject){
+
+            $idEvaluationSlot = null; $issueSala = false; $issueDocente = false; $issueSobreposicao = false; $associatedSala = null;
+            $associatedDocente = null;
+
             if($subject->evaluationSlot != null){
 
-                
-                /*
-                array_push($associatedSalaArray, (DB::table('associated_classroom')
-                    ->where('id_evaluation_slot', $subject->evaluationSlot->id)
-                    ->pluck('id_classroom')));
-            */}
+                $associatedSala = DB::table('associated_classroom')
+                    ->join('classroom', 'associated_classroom.id_classroom', '=', 'classroom.id')
+                    ->where('id_evaluation_slot', 2)
+                    ->get();
+
+                $associatedDocente = DB::table('observing_professor')
+                    ->join('professor', 'observing_professor.id_professor', '=', 'professor.id')
+                    ->where('id_evaluation_slot', 2)
+                    ->get();
+
+                $idEvaluationSlot = $subject->evaluationSlot->id;
+
+                //avisos falta de salas ou docentes
+                if ($associatedSala == '[]'){
+                    $issueSala = true;
+                }
+
+                if($associatedDocente == '[]'){
+                    $issueDocente = true;
+                }
+
+                $issueSobreposicao = $this->issueSobresposicao($subjects, $subject);
+
+                //não lembro disto
+                //var_dump($this->issueAlunosRepetentes(11, $subject->evaluationSlot->time_slot, $subject->evaluationSlot->calendar_day));
+
+
+            }
+
+            $issues = array('issueSala' => $issueSala, 'issueDocente' => $issueDocente, 'issueSobreposicao' => $issueSobreposicao);
+
+            $data = array(
+                'subject' => $subject,
+                'idEvaluationSlot' => $idEvaluationSlot,
+                'sala' => $associatedSala,
+                'docente' => $associatedDocente,
+                'issues' => $issues);
+
+            array_push($array, $data);
         }
 
         //retornar um json com essa informação
-
         return \response()->json([
             'subjects' => $subjects,
-            'associatedSala' => $associatedSalaArray
+            'associatedSala' => $array
         ]);
+    }
+
+    /**
+     * Sobreposição de exames
+     * @return boolean
+     */
+    public function issueSobresposicao($subjects, $atualSubject){
+        $newArray = $subjects;
+
+        $index = $newArray->search($atualSubject);
+        $newArray->forget($index);
+
+        foreach ($subjects as $subject){
+
+            if($subject->evaluationSlot != null &&
+                $subject->evaluationSlot->time_slot == $atualSubject->evaluationSlot->time_slot
+                && $subject->evaluationSlot->calendar_day == $atualSubject->evaluationSlot->calendar_day){
+                    return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    /**
+     * @return bool
+     */
+    public function issueAlunosRepetentes($courseID, $time_slot, $day){
+        $courseCode = Course::find($courseID)->course_code;
+
+        $courses = Course::where('course_code', $courseCode)->get();
+
+        $idSubjects = [];
+        foreach($courses as $course){
+            $id = $course->subject->pluck('id'); //id de todas as disciplinas de todos os anos
+            array_push($idSubjects, $id);
+        }
+
+
+        foreach ($idSubjects as $subject) {
+
+            foreach ($subject as $id) {
+
+                $sub = Subject::find($id);
+                echo $sub->course_id;
+
+                if($sub->course_id != $courseID  && $sub->evaluationSlot != null && $sub->evaluationSlot->time_slot == $time_slot && $sub->evaluationSlot->calendar_day == $day){
+                    return true;
+                }
+
+                /*
+                if ($sub->course_id != $courseID && $sub->evaluationSlot != null && $sub->evaluationSlot->time_slot == $time_slot && $sub->evaluationSlot->calendar_day == $day) {
+                    echo $sub->evaluationSlot->time_slot;
+                }*/
+            }
+        }
+        return false;
     }
 
     /**

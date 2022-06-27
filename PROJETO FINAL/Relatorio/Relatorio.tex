@@ -21,7 +21,7 @@
 \usepackage{ltablex}
 \usepackage{pdflscape}
 \usepackage{multirow}
-\usepackage{minted} %colocação de códigos
+%\usepackage{minted} %colocação de códigos
 \pagestyle{fancy}
 \lfoot{{\footnotesize Tecnologias de Informação}}
 \rfoot{{\footnotesize ESTGA}}
@@ -33,7 +33,7 @@
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
 
-\renewcommand\listoflistingscaption{Índices dos comandos e configurações} %lista dos codigos
+%\renewcommand\listoflistingscaption{Índices dos comandos e configurações} %lista dos codigos
 
 
 
@@ -144,8 +144,45 @@ Descrição da estrutura interna do relatório
 	Identificação e descrição das atividades previstas para a realização
 	do projeto (Plano de Trabalho)
 	\subsection{Revisão do estado do projeto}
+	
+		Antes de começar a implementar novas funcionalidades foi feita uma revisão de todo o projeto para indentificar que funcionalidades necessitavam de revisões e correção de erros e quais não foram implementadas do planeamento inicial.
+		
+			\begin{table}[H]
+			\caption{Requisitos não implementados}
+			
+			\begin{center}
+				\begin{tabularx}{\textwidth}{|c|X|c|}
+					\hline
+					\textbf{Refª }	& \textbf{Descrição do requisito} & \textbf{Prioridade} \\
+					\hline
+					RF1 & As disciplinas e cursos podem ser inseridas através de \textit{drag e drop} &Alta\\
+					\hline
+					RIF2 & Interface responsivo permitindo a sua visualização em ambiente mobile &Alta\\
+					\hline
+					RIF3 & Linguagem padrão em Português de Portugal &Alta\\
+					\hline
+					RIF4 & Há dois tipos de avisos distinguidos com texto e cor &Alta\\
+					\hline
+				\end{tabularx}
+				\label{requisitosdeinterface}
+			\end{center}
+		\end{table}
+	
 	\subsection{Planeamento do projeto}
 	
+	
+		\clearpage
+	\begin{landscape}
+		\pagestyle{empty}
+		
+		\begin{figure}[H] 
+			\centering 			\includegraphics[width=1.4\textwidth,height=1.4\textheight,keepaspectratio]{image/planeamentoInicial}
+			\caption{Planeamento do projeto}
+			
+		\end{figure}
+		
+		
+	\end{landscape}
 	\chapter{Modelo de requisitos}
 	\label{requisitos}
 	\section{Requisitos funcionais}

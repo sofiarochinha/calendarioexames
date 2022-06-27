@@ -1,4 +1,12 @@
-\nomenclatureentry{aTI@[{TI}]\begingroup Tecnologias de Informação\nomeqref {0}|nompageref}{1}
-\nomenclatureentry{aSEO@[{SEO}]\begingroup Search Engine Optimization\nomeqref {0}|nompageref}{1}
-\nomenclatureentry{aCSV@[{CSV}]\begingroup Comma-separated values\nomeqref {0}|nompageref}{1}
-\nomenclatureentry{aVPN@[{VPN}]\begingroup Virtual Private Network\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aDNS@[{DNS}]\begingroup Domain Name System\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aNAT@[{NAT}]\begingroup Network Address Translation\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aDHCP@[{DHCP}]\begingroup Dynamic Host Configuration Protocol\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aIP@[{IP}]\begingroup Internet Protocol\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aISP@[{ISP}]\begingroup Internet Service Provider\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aSNMP@[{SNMP}]\begingroup Simple Network Management Protocol\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aGUI@[{GUI}]\begingroup Graphical User Interface\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aOSPF@[{OSPF}]\begingroup Open Shortest Path First\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aGNS3@[{GNS3}]\begingroup Graphical Network Simulator 3\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aHTTP@[{HTTP}]\begingroup Hypertext Transfer Protocol\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aACL@[{ACL}]\begingroup Acess Control List\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{aTFTP@[{TFTP}]\begingroup Hypertext Transfer Protocol\nomeqref {0}|nompageref}{1}
