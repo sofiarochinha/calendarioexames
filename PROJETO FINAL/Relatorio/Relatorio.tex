@@ -441,18 +441,18 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	
 	\section{Estrutura da base de dados}
 	
-	Para a preparação da aplicação a tabela "course" é preenchida com todos os cursos da universidade a partir da própria \textit{framework} assim como "time\_slot" que contém somente os três blocos em que se pode marcar um exame (manhã, tarde e noite).
+	Para a preparação da aplicação a tabela ``course" é preenchida com todos os cursos da universidade a partir da própria \textit{framework} assim como ``time\_slot" que contém somente os três blocos em que se pode marcar um exame (manhã, tarde e noite).
 	
-	De seguida, Para utilizar a aplicação o utilizador terá de se autenticar com a sua conta (se não tiver terá de se registar) que está registada na tabela "users". No entanto não existe nenhuma associação dos dados às contas sendo que todas as contas têm acesso ao mesmos dados.
+	De seguida, Para utilizar a aplicação o utilizador terá de se autenticar com a sua conta (se não tiver terá de se registar) que está registada na tabela ``users". No entanto não existe nenhuma associação dos dados às contas sendo que todas as contas têm acesso ao mesmos dados.
 	
-	Depois o utilizador terá de importar o csv em que os dados serão guardados nas tabelas "professor", "subject" e "classroom". Se existir mais que um professor para uma disciplina, estes serão guardados na tabela "professor", mas só será associado à disciplina o primeiro que aparece no csv uma vez que se assume que é o representante da mesma.
+	Depois o utilizador terá de importar o csv em que os dados serão guardados nas tabelas ``professor", ``subject" e ``classroom". Se existir mais que um professor para uma disciplina, estes serão guardados na tabela ``professor", mas só será associado à disciplina o primeiro que aparece no csv uma vez que se assume que é o representante da mesma.
 	
 	???????????????
 	E as salas não são associadas uma vez que na época de exames não existe aulas. (ver o que fazer com os cursos de ctesp) 
 	
+	Com isto todos os calendários criados serão armazenados na tabela ``calendar" que contém duas chaves estrangeiras para a época e para o curso para os quais foram associados. As épocas (criadas pelo utilizador) são identificadas pelo seu nome, data de início e fim. Para cada calendário existe inúmeros exames que podem ser marcados (tabela ``evaluation\_slot´´) consoante o curso associado. Cada exame tem três chaves estrangeiras: uma para o calendário, outra para a disciplina e outra para o momento do dia em que será a avaliação e um atributo para o dia marcado.
 	
-	
-	Uma das alterações foi a criação de duas tabelas "observing\_professor", que guarda todos os vigilantes associados a um exame, e "associated\_classroom", que armazena todos as salas de um exame. Assim permite que possa ser associado um ou mais vigilantes ou uma ou mais salas a cada exame (RF.2 e RF.3 da tabela \ref{requisitiosfuncionais}).
+	Nesta fase foi alterada a base de dados criando duas tabelas - ``observing\_professor", que guarda todos os vigilantes associados a um exame, e ``associated\_classroom", que armazena todos as salas de um exame - para que possa ser associado um ou mais vigilantes ou uma ou mais salas a cada exame (RF.2 e RF.3 da tabela \ref{requisitiosfuncionais}).
 	
 	\clearpage
 	\begin{landscape}
@@ -474,6 +474,11 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	\section{Implementação de funcionalidades}
 
 	\subsection{Autenticação}	
+	\subsection{Importação}
+	\subsection{Dados auxiliares}
+	\subsection{Avisos}
+	\subsection{Criação de calendários}
+	\subsection{Exportação}
 	
 	\subsection{Análise de resultados}
 	

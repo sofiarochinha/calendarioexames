@@ -36,11 +36,11 @@ class ImportController extends Controller
         for ($i = 0; $i < count($data); $i ++)
         {
                 $mec = explode(",",$data[$i][9]);
-                var_dump(count($mec));
+                //var_dump(count($mec));
 
 
                 if(count($mec) > 1){
-                    var_dump("oi");
+                    //var_dump("oi");
                     $name = explode(",",$data[$i][7]);
                     $email = explode(",",$data[$i][8]);
 
