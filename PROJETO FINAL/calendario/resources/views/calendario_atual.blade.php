@@ -106,9 +106,66 @@
 
     <div>
         <div class="modal fade" id="schedule-edit">
+                <!-- Popup para selecionar a sala e os vigilantes -->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <h3 id="modalTempoExame"></h3>
+                            <h5 id="modalHorario"></h5>
+                            <p id="modalDocente"></p>
+                        </div>
 
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+        <!-- Modal body -->
+         <div class="modal-body">
 
-        </div>
+            <label>Vigilantes já associados</label>
+            <ul id="modalVigilantesAssociados">
+               
+            </ul>
+
+            <label>Salas já associadas</label>
+            <ul>
+               
+            </ul>
+
+            {{-- <form>
+                <div class="form-group">
+                    <label>Vigilantes</label>
+                    <select id="profs" class="select2" multiple="multiple" style="width: 100%; ">
+                            @foreach($professors as $prof)
+                                    <option value="{{$prof->id}}">{{$prof->name}}</option>
+                            @endforeach
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Salas</label>
+                    <select id="salas" class="select2" multiple="multiple" style="width: 100%;">
+                        @foreach($salas as $class)
+                            <option value="{{$class->id}}">{{$class->classroom}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </form>
+        </div> --}}
+        <!-- Modal footer -->
+       {{-- <div class="modal-footer">
+            <button type="button" class="btn btn-danger" onclick="fechar()">Fechar</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="associarAoExame()">Guardar</button>
+        </div> --}}
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+    </div>
+</div>
+
     </div>
 
     <aside class="control-sidebar control-sidebar-dark">
@@ -128,8 +185,6 @@
     <!-- Page specific script -->
     <script>
 
-
-
         /**
          * comboboxs para o calendário atual
          * verifica quais são as epocas que estam associadas ao curso e quais são os anos do curso
@@ -137,7 +192,6 @@
         var valcurso = $('#curso').val();
         var epocaString = "";
         var anoString = "";
-        var disciplinaString = "";
 
         @foreach ($courses as $course)
         if (valcurso == {!!$course->course_code!!}) {
@@ -149,7 +203,6 @@
         @endforeach
         $("#ano").html(anoString);
 
-
         var valAno = $("#ano").val();
 
         @foreach ($courses as $course)
@@ -158,12 +211,7 @@
             if (valAno == {!!$course->course_year!!}) {
                 @foreach ($epocas as $epoca)
                     @if( $epoca->course_id == $course->id)
-                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";
-                        @foreach ($epoca->course->subject as $subject)
-                            @if($subject->evaluationSlot == null)
-                               disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
-                            @endif
-                        @endforeach
+                        epocaString = epocaString + "<option value='{{$epoca->id}}'>{{$epoca->epoca->name}}</option>";                       
                     @endif
                 @endforeach
             }
@@ -171,7 +219,6 @@
 
         @endforeach
 
-        $("#external-events").html(disciplinaString);
         $("#epoca").html(epocaString);
 
         //valCurso -> o codigo do curso
@@ -199,21 +246,27 @@
                     yearCourse: JSON.stringify(yearCourse),
 
                 }, function (response) {
-                    console.log("response", response)
-                    console.log(response['subjects'])
-                    console.log(response['associatedSala'])
+                    console.log(response['exames'])
+
+                    var disciplinaString = " ";
+                    response['exames'].forEach(element => {
+                        if(element['idEvaluationSlot'] == null){
+                            disciplinaString += "<div class='external-event bg-success'>"+ element['subject']['name'] + "</div>";
+                        }
+                    });
+
+                    $("#external-events").html(disciplinaString);
+                    alterarCalendario(response['exames']);
 
                 })
 
         }
-        alterarCalendario();
 
         // Creating a function that is called when the user changes the course.
         $("#curso").change(function () {
             var valcurso = $(this).val();
             var epocaString = "";
             var anoString = "";
-            var disciplinaString = "";
 
             @foreach ($courses as $course)
             if (valcurso == {!!$course->course_code!!}) {
@@ -243,21 +296,7 @@
             @endforeach
             $("#epoca").html(epocaString);
 
-            var epoca = $('#epoca').val(); //epoca selecionada
-            var disciplinaString = "";
-            @foreach ($epocas as $epoca)
-            if ({!!$epoca->id!!} == epoca) {
-                @foreach ($epoca->course->subject as $subject)
-                    @if($subject->evaluationSlot == null)
-                        disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
-                    @endif
-                @endforeach
-            }
-            @endforeach
-
-            $("#external-events").html(disciplinaString);
-
-            alterarCalendario();
+            getExames(valcurso, $('#epoca').val(), valAno);
         });
 
         /**
@@ -266,7 +305,6 @@
         $("#ano").change(function () {
             var valAno = $(this).val();
             var epocaString = "";
-            var disciplinaString = "";
             var valcurso = $("#curso").val();
 
             /**
@@ -286,147 +324,69 @@
             @endforeach
             $("#epoca").html(epocaString);
 
-            var epoca = $('#epoca').val(); //epoca selecionada
-            var disciplinaString = "";
-            @foreach ($epocas as $epoca)
-            if ({!!$epoca->id!!} == epoca) {
-                @foreach ($epoca->course->subject as $subject)
-                    @if($subject->evaluationSlot == null)
-                    disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
-                @endif
-                @endforeach
-            }
-            @endforeach
+            getExames(valcurso, $('#epoca').val(), valAno);
 
-            $("#external-events").html(disciplinaString);
 
-            alterarCalendario();
         });
 
         // Creating a function that will be called when the user changes the value of the select element with id "epoca".
         $("#epoca").change(function () {
-            var epoca = $(this).val(); //epoca selecionada
-            var disciplinaString = "";
-            @foreach ($epocas as $epoca)
-            if ({!!$epoca->id!!} == epoca) {
-                @foreach ($epoca->course->subject as $subject)
-                    @if($subject->evaluationSlot == null)
-                    disciplinaString += "<div class='external-event bg-success'>{{$subject->name}}</div>";
-                @endif
-                @endforeach
-            }
-            @endforeach
-            $("#external-events").html(disciplinaString);
-            alterarCalendario();
+            getExames(valcurso, $('#epoca').val(), valAno);
         });
 
         // Creating an array of objects, each object containing the start and end date of an event.
-        function alterarCalendario() {
-            let dateEpoca = $('#epoca').val(), dataInicio = "",arrayEvent = [];//criação de um objeto
+        function alterarCalendario(exames) {
+            let dateEpoca = $('#epoca').val(), dataInicio = "", arrayEvent = [];//criação de um objeto
 
             @foreach($epocas as $epoca)
 
                 if ({!!  $epoca->id !!} == dateEpoca) {
                     dataInicio = '{!! $epoca->epoca->start_date !!}'.split(" ");
 
-                    var inicio = "", fim = "", nome = "";
+                    exames.forEach(element => {
+                        var event = {}; //cria um objeto que irá guardar todas as informações sobre o exame
+                        idEvaluationSlot = element['idEvaluationSlot'];
 
-                    if (dateEpoca == {!! $epoca->id !!}) {
-                            @if ($epoca->evaluationslots != null)
+                        if(idEvaluationSlot != null){
+                            calendarDay = element['subject']['evaluation_slot']['calendar_day'];
 
-                            @foreach($epoca->evaluationslots as $event){
-                            var event = {};
-                            if ({!! $event->timeslot->id !!} == 1) {
-                                event.start = "{!! $event->calendar_day !!}".concat(" ", "09:30:00");
-                                event.end = "{!! $event->calendar_day !!}".concat(" ", "13:30:00");
-                            } else if ({!! $event->timeslot->id !!} == 2) {
-                                event.start = "{!! $event->calendar_day !!}".concat(" ", "14:00:00");
-                                event.end = "{!! $event->calendar_day !!}".concat(" ", "18:00:00");
+                            timeSlot = element['subject']['evaluation_slot']['time_slot'];
+
+                            if(timeSlot == 1){
+                                event.start = calendarDay.concat(" ", "09:30:00");
+                                event.end = calendarDay.concat(" ", "13:30:00");
+                            }else if (timeSlot == 2) {
+                                event.start = calendarDay.concat(" ", "14:00:00");
+                                event.end = calendarDay.concat(" ", "18:00:00");
                             } else {
-                                event.start = "{!! $event->calendar_day !!}".concat(" ", "18:30:00");
-                                event.end = "{!! $event->calendar_day !!}".concat(" ", "22:30:00");
+                                 event.start = calendarDay.concat(" ", "18:30:00");
+                                 event.end = calendarDay.concat(" ", "22:30:00");
                             }
 
-                            event.id = {!! $event->id !!};
+                            event.id = idEvaluationSlot; 
 
+                            numberSalas = 0;
+                            numberDocentes = 0;
 
-                            event.title = "{!! $event->Subject->name!!}" + getSalas({!! $event->id !!})
-                            + " Salas" + getDocentes({!! $event->id !!}) + " Vigilantes";
-/*
-                                getSalas({!! $event->id !!}, changeTitle(event, {!! $event->Subject->name!!}));
+                            if(element['docente'].length > 0) numberDocentes = element['docente'].length
+                            
+                            if(element['sala'].length > 0) numberSalas = element['sala'].length
 
-                                changeTitle(event, {!! $event->Subject->name!!});*/
-                            arrayEvent.push(event);
+                    
+                            event.title = element['subject']['name'] + " " + numberDocentes + " Vigilantes " + numberSalas + " Salas";
+
+                           
+                            arrayEvent.push(event); //adiciona o objeto criado a um array que irá ser lido pelo calendário
 
                         }
-                        @endforeach
-                        @endif
-                    }
+                    });
                 }
+
             @endforeach
 
             calendar(dataInicio[0], arrayEvent);
         }
 
-        function changeTitle(event, title){
-            event.title = title;
-        }
-       /* /!**
-         * Obtém o número de salas e de docentes já associadas a um exame
-         *!/
-        function getSalasDocentes(idExame){
-            var array = [];
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.post("{{ route('api-getSalasDocentes')}}",
-                {
-                    idExame: JSON.stringify(idExame),
-                }, function (response) {
-                    array.push(response['countSala']);
-                    array.push(response['countProf']);
-                })
-
-            return array; //não funciona
-        }*/
-
-        function getSalas(idExame){
-            var salas;
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.post("{{ route('api-getSalas')}}",
-                {
-                    idExame: JSON.stringify(idExame),
-                }, function (response) {
-
-                    salas = response['countSala'];
-                    console.log(salas);
-                })
-            console.log(salas);
-        }
-
-        function getDocentes(idExame){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.post("{{ route('api-getDocentes')}}",
-                {
-                    idExame: JSON.stringify(idExame),
-                }, function (response) {
-                    return response['countProf'];
-                })
-        }
 
         /**
          * Tranforma o mes em numero
@@ -467,6 +427,7 @@
                     calendar: JSON.stringify(calendar),
 
                 });
+
         }
 
         /**
@@ -596,7 +557,7 @@
                     sendToController(data, nome, timeslot,
                         $('#epoca').val());
 
-                    alterarCalendario();
+                    
                 },
                 initialView: 'timeGrid2Week',
                 initialDate: dataInicio,
@@ -619,7 +580,22 @@
                             idExame: JSON.stringify(event.event.id),
 
                         }, function (response) {
-                            $('#schedule-edit').append(response);
+
+                            document.getElementById("modalTempoExame").innerHTML = "Configurar exame de " + response['subject'];
+                            document.getElementById("modalHorario").innerHTML = "Marcado de " + response['horario'];
+                            document.getElementById("modalDocente").innerHTML = "Docente: " + response['docente'];
+                            
+                            vigilantesAssociados = "";
+                            console.log(response);
+                            response['associatedProf'].forEach(element => {
+                                vigilantesAssociados += '<li> <span class="fa-li"> <i class="fa-solid fa-x"></i> </span>'+ element['name'] + '</li>'
+                            });
+
+                            document.getElementById("modalVigilantesAssociados").innerHTML = vigilantesAssociados;
+                            /*<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                  Launch Default Modal
+                </button>*/
+                            //$('#schedule-edit').append(response);
                     })
 
                     $('#schedule-edit').modal();
