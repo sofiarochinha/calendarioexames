@@ -445,7 +445,7 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	
 	De seguida, Para utilizar a aplicação o utilizador terá de se autenticar com a sua conta (se não tiver terá de se registar) que está registada na tabela ``users". No entanto não existe nenhuma associação dos dados às contas sendo que todas as contas têm acesso ao mesmos dados.
 	
-	Depois o utilizador terá de importar o csv em que os dados serão guardados nas tabelas ``professor", ``subject" e ``classroom". Se existir mais que um professor para uma disciplina, estes serão guardados na tabela ``professor", mas só será associado à disciplina o primeiro que aparece no csv uma vez que se assume que é o representante da mesma.
+	Depois o utilizador terá de importar o csv em que os dados serão guardados nas tabelas ``professor", ``subject" e ``classroom". Se existir mais que um professor para uma disciplina, estes serão guardados na tabela ``professor", mas só será associado à disciplina o primeiro que aparece no ficheiro .csv uma vez que se assume que é o representante da mesma.
 	
 	???????????????
 	E as salas não são associadas uma vez que na época de exames não existe aulas. (ver o que fazer com os cursos de ctesp) 
@@ -471,10 +471,19 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	\section{Arquitetura do sistema - modelo MCV}
 	
 	
-	\section{Implementação de funcionalidades}
+	\section{Correção de erros}
 
 	\subsection{Autenticação}	
 	\subsection{Importação}
+	
+	Na versão anterior do projeto não se considerava as disciplnas que contivessem mais de um professor, assumindo-se que o ficheiro .csv a importar nunca tivesse esta restrição. No entanto o ficheiro dado contém disciplinas com um professor representante e dois auxiliares. 
+	
+	Com isso o código foi alterado para verificar se existe mais de um número mecanográfico por disciplina. Se existir o primeiro será assumido como representando da disciplina sendo o único que será assocido à mesma e os outros serão somentes guardados na base de dados. 
+	
+	
+	
+	
+	\section{Implementação de funcionalidades}
 	\subsection{Dados auxiliares}
 	\subsection{Avisos}
 	\subsection{Criação de calendários}

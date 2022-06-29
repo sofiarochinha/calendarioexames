@@ -121,50 +121,40 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                     </div>
-        <!-- Modal body -->
-         <div class="modal-body">
+                    <div class="modal-body">
 
-            <label>Vigilantes já associados</label>
-            <ul id="modalVigilantesAssociados">
-               
-            </ul>
+                        <label id="modalLabelVigilantes"></label>
+                        <ul id="modalVigilantesAssociados">
+                        
+                        </ul>
 
-            <label>Salas já associadas</label>
-            <ul>
-               
-            </ul>
+                        <label id="modalLabelSalas"></label>
+                        <ul id="modalSalasAssociadas">
+                        
+                        </ul>
 
-            {{-- <form>
-                <div class="form-group">
-                    <label>Vigilantes</label>
-                    <select id="profs" class="select2" multiple="multiple" style="width: 100%; ">
-                            @foreach($professors as $prof)
-                                    <option value="{{$prof->id}}">{{$prof->name}}</option>
-                            @endforeach
+                        <form>
+                            <div class="form-group">
+                                <label>Vigilantes</label>
+                                <select id="modalSelectProfs" class="select2" multiple="multiple" style="width: 100%; ">
+                                    
 
-                    </select>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Salas</label>
+                                <select id="modalSelectSalas" class="select2" multiple="multiple" style="width: 100%;">
+                                
+                                </select>
+                            </div>
+                        </form>
+                    </div> 
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick=associarAoExame()>Save changes</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Salas</label>
-                    <select id="salas" class="select2" multiple="multiple" style="width: 100%;">
-                        @foreach($salas as $class)
-                            <option value="{{$class->id}}">{{$class->classroom}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </form>
-        </div> --}}
-        <!-- Modal footer -->
-       {{-- <div class="modal-footer">
-            <button type="button" class="btn btn-danger" onclick="fechar()">Fechar</button>
-            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="associarAoExame()">Guardar</button>
-        </div> --}}
-        <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-    </div>
-</div>
+            </div>
 
     </div>
 
@@ -412,7 +402,7 @@
          * Envia os dados para o controller por ajax
          * Marca um exame
          */
-        function sendToController(data, name, timeSlot, calendar) {
+        function sendToController(data, name, timeSlot, calendar, event) {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -426,6 +416,10 @@
                     timeSlot: JSON.stringify(timeSlot),
                     calendar: JSON.stringify(calendar),
 
+                }, function (response) {
+                    console.log(response);
+                    //event.event.id = response.idEvaluationSlot;
+                    //console.log(event.event.id);
                 });
 
         }
@@ -439,6 +433,42 @@
             if (date >= 9 && date < 14) return 1;
             if (date >= 14 && date < 18) return 2;
             return 3;
+        }
+
+        //MODAL FUNCTIONS
+        var profsSelected, salasSelected;
+
+        $('#modalSelectProfs').change(function(e) {
+            profsSelected = $(e.target).val();
+        });
+
+        $('#modalSelectSalas').change(function (e){
+            salasSelected = $(e.target).val();
+        });
+
+        /**
+         * Associa a sala e os professores ao exame selecionado
+         */
+        var idExame;
+
+        function associarAoExame(){
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post("{{ route('associarAoExame')}}",
+                {
+                    idExame: JSON.stringify(idExame),
+                    profsSelected: JSON.stringify(profsSelected),
+                    salasSelected: JSON.stringify(salasSelected),
+                }, function (response) {
+                    //id da evaluation slot, mas não consigo adicionar ao evento
+                    console.log(response);
+
+                })
         }
 
         function calendar(dataInicio, event) {
@@ -536,6 +566,8 @@
                     sendToController(data, nome, getTimeSlot(data.getUTCHours()),
                         $('#epoca').val());
 
+                    console.log(info.event);
+
 
                 },
                 //quando muda a data do exame
@@ -568,34 +600,85 @@
                 eventDurationEditable: false,
                 slotMinTime: "09:30:00",
                 eventClick: function (event) {
+                    idExame = event.event.id; //guarda o id od exame para que possa utilizado para adcionar vigilantes e professores
 
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-
+                    
                     $.post("{{ route('api-modal')}}",
                         {
                             idExame: JSON.stringify(event.event.id),
 
                         }, function (response) {
-
+                            
                             document.getElementById("modalTempoExame").innerHTML = "Configurar exame de " + response['subject'];
                             document.getElementById("modalHorario").innerHTML = "Marcado de " + response['horario'];
                             document.getElementById("modalDocente").innerHTML = "Docente: " + response['docente'];
                             
                             vigilantesAssociados = "";
-                            console.log(response);
-                            response['associatedProf'].forEach(element => {
-                                vigilantesAssociados += '<li> <span class="fa-li"> <i class="fa-solid fa-x"></i> </span>'+ element['name'] + '</li>'
-                            });
+                            if(response['associatedProf'].length > 0){
+                                
+                                document.getElementById("modalLabelVigilantes").innerHTML = "Vigilantes já associados";
+                                /**Adiciona todos os vigilantes disponíveis*/
+                                response['associatedProf'].forEach(element => {
+                                    vigilantesAssociados += '<li> <span class="fa-li"> <i class="fa-solid fa-x"></i> </span>'+ element.name + '</li>'
+                                });
+                            
+                            }else {
+                                document.getElementById("modalLabelVigilantes").innerHTML = "Sem vigilantes associados";
+                            }
 
                             document.getElementById("modalVigilantesAssociados").innerHTML = vigilantesAssociados;
-                            /*<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                  Launch Default Modal
-                </button>*/
-                            //$('#schedule-edit').append(response);
+
+                            salasAssociadas = "";
+                            if(response['associatedSala'].length > 0){
+                                
+                                document.getElementById("modalLabelSalas").innerHTML = "Salas já associadas";
+
+                                response['associatedSala'].forEach(element => {
+                                    salasAssociadas += '<li> <span class="fa-li"> <i class="fa-solid fa-x"></i> </span>'+ element.classroom + '</li>'
+                                });
+                                
+                            }else {
+                                document.getElementById("modalLabelSalas").innerHTML = "Sem salas associadas";
+                            }
+                            
+                            document.getElementById("modalSalasAssociadas").innerHTML = salasAssociadas;
+                           
+                            arrayProfessors = response['professors'];
+
+                            /*Ordena o array de forma crescente de nome*/
+                            arrayProfessors.sort(function (a, b) {
+                                if (a.name > b.name) {
+                                    return 1;
+                                }
+                                if (a.name < b.name) {
+                                    return -1;
+                                }
+                                // a must be equal to b
+                                return 0;
+                            });
+                            
+                            selectProfs = document.getElementById("modalSelectProfs");
+
+                            arrayProfessors.forEach(element => {
+                                option = document.createElement("option");
+                                option.text = element.name;
+                                option.value = element.id;
+                                selectProfs.add(option);
+                            });
+
+                            selectSalas = document.getElementById("modalSelectSalas");
+                            
+                            response['salas'].forEach(element => {
+                                option = document.createElement("option");
+                                option.text = element.classroom;
+                                option.value = element.id;
+                                selectSalas.add(option);
+                            });
                     })
 
                     $('#schedule-edit').modal();
@@ -607,44 +690,6 @@
             calendar.addEventSource(event); //adiciona os eventos
 
             calendar.render();
-
-            /* ADDING EVENTS */
-            var currColor = '#3c8dbc' //Red by default
-            // Color chooser button
-            $('#color-chooser > li > a').click(function (e) {
-                e.preventDefault()
-                // Save color
-                currColor = $(this).css('color')
-                // Add color effect to button
-                $('#add-new-event').css({
-                    'background-color': currColor,
-                    'border-color': currColor
-                })
-            })
-            $('#add-new-event').click(function (e) {
-                e.preventDefault()
-                // Get value and make sure it is not null
-                var val = $('#new-event').val()
-                if (val.length == 0) {
-                    return
-                }
-
-                // Create events
-                var event = $('<div />')
-                event.css({
-                    'background-color': currColor,
-                    'border-color': currColor,
-                    'color': '#fff'
-                }).addClass('external-event')
-                event.text(val)
-                $('#external-events').prepend(event)
-
-                // Add draggable funtionality
-                ini_events(event)
-
-                // Remove event from text input
-                $('#new-event').val('');
-            })
         };
     </script>
 

@@ -208,8 +208,6 @@ class CalendarController extends Controller
         $timeSlot = json_decode($request->timeSlot);
         $calendar = json_decode($request->calendar);
 
-
-
         $evaluationSlot = EvaluationSlot::where('subject', $subject)->where('calendar_id', $calendar)->first();
 
         if ($evaluationSlot == null) {
@@ -246,7 +244,7 @@ class CalendarController extends Controller
     {
         $idExame = json_decode($request->idExame);
 
-        $exame = EvaluationSlot::findOrFail($idExame)->first();
+        $exame = EvaluationSlot::find($idExame);
         $horario = $exame->timeslot->time_slot;
 
         $docente = $exame->Subject->associated_professor->name;
@@ -262,8 +260,8 @@ class CalendarController extends Controller
             ->where('id_evaluation_slot', $idExame)
             ->get();
 
-        $professors = Professor::all()->sortBy('name');
-        $salas = Classroom::all();
+        $professors = Professor::all()->toArray();
+        $salas = Classroom::all()->toArray();
 
         return \response()->json([
             'horario' => $horario,
