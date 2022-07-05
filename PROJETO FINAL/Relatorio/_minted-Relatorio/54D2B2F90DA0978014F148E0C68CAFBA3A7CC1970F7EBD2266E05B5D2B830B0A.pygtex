@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{		/**}
+\PYG{x}{		* Verifica se o csv já foi importado}
+\PYG{x}{		* @return bool}
+\PYG{x}{		*/}
+\PYG{x}{		public function checkIfImported()}
+\PYG{x}{		\PYGZob{}}
+\PYG{x}{			if (Professor::exists())}
+\PYG{x}{			return true;}
+\PYG{x}{			}
+\PYG{x}{			return false;}
+\PYG{x}{		\PYGZcb{}}
+\end{Verbatim}

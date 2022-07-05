@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{	class Authenticate extends Middleware}
+\PYG{x}{	\PYGZob{}}
+\PYG{x}{	/**}
+\PYG{x}{	* Caso o utilizador não esteje logado não permite navegar pelas páginas}
+\PYG{x}{	* return route}
+\PYG{x}{	*/}
+\PYG{x}{	protected function redirectTo(\PYGZdl{}request)}
+\PYG{x}{	\PYGZob{}}
+\PYG{x}{	  if (!Auth::check()) \PYGZob{}}
+\PYG{x}{		return route(\PYGZsq{}login\PYGZsq{});}
+\PYG{x}{	  \PYGZcb{}}
+\PYG{x}{	\PYGZcb{}}
+\PYG{x}{	\PYGZcb{}}
+\end{Verbatim}

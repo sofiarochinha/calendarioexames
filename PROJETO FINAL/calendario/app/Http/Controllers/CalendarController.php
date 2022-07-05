@@ -222,13 +222,14 @@ class CalendarController extends Controller
                 'idEvaluationSlot' => $evaluationSlot->id,
             ]);
         } else {
-            $evaluationSlot = EvaluationSlot::whereId($evaluationSlot->id)->update([
+            EvaluationSlot::whereId($evaluationSlot->id)->update([
                 'calendar_id' => $calendar,
                 'subject' => $subject,
                 'time_slot' => $timeSlot,
                 'calendar_day' => $data
             ]);
 
+            //var_dump($evaluationSlot);
             return \response()->json([
                 'idEvaluationSlot' => $evaluationSlot->id,
             ]);

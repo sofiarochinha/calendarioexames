@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{	\PYGZdl{}mec = explode(\PYGZdq{},\PYGZdq{}, \PYGZdl{}data[\PYGZdl{}i][9]);}
+\PYG{x}{			}
+\PYG{x}{	if (count(\PYGZdl{}mec) \PYGZgt{} 1) \PYGZob{}}
+\PYG{x}{		\PYGZdl{}name = explode(\PYGZdq{},\PYGZdq{}, \PYGZdl{}data[\PYGZdl{}i][7]);}
+\PYG{x}{		\PYGZdl{}email = explode(\PYGZdq{},\PYGZdq{}, \PYGZdl{}data[\PYGZdl{}i][8]);}
+\PYG{x}{				}
+\PYG{x}{		for (\PYGZdl{}x = 0; \PYGZdl{}x \PYGZlt{} count(\PYGZdl{}mec); \PYGZdl{}x++) \PYGZob{}}
+\PYG{x}{			//cria um professor ou atualiza o prof}
+\PYG{x}{			se tiver o mesmo número mecanografico}
+\PYG{x}{			Professor::updateOrCreate([}
+\PYG{x}{			\PYGZsq{}mec\PYGZsq{} =\PYGZgt{} \PYGZdl{}mec[\PYGZdl{}x],}
+\PYG{x}{			\PYGZsq{}name\PYGZsq{} =\PYGZgt{} \PYGZdl{}name[\PYGZdl{}x],}
+\PYG{x}{			\PYGZsq{}email\PYGZsq{} =\PYGZgt{} \PYGZdl{}email[\PYGZdl{}x],}
+\PYG{x}{			]);}
+\PYG{x}{		\PYGZcb{}}
+\PYG{x}{	\PYGZcb{}}
+\end{Verbatim}

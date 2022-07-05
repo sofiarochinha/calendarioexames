@@ -9,7 +9,7 @@
 \usepackage{mathptmx}
 \usepackage{setspace}
 
-\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,bookmarksopen=true]{hyperref} % Make hyperlinks in index
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref} % Make hyperlinks in index
 \usepackage{bookmark} 		% Bookmarks for pdf file
 \usepackage{float} 			% colocar as imegens e tabelas dentro do texto
 \usepackage{fancyhdr}
@@ -21,7 +21,7 @@
 \usepackage{ltablex}
 \usepackage{pdflscape}
 \usepackage{multirow}
-%\usepackage{minted} %colocação de códigos
+\usepackage{minted} %colocação de códigos
 \pagestyle{fancy}
 \lfoot{{\footnotesize Tecnologias de Informação}}
 \rfoot{{\footnotesize ESTGA}}
@@ -33,7 +33,7 @@
 
 \renewcommand{\footrulewidth}{1pt}%criar uma linha no que separa o rodapé
 
-%\renewcommand\listoflistingscaption{Índices dos comandos e configurações} %lista dos codigos
+\renewcommand\listoflistingscaption{Índices dos comandos e configurações} %lista dos codigos
 
 
 
@@ -473,16 +473,111 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	
 	\section{Correção de erros}
 
-	\subsection{Autenticação}	
+	\subsection{Autenticação}
+	No começo foi bloqueado o acesso à aplicação através do próprio do url do website. Por exemplo era possível aceder à página de marcação de exames digitando "/marcacao-exames" sem iniciar sessão. 
+	Consequentemente, de forma a corrigir este problema, antes de aceder a qualquer rota (exceto a de login e de registo) é verificado se existe uma sessão aberta através do \textit{middleware}, como se pode verificar no código \ref{routesMiddl} e \ref{autenticarMiddl}.
+	
+	\begin{listing}[H]
+	\begin{minted}{php}
+	Route::middleware([Authenticate::class])->group(function (){
+	
+	\end{minted}
+	\caption{Verificação através do \textit{middleware} se o utilizador está autenticado}
+	\label{routesMiddl}
+	\end{listing}                                 
+		
+	\begin{listing}[H]
+	\begin{minted}{php}
+	class Authenticate extends Middleware
+	{
+	/**
+	* Caso o utilizador não esteje logado não permite navegar pelas páginas
+	* return route
+	*/
+	protected function redirectTo($request)
+	{
+	  if (!Auth::check()) {
+		return route('login');
+	  }
+	}
+	}
+				\end{minted}
+				\caption{\textit{Middleware} que redireciona para a página delogin se não tiver autenticado}
+				\label{autenticarMiddl}
+			\end{listing}    
+		
 	\subsection{Importação}
 	
 	Na versão anterior do projeto não se considerava as disciplnas que contivessem mais de um professor, assumindo-se que o ficheiro .csv a importar nunca tivesse esta restrição. No entanto o ficheiro dado contém disciplinas com um professor representante e dois auxiliares. 
 	
-	Com isso o código foi alterado para verificar se existe mais de um número mecanográfico por disciplina. Se existir o primeiro será assumido como representando da disciplina sendo o único que será assocido à mesma e os outros serão somentes guardados na base de dados. 
+	Com isso o código foi alterado para verificar se existe mais de um número mecanográfico por disciplina. Se existir o primeiro será assumido como representando da disciplina sendo o único que será associado à mesma e os outros serão somentes guardados na base de dados, como está ilustrado no código \ref{importarprof}. 
 	
+
+	\begin{listing}[H]
+	\begin{minted}{php}
+	$mec = explode(",", $data[$i][9]);
+			
+	if (count($mec) > 1) {
+		$name = explode(",", $data[$i][7]);
+		$email = explode(",", $data[$i][8]);
+				
+		for ($x = 0; $x < count($mec); $x++) {
+			//cria um professor ou atualiza o prof 
+			se tiver o mesmo número mecanografico
+			Professor::updateOrCreate([
+			'mec' => $mec[$x],
+			'name' => $name[$x],
+			'email' => $email[$x],
+			]);
+		}
+	}
+	\end{minted}
+	\caption{Importação do professores}
+	\label{importarprof}
+	\end{listing}
 	
+	\section{Verificação da importação do csv}
 	
+	Para o utilizador saber se já foi importado um csv este é avisado através de uma mensagem (\textit{toastr}) na página de importar o csv. 
 	
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/importarCSV}
+	\caption{\textit{Toastr} de sucesso}
+	\label{importarCSVSucess}
+		
+	\end{figure}
+
+	\begin{figure}[H] 
+
+
+	\centering 			\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/importCSVFail}
+	\caption{\textit{Toastr} de não ter sido importado um csv}
+	\label{importarCSVFail}
+	
+	\end{figure}
+
+	Este \textit{toastr} é ativado consoante os dados persentes na \textit{cookie} presente. Ao carregar a página é verificado se existe dados na base de dados através do \textit{controller} e com isso é alterado o cookie de acordo com o resultado. Como a tabela de professores é umas das que é preenchida ao importar o ficheiro .csv então se existir dados na mesma quer dizer que este ficheiro ja foi importado, através do código \ref{checkIfImported}. Apesar disto nada impede que importar mais do que uma vez.
+	
+	\begin{listing}[H]
+		\begin{minted}{php}
+		/**
+		* Verifica se o csv já foi importado
+		* @return bool
+		*/
+		public function checkIfImported()
+		{
+			if (Professor::exists())
+			return true;
+			
+			return false;
+		}
+		\end{minted}
+		\caption{Verificação se já existe dados na base de dados}
+		\label{checkIfImported}
+	\end{listing}
+	
+		
 	\section{Implementação de funcionalidades}
 	\subsection{Dados auxiliares}
 	\subsection{Avisos}

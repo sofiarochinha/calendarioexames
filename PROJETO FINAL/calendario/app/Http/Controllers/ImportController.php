@@ -58,13 +58,11 @@ class ImportController extends Controller
                 ]);
             }
 
-
-
             //contém o codigo de curso e o ano do curso na forma '8912-1'
             $string = $data[$i][6];
 
             /*$var[0] = course_code
-                $var[1] = course_year*/
+            $var[1] = course_year*/
             $var = explode('-', $string);
 
             //obtém o id do curso que tem o mesmo código de curso e o mesmo ano
@@ -113,7 +111,6 @@ class ImportController extends Controller
      */
     public function checkIfImported()
     {
-
         if (Professor::exists())
             return true;
 

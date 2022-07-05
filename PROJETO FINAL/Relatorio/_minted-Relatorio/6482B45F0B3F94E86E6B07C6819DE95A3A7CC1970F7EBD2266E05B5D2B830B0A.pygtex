@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{	Route::middleware([Authenticate::class])\PYGZhy{}\PYGZgt{}group(function ()\PYGZob{}}
+\PYG{x}{	}
+\end{Verbatim}

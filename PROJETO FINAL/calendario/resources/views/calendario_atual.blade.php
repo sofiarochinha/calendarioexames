@@ -417,9 +417,9 @@
                     calendar: JSON.stringify(calendar),
 
                 }, function (response) {
-                    console.log(response);
-                    //event.event.id = response.idEvaluationSlot;
-                    //console.log(event.event.id);
+                    //id da evaluation slot
+                    console.log("addevento", response);
+                    event.setProp("id", response.idEvaluationSlot);
                 });
 
         }
@@ -465,8 +465,8 @@
                     profsSelected: JSON.stringify(profsSelected),
                     salasSelected: JSON.stringify(salasSelected),
                 }, function (response) {
-                    //id da evaluation slot, mas não consigo adicionar ao evento
-                    console.log(response);
+                   
+                    console.log("associar", response);
 
                 })
         }
@@ -552,8 +552,9 @@
                 }],
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
-                drop: function (info) { //marca um exame que ainda não está marcado
-                    var date = (info.date).toString().split(" ");
+                eventReceive: function (info) { //marca um exame que ainda não está marcado
+
+                    var date = (info.event._instance.range.start).toString().split(" ");
 
                     var horas = date[4].split(":");
 
@@ -564,15 +565,12 @@
 
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                     sendToController(data, nome, getTimeSlot(data.getUTCHours()),
-                        $('#epoca').val());
-
-                    console.log(info.event);
-
+                        $('#epoca').val(), info.event);
+                
 
                 },
                 //quando muda a data do exame
                 eventDrop: function (info) {
-
                     var dateTime = info.event.start.toISOString().split("T");
                     var date = dateTime[0].split("-");
 
@@ -583,13 +581,25 @@
                         hour[0], hour[1], hour[2]);
 
                     var nome = info.event.title;
+                    console.log(nome);
+                    arrayNome = nome.split(" ");
+
+                    subjectName = ""
+
+                    arrayNome.every(element => {
+                        if(!isNaN(element)){
+                            return false;
+                        }
+
+                        subjectName += element + " ";
+                        return true;
+                    });
 
                     var timeslot = getTimeSlot(parseInt(hour[0]));
 
-                    sendToController(data, nome, timeslot,
-                        $('#epoca').val());
+                    sendToController(data, subjectName.replace(/\s+$/, ''), timeslot,
+                        $('#epoca').val(), info.event);
 
-                    
                 },
                 initialView: 'timeGrid2Week',
                 initialDate: dataInicio,
@@ -690,6 +700,27 @@
             calendar.addEventSource(event); //adiciona os eventos
 
             calendar.render();
+
+             /* ADDING EVENTS */
+            var currColor = '#3c8dbc' //Red by default
+            // Color chooser button
+            $('#color-chooser > li > a').click(function (e) {
+            e.preventDefault()
+            // Save color
+            currColor = $(this).css('color')
+            // Add color effect to button
+            $('#add-new-event').css({
+                'background-color': currColor,
+                'border-color'    : currColor
+            })
+            })
+            $('#add-new-event').click(function (e) {
+            e.preventDefault()
+            // Get value and make sure it is not null
+            var val = $('#new-event').val()
+            if (val.length == 0) {
+                return
+            }});
         };
     </script>
 
