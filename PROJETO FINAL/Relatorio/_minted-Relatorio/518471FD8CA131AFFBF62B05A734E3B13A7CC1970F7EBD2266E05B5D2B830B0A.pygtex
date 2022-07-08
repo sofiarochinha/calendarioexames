@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{	function (response) \PYGZob{}}
+\PYG{x}{	//adiciona o id da epoca}
+\PYG{x}{	if (typeof response[\PYGZsq{}exception\PYGZsq{}] === \PYGZdq{}object\PYGZdq{}) \PYGZob{}}
+\PYG{x}{		toastr.error(\PYGZsq{}Ocorreu um erro! O nmec ou o email já está a ser utilizado.\PYGZsq{});}
+\PYG{x}{		tableDocente.row(\PYGZsq{}:first\PYGZsq{}).remove().draw(false);}
+\PYG{x}{			}
+\PYG{x}{	\PYGZcb{} else if (typeof response[\PYGZsq{}idDocente\PYGZsq{}] === \PYGZdq{}number\PYGZdq{}) \PYGZob{}}
+\PYG{x}{		tableDocente.row(\PYGZsq{}:first\PYGZsq{}).nodes().to\PYGZdl{}().find(\PYGZsq{}.nomeDocente\PYGZsq{})}
+\PYG{x}{		.attr(\PYGZsq{}id\PYGZsq{}, response[\PYGZsq{}idDocente\PYGZsq{}]);}
+\PYG{x}{	\PYGZcb{}}
+\end{Verbatim}

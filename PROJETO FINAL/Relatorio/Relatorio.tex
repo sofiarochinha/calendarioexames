@@ -478,7 +478,13 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	Consequentemente, de forma a corrigir este problema, antes de aceder a qualquer rota (exceto a de login e de registo) é verificado se existe uma sessão aberta através do \textit{middleware}, como se pode verificar no código \ref{routesMiddl} e \ref{autenticarMiddl}.
 	
 	\begin{listing}[H]
-	\begin{minted}{php}
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{php}
 	Route::middleware([Authenticate::class])->group(function (){
 	
 	\end{minted}
@@ -487,7 +493,13 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	\end{listing}                                 
 		
 	\begin{listing}[H]
-	\begin{minted}{php}
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{php}
 	class Authenticate extends Middleware
 	{
 	/**
@@ -514,7 +526,13 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	
 
 	\begin{listing}[H]
-	\begin{minted}{php}
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{php}
 	$mec = explode(",", $data[$i][9]);
 			
 	if (count($mec) > 1) {
@@ -560,7 +578,13 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	Este \textit{toastr} é ativado consoante os dados persentes na \textit{cookie} presente. Ao carregar a página é verificado se existe dados na base de dados através do \textit{controller} e com isso é alterado o cookie de acordo com o resultado. Como a tabela de professores é umas das que é preenchida ao importar o ficheiro .csv então se existir dados na mesma quer dizer que este ficheiro ja foi importado, através do código \ref{checkIfImported}. Apesar disto nada impede que importar mais do que uma vez.
 	
 	\begin{listing}[H]
-		\begin{minted}{php}
+		\begin{minted}[
+			frame=lines,
+			framesep=2mm,
+			baselinestretch=1,
+			fontsize=\footnotesize,
+			linenos
+			]{php}
 		/**
 		* Verifica se o csv já foi importado
 		* @return bool
@@ -580,10 +604,189 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 		
 	\section{Implementação de funcionalidades}
 	\subsection{Dados auxiliares}
-	\subsection{Avisos}
-	\subsection{Criação de calendários}
-	\subsection{Exportação}
 	
+	Na secção dos dados auxiliares é apresentado todos os dados da base de dados divididos em quatro categorias: Unidades curriculares, Docentes, Salas e Épocas. 
+	
+	\begin{figure}[H] 
+		
+	\centering 			\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/dadosAuxiliares}
+	\caption{Página de dados auxiliares}
+	\label{dadosAuxiliares}
+		
+	\end{figure}
+	
+	Dentro dessas categorias é possível editar alguns dados. Na categoria ``Unidades Curriculares'' é possível alterar o docente da UC por outro já existente e também o número de alunos inscritos. Em ``Docentes'' qualquer dado é editável exceto disponibildade que não está implementado. Em ``Salas'' só é possível alterar a lotação da sala em exame. E por fim em ``Épocas'' é possível criar, editar ou eliminar qualquer uma.
+	
+	Estas operações são realizadas todas de forma semelhante. Primeiramente todos os dados apresentados são enviados a partir do controller ``ConfigurationsController'', como está apresentado em \ref{dadosController}. 
+	
+	\begin{listing}[H]
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{php}
+	public function showView()
+	{
+	$subjects = Subject::all();
+	$professors = Professor::all();
+	$classrooms = Classroom::all();
+	$epocas = Epoca::all();
+	$courses = Course::all();
+	return view('configurations', compact(["subjects","professors",
+			"classrooms","epocas","courses"
+	]));
+	}
+	\end{minted}
+	\caption{Apresentação da página de dados auxiliares a partir do controller}
+	\label{dadosController}
+	\end{listing}
+	  
+	Após isso o utilizador pode realizar qualquer uma das operações indicadas acima. Em épocas o utilizador pode criar uma nova - uma de cada vez, para evitar conflitos no controlador, como se pode ver na figura \ref{epocasAdd} - em que o procedimento começa em adicionar uma nova linha na \textit{datatable} com um campo para escrever o nome da mesma e um \textit{daterangepicker} para possa escolher o intervalo de datas para a avaliação. 
+	
+	\begin{figure}[H] 
+		
+		\centering 			
+		\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/epocasAdd}
+		\caption{Adicionar uma época}
+		\label{epocasAdd}
+		
+	\end{figure} 
+
+	Para evitar cliques multiplos o \textit{event handler} é sempre removido depois deste ser acionado, como se pode ver no código \ref{epocasAddDatable}. Neste é adicionado uma nova linha com referido acima e como ete ainda não tem nenhum id na base de dados então na função ``saveEpoca'' recebe um valor nulo.
+	
+	\begin{listing}[H]
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{php}
+	$("#adicionarEpoca").off('click').on('click', function () {
+	if (adicionarEpoca) {
+	adicionarEpoca = false;
+	tableEpocas.row.add([
+	' <div class="data">0</div>',
+	'<div class="input-group">' +
+	'   <div class="input-group-prepend">' +
+	'       <span class="input-group-text">' +
+	'           <i class="far fa-calendar-alt"></i> ' +
+	'       </span>' +
+	'  </div>' +
+	'  <input type="text" class="form-control float-right daterange" > </div>',
+	'  <div align="center"> <a class="edit"> <i class="fas fa-edit"> </i>' +
+	'  </a> <a class="save"> <i class="fas fa-save"></i> </a>' +
+	'  <a class="delete"> <i class="fas fa-trash"></i> </a></div>']).draw();
+	
+	saveEpoca(null);
+					
+	\end{minted}
+	\caption{Adicionar uma nova linha à tabela da secção das épocas}
+	\label{epocasAddDatable}
+	\end{listing}
+	
+	Dentro da função ``saveEpoca'' obtém-se todos os valores (nome, data de início e fim da época) da linha criada - através do seu índice - e remove todos as entradas. O índice é obtido encontrando a linha mais próxima (``tr'') do \textit{input.data} que pertence ao nome da época (linha 2, do código \ref{epocasAddControlador}). Depois através deste é substituído todos os dados para texto para deixarem de ser editáveis e enviados para o controlador, como se pode ver no código \ref{epocasAddControlador}.
+ 	
+	\begin{listing}[H]
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{php}
+	nomeEpoca = $('#epocas').find('input.data');
+	var rowIndex = tableEpocas.row($(nomeEpoca).closest('tr')).index();
+		
+	//o nome inserido
+	var fieldName = $('#epocas').find('input.data[name="nomeEpoca"]').val();
+	var fieldDate = date.val();
+	dateArray = fieldDate.split("-");
+			
+	startDate = dateArray[0] + "-" + dateArray[1] + "-" + dateArray[2];
+	endDate = dateArray[3] + "-" + dateArray[4] + "-" + dateArray[5];
+	
+	//remove todos os dados adicionados anteriormente
+	$('#epocas').find("input.data").remove();
+	$('#epocas').find("input.daterange").remove();
+			
+	//adiciona o novo nome a celula
+	tableEpocas.cell(rowIndex, 0).data('<div id=' + idEpoca + ' class="data">' 
+	+ fieldName + '</div>');
+	tableEpocas.cell(rowIndex, 1).data('<div class="epoca">' + 
+	startDate + " até " + endDate + '</div>');
+		
+	if (idEpoca == null) {
+		insertNewEpoca(fieldName, startDate, endDate);
+	} else {
+	//update na base de dados
+		updateEpoca(idEpoca, fieldName, startDate, endDate);
+	}
+	\end{minted}
+	\caption{Obtenção e envio de todos os dados para o controlador}
+	\label{epocasAddControlador}
+	\end{listing}
+
+	Como neste caso o id da época é nulo então envia-se todos os dados para o controllador e este retorna o id criado na base de dados. Este id é adiconado ao nome da época para que se possa editar a mesma no futuro, como se pode ver na resposta do ajax no código \ref{epocaAddDatabase}.
+	
+	\begin{listing}[H]
+	\begin{minted}[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1,
+	fontsize=\footnotesize,
+	linenos
+	]{php}
+	$.post("{{ route('criarEpocaConfigurations')}}",
+	{
+		nome: JSON.stringify(fieldName),
+		startDate: JSON.stringify(startDate),
+		endDate: JSON.stringify(endDate),
+			
+	}, function (response) {
+		//adiciona o id da epoca
+		tableEpocas.row(':first').nodes().to$().find('.data')
+		.attr('id', response['idEpoca']);
+	})
+	\end{minted}
+	\caption{Envio de dados para o controlador e na resposta adicionar o id ao nome da época}
+	\label{epocaAddDatabase}
+	\end{listing}
+
+	Na edição de uma época o processo é idêntico mas obtêm-se primeiramente o id da época para que todos os dados sejam alterados na base de dados na época correspondente. Da mesma forma que este mesmo id é utilizado para eliminar uma época. No entanto a tabela na base de dados está criada para ser eliminada ON CASCADE não havendo quaisquer verificações.
+	
+	Em suma, apesar de em todas as outras tabelas o processo ser idêntico existe uma verificação quando se edita o email e o nmec dos docentes uma vez que estes tem ser único. Caso não seja único é apresentado um aviso para o utilizador, como se pode ver no código \ref{docenteAddDatabase}.
+	
+	\begin{listing}[H]
+	\begin{minted}[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1,
+	fontsize=\footnotesize,
+	linenos
+	]{php}
+	function (response) {
+	//adiciona o id da epoca
+	if (typeof response['exception'] === "object") {
+		toastr.error('Ocorreu um erro! O nmec ou o email já está a ser utilizado.');
+		tableDocente.row(':first').remove().draw(false);
+			
+	} else if (typeof response['idDocente'] === "number") {
+		tableDocente.row(':first').nodes().to$().find('.nomeDocente')
+		.attr('id', response['idDocente']);
+	}
+	\end{minted}
+	\caption{Verificação se o nmec e o email são únicos ao criar um docente}
+	\label{docenteAddDatabase}
+	\end{listing}
+
+	\subsection{Criação de calendários}
+	
+	
+	\subsection{Exportação}
+	\subsection{Avisos}
 	\subsection{Análise de resultados}
 	
 	

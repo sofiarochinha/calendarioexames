@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{	public function showView()}
+\PYG{x}{	\PYGZob{}}
+\PYG{x}{	\PYGZdl{}subjects = Subject::all();}
+\PYG{x}{	\PYGZdl{}professors = Professor::all();}
+\PYG{x}{	\PYGZdl{}classrooms = Classroom::all();}
+\PYG{x}{	\PYGZdl{}epocas = Epoca::all();}
+\PYG{x}{	\PYGZdl{}courses = Course::all();}
+\PYG{x}{	return view(\PYGZsq{}configurations\PYGZsq{}, compact([\PYGZdq{}subjects\PYGZdq{},\PYGZdq{}professors\PYGZdq{},}
+\PYG{x}{			\PYGZdq{}classrooms\PYGZdq{},\PYGZdq{}epocas\PYGZdq{},\PYGZdq{}courses\PYGZdq{}}
+\PYG{x}{	]));}
+\PYG{x}{	\PYGZcb{}}
+\end{Verbatim}

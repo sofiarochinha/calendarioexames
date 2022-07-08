@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{	\PYGZdl{}.post(\PYGZdq{}\PYGZob{}\PYGZob{} route(\PYGZsq{}criarEpocaConfigurations\PYGZsq{})\PYGZcb{}\PYGZcb{}\PYGZdq{},}
+\PYG{x}{	\PYGZob{}}
+\PYG{x}{		nome: JSON.stringify(fieldName),}
+\PYG{x}{		startDate: JSON.stringify(startDate),}
+\PYG{x}{		endDate: JSON.stringify(endDate),}
+\PYG{x}{			}
+\PYG{x}{	\PYGZcb{}, function (response) \PYGZob{}}
+\PYG{x}{		//adiciona o id da epoca}
+\PYG{x}{		tableEpocas.row(\PYGZsq{}:first\PYGZsq{}).nodes().to\PYGZdl{}().find(\PYGZsq{}.data\PYGZsq{})}
+\PYG{x}{		.attr(\PYGZsq{}id\PYGZsq{}, response[\PYGZsq{}idEpoca\PYGZsq{}]);}
+\PYG{x}{	\PYGZcb{})}
+\end{Verbatim}

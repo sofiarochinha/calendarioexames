@@ -229,7 +229,7 @@
         //EDIT DATA ON DATABLE FUNCTIONS
         /*The above code is making the edit button on the table clickable. When clicked, it will make all the data in the
         table editable.*/
-        $('#epocas').on('click', 'tbody td .edit', function () {
+        $('#epocas').off('click').on('click', 'tbody td .edit', function () {
             var clickedRow = $($(this).closest('td')).closest('tr');
 
             //Adding a new input field to each row of the table.
@@ -279,7 +279,7 @@
         /**
          * Edição na table das salas
          */
-        $('#salas').on('click', 'tbody td .edit', function () {
+        $('#salas').off('click').on('click', 'tbody td .edit', function () {
             var clickedRow = $($(this).closest('td')).closest('tr');
 
             //Adding a new input field to each row of the table.
@@ -311,7 +311,7 @@
          * Edição na tabela dos docentes
          * Edição do nome, email, nmec
          */
-        $('#docentes').on('click', 'tbody td .edit', function () {
+        $('#docentes').off('click').on('click', 'tbody td .edit', function () {
             var clickedRow = $($(this).closest('td')).closest('tr');
 
             //Adding a new input field to each row of the table.
@@ -335,7 +335,7 @@
 
         });
 
-        $('#UC').on('click', 'tbody td .edit', function () {
+        $('#UC').off('click').on('click', 'tbody td .edit', function () {
             var clickedRow = $($(this).closest('td')).closest('tr');
 
             var rowIndex = tableUCS.row($(this).closest('tr')).index();
@@ -360,11 +360,6 @@
                         @foreach($professors as $prof)
                             '<option value="{{$prof->name}}" id="{{$prof->id}}">{{$prof->name}} </option>' +
                         @endforeach
-
-                                {{--    '<option selected>' + nomeDocente.html()+ '</option>'--}}
-                                {{--else--}}
-                                {{--    '<option value="{{$prof->name}}" id="{{$prof->id}}">{{$prof->name}} </option>'--}}
-
 
                     + '</select> </div> </div></div>');
 
@@ -552,7 +547,7 @@
          */
         function saveSala(idSala) {
 
-            $("#salas").on('click', 'tbody td .save', function () {
+            $("#salas").off('click').on('click', 'tbody td .save', function () {
                 let capacidadeSala = $('#salas').find('input.capacitySala');
 
                 $.each(capacidadeSala, function () {
@@ -586,7 +581,7 @@
          */
         function saveEpoca(idEpoca) {
 
-            $("#epocas").on('click', 'tbody td .save', function () {
+            $("#epocas").off('click').on('click', 'tbody td .save', function () {
                 nomeEpoca = $('#epocas').find('input.data');
 
                 date = $('.daterange');
@@ -631,7 +626,7 @@
          */
         function saveDocente(idDocente) {
 
-            $("#docentes").on('click', 'tbody td .save', function () {
+            $("#docentes").off('click').on('click', 'tbody td .save', function () {
                 nomeDocente = $('#docentes').find('input.nomeDocente');
 
                 docentes = $('#docentes');
@@ -673,7 +668,7 @@
 
         function saveUC(idUC) {
 
-            $("#UC").on('click', 'tbody td .save', function () {
+            $("#UC")off('click').on('click', 'tbody td .save', function () {
                 let nomeDocente = $('#UC').find('.selectDocente');
 
                 let uc = $('#UC');
@@ -712,7 +707,7 @@
         //END SAVE DATA FUNCTIONS
 
         //DELETE FUNCTIONS
-        $('#epocas').on('click', 'tbody td .delete', function () {
+        $('#epocas')off('click').on('click', 'tbody td .delete', function () {
             var clickedRow = $($(this).closest('td')).closest('tr');
             $(clickedRow).find('td').each(function () {
                 epoca = $(this).find(".data");
@@ -745,7 +740,7 @@
         /**
          * The above code is adding a new row to the table.
          */
-        $("#adicionarEpoca").on('click', function () {
+        $("#adicionarEpoca").off('click').on('click', function () {
             if (adicionarEpoca) {
                 adicionarEpoca = false;
                 tableEpocas.row.add([
@@ -778,7 +773,7 @@
             }
         });
 
-        $("#adicionarDocente").on('click', function () {
+        $("#adicionarDocente").off('click').on('click', function () {
             if (adicionarDocente) {
                 adicionarDocente = false;
                 tableDocente.row.add([

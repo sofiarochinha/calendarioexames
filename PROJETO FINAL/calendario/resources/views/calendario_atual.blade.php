@@ -192,6 +192,7 @@
 
         @endforeach
         $("#ano").html(anoString);
+        
 
         var valAno = $("#ano").val();
 
@@ -208,6 +209,7 @@
         }
 
         @endforeach
+        console.log(epocaString);
 
         $("#epoca").html(epocaString);
 

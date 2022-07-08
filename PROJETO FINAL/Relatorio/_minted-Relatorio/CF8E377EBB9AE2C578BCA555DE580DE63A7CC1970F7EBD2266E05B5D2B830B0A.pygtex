@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{	nomeEpoca = \PYGZdl{}(\PYGZsq{}\PYGZsh{}epocas\PYGZsq{}).find(\PYGZsq{}input.data\PYGZsq{});}
+\PYG{x}{	var rowIndex = tableEpocas.row(\PYGZdl{}(nomeEpoca).closest(\PYGZsq{}tr\PYGZsq{})).index();}
+\PYG{x}{		}
+\PYG{x}{	//o nome inserido}
+\PYG{x}{	var fieldName = \PYGZdl{}(\PYGZsq{}\PYGZsh{}epocas\PYGZsq{}).find(\PYGZsq{}input.data[name=\PYGZdq{}nomeEpoca\PYGZdq{}]\PYGZsq{}).val();}
+\PYG{x}{	var fieldDate = date.val();}
+\PYG{x}{	dateArray = fieldDate.split(\PYGZdq{}\PYGZhy{}\PYGZdq{});}
+\PYG{x}{			}
+\PYG{x}{	startDate = dateArray[0] + \PYGZdq{}\PYGZhy{}\PYGZdq{} + dateArray[1] + \PYGZdq{}\PYGZhy{}\PYGZdq{} + dateArray[2];}
+\PYG{x}{	endDate = dateArray[3] + \PYGZdq{}\PYGZhy{}\PYGZdq{} + dateArray[4] + \PYGZdq{}\PYGZhy{}\PYGZdq{} + dateArray[5];}
+\PYG{x}{	}
+\PYG{x}{	//remove todos os dados adicionados anteriormente}
+\PYG{x}{	\PYGZdl{}(\PYGZsq{}\PYGZsh{}epocas\PYGZsq{}).find(\PYGZdq{}input.data\PYGZdq{}).remove();}
+\PYG{x}{	\PYGZdl{}(\PYGZsq{}\PYGZsh{}epocas\PYGZsq{}).find(\PYGZdq{}input.daterange\PYGZdq{}).remove();}
+\PYG{x}{			}
+\PYG{x}{	//adiciona o novo nome a celula}
+\PYG{x}{	tableEpocas.cell(rowIndex, 0).data(\PYGZsq{}\PYGZlt{}div id=\PYGZsq{} + idEpoca + \PYGZsq{} class=\PYGZdq{}data\PYGZdq{}\PYGZgt{}\PYGZsq{}}
+\PYG{x}{	+ fieldName + \PYGZsq{}\PYGZlt{}/div\PYGZgt{}\PYGZsq{});}
+\PYG{x}{	tableEpocas.cell(rowIndex, 1).data(\PYGZsq{}\PYGZlt{}div class=\PYGZdq{}epoca\PYGZdq{}\PYGZgt{}\PYGZsq{} +}
+\PYG{x}{	startDate + \PYGZdq{} até \PYGZdq{} + endDate + \PYGZsq{}\PYGZlt{}/div\PYGZgt{}\PYGZsq{});}
+\PYG{x}{		}
+\PYG{x}{	if (idEpoca == null) \PYGZob{}}
+\PYG{x}{		insertNewEpoca(fieldName, startDate, endDate);}
+\PYG{x}{	\PYGZcb{} else \PYGZob{}}
+\PYG{x}{	//update na base de dados}
+\PYG{x}{		updateEpoca(idEpoca, fieldName, startDate, endDate);}
+\PYG{x}{	\PYGZcb{}}
+\end{Verbatim}
