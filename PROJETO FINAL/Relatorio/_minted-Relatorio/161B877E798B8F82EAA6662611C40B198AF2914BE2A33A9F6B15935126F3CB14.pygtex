@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nx}{exames}\PYG{p}{.}\PYG{n+nx}{forEach}\PYG{p}{(}\PYG{n+nx}{element} \PYG{p}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+\PYG{k+kd}{var} \PYG{n+nx}{event} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{};} \PYG{c+c1}{//cria um objeto que irá guardar todas as informações sobre o exame}
+\PYG{n+nx}{idEvaluationSlot} \PYG{o}{=} \PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}idEvaluationSlot\PYGZsq{}}\PYG{p}{];}
+
+\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{idEvaluationSlot} \PYG{o}{!=} \PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}
+	\PYG{n+nx}{calendarDay} \PYG{o}{=} \PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}subject\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}evaluation\PYGZus{}slot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}calendar\PYGZus{}day\PYGZsq{}}\PYG{p}{];}
+	\PYG{n+nx}{timeSlot} \PYG{o}{=} \PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}subject\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}evaluation\PYGZus{}slot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}time\PYGZus{}slot\PYGZsq{}}\PYG{p}{];}
+		
+	\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{timeSlot} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}}
+		\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{start} \PYG{o}{=} \PYG{n+nx}{calendarDay}\PYG{p}{.}\PYG{n+nx}{concat}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}09:30:00\PYGZdq{}}\PYG{p}{);}
+		\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{end} \PYG{o}{=} \PYG{n+nx}{calendarDay}\PYG{p}{.}\PYG{n+nx}{concat}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}13:30:00\PYGZdq{}}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}\PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{n+nx}{timeSlot} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{start} \PYG{o}{=} \PYG{n+nx}{calendarDay}\PYG{p}{.}\PYG{n+nx}{concat}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}14:00:00\PYGZdq{}}\PYG{p}{);}
+		\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{end} \PYG{o}{=} \PYG{n+nx}{calendarDay}\PYG{p}{.}\PYG{n+nx}{concat}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}18:00:00\PYGZdq{}}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+		\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{start} \PYG{o}{=} \PYG{n+nx}{calendarDay}\PYG{p}{.}\PYG{n+nx}{concat}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}18:30:00\PYGZdq{}}\PYG{p}{);}
+		\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{end} \PYG{o}{=} \PYG{n+nx}{calendarDay}\PYG{p}{.}\PYG{n+nx}{concat}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}22:30:00\PYGZdq{}}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+		
+	\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{id} \PYG{o}{=} \PYG{n+nx}{idEvaluationSlot}\PYG{p}{;} 	
+	\PYG{n+nx}{numberSalas} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n+nx}{numberDocentes} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		
+	\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}docente\PYGZsq{}}\PYG{p}{].}\PYG{n+nx}{length} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n+nx}{numberDocentes} \PYG{o}{=} \PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}docente\PYGZsq{}}\PYG{p}{].}\PYG{n+nx}{length}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sala\PYGZsq{}}\PYG{p}{].}\PYG{n+nx}{length} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n+nx}{numberSalas} \PYG{o}{=} \PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sala\PYGZsq{}}\PYG{p}{].}\PYG{n+nx}{length}
+		
+	\PYG{n+nx}{event}\PYG{p}{.}\PYG{n+nx}{title} \PYG{o}{=} \PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}subject\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}name\PYGZsq{}}\PYG{p}{]} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{numberDocentes} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} Vigilantes \PYGZdq{}} \PYG{o}{+}
+	\PYG{n+nx}{numberSalas} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} Salas\PYGZdq{}}\PYG{p}{;}
+	\PYG{n+nx}{arrayEvent}\PYG{p}{.}\PYG{n+nx}{push}\PYG{p}{(}\PYG{n+nx}{event}\PYG{p}{);} \PYG{c+c1}{//adiciona o objeto criado a um array que irá ser lido pelo calendário	}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{});}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{function} \PYG{n+nx}{showFrom}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{k+kd}{let} \PYG{n+nx}{mostrarEpoca} \PYG{o}{=} \PYG{n+nx}{\PYGZdl{}}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZsh{}showCriarEpoca\PYGZsq{}}\PYG{p}{);}
+	\PYG{k+kd}{let} \PYG{n+nx}{form} \PYG{o}{=} \PYG{n+nx}{\PYGZdl{}}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZsh{}criarEpocaForm\PYGZsq{}}\PYG{p}{);}
+			
+	\PYG{k}{if} \PYG{p}{(}\PYG{n+nx}{mostrarEpoca}\PYG{p}{.}\PYG{n+nx}{css}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}display\PYGZdq{}}\PYG{p}{)} \PYG{o}{===} \PYG{l+s+s2}{\PYGZdq{}none\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n+nx}{mostrarEpoca}\PYG{p}{.}\PYG{n+nx}{css}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}display\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}inline\PYGZhy{}block\PYGZdq{}}\PYG{p}{);}
+		\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{css}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}display\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}none\PYGZdq{}}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+		\PYG{n+nx}{mostrarEpoca}\PYG{p}{.}\PYG{n+nx}{css}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}display\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}none\PYGZdq{}}\PYG{p}{);}
+		\PYG{n+nx}{form}\PYG{p}{.}\PYG{n+nx}{css}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}display\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}block\PYGZdq{}}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

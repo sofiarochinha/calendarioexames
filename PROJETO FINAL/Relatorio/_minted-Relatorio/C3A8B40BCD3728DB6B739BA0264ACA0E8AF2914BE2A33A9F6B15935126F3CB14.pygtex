@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nx}{\PYGZdl{}codeCourse} \PYG{o}{=} \PYG{n+nx}{json\PYGZus{}decode}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}request}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{codeCourse}\PYG{p}{);}
+\PYG{n+nx}{\PYGZdl{}idEpoca} \PYG{o}{=} \PYG{n+nx}{json\PYGZus{}decode}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}request}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{idEpoca}\PYG{p}{);}
+\PYG{n+nx}{\PYGZdl{}yearCourse} \PYG{o}{=} \PYG{n+nx}{json\PYGZus{}decode}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}request}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{yearCourse}\PYG{p}{);}
+
+\PYG{n+nx}{\PYGZdl{}idCourse} \PYG{o}{=} \PYG{n+nx}{Course}\PYG{o}{::}\PYG{n+nx}{where}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}course\PYGZus{}code\PYGZsq{}}\PYG{p}{,} \PYG{n+nx}{\PYGZdl{}codeCourse}\PYG{p}{)}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{where}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}course\PYGZus{}year\PYGZsq{}}\PYG{p}{,} \PYG{n+nx}{\PYGZdl{}yearCourse}\PYG{p}{)}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{first}\PYG{p}{()}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{id}\PYG{p}{;}
+
+\PYG{c+c1}{//obtem todas as disciplinas marcadas}
+\PYG{n+nx}{\PYGZdl{}subjects} \PYG{o}{=} \PYG{n+nx}{Subject}\PYG{o}{::}\PYG{n+nx}{where}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}course\PYGZus{}id\PYGZsq{}}\PYG{p}{,} \PYG{n+nx}{\PYGZdl{}idCourse}\PYG{p}{)}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{k+kd}{with}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}evaluationSlot\PYGZsq{}}\PYG{p}{)}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{get}\PYG{p}{();}
+
+\PYG{n+nx}{\PYGZdl{}associatedSala} \PYG{o}{=} \PYG{n+nx}{DB}\PYG{o}{::}\PYG{n+nx}{table}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}associated\PYGZus{}classroom\PYGZsq{}}\PYG{p}{)}
+\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{join}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}classroom\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}associated\PYGZus{}classroom.id\PYGZus{}classroom\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}=\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}classroom.id\PYGZsq{}}\PYG{p}{)}
+\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{where}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}id\PYGZus{}evaluation\PYGZus{}slot\PYGZsq{}}\PYG{p}{,} \PYG{n+nx}{\PYGZdl{}subject}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{evaluationSlot}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{id}\PYG{p}{)}
+\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{get}\PYG{p}{();}
+		
+\PYG{n+nx}{\PYGZdl{}associatedDocente} \PYG{o}{=} \PYG{n+nx}{DB}\PYG{o}{::}\PYG{n+nx}{table}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}observing\PYGZus{}professor\PYGZsq{}}\PYG{p}{)}
+\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{join}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}professor\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}observing\PYGZus{}professor.id\PYGZus{}professor\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}=\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}professor.id\PYGZsq{}}\PYG{p}{)}
+\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{where}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}id\PYGZus{}evaluation\PYGZus{}slot\PYGZsq{}}\PYG{p}{,} \PYG{n+nx}{\PYGZdl{}subject}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{evaluationSlot}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{id}\PYG{p}{)}
+\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{get}\PYG{p}{();}
+		
+\end{Verbatim}

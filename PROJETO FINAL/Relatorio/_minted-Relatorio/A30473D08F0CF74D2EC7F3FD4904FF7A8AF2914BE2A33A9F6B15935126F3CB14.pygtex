@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nx}{\PYGZdl{}}\PYG{p}{.}\PYG{n+nx}{post}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZob{}\PYGZob{} route(\PYGZsq{}api\PYGZhy{}getExames\PYGZsq{})\PYGZcb{}\PYGZcb{}\PYGZdq{}}\PYG{p}{,}
+\PYG{p}{\PYGZob{}}
+	\PYG{n+nx}{codeCourse}\PYG{o}{:} \PYG{n+nx}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(}\PYG{n+nx}{codeCourse}\PYG{p}{),}
+	\PYG{n+nx}{idEpoca}\PYG{o}{:} \PYG{n+nx}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(}\PYG{n+nx}{idEpoca}\PYG{p}{),}
+	\PYG{n+nx}{yearCourse}\PYG{o}{:} \PYG{n+nx}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(}\PYG{n+nx}{yearCourse}\PYG{p}{),}
+			
+\PYG{p}{\PYGZcb{},} \PYG{k+kd}{function} \PYG{p}{(}\PYG{n+nx}{response}\PYG{p}{)} \PYG{p}{\PYGZob{}}	
+	\PYG{k+kd}{var} \PYG{n+nx}{disciplinaString} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}}\PYG{p}{;}
+	\PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}exames\PYGZsq{}}\PYG{p}{].}\PYG{n+nx}{forEach}\PYG{p}{(}\PYG{n+nx}{element} \PYG{p}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}idEvaluationSlot\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}
+			\PYG{n+nx}{disciplinaString} \PYG{o}{+=} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}div class=\PYGZsq{}external\PYGZhy{}event bg\PYGZhy{}success\PYGZsq{}\PYGZgt{}\PYGZdq{}}\PYG{o}{+}
+			 \PYG{n+nx}{element}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}subject\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}name\PYGZsq{}}\PYG{p}{]} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}/div\PYGZgt{}\PYGZdq{}}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{});}
+		
+	\PYG{n+nx}{\PYGZdl{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}external\PYGZhy{}events\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{html}\PYG{p}{(}\PYG{n+nx}{disciplinaString}\PYG{p}{);}
+	\PYG{n+nx}{alterarCalendario}\PYG{p}{(}\PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}exames\PYGZsq{}}\PYG{p}{]);}
+			
+\PYG{p}{\PYGZcb{})}
+\end{Verbatim}

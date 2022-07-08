@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{n+nx}{nomeEpoca} \PYG{o}{=} \PYG{n+nx}{\PYGZdl{}}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZsh{}epocas\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{find}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}input.data\PYGZsq{}}\PYG{p}{);}
+	\PYG{k+kd}{var} \PYG{n+nx}{rowIndex} \PYG{o}{=} \PYG{n+nx}{tableEpocas}\PYG{p}{.}\PYG{n+nx}{row}\PYG{p}{(}\PYG{n+nx}{\PYGZdl{}}\PYG{p}{(}\PYG{n+nx}{nomeEpoca}\PYG{p}{).}\PYG{n+nx}{closest}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}tr\PYGZsq{}}\PYG{p}{)).}\PYG{n+nx}{index}\PYG{p}{();}
+		
+	\PYG{c+c1}{//o nome inserido}
+	\PYG{k+kd}{var} \PYG{n+nx}{fieldName} \PYG{o}{=} \PYG{n+nx}{\PYGZdl{}}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZsh{}epocas\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{find}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}input.data[name=\PYGZdq{}nomeEpoca\PYGZdq{}]\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{val}\PYG{p}{();}
+	\PYG{k+kd}{var} \PYG{n+nx}{fieldDate} \PYG{o}{=} \PYG{n+nx}{date}\PYG{p}{.}\PYG{n+nx}{val}\PYG{p}{();}
+	\PYG{n+nx}{dateArray} \PYG{o}{=} \PYG{n+nx}{fieldDate}\PYG{p}{.}\PYG{n+nx}{split}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}\PYG{p}{);}
+			
+	\PYG{n+nx}{startDate} \PYG{o}{=} \PYG{n+nx}{dateArray}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{dateArray}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{dateArray}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+	\PYG{n+nx}{endDate} \PYG{o}{=} \PYG{n+nx}{dateArray}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{dateArray}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{dateArray}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+	
+	\PYG{c+c1}{//remove todos os dados adicionados anteriormente}
+	\PYG{n+nx}{\PYGZdl{}}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZsh{}epocas\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{find}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}input.data\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{remove}\PYG{p}{();}
+	\PYG{n+nx}{\PYGZdl{}}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZsh{}epocas\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{find}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}input.daterange\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{remove}\PYG{p}{();}
+			
+	\PYG{c+c1}{//adiciona o novo nome a celula}
+	\PYG{n+nx}{tableEpocas}\PYG{p}{.}\PYG{n+nx}{cell}\PYG{p}{(}\PYG{n+nx}{rowIndex}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{).}\PYG{n+nx}{data}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}div id=\PYGZsq{}} \PYG{o}{+} \PYG{n+nx}{idEpoca} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{} class=\PYGZdq{}data\PYGZdq{}\PYGZgt{}\PYGZsq{}}
+	\PYG{o}{+} \PYG{n+nx}{fieldName} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}/div\PYGZgt{}\PYGZsq{}}\PYG{p}{);}
+	\PYG{n+nx}{tableEpocas}\PYG{p}{.}\PYG{n+nx}{cell}\PYG{p}{(}\PYG{n+nx}{rowIndex}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{).}\PYG{n+nx}{data}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}div class=\PYGZdq{}epoca\PYGZdq{}\PYGZgt{}\PYGZsq{}} \PYG{o}{+}
+	\PYG{n+nx}{startDate} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} até \PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{endDate} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}/div\PYGZgt{}\PYGZsq{}}\PYG{p}{);}
+		
+	\PYG{k}{if} \PYG{p}{(}\PYG{n+nx}{idEpoca} \PYG{o}{==} \PYG{k+kc}{null}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n+nx}{insertNewEpoca}\PYG{p}{(}\PYG{n+nx}{fieldName}\PYG{p}{,} \PYG{n+nx}{startDate}\PYG{p}{,} \PYG{n+nx}{endDate}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+	\PYG{c+c1}{//update na base de dados}
+		\PYG{n+nx}{updateEpoca}\PYG{p}{(}\PYG{n+nx}{idEpoca}\PYG{p}{,} \PYG{n+nx}{fieldName}\PYG{p}{,} \PYG{n+nx}{startDate}\PYG{p}{,} \PYG{n+nx}{endDate}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

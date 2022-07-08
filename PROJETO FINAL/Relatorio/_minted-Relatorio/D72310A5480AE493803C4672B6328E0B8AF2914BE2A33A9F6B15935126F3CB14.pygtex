@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}modalTempoExame\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{innerHTML} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Configurar exame de \PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}subject\PYGZsq{}}\PYG{p}{];}
+\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}modalHorario\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{innerHTML} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Marcado de \PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}horario\PYGZsq{}}\PYG{p}{];}
+\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}modalDocente\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{innerHTML} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Docente: \PYGZdq{}} \PYG{o}{+} \PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}docente\PYGZsq{}}\PYG{p}{];}
+	
+\PYG{n+nx}{vigilantesAssociados} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+\PYG{k}{if}\PYG{p}{(}\PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}associatedProf\PYGZsq{}}\PYG{p}{].}\PYG{n+nx}{length} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+	
+	\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}modalLabelVigilantes\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{innerHTML} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Vigilantes já associados\PYGZdq{}}\PYG{p}{;}
+	\PYG{c+cm}{/**Adiciona todos os vigilantes disponíveis*/}
+	\PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}associatedProf\PYGZsq{}}\PYG{p}{].}\PYG{n+nx}{forEach}\PYG{p}{(}\PYG{n+nx}{element} \PYG{p}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+		\PYG{n+nx}{vigilantesAssociados} \PYG{o}{+=} \PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}li\PYGZgt{} \PYGZlt{}span class=\PYGZdq{}fa\PYGZhy{}li\PYGZdq{}\PYGZgt{}}
+\PYG{l+s+s1}{		 \PYGZlt{}i class=\PYGZdq{}fa\PYGZhy{}solid fa\PYGZhy{}x\PYGZdq{}\PYGZgt{}\PYGZlt{}/i\PYGZgt{} \PYGZlt{}/span\PYGZgt{}\PYGZsq{}}\PYG{o}{+} \PYG{n+nx}{element}\PYG{p}{.}\PYG{n+nx}{name} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}/li\PYGZgt{}\PYGZsq{}}
+	\PYG{p}{\PYGZcb{});}
+		
+\PYG{p}{\PYGZcb{}}\PYG{k}{else} \PYG{p}{\PYGZob{}}
+	\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}modalLabelVigilantes\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{innerHTML} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Sem vigilantes associados\PYGZdq{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+	
+\PYG{n+nb}{document}\PYG{p}{.}\PYG{n+nx}{getElementById}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}modalVigilantesAssociados\PYGZdq{}}\PYG{p}{).}\PYG{n+nx}{innerHTML} \PYG{o}{=} \PYG{n+nx}{vigilantesAssociados}\PYG{p}{;}
+\end{Verbatim}

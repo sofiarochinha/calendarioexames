@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nx}{\PYGZdl{}}\PYG{p}{.}\PYG{n+nx}{post}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZob{}\PYGZob{} route(\PYGZsq{}criarEpocaConfigurations\PYGZsq{})\PYGZcb{}\PYGZcb{}\PYGZdq{}}\PYG{p}{,}
+\PYG{p}{\PYGZob{}}
+	\PYG{n+nx}{nome}\PYG{o}{:} \PYG{n+nx}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(}\PYG{n+nx}{fieldName}\PYG{p}{),}
+	\PYG{n+nx}{startDate}\PYG{o}{:} \PYG{n+nx}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(}\PYG{n+nx}{startDate}\PYG{p}{),}
+	\PYG{n+nx}{endDate}\PYG{o}{:} \PYG{n+nx}{JSON}\PYG{p}{.}\PYG{n+nx}{stringify}\PYG{p}{(}\PYG{n+nx}{endDate}\PYG{p}{),}
+		
+\PYG{p}{\PYGZcb{},} \PYG{k+kd}{function} \PYG{p}{(}\PYG{n+nx}{response}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{c+c1}{//adiciona o id da epoca}
+	\PYG{n+nx}{tableEpocas}\PYG{p}{.}\PYG{n+nx}{row}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}:first\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{nodes}\PYG{p}{().}\PYG{n+nx}{to\PYGZdl{}}\PYG{p}{().}\PYG{n+nx}{find}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}.data\PYGZsq{}}\PYG{p}{)}
+	\PYG{p}{.}\PYG{n+nx}{attr}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}id\PYGZsq{}}\PYG{p}{,} \PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}idEpoca\PYGZsq{}}\PYG{p}{]);}
+\PYG{p}{\PYGZcb{})}
+\end{Verbatim}

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{function} \PYG{p}{(}\PYG{n+nx}{response}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+\PYG{c+c1}{//adiciona o id da epoca}
+\PYG{k}{if} \PYG{p}{(}\PYG{k}{typeof} \PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}exception\PYGZsq{}}\PYG{p}{]} \PYG{o}{===} \PYG{l+s+s2}{\PYGZdq{}object\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n+nx}{toastr}\PYG{p}{.}\PYG{n+nx}{error}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Ocorreu um erro! O nmec ou o email já está a ser utilizado.\PYGZsq{}}\PYG{p}{);}
+	\PYG{n+nx}{tableDocente}\PYG{p}{.}\PYG{n+nx}{row}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}:first\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{remove}\PYG{p}{().}\PYG{n+nx}{draw}\PYG{p}{(}\PYG{k+kc}{false}\PYG{p}{);}
+		
+\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{k}{typeof} \PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}idDocente\PYGZsq{}}\PYG{p}{]} \PYG{o}{===} \PYG{l+s+s2}{\PYGZdq{}number\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n+nx}{tableDocente}\PYG{p}{.}\PYG{n+nx}{row}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}:first\PYGZsq{}}\PYG{p}{).}\PYG{n+nx}{nodes}\PYG{p}{().}\PYG{n+nx}{to\PYGZdl{}}\PYG{p}{().}\PYG{n+nx}{find}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}.nomeDocente\PYGZsq{}}\PYG{p}{)}
+	\PYG{p}{.}\PYG{n+nx}{attr}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}id\PYGZsq{}}\PYG{p}{,} \PYG{n+nx}{response}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}idDocente\PYGZsq{}}\PYG{p}{]);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

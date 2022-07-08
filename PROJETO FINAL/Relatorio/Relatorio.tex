@@ -134,15 +134,15 @@
 	\setstretch{1.5}
 	\setlength{\parskip}{14pt}
 	\setlength{\parindent}{0pt}
-Apresentação do tema do estágio/projeto e da EA;
-Apresentação dos objetivos gerais e específicos do estágio/projeto;
-Indicação da metodologia de trabalho adotada
-Descrição da estrutura interna do relatório
+	
+	Como escolha do tema para este projeto final foi apresentado a proposta de continuação do projeto no âmbito do Projeto Temático em Desenvolvimento Web associado às disciplinas Web Design e
+	Desenvolvimento Web Multiplataforma em que consistia na a criação de uma aplicação web para proporcionar uma alternativa às ferramentas utilizadas atualmente por um cliente. O grupo constituinte deste projeto acordou abordar o tema de gestão de calendários de avaliações que consiste no desenvolvimento de uma aplicação web desenvolvida com as tecnologias web lecionadas no módulo temático
+	que engloba este projecto. 
+	
+	Este relatório está dividido em quatro etapas: a revisão do projeto - verificação de \textit{bugs} e o que falta implementar, a criação de requisitos funcionais e não funcionais, correção dos \textit{bugs} encontrados e implementação de novas funcionalidades.
 
 	
 	\chapter{Planificação do projeto}
-	Identificação e descrição das atividades previstas para a realização
-	do projeto (Plano de Trabalho)
 	\section{Revisão do estado do projeto}
 	
 		Antes de começar a implementar novas funcionalidades foi feita uma revisão de todo o projeto, a partir dos requisitos identificados no semestre passado (ver tabela \ref{requisitiosfuncionaisrevisao}), para identificar que funcionalidades necessitavam de revisões e correções de erros e quais não foram implementadas do planeamento inicial.
@@ -447,9 +447,6 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	
 	Depois o utilizador terá de importar o csv em que os dados serão guardados nas tabelas ``professor", ``subject" e ``classroom". Se existir mais que um professor para uma disciplina, estes serão guardados na tabela ``professor", mas só será associado à disciplina o primeiro que aparece no ficheiro .csv uma vez que se assume que é o representante da mesma.
 	
-	???????????????
-	E as salas não são associadas uma vez que na época de exames não existe aulas. (ver o que fazer com os cursos de ctesp) 
-	
 	Com isto todos os calendários criados serão armazenados na tabela ``calendar" que contém duas chaves estrangeiras para a época e para o curso para os quais foram associados. As épocas (criadas pelo utilizador) são identificadas pelo seu nome, data de início e fim. Para cada calendário existe inúmeros exames que podem ser marcados (tabela ``evaluation\_slot´´) consoante o curso associado. Cada exame tem três chaves estrangeiras: uma para o calendário, outra para a disciplina e outra para o momento do dia em que será a avaliação e um atributo para o dia marcado.
 	
 	Nesta fase foi alterada a base de dados criando duas tabelas - ``observing\_professor", que guarda todos os vigilantes associados a um exame, e ``associated\_classroom", que armazena todos as salas de um exame - para que possa ser associado um ou mais vigilantes ou uma ou mais salas a cada exame (RF.2 e RF.3 da tabela \ref{requisitiosfuncionais}).
@@ -663,7 +660,7 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 		baselinestretch=1,
 		fontsize=\footnotesize,
 		linenos
-		]{php}
+		]{javascript}
 	$("#adicionarEpoca").off('click').on('click', function () {
 	if (adicionarEpoca) {
 	adicionarEpoca = false;
@@ -696,7 +693,7 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 		baselinestretch=1,
 		fontsize=\footnotesize,
 		linenos
-		]{php}
+		]{javascript}
 	nomeEpoca = $('#epocas').find('input.data');
 	var rowIndex = tableEpocas.row($(nomeEpoca).closest('tr')).index();
 		
@@ -738,18 +735,18 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	baselinestretch=1,
 	fontsize=\footnotesize,
 	linenos
-	]{php}
-	$.post("{{ route('criarEpocaConfigurations')}}",
-	{
-		nome: JSON.stringify(fieldName),
-		startDate: JSON.stringify(startDate),
-		endDate: JSON.stringify(endDate),
-			
-	}, function (response) {
-		//adiciona o id da epoca
-		tableEpocas.row(':first').nodes().to$().find('.data')
-		.attr('id', response['idEpoca']);
-	})
+	]{javascript}
+$.post("{{ route('criarEpocaConfigurations')}}",
+{
+	nome: JSON.stringify(fieldName),
+	startDate: JSON.stringify(startDate),
+	endDate: JSON.stringify(endDate),
+		
+}, function (response) {
+	//adiciona o id da epoca
+	tableEpocas.row(':first').nodes().to$().find('.data')
+	.attr('id', response['idEpoca']);
+})
 	\end{minted}
 	\caption{Envio de dados para o controlador e na resposta adicionar o id ao nome da época}
 	\label{epocaAddDatabase}
@@ -766,55 +763,332 @@ Isto permite que o utilizador utilize a aplicação durante mais tempo e gerir o
 	baselinestretch=1,
 	fontsize=\footnotesize,
 	linenos
-	]{php}
-	function (response) {
-	//adiciona o id da epoca
-	if (typeof response['exception'] === "object") {
-		toastr.error('Ocorreu um erro! O nmec ou o email já está a ser utilizado.');
-		tableDocente.row(':first').remove().draw(false);
-			
-	} else if (typeof response['idDocente'] === "number") {
-		tableDocente.row(':first').nodes().to$().find('.nomeDocente')
-		.attr('id', response['idDocente']);
-	}
+	]{javascript}
+function (response) {
+//adiciona o id da epoca
+if (typeof response['exception'] === "object") {
+	toastr.error('Ocorreu um erro! O nmec ou o email já está a ser utilizado.');
+	tableDocente.row(':first').remove().draw(false);
+		
+} else if (typeof response['idDocente'] === "number") {
+	tableDocente.row(':first').nodes().to$().find('.nomeDocente')
+	.attr('id', response['idDocente']);
+}
 	\end{minted}
 	\caption{Verificação se o nmec e o email são únicos ao criar um docente}
 	\label{docenteAddDatabase}
 	\end{listing}
 
 	\subsection{Criação de calendários}
+	Na versão anterior do projeto era possível criar calendários para somente para épocas já existentes não sendo possível criar novas. Por isso adicionou-se essa funcionalidade à página ``Criar calendário'', como se pode ver na figura \ref{criarEpoca}. Este formulário está escondido e assim que o utilizador clicar em ``Adicionar época'', este aparece através da função ``showFrom()'' apresentado 
+	no código \ref{addNovaEpoca}.
 	
+	\begin{listing}[H]
+	\begin{minted}[
+			frame=lines,
+			framesep=2mm,
+			baselinestretch=1,
+			fontsize=\footnotesize,
+			linenos
+			]{javascript}
+function showFrom() {
+	let mostrarEpoca = $('#showCriarEpoca');
+	let form = $('#criarEpocaForm');
+			
+	if (mostrarEpoca.css("display") === "none") {
+		mostrarEpoca.css("display", "inline-block");
+		form.css("display", "none");
+	} else {
+		mostrarEpoca.css("display", "none");
+		form.css("display", "block");
+	}
+}
+	\end{minted}
+	\caption{Apresentação do formulário para adicionar uma nova época}
+	\label{addNovaEpoca}
+	\end{listing}
 	
-	\subsection{Exportação}
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{image/criarEpoca}
+		\caption{Adicionar uma nova época}
+		\label{criarEpoca}
+		
+	\end{figure}
+
+	\subsection{Marcação de exames}	
+	
+	Na página ``marcar exames'' foi alterado a forma como é obtida toda a informação sobre os exames marcados e não marcados. Na versão anterior era feito vários pedidos ao controllador à medida que era necessário causando vários conflitos. Assim, para melhorar a eficiência da aplicação, todos as informações sobre os exames (nome, dia marcado, avisos - explicado na secção \ref{avisosSeccao}, etc) são requisitadas uma única vez e recebido, do lado do cliente, em formato JSON, como se pode ver no código \ref{requestExames}.
+	
+	\begin{listing}[H]
+		\begin{minted}[
+			frame=lines,
+			framesep=2mm,
+			baselinestretch=1,
+			fontsize=\footnotesize,
+			linenos
+			]{javascript}
+$.post("{{ route('api-getExames')}}",
+{
+	codeCourse: JSON.stringify(codeCourse),
+	idEpoca: JSON.stringify(idEpoca),
+	yearCourse: JSON.stringify(yearCourse),
+			
+}, function (response) {	
+	var disciplinaString = " ";
+	response['exames'].forEach(element => {
+		if(element['idEvaluationSlot'] == null){
+			disciplinaString += "<div class='external-event bg-success'>"+
+			 element['subject']['name'] + "</div>";
+		}
+	});
+		
+	$("#external-events").html(disciplinaString);
+	alterarCalendario(response['exames']);
+			
+})
+	\end{minted}
+	\caption{Pedido e tratamento da resposta de todos os exames}
+	\label{requestExames}
+	\end{listing}
+
+Do lado do servidor estas informações são obtidas no controlador sem a utilização dos \textit{Models} uma vez que não é possível através dos mesmos obter informações sobre tabelas que contenham uma chave primária com dois atributos. Por isso utilizou-se a biblioteca \textit{Illuminate\ Support\ Facades\ DB}, como está apresentado no código \ref{getDataDB}.
+
+	\begin{listing}[H]
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{javascript}
+$codeCourse = json_decode($request->codeCourse);
+$idEpoca = json_decode($request->idEpoca);
+$yearCourse = json_decode($request->yearCourse);
+
+$idCourse = Course::where('course_code', $codeCourse)->where('course_year', $yearCourse)->first()->id;
+
+//obtem todas as disciplinas marcadas
+$subjects = Subject::where('course_id', $idCourse)->with('evaluationSlot')->get();
+
+$associatedSala = DB::table('associated_classroom')
+->join('classroom', 'associated_classroom.id_classroom', '=', 'classroom.id')
+->where('id_evaluation_slot', $subject->evaluationSlot->id)
+->get();
+		
+$associatedDocente = DB::table('observing_professor')
+->join('professor', 'observing_professor.id_professor', '=', 'professor.id')
+->where('id_evaluation_slot', $subject->evaluationSlot->id)
+->get();
+		
+\end{minted}
+\caption{Obtenção de informações sobre os exames}
+\label{getDataDB}
+\end{listing}
+
+ Caso o exame ainda não tenha sido marcado este é adicionado às disciplinas por marcar. Caso contrário é criado um evento e inserido no calendário. A este evento é adicionado a data de início e data de fim, o seu id é o id da ``evaluationSlot'' e o seu título contém o nome do exame e o número de salas e vigilantes, separadamente.
+
+	\begin{listing}[H]
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{javascript}
+exames.forEach(element => {
+var event = {}; //cria um objeto que irá guardar todas as informações sobre o exame
+idEvaluationSlot = element['idEvaluationSlot'];
+
+if(idEvaluationSlot != null){
+	calendarDay = element['subject']['evaluation_slot']['calendar_day'];
+	timeSlot = element['subject']['evaluation_slot']['time_slot'];
+		
+	if(timeSlot == 1){
+		event.start = calendarDay.concat(" ", "09:30:00");
+		event.end = calendarDay.concat(" ", "13:30:00");
+	}else if (timeSlot == 2) {
+		event.start = calendarDay.concat(" ", "14:00:00");
+		event.end = calendarDay.concat(" ", "18:00:00");
+	} else {
+		event.start = calendarDay.concat(" ", "18:30:00");
+		event.end = calendarDay.concat(" ", "22:30:00");
+	}
+		
+	event.id = idEvaluationSlot; 	
+	numberSalas = 0; numberDocentes = 0;
+		
+	if(element['docente'].length > 0) numberDocentes = element['docente'].length
+	if(element['sala'].length > 0) numberSalas = element['sala'].length
+		
+	event.title = element['subject']['name'] + " " + numberDocentes + " Vigilantes " + 
+	numberSalas + " Salas";
+	arrayEvent.push(event); //adiciona o objeto criado a um array que irá ser lido pelo calendário	
+	}
+});
+}
+	\end{minted}
+	\caption{Pedido e tratamento da resposta de todos os exames}
+	\label{requestExames}
+\end{listing}
+
+\subsection{Modal}
+
+O modal era uma funcionalidade já implementada mas que continha alguns problemas que foram corrigidos assim que foi alterado o modo como se obtêm as informações sobre os exames - tal como foi mencionado acima. Assim, o modal, ao contrário do que acontecia antes, permanece na página mas é ativado e mudado todo o seu conteúdo assim que o utilizador clica no exame, como está apresentado no excerto do código \ref{modal}.
+
+	\begin{listing}[H]
+	\begin{minted}[
+		frame=lines,
+		framesep=2mm,
+		baselinestretch=1,
+		fontsize=\footnotesize,
+		linenos
+		]{javascript}
+document.getElementById("modalTempoExame").innerHTML = "Configurar exame de " + response['subject'];
+document.getElementById("modalHorario").innerHTML = "Marcado de " + response['horario'];
+document.getElementById("modalDocente").innerHTML = "Docente: " + response['docente'];
+	
+vigilantesAssociados = "";
+if(response['associatedProf'].length > 0){
+	
+	document.getElementById("modalLabelVigilantes").innerHTML = "Vigilantes já associados";
+	/**Adiciona todos os vigilantes disponíveis*/
+	response['associatedProf'].forEach(element => {
+		vigilantesAssociados += '<li> <span class="fa-li">
+		 <i class="fa-solid fa-x"></i> </span>'+ element.name + '</li>'
+	});
+		
+}else {
+	document.getElementById("modalLabelVigilantes").innerHTML = "Sem vigilantes associados";
+}
+	
+document.getElementById("modalVigilantesAssociados").innerHTML = vigilantesAssociados;
+\end{minted}
+\caption{Alteração dos conteúdos do modal relativo ao exame clicado}
+\label{modal}
+\end{listing}
+
+No fim o modal é ativado com a seguinte linha de código \textit{ \$('schedule-edit').modal();}.
 	\subsection{Avisos}
-	\subsection{Análise de resultados}
+	\label{avisosSeccao}
 	
+	Os avisos nem todos foram criados e os que estão criados só se apresentam no objeto JSON, mencionado acima. Os avisos programados foram o de sobreposição de exames - que verifica se existe algum exame marcado no mesmo e na mesma hora, do mesmo cursoe e da mesma época. Sendo \$subjects a lista de exames do curso, então a verificação é feita como está apresentado no código \ref{examesSobreposição}.
+	
+		\begin{listing}[H]
+		\begin{minted}[
+			frame=lines,
+			framesep=2mm,
+			baselinestretch=1,
+			fontsize=\footnotesize,
+			linenos
+			]{javascript}
+//verifica se existe alguma disciplina no mesmo dia e no mesmo bloco de avaliação
+foreach ($subjects as $subject) {
+				
+/**
+* * $subject != $atualSubject verifica se a disciplina é a mesma
+* * $subject->evaluationSlot != null verifica se está marcado o exame
+* * verifica se o time_slot e o dia é o mesmo
+*/
+if (
+	$subject != $atualSubject &&
+	$subject->evaluationSlot != null &&
+	$subject->evaluationSlot->time_slot == $atualSubject->evaluationSlot->time_slot
+	&& $subject->evaluationSlot->calendar_day == $atualSubject->evaluationSlot->calendar_day
+	) 	return True;
+}
+		\end{minted}
+		\caption{Verificação se existe exames sobrepostos}
+		\label{examesSobreposição}
+	\end{listing}
+	
+	E a falta de docentes ou salas é verificada se no resultado das \textit{querys} estas, apresnentadas no código \ref{getDataDB} derem um array vazio.
 	
 	
 	\chapter{Análise de resultados}
+
+	Na tabela \ref{analiseResultados} é apresentado o resultado da projeto do final em relação aos requisitos iniciais propostos.
 	
+	\def\arraystretch{1.5}
+	\begin{center}
+		\label{analiseResultados}
+		\begin{longtable}{|m{1cm}|m{2.2cm}|m{9cm}|m{3cm}|}
+			\caption{Requisitos funcionais a serem implementados}\\
+			
+			\hline			
+			\textbf{Refª }	& \textbf{Categoria}&\textbf{Descrição do requisito} & \textbf{Implementado} \\
+			\hline
+			
+			
+			RF.1 &Importação& Importação de ficheiros com a configuração de salas, disciplinas e docentes em formato \textbf{csv} com dois ou mais docentes& Sim \\
+			\hline
+			
+			RF.2 &\multirow{2}{2cm}{Exportação}& Exportação de calendários em formato \textbf{pdf} & Não \\
+			
+			RF.3 && Exportação o calendário em língua inglesa & Não \\
+			\hline
+			
+			RF.4 &\multirow{2}{2cm}{Marcação de exames}& Associação de um ou mais vigilantes a cada exame & Sim\\
+			
+			RF.5 &&	Associação de uma ou mais salas a cada exame & Sim\\
+			
+			RF.6 &&Indicação do número de salas associadas & Sim\\
+			\hline
+			
+			RF.9 &\multirow{6}{2cm}{Dados Auxiliares}& Inserção da lotação máxima das salas& Sim \\
+			
+			RF.10 && Alterar a disponibilidade dos docentes & Não\\
+			
+			RF.10 && Adicionar épocas & Sim\\
+			
+			RF.11 && Editar épocas & Sim\\
+			
+			RF.12 && Eliminar épocas & Sim\\
+			
+			RF.13 && Inserir disponibilidade dos docentes & Não\\
+			\hline
+			
+			RF.16 &\multirow{9}{2cm}{Avisos}& Mostrar um aviso de alta prioridade se houver sobreposições de exames & Sim\\
+			
+			RF.17 && Mostrar um aviso de alta prioridade se o docente não estiver disponível & Não \\
+			
+			RF.18 && Mostrar um aviso de alta prioridade se a sala não estiver disponível & Não\\
+			
+			RF.19 && Mostrar um aviso de alta prioridade se o curso for diurno e colocar um exame no turno da noite e vice-versa & Não\\
+			
+			RF.20&&Mostrar um aviso de alta prioridade se o docente associado ao mesmo exame for repetido & Não \\
+			
+			RF.21 && Mostrar um aviso de alta prioridade se o exame necessitar de uma sala de informática e não for associada sala desse tipo & Não\\
+			
+			RF.22 && Mostrar um aviso de alta prioridade se houver mais alunos inscritos do que  lotação máxima da sala & Não\\
+			
+			RF.23 && Mostrar um aviso de média prioridade se houver exames marcados no mesmo dia e hora do mesmo curso mas anos diferentes & Não\\
+			
+			RF.24 && Mostrar um aviso de média prioridade se o utilizador tentar exportar um calendário sem todos os exames marcados & Não\\
+			
+			\hline
+			
+			RF.25 &Autenticação& O utilizador só pode aceder à aplicação após a autenticação & Sim\\
+			\hline
+			
+			RF.26 &\multirow{1}{2cm}{Criação de calendários}& Criação de épocas de avaliação adicionando um nome e uma data de início e fim & Sim \\
+			
+			\hline
+			RF.30 &\multirow{2}{*}{Histórico}& Guardar e visualizar calendários de exames de anos anteriores (histórico)& Não \\
+			
+			RF.31 && Filtrar o histórico por curso, ano letivo, ano do curso, semestre e época& Não \\
+			\hline
+		\end{longtable}
+	\end{center}
 	
-	
-	
-	\chapter{Lançamento da versão final}
-	
-	\section{Alocação da aplicação no servidor}
 	
 	
 	
 	\chapter{Conclusão}
-	
-	Atividades desenvolvidas
-	• Estratégias de trabalho adotadas
-	• Tecnologias utilizadas
-	• Planeamento previsto e o efetivamente executado
-	• Sugestões que possam colmatar eventuais lacunas do
-	trabalho realizado
-	
-	\bibliographystyle{ieeetr}
-	\bibliography{citations}
-	\pagenumbering{roman}
-	\pagestyle{empty}
+	Para concluir o relatório será feita uma pequena reflexão sobre o projeto. Incialmente por ter participado na primeira versão do mesmo facilitou imenso entender o que podia ser melhorado e o que faltava fazer para o concluir. No entanto, por falta de conhecimentos criou-se, sem saber, vários problemas entre a relação servidor-cliente, sendo resolvidos posteriomente.
+	No futuro gostaria de terminar o projeto já que este é de bastante utilidade para todas as escolas.
+
+
 	
 	
 \end{document}	

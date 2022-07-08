@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//verifica se existe alguma disciplina no mesmo dia e no mesmo bloco de avaliação}
+\PYG{n+nx}{foreach} \PYG{p}{(}\PYG{n+nx}{\PYGZdl{}subjects} \PYG{n+nx}{as} \PYG{n+nx}{\PYGZdl{}subject}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				
+\PYG{c+cm}{/**}
+\PYG{c+cm}{* * \PYGZdl{}subject != \PYGZdl{}atualSubject verifica se a disciplina é a mesma}
+\PYG{c+cm}{* * \PYGZdl{}subject\PYGZhy{}\PYGZgt{}evaluationSlot != null verifica se está marcado o exame}
+\PYG{c+cm}{* * verifica se o time\PYGZus{}slot e o dia é o mesmo}
+\PYG{c+cm}{*/}
+\PYG{k}{if} \PYG{p}{(}
+	\PYG{n+nx}{\PYGZdl{}subject} \PYG{o}{!=} \PYG{n+nx}{\PYGZdl{}atualSubject} \PYG{o}{\PYGZam{}\PYGZam{}}
+	\PYG{n+nx}{\PYGZdl{}subject}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{evaluationSlot} \PYG{o}{!=} \PYG{k+kc}{null} \PYG{o}{\PYGZam{}\PYGZam{}}
+	\PYG{n+nx}{\PYGZdl{}subject}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{evaluationSlot}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{time\PYGZus{}slot} \PYG{o}{==} \PYG{n+nx}{\PYGZdl{}atualSubject}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{evaluationSlot}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{time\PYGZus{}slot}
+	\PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nx}{\PYGZdl{}subject}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{evaluationSlot}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{calendar\PYGZus{}day} \PYG{o}{==} \PYG{n+nx}{\PYGZdl{}atualSubject}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{evaluationSlot}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n+nx}{calendar\PYGZus{}day}
+	\PYG{p}{)} 	\PYG{k}{return} \PYG{n+nx}{True}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

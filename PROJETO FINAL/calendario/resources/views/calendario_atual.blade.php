@@ -209,7 +209,6 @@
         }
 
         @endforeach
-        console.log(epocaString);
 
         $("#epoca").html(epocaString);
 
